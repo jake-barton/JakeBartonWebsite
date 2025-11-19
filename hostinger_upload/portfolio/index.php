@@ -6,16 +6,27 @@
     <title>Portfolio - Jake Barton</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../assets/js/effects.js" defer></script>
 </head>
 <body>
     <div class="animated-bg"></div>
 
     <header>
         <nav>
-            <div class="nav-logo">JB</div>
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="./">Portfolio</a></li>
+            <a href="../index.php" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
+            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul id="primary-menu">
+                <li class="mobile-visible"><a href="../index.php">Home</a></li>
+                <li class="mobile-visible"><a href="./">Portfolio</a></li>
+                <li><a href="professional-works/">Professional Works</a></li>
+                <li><a href="games/">Games</a></li>
+                <li><a href="tshirt-designs/">T-Shirt Designs</a></li>
+                <li><a href="../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
+                <li class="mobile-visible"><a href="../index.php#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -97,5 +108,28 @@
             </p>
         </div>
     </div>
+    <script>
+    // Mobile nav fallback
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('.nav-toggle');
+        const menu = document.getElementById('primary-menu');
+        if (!btn || !menu) return;
+        
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !expanded);
+            menu.classList.toggle('open');
+        });
+        
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+    </script>
 </body>
 </html>

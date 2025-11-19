@@ -35,39 +35,15 @@ $designs = [
         'id' => 4,
         'title' => 'Southern Gents - Design 1',
         'description' => 'Custom t-shirt design based on album cover - Southern Gents collection',
-        'year' => '2024',
+        'year' => '2025',
         'thumbnail' => 'images/thumbnails/SouthernGents-01.svg',
         'full' => 'images/full/SouthernGents/SouthernGents-01.svg'
-    ],
-    [
-        'id' => 5,
-        'title' => 'Southern Gents - Design 2',
-        'description' => 'Custom t-shirt design based on album cover - Southern Gents collection',
-        'year' => '2024',
-        'thumbnail' => 'images/thumbnails/SouthernGents_Artboard 1-02.svg',
-        'full' => 'images/full/SouthernGents/SouthernGents_Artboard 1-02.svg'
-    ],
-    [
-        'id' => 6,
-        'title' => 'Southern Gents - Design 3',
-        'description' => 'Custom t-shirt design based on album cover - Southern Gents collection',
-        'year' => '2024',
-        'thumbnail' => 'images/thumbnails/SouthernGents_Artboard 1-03.svg',
-        'full' => 'images/full/SouthernGents/SouthernGents_Artboard 1-03.svg'
-    ],
-    [
-        'id' => 7,
-        'title' => 'Southern Gents - Design 4',
-        'description' => 'Custom t-shirt design based on album cover - Southern Gents collection',
-        'year' => '2024',
-        'thumbnail' => 'images/thumbnails/SouthernGents_Artboard 1-04.svg',
-        'full' => 'images/full/SouthernGents/SouthernGents_Artboard 1-04.svg'
     ],
     [
         'id' => 8,
         'title' => 'Southern Gents - Design 5',
         'description' => 'Custom t-shirt design based on album cover - Southern Gents collection',
-        'year' => '2024',
+        'year' => '2025',
         'thumbnail' => 'images/thumbnails/SouthernGents_Artboard 1-05.svg',
         'full' => 'images/full/SouthernGents/SouthernGents_Artboard 1-05.svg'
     ],
@@ -119,14 +95,6 @@ $designs = [
         'thumbnail' => 'images/thumbnails/Samford Film.svg',
         'full' => 'images/full/Samford Film.svg'
     ],
-    [
-        'id' => 15,
-        'title' => 'Samford Walk the Walk',
-        'description' => 'Custom t-shirt design for Samford University Spiritual Life',
-        'year' => '2024',
-        'thumbnail' => 'images/thumbnails/Samford Walk the Walk.svg',
-        'full' => 'images/full/Samford Walk the Walk.svg'
-    ],
     // Add more designs here as you upload them
 ];
 
@@ -142,17 +110,27 @@ sort($years);
     <title><?php echo $pageTitle; ?> - Jake Barton</title>
     <link rel="stylesheet" href="../../assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../assets/js/effects.js" defer></script>
 </head>
 <body>
     <div class="animated-bg"></div>
 
     <header>
         <nav>
-            <div class="nav-logo">JB</div>
-            <ul>
-                <li><a href="../../index.php">Home</a></li>
-                <li><a href="../">Portfolio</a></li>
+            <a href="../../index.php" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
+            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul id="primary-menu">
+                <li class="mobile-visible"><a href="../../index.php">Home</a></li>
+                <li class="mobile-visible"><a href="../">Portfolio</a></li>
+                <li><a href="../professional-works/">Professional Works</a></li>
+                <li><a href="../games/">Games</a></li>
                 <li><a href="./">T-Shirt Designs</a></li>
+                <li><a href="../../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
+                <li class="mobile-visible"><a href="../../index.php#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -218,5 +196,37 @@ sort($years);
     </div>
 
     <script src="../../assets/js/gallery.js"></script>
+    
+    <script>
+        // Mobile nav toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.querySelector('.nav-toggle');
+            const menu = document.getElementById('primary-menu');
+            if (!btn || !menu) return;
+            
+            btn.addEventListener('click', function(e){
+                e.stopPropagation();
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                menu.classList.toggle('open');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

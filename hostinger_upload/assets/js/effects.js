@@ -242,6 +242,11 @@ function initializeEffects() {
     } catch (e) {
         // Silently fail in production
     }
+
+    // Mobile navigation
+    try {
+        new MobileNav();
+    } catch (e) {}
 }
 
 // Initialize when DOM is ready
@@ -249,4 +254,143 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeEffects);
 } else {
     initializeEffects();
+}
+
+// ======================
+// 4. MOBILE NAVIGATION TOGGLE
+// ======================
+class MobileNav {
+    constructor() {
+        this.button = document.querySelector('.nav-toggle');
+        this.menu = document.querySelector('#primary-menu') || document.querySelector('nav ul');
+        if (!this.button || !this.menu) return;
+        this.expanded = false;
+        this.outsideHandler = (e) => {
+            if (!this.expanded) return;
+            // Check if click is on button or its children (the bars)
+            if (!this.menu.contains(e.target) && !this.button.contains(e.target)) {
+                this.toggle(false);
+            }
+        };
+        this.bindEvents();
+        // Ensure menu starts closed
+        this.menu.classList.remove('open');
+        this.button.setAttribute('aria-expanded','false');
+        // Add drag scroll functionality
+        this.addDragScroll();
+    }
+    
+    addDragScroll() {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let hasMoved = false;
+
+        this.menu.addEventListener('mousedown', (e) => {
+            // Don't interfere with scrollbar clicks
+            if (e.target === this.menu) {
+                isDown = true;
+                hasMoved = false;
+                this.menu.style.cursor = 'grabbing';
+                startX = e.pageX - this.menu.offsetLeft;
+                scrollLeft = this.menu.scrollLeft;
+            }
+        });
+
+        this.menu.addEventListener('mouseleave', () => {
+            isDown = false;
+            if (this.expanded) this.menu.style.cursor = 'grab';
+        });
+
+        this.menu.addEventListener('mouseup', () => {
+            isDown = false;
+            if (this.expanded) this.menu.style.cursor = 'grab';
+        });
+
+        this.menu.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            hasMoved = true;
+            const x = e.pageX - this.menu.offsetLeft;
+            const walk = (x - startX) * 2;
+            this.menu.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events for mobile (native scroll works better)
+        let touchStartX = 0;
+        let touchHasMoved = false;
+        
+        this.menu.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].pageX;
+            touchHasMoved = false;
+        }, { passive: true });
+
+        this.menu.addEventListener('touchmove', (e) => {
+            const touchMoveX = e.touches[0].pageX;
+            if (Math.abs(touchMoveX - touchStartX) > 10) {
+                touchHasMoved = true;
+            }
+        }, { passive: true });
+
+        // Store hasMoved state for click handler
+        this.menu._dragState = { hasMoved: () => hasMoved || touchHasMoved };
+        
+        this.menu.addEventListener('touchend', () => {
+            setTimeout(() => { touchHasMoved = false; }, 100);
+        });
+    }
+    bindEvents() {
+        this.button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggle();
+        });
+        // Handle link clicks through event delegation on the ul
+        this.menu.addEventListener('click', (e) => {
+            // Don't navigate if user was dragging
+            if (this.menu._dragState && this.menu._dragState.hasMoved()) {
+                return;
+            }
+            
+            const link = e.target.closest('a');
+            if (link && link.href) {
+                e.preventDefault();
+                if (this.expanded) this.toggle();
+                // Navigate after a brief delay to allow menu to close
+                setTimeout(() => {
+                    if (link.hasAttribute('download')) {
+                        // Handle download links
+                        const tempLink = document.createElement('a');
+                        tempLink.href = link.href;
+                        tempLink.download = link.getAttribute('download') || '';
+                        document.body.appendChild(tempLink);
+                        tempLink.click();
+                        document.body.removeChild(tempLink);
+                    } else {
+                        window.location.href = link.href;
+                    }
+                }, 150);
+            }
+        });
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.expanded) this.toggle(false);
+        });
+        // Close on outside click
+        document.addEventListener('click', this.outsideHandler);
+    }
+    toggle(force) {
+        this.expanded = typeof force === 'boolean' ? force : !this.expanded;
+        this.button.setAttribute('aria-expanded', this.expanded);
+        if (this.expanded) {
+            this.menu.classList.add('open');
+            this.button.setAttribute('aria-label', 'Close menu');
+            // Focus first link for accessibility
+            const firstLink = this.menu.querySelector('a');
+            if (firstLink) firstLink.focus();
+            // Rotate bars via aria-expanded attribute already styled in CSS
+        } else {
+            this.menu.classList.remove('open');
+            this.button.setAttribute('aria-label', 'Open menu');
+        }
+    }
 }

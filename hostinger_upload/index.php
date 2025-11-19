@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Barton - Game Designer & 3D Artist</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    <link rel="stylesheet" href="assets/css/styles.css?v=20251104-2">
+    <link rel="stylesheet" href="assets/css/styles.css?v=20251119-frost">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
@@ -21,38 +21,51 @@
     $location = "Birmingham, AL";
     $major = "Game Design & 3D Animation";
     $minor = "Computer Science";
-    $year = "Junior";
+    $year = "Junior"; // Class standing
+    $gradYear = 2027; // Graduation year per resume
+    $gpa = 3.5; // University GPA
     
     $skills = [
-        "Python", "C++", "Godot", "Unreal Engine 5", "Unity",
-        "Autodesk Maya", "Blender", "Figma", "UX Design",
-        "Adobe Illustrator", "Photoshop", "Web Development"
+        "C++", "Python", "JavaScript", "HTML", "CSS",
+        "Unreal Blueprint", "Unreal Engine", "Godot Engine",
+        "Autodesk Maya", "Blender", "Substance Painter",
+        "Adobe Photoshop", "Adobe Illustrator", "Figma",
+        "Web Development", "Game Programming", "Level Design",
+        "Project Management", "UX Design"
     ];
     
     $leadership = [
-        "T-Shirt Chair - Pi Kappa Phi (2 years)",
-        "Social Chair - Pi Kappa Phi Alpha Eta Chapter"
+        "Social Chair - Pi Kappa Phi (2025–Current)",
+        "Executive Council - Philanthropy Chair (2025–Current)",
+        "T-Shirt Chair - Pi Kappa Phi (2023–2025)"
     ];
     
     $contact = [
         'email' => 'jbarton4@samford.edu',
-        'phone' => '615.943.9722',
-        'address' => '4147 Miles Johnson Pkwy, Birmingham, AL',
+        'phone' => '(615) 943 9722',
+        'website' => 'https://jakebartoncreative.com',
+        'address' => 'Birmingham, AL',
         'instagram' => 'jakebarton13',
-        'github' => '', // To be added later
-        'youtube' => '' // To be added later
+        'github' => '',
+        'youtube' => ''
     ];
     ?>
 
     <header>
         <nav>
-            <div class="nav-logo">JB</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
+            <a href="#home" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
+            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul id="primary-menu">
+                <li class="mobile-visible"><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="portfolio/">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="mobile-visible"><a href="portfolio/">Portfolio</a></li>
+                <li><a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
+                <li class="mobile-visible"><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -69,7 +82,10 @@
             <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 50px; animation: fadeInUp 1.2s ease-out;">
                 <?php echo $year; ?> at <?php echo $university; ?>, <?php echo $location; ?>
             </p>
-            <a href="portfolio/" class="btn" style="animation: fadeInUp 1.4s ease-out;">VIEW MY WORK</a>
+            <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; animation: fadeInUp 1.4s ease-out;">
+                <a href="portfolio/" class="btn">VIEW MY WORK</a>
+                <a href="assets/Jake%20Barton%20-%20Resume.pdf" download class="btn" style="background: var(--primary-black); border:3px solid var(--accent-white); color: var(--accent-white);">DOWNLOAD RESUME (PDF)</a>
+            </div>
         </div>
 
         <!-- Auto-Rotating Showcase Gallery -->
@@ -196,7 +212,7 @@
             <p style="font-size: 1.15rem; line-height: 1.9;">
                 I'm a <?php echo $year; ?> at <strong style="color: var(--accent-white);"><?php echo $university; ?></strong> 
                 in <?php echo $location; ?>, majoring in <strong style="color: var(--accent-white);"><?php echo $major; ?></strong> 
-                with a minor in <strong style="color: var(--accent-white);"><?php echo $minor; ?></strong>.
+                with a minor in <strong style="color: var(--accent-white);"><?php echo $minor; ?></strong>. Expected graduation: <strong style="color: var(--accent-white);"><?php echo $gradYear; ?></strong>. Current GPA: <strong style="color: var(--accent-white);"><?php echo number_format($gpa,2); ?></strong>.
             </p>
             
             <p style="font-size: 1.15rem; line-height: 1.9; margin-top: 20px;">
@@ -214,10 +230,10 @@
 
         <!-- Leadership Section -->
         <div class="content-section">
-            <h2>LEADERSHIP & EXPERIENCE</h2>
+            <h2>LEADERSHIP & EXPERIENCE (PI KAPPA PHI)</h2>
             <p style="font-size: 1.15rem; line-height: 1.9;">
-                As a member of <strong style="color: var(--accent-white);">Pi Kappa Phi Fraternity - Alpha Eta Chapter</strong>, 
-                I've held key leadership positions that have sharpened my creative and organizational skills:
+                As a committed member of <strong style="color: var(--accent-white);">Pi Kappa Phi Fraternity - Alpha Eta Chapter</strong>, 
+                I serve in multiple leadership roles driving event planning, apparel production, and philanthropy impact:
             </p>
             <ul style="margin-top: 25px; font-size: 1.1rem; line-height: 2;">
                 <?php foreach ($leadership as $position): ?>
@@ -259,14 +275,55 @@
                 <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
                     T-SHIRT CHAIR
                 </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9;">
+                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
                     For two years as <strong style="color: var(--accent-white);">T-Shirt Chair</strong>, I've designed and produced 
-                    custom apparel for our chapter, bringing creative visions to life through Adobe Illustrator. 
-                    Check out my <a href="portfolio/tshirt-designs/" 
-                    style="color: var(--accent-white); text-decoration: none; border-bottom: 3px solid var(--accent-white); font-weight: bold;">
-                    t-shirt design portfolio</a> to see my work!
+                    custom apparel for our chapter, collaborating with vendors to ensure quality and timely delivery. My responsibilities include:
                 </p>
+                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Designing custom t-shirts and apparel for chapter events and recruitment
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Managing vendor relationships and coordinating production timelines
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Creating designs that reflect chapter identity and event themes
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Ensuring quality control and timely delivery for all orders
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> View the <a href="portfolio/tshirt-designs/" style="color: var(--accent-white); text-decoration: none; border-bottom: 3px solid var(--accent-white); font-weight: bold;">t-shirt design portfolio</a> to see selected work
+                    </li>
+                </ul>
             </div>
+            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
+                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
+                    PHILANTHROPY CHAIR (EXECUTIVE COUNCIL)
+                </h3>
+                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
+                    As <strong style="color: var(--accent-white);">Philanthropy Chair</strong>, I coordinate initiatives supporting disability inclusion, 
+                    partnering with organizations to raise funds and awareness. My responsibilities include:
+                </p>
+                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Leading partnerships with <strong style="color: var(--accent-white);">Unless U</strong> and <strong style="color: var(--accent-white);">The Ability Experience</strong>
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Planning and executing chapter-wide service and fundraising events
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Promoting disability inclusion initiatives within the campus community
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Coordinating volunteer efforts and tracking impact metrics
+                    </li>
+                    <li style="color: var(--text-muted); margin-bottom: 12px;">
+                        <span style="color: var(--accent-white);">▸</span> Managing event logistics, volunteer scheduling, and donor relations
+                    </li>
+                </ul>
+            </div>
+        </div>
         </div>
 
         <!-- Contact Section -->
@@ -322,9 +379,15 @@
                         </div>
                         <div style="margin-bottom: 20px;">
                             <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">PHONE</p>
-                            <a href="tel:+1<?php echo str_replace('.', '', $contact['phone']); ?>" 
+                            <a href="tel:+16159439722" 
                                style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
                                 <?php echo $contact['phone']; ?>
+                            </a>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">WEBSITE</p>
+                            <a href="<?php echo $contact['website']; ?>" target="_blank" style="color: var(--accent-white); font-size: 1.05rem; text-decoration: none; border-bottom:2px solid var(--accent-white);">
+                                jakebartoncreative.com
                             </a>
                         </div>
                         <div style="margin-bottom: 20px;">
@@ -339,6 +402,13 @@
                         <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
                             SOCIAL MEDIA
                         </h3>
+                        <div style="margin-bottom: 20px;">
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">LINKEDIN</p>
+                            <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" 
+                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
+                                linkedin.com/in/jakebartoncreative
+                            </a>
+                        </div>
                         <?php if (!empty($contact['instagram'])): ?>
                         <div style="margin-bottom: 20px;">
                             <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">INSTAGRAM</p>
@@ -365,11 +435,6 @@
                                 youtube.com/@<?php echo $contact['youtube']; ?>
                             </a>
                         </div>
-                        <?php endif; ?>
-                        <?php if (empty($contact['github']) && empty($contact['youtube'])): ?>
-                        <p style="color: var(--text-muted); font-style: italic;">
-                            More links coming soon...
-                        </p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -643,6 +708,39 @@
     </style>
 
     <script>
+        // Fallback mobile nav (in case effects.js fails to load)
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.querySelector('.nav-toggle');
+            const menu = document.getElementById('primary-menu');
+            if (!btn || !menu) return;
+            if (!menu.classList.contains('open')) menu.classList.remove('open');
+            btn.addEventListener('click', function(e){
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                menu.classList.toggle('open');
+            });
+            // Handle link clicks through event delegation
+            menu.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+                if (link && link.href) {
+                    e.preventDefault();
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                    setTimeout(() => {
+                        if (link.hasAttribute('download')) {
+                            const tempLink = document.createElement('a');
+                            tempLink.href = link.href;
+                            tempLink.download = link.getAttribute('download') || '';
+                            document.body.appendChild(tempLink);
+                            tempLink.click();
+                            document.body.removeChild(tempLink);
+                        } else {
+                            window.location.href = link.href;
+                        }
+                    }, 150);
+                }
+            });
+        });
         // Card Stack Carousel - Enhanced Shifting
         class Carousel {
             constructor() {
