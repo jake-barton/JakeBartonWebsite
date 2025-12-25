@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animations Demo - Jake Barton</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/text-animations.js" defer></script>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            padding: 40px 20px;
+        }
+        
+        .demo-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .demo-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        
+        .demo-section p {
+            font-size: 1.1rem;
+            color: #999;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .demo-example {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        .code-block code {
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .hero-demo {
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .hero-demo h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+        
+        .hero-demo .subtitle {
+            font-size: 2rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-demo h1 {
+                font-size: 3rem;
+            }
+            .hero-demo .subtitle {
+                font-size: 1.5rem;
+            }
+            .demo-example {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-demo">
+        <h1>TEXT ANIMATIONS</h1>
+        <div class="subtitle">
+            <span data-rotating-text="DYNAMIC, ENGAGING, MODERN, INTERACTIVE, SMOOTH, CREATIVE"></span>
+        </div>
+    </div>
+
+    <!-- Rotating Text -->
+    <div class="demo-section">
+        <h2>1. ROTATING TEXT</h2>
+        <p>Perfect for hero sections and highlighting multiple skills or roles. Words smoothly transition in and out.</p>
+        
+        <div class="demo-example">
+            I AM A <span data-rotating-text="GAME DESIGNER, 3D ARTIST, DEVELOPER, CREATIVE CODER" data-duration="2000" style="color: #00ff00;"></span>
+        </div>
+        
+        <div class="code-block">
+            <code>&lt;span data-rotating-text="WORD1, WORD2, WORD3" data-duration="2000"&gt;&lt;/span&gt;</code>
+        </div>
+    </div>
+
+    <!-- Typing Text -->
+    <div class="demo-section">
+        <h2>2. TYPING TEXT</h2>
+        <p>Simulates a typewriter effect with a blinking cursor. Great for attention-grabbing headers.</p>
+        
+        <div class="demo-example">
+            <span data-typing-text="HELLO WORLD, WELCOME TO MY SITE, LET'S CREATE TOGETHER" style="color: #00ff00;"></span>
+        </div>
+        
+        <div class="code-block">
+            <code>&lt;span data-typing-text="TEXT1, TEXT2, TEXT3"&gt;&lt;/span&gt;</code>
+        </div>
+    </div>
+
+    <!-- Glitch Text -->
+    <div class="demo-section">
+        <h2>3. GLITCH TEXT</h2>
+        <p>Cyberpunk-style glitch effect on hover. Perfect for interactive elements and modern aesthetics.</p>
+        
+        <div class="demo-example">
+            <span data-glitch-text style="color: #ff00ff; cursor: pointer;">HOVER OVER ME</span>
+        </div>
+        
+        <div class="code-block">
+            <code>&lt;span data-glitch-text&gt;YOUR TEXT&lt;/span&gt;</code>
+        </div>
+    </div>
+
+    <!-- Reveal Text -->
+    <div class="demo-section">
+        <h2>4. REVEAL TEXT (Scroll Down)</h2>
+        <p>Text animates into view when scrolled into viewport. Supports multiple directions.</p>
+        
+        <div class="demo-example">
+            <div style="text-align: center;">
+                <div data-reveal-text data-reveal-direction="up" data-reveal-delay="0" style="margin-bottom: 20px;">REVEAL FROM BOTTOM</div>
+                <div data-reveal-text data-reveal-direction="left" data-reveal-delay="0.2" style="margin-bottom: 20px;">REVEAL FROM RIGHT</div>
+                <div data-reveal-text data-reveal-direction="right" data-reveal-delay="0.4">REVEAL FROM LEFT</div>
+            </div>
+        </div>
+        
+        <div class="code-block">
+            <code>&lt;div data-reveal-text data-reveal-direction="up" data-reveal-delay="0"&gt;TEXT&lt;/div&gt;</code>
+        </div>
+    </div>
+
+    <!-- Split Text -->
+    <div class="demo-section">
+        <h2>5. SPLIT TEXT ANIMATION</h2>
+        <p>Each letter animates individually with a stagger effect. Very eye-catching for headings.</p>
+        
+        <div class="demo-example">
+            <div data-split-text data-split-animation="slide" style="color: #00ffff;">CREATIVE PORTFOLIO</div>
+        </div>
+        
+        <div class="code-block">
+            <code>&lt;div data-split-text data-split-animation="slide"&gt;YOUR TEXT&lt;/div&gt;</code>
+        </div>
+    </div>
+
+    <!-- Gradient Text -->
+    <div class="demo-section">
+        <h2>6. GRADIENT TEXT</h2>
+        <p>Animated gradient that flows through the text. Perfect for making text stand out.</p>
+        
+        <div class="demo-example">
+            <div data-gradient-text="#00ff00, #00ffff, #0099ff, #00ffff, #00ff00">GRADIENT ANIMATION</div>
+        </div>
+        
+        <div class="code-block">
+            <code>&lt;div data-gradient-text="#color1, #color2, #color3"&gt;YOUR TEXT&lt;/div&gt;</code>
+        </div>
+    </div>
+
+    <!-- Multiple Reveals for Demo -->
+    <div class="demo-section">
+        <h2>7. MULTIPLE ANIMATIONS</h2>
+        <p>Combine different effects for unique results. Scroll down to see them appear!</p>
+        
+        <div style="padding: 40px; text-align: center;">
+            <div data-reveal-text data-reveal-direction="up" data-reveal-delay="0" style="font-size: 2rem; margin-bottom: 30px;">
+                BUILD
+            </div>
+            <div data-reveal-text data-reveal-direction="up" data-reveal-delay="0.2" style="font-size: 2rem; margin-bottom: 30px;">
+                CREATE
+            </div>
+            <div data-reveal-text data-reveal-direction="up" data-reveal-delay="0.4" style="font-size: 2rem; margin-bottom: 30px;">
+                INNOVATE
+            </div>
+            <div data-split-text data-split-animation="fade" data-reveal-delay="0.6" style="font-size: 3rem; color: #00ff00; margin-top: 40px;">
+                JAKE BARTON
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Guide -->
+    <div class="demo-section">
+        <h2>HOW TO USE</h2>
+        <p><strong>STEP 1:</strong> Include the script in your HTML</p>
+        <div class="code-block">
+            <code>&lt;script src="assets/js/text-animations.js" defer&gt;&lt;/script&gt;</code>
+        </div>
+        
+        <p style="margin-top: 30px;"><strong>STEP 2:</strong> Add data attributes to your HTML elements</p>
+        <div class="code-block">
+            <code>&lt;span data-rotating-text="WORD1, WORD2, WORD3"&gt;&lt;/span&gt;</code>
+        </div>
+        
+        <p style="margin-top: 30px;"><strong>STEP 3:</strong> That's it! The animations will initialize automatically.</p>
+        
+        <h3 style="margin-top: 40px; font-size: 1.8rem;">Available Attributes:</h3>
+        <ul style="font-size: 1.1rem; line-height: 2; color: #999; margin-top: 20px;">
+            <li><code style="color: #0f0;">data-rotating-text="word1, word2, word3"</code> - Rotating words effect</li>
+            <li><code style="color: #0f0;">data-typing-text="text1, text2, text3"</code> - Typewriter effect</li>
+            <li><code style="color: #0f0;">data-glitch-text</code> - Glitch effect on hover</li>
+            <li><code style="color: #0f0;">data-reveal-text</code> - Reveal on scroll</li>
+            <li><code style="color: #0f0;">data-split-text</code> - Letter-by-letter animation</li>
+            <li><code style="color: #0f0;">data-gradient-text="color1, color2, color3"</code> - Animated gradient</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; padding: 60px 20px;">
+        <a href="index.php" style="display: inline-block; padding: 15px 40px; background: #fff; color: #000; text-decoration: none; font-size: 1.5rem; letter-spacing: 2px; border-radius: 4px;">BACK TO HOME</a>
+    </div>
+</body>
+</html>

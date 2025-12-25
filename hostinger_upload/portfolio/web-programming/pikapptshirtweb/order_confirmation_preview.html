@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation Email Preview - Pi Kappa Phi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: "Montserrat", "Brandon Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #e6eef7 0%, #faf7f0 100%);
+            min-height: 100vh;
+        }
+        .preview-info {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 48, 135, 0.1);
+            text-align: center;
+        }
+        .preview-info h1 {
+            color: #005596;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .preview-info p {
+            color: #5a5a5a;
+            font-size: 14px;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 48, 135, 0.15);
+        }
+        .header {
+            background: linear-gradient(135deg, #005596 0%, #065189 100%);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 4px solid #E7A614;
+            position: relative;
+        }
+        .header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(231, 166, 20, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+        .greek-letters {
+            font-family: "Times New Roman", Symbol, "Lucida Sans Unicode", serif;
+            font-size: 56px;
+            color: #E7A614;
+            font-weight: 400;
+            letter-spacing: 12px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+        .header-title {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+        }
+        .content {
+            padding: 50px 40px;
+            background: #ffffff;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            color: #005596;
+            margin-bottom: 25px;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #212121;
+            margin-bottom: 25px;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+            font-weight: 400;
+        }
+        .order-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e6eef7 0%, #faf7f0 100%);
+            border-radius: 8px;
+            border-left: 4px solid #005596;
+            font-size: 13px;
+            color: #5a5a5a;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+        }
+        .order-title {
+            font-weight: 700;
+            color: #005596;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .order-details {
+            font-size: 13px;
+            color: #5a5a5a;
+            line-height: 1.8;
+        }
+        .order-details strong {
+            color: #005596;
+            font-weight: 700;
+        }
+        .order-row {
+            padding: 5px 0;
+        }
+        .total-row {
+            font-size: 14px;
+            font-weight: 700;
+            color: #005596;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid #E7A614;
+        }
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .verify-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #005596;
+            color: #ffffff !important;
+            text-decoration: none;
+            border: 2px solid #005596;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 85, 150, 0.2);
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .verify-button:hover {
+            border-color: #E7A614;
+            color: #005596;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 85, 150, 0.3);
+            background: #E7A614;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #E7A614, transparent);
+            margin: 30px 0;
+        }
+        .footer {
+            background: linear-gradient(135deg, #005596 0%, #065189 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: #ffffff;
+            border-top: 3px solid #E7A614;
+            position: relative;
+        }
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(231, 166, 20, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        .footer-greek {
+            font-family: "Times New Roman", Symbol, "Lucida Sans Unicode", serif;
+            font-size: 32px;
+            color: #E7A614;
+            letter-spacing: 6px;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+        .footer-text {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 8px 0;
+            font-family: "Montserrat", "Brandon Grotesque", sans-serif;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        .footer-motto {
+            font-style: italic;
+            color: #E7A614;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .footer-copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            .content {
+                padding: 30px 20px;
+            }
+            .greeting {
+                font-size: 20px;
+            }
+            .greek-letters {
+                font-size: 40px;
+                letter-spacing: 8px;
+            }
+            .verify-button {
+                padding: 15px 35px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-info">
+        <h1>📧 Order Confirmation Preview</h1>
+        <p>This is exactly what your customers will receive when they place an order</p>
+    </div>
+    
+    <div class="email-wrapper">
+        <div class="header">
+            <div class="greek-letters">ΠΚΦ</div>
+            <div class="header-title">Apparel</div>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">Hey John Doe,</div>
+            
+            <div class="message">
+                Your order has been confirmed and is being processed! We'll get it ready for you.
+            </div>
+            
+            <div class="order-box">
+                <div class="order-title">Order Details</div>
+                <div class="order-details">
+                    <div class="order-row"><strong>Product:</strong> Pi Kappa Phi Classic T-Shirt</div>
+                    <div class="order-row"><strong>Size:</strong> Large</div>
+                    <div class="order-row"><strong>Quantity:</strong> 2</div>
+                    <div class="order-row"><strong>Price:</strong> $25.00 each</div>
+                    <div class="order-row"><strong>Notes:</strong> Please add extra gold accents</div>
+                    <div class="order-row"><strong>Order Date:</strong> December 8, 2025</div>
+                    <div class="total-row">Total: $50.00</div>
+                </div>
+            </div>
+            
+            <div class="message">
+                You can track your order and manage it from your dashboard.
+            </div>
+            
+            <div class="button-container">
+                <a href="#" class="verify-button">View My Orders</a>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="message" style="margin-top: 35px; font-size: 14px; color: #5a5a5a;">
+                Questions? Just reply to this email or reach out to us anytime.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-greek">ΠΚΦ</div>
+            <div class="footer-text">Pi Kappa Phi</div>
+            <div class="footer-text footer-motto">Leaders among Men</div>
+            <div class="footer-text footer-copyright" style="margin-top: 15px;">
+                &copy; 2025 Pi Kappa Phi
+            </div>
+        </div>
+    </div>
+</body>
+</html>

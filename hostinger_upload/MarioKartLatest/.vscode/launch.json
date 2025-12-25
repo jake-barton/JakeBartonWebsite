@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Mode 7 Game",
+            "url": "http://127.0.0.1:3000/index.html",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "start-server",
+            "runtimeArgs": [
+                "--disable-cache",
+                "--incognito"
+            ],
+            "serverReadyAction": {
+                "pattern": "Available on:.*(https?://\\S+)",
+                "uriFormat": "%s",
+                "action": "debugWithChrome"
+            }
+        }
+    ]
+}

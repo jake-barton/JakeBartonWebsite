@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Barton - Game Designer & 3D Artist</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    <link rel="stylesheet" href="assets/css/styles.css?v=20251119-frost">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20251130">
+    <link rel="alternate icon" href="assets/images/favicon.svg?v=20251130">
+    <link rel="stylesheet" href="assets/css/styles.css?v=20251130-glassmorphism">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    <script src="assets/js/effects.js?v=20251104-2" defer></script>
+    
+    <!-- Scripts -->
+    <script src="assets/js/effects.js?v=20251201-3d" defer></script>
+    <script src="assets/js/three-effects.js?v=20251201" defer></script>
 </head>
 <body>
     <!-- Animated Background -->
@@ -63,7 +67,7 @@
                 <li class="mobile-visible"><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li class="mobile-visible"><a href="portfolio/">Portfolio</a></li>
+                <li><a href="portfolio/">Portfolio</a></li>
                 <li><a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
                 <li class="mobile-visible"><a href="#contact">Contact</a></li>
             </ul>
@@ -94,94 +98,99 @@
             
             <div class="carousel-wrapper">
                 <div class="carousel-track">
-                    <!-- T-Shirt Designs -->
+                    <!-- Phase Runner Game -->
                     <div class="carousel-slide">
                         <div class="carousel-card">
-                            <img src="portfolio/tshirt-designs/images/thumbnails/Fall Recruitment '25-01.svg" alt="Fall Recruitment 2025">
-                            <div class="carousel-info">
-                                <h3>Fall Recruitment 2025</h3>
-                                <p>T-Shirt Design</p>
+                            <div class="carousel-card-image">
+                                <img src="assets/images/phaserunnercover.png" alt="Phase Runner Game">
                             </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <img src="portfolio/games/phase-runner/PhaseRunnerWeb.png" alt="Phase Runner Game">
                             <div class="carousel-info">
                                 <h3>Phase Runner</h3>
                                 <p>Godot Game Project</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Mario Kart Game -->
                     <div class="carousel-slide">
                         <div class="carousel-card">
-                            <img src="portfolio/professional-works/33-miles-graphics/images/thumbnails/33-miles-01-grain-striped.png" alt="33Miles Graphics">
+                            <div class="carousel-card-image">
+                                <img src="assets/images/mariokart.png" alt="Mario Kart Reverse Engineered">
+                            </div>
+                            <div class="carousel-info">
+                                <h3>Mario Kart Recreation</h3>
+                                <p>JavaScript Game</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shel Silverstein Website -->
+                    <div class="carousel-slide">
+                        <div class="carousel-card">
+                            <div class="carousel-card-image">
+                                <img src="assets/images/shelcover.png" alt="Shel Silverstein Website">
+                            </div>
+                            <div class="carousel-info">
+                                <h3>Shel Silverstein Tribute</h3>
+                                <p>Web Design Project</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 33Miles Graphics -->
+                    <div class="carousel-slide">
+                        <div class="carousel-card">
+                            <div class="carousel-card-image">
+                                <img src="assets/images/33miles-cover.png" alt="33Miles Graphics">
+                            </div>
                             <div class="carousel-info">
                                 <h3>33Miles Band Graphics</h3>
                                 <p>Professional Client Work</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Fall Recruitment T-Shirt -->
                     <div class="carousel-slide">
                         <div class="carousel-card">
-                            <img src="portfolio/tshirt-designs/images/thumbnails/PGA Polo.svg" alt="PGA Polo Design">
+                            <div class="carousel-card-image">
+                                <img src="portfolio/tshirt-designs/images/thumbnails/Fall Recruitment '25-01.svg" alt="Fall Recruitment 2025">
+                            </div>
                             <div class="carousel-info">
-                                <h3>PGA Polo</h3>
-                                <p>Polo Shirt Design</p>
+                                <h3>Fall Recruitment 2025</h3>
+                                <p>T-Shirt Design</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Southern Gents T-Shirt -->
                     <div class="carousel-slide">
                         <div class="carousel-card">
-                            <img src="portfolio/tshirt-designs/images/thumbnails/SouthernGents-01.svg" alt="Southern Gents Design">
+                            <div class="carousel-card-image">
+                                <img src="portfolio/tshirt-designs/images/thumbnails/SouthernGents-01.svg" alt="Southern Gents Design">
+                            </div>
                             <div class="carousel-info">
                                 <h3>Southern Gents</h3>
                                 <p>Album-Inspired T-Shirt</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Barn Bash T-Shirt -->
                     <div class="carousel-slide">
                         <div class="carousel-card">
-                            <img src="portfolio/professional-works/33-miles-graphics/images/thumbnails/33-miles-regular-01.png" alt="33Miles Clean Design">
-                            <div class="carousel-info">
-                                <h3>33Miles Social Media</h3>
-                                <p>Event Advertisement</p>
+                            <div class="carousel-card-image">
+                                <img src="portfolio/tshirt-designs/images/thumbnails/Barn Bash 2025.svg" alt="Barn Bash 2025">
                             </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <img src="portfolio/tshirt-designs/images/thumbnails/Fall Recruitment '25-02.svg" alt="Fall Recruitment 2025 Alt">
-                            <div class="carousel-info">
-                                <h3>Fall Recruitment 2025 Alt</h3>
-                                <p>T-Shirt Design Variation</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <img src="portfolio/tshirt-designs/images/thumbnails/Barn Bash 2025.svg" alt="Barn Bash 2025">
                             <div class="carousel-info">
                                 <h3>Barn Bash 2025</h3>
                                 <p>Event T-Shirt Design</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Rose Ball T-Shirt -->
                     <div class="carousel-slide">
                         <div class="carousel-card">
-                            <img src="portfolio/professional-works/33-miles-graphics/images/thumbnails/33-miles-05-grain-regular.png" alt="33Miles Grainy Design">
-                            <div class="carousel-info">
-                                <h3>33Miles Grainy Style</h3>
-                                <p>Textured Graphics</p>
+                            <div class="carousel-card-image">
+                                <img src="portfolio/tshirt-designs/images/thumbnails/Rose Ball.svg" alt="Rose Ball Design">
                             </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <img src="portfolio/tshirt-designs/images/thumbnails/Caribbean Party.svg" alt="Caribbean Party Design">
                             <div class="carousel-info">
-                                <h3>Caribbean Party</h3>
-                                <p>Themed Event Design</p>
+                                <h3>Rose Ball</h3>
+                                <p>Formal Event Design</p>
                             </div>
                         </div>
                     </div>

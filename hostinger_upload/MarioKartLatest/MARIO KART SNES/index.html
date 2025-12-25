@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Mario Kart SNES - Menu</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+			<!-- outer CRT/bezel is scaled so the internal stage remains a fixed 255x224 pixel canvas -->
+			<div class="crt">
+				<div class="stage start" aria-label="SNES screen (255x224)">
+					<!-- start screen (press B to continue) - uses images/scroll.png -->
+					<div class="start-screen" aria-hidden="true">
+						<img class="start-logo" src="images/TitleScreenLogo.png" alt="Mario Kart">
+						<div class="press-b">PUSH B TO START</div>
+					</div>
+			<header class="title">
+				<img class="title-img" src="images/TitleScreenLogo.png" alt="Mario Kart">
+			</header>				<main class="menu-window">
+					<div class="window-top">SELECT MODE</div>
+
+					<ul class="menu" role="menu" tabindex="0">
+						<li class="menu-item" data-action="start-race">START RACE</li>
+						<li class="menu-item" data-action="time">TIME TRIAL</li>
+						<li class="menu-item" data-action="vs">VS MODE</li>
+						<li class="menu-item" data-action="options">OPTIONS</li>
+						<li class="menu-item" data-action="exit">EXIT</li>
+					</ul>
+
+					<div class="footer">Use arrow keys to navigate | Enter to select</div>
+				</main>
+			</div>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+</html>

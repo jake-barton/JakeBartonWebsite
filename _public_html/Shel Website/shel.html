@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shel Silverstein Artwork</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 100;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+            perspective: 2px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .static-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            transform-style: preserve-3d;
+        }
+
+        .scrollable-content {
+            position: relative;
+            z-index: 2;
+            padding: 280px 60px 20px; /* Adjusted for navigation at 200px + padding */
+            background: transparent;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            position: fixed !important;
+            top: 140px !important; /* Moved down to clear British Library logo */
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999 !important; /* Lower than Shel header but higher than content */
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center; /* Center the navigation */
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: none; /* Hide logo in desktop mode since Shel name is above */
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .desktop-nav li {
+            margin: 0;
+        }
+
+        .desktop-nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 300;
+            transition: color 0.3s ease;
+            padding: 10px 0;
+        }
+
+        .desktop-nav a:hover {
+            color: #666;
+        }
+
+        /* Italicize book titles (exclude About Shel and View the Gallery) */
+        .desktop-nav a:not(#about-shel-toggle):not(#gallery-view-toggle) {
+            font-style: italic;
+        }
+
+        /* Mobile Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1002; /* Higher than mobile menu */
+            position: relative;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            display: block;
+            z-index: 1000;
+            overflow: hidden;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: scale(0);
+            transform-origin: top right;
+            pointer-events: none;
+        }
+
+        .mobile-menu.active {
+            width: 160px;
+            height: auto;
+            min-height: 350px;
+            max-height: calc(100vh - 100px);
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Mobile menu backdrop - disabled to remove vertical bar */
+        .mobile-menu-backdrop {
+            display: none;
+        }
+
+        /* Add transition to Shel header for smooth hiding */
+        [style*="z-index: 9999"] {
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+
+        /* Hide Shel header when mobile menu is active */
+        body.mobile-menu-active [style*="z-index: 9999"] {
+            opacity: 0 !important;
+            transform: translateY(-20px) scale(0.95) !important;
+            pointer-events: none !important;
+        }
+
+        .mobile-menu-content {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px 5px;
+            box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 25px 15px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 18px;
+        }
+
+        .mobile-menu li {
+            opacity: 0;
+            transform: translateX(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .mobile-menu.active li {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .mobile-menu.active li:nth-child(1) { transition-delay: 0.3s; }
+        .mobile-menu.active li:nth-child(2) { transition-delay: 0.35s; }
+        .mobile-menu.active li:nth-child(3) { transition-delay: 0.4s; }
+        .mobile-menu.active li:nth-child(4) { transition-delay: 0.45s; }
+        .mobile-menu.active li:nth-child(5) { transition-delay: 0.5s; }
+        .mobile-menu.active li:nth-child(6) { transition-delay: 0.55s; }
+        .mobile-menu.active li:nth-child(7) { transition-delay: 0.6s; }
+        .mobile-menu.active li:nth-child(8) { transition-delay: 0.65s; }
+
+        /* Hide mobile menu on desktop */
+        @media (min-width: 769px) {
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+
+        .mobile-menu li {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu li:last-child {
+            margin-bottom: 0;
+        }
+
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: block;
+            line-height: 1.3;
+            word-wrap: break-word;
+            text-align: center;
+            padding: 12px 8px;
+            hyphens: auto;
+            border-radius: 8px;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a:hover {
+            color: #666;
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Italicize book titles in mobile menu */
+        .mobile-menu a:not(#mobile-about-shel-toggle):not(#mobile-gallery-view-toggle) {
+            font-style: italic;
+        }
+
+        .header {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%) !important; /* Force the correct transform */
+            z-index: 1002; /* Higher than everything to ensure visibility */
+            text-align: center;
+            width: auto;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none; /* Don't interfere with other elements */
+            opacity: 1 !important; /* Force visibility */
+            background: rgba(255, 0, 0, 0.1); /* Temporary: red background to debug */
+            padding: 10px; /* Temporary: padding to see the element */
+        }
+
+        .header-vector {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); /* Add subtle shadow for visibility */
+        }
+
+        /* Override gallery mode hiding for normal state */
+        body:not(.gallery-view-mode) .header {
+            transform: translateX(-50%) !important;
+            opacity: 1 !important;
+        }
+
+        .background-collage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .collage-piece {
+            position: absolute;
+            opacity: 0.1;
+            transition: transform 0.5s ease;
+        }
+
+        /* Background artwork styling */
+        .background-artwork {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 200vh;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .background-image {
+            position: absolute;
+            width: min(140vw, 1400px);
+            height: auto;
+            left: 50%;
+            top: 10vh;
+            transform: translateX(-50%);
+            opacity: 0.1;
+            will-change: transform;
+            min-width: 100vw;
+            transition: all 1s ease;
+            pointer-events: none;
+        }
+
+        /* British Library Logo */
+        .british-library-logo {
+            position: fixed;
+            top: 20px; /* Higher position to avoid navigation */
+            left: 30px;
+            z-index: 1000; /* Higher than navigation to ensure visibility */
+            pointer-events: none;
+        }
+
+        .british-library-image {
+            width: 90px; /* Slightly smaller to fit better */
+            height: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Gallery View Mode - hide in gallery mode for cleaner view */
+        .gallery-view-mode .british-library-logo {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Website Footer */
+        .website-footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
+            padding: 60px 40px 40px;
+            position: relative;
+            z-index: 3;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo-image {
+            max-width: 250px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2em;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .footer-section p {
+            margin: 5px 0;
+            color: #666;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin: 8px 0;
+        }
+
+        .footer-section a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #333;
+        }
+
+        /* Educational Resources Styling */
+        .resources-intro {
+            font-style: italic;
+            margin-bottom: 15px !important;
+            color: #555 !important;
+            font-size: 0.95em;
+            font-weight: 300;
+        }
+
+        .download-links {
+            border-left: 2px solid rgba(0, 0, 0, 0.1);
+            padding-left: 15px;
+            margin-top: 10px;
+        }
+
+        .download-links li {
+            margin: 10px 0;
+        }
+
+        .download-links a {
+            color: #666;
+            font-weight: 300;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .download-links a:hover {
+            color: #333;
+        }
+
+        .download-links a::after {
+            content: " ↗";
+            font-size: 0.8em;
+            opacity: 0.6;
+            margin-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-social p {
+            margin: 0 0 15px 0;
+            font-weight: 400;
+            color: #555;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #333;
+        }
+
+        .footer-copyright {
+            text-align: right;
+        }
+
+        .footer-copyright p {
+            margin: 3px 0;
+            font-size: 0.9em;
+            color: #777;
+            font-weight: 300;
+        }
+
+        /* Hide footer in gallery mode */
+        .gallery-view-mode .website-footer {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .gallery-view-mode .background-image {
+            pointer-events: all;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .image-button {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            grid-column: span 1;
+            will-change: transform, grid-column, aspect-ratio;
+        }
+
+        .image-button.expanded {
+            aspect-ratio: auto;
+            grid-column: 1 / -1;
+            grid-row: span 1;
+            padding: 20px;
+            cursor: default;
+            min-height: 400px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .image-button .button-content {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .expanded .button-content {
+            padding: 20px;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .image-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, width, height;
+        }
+
+        .expanded img {
+            width: 35%;
+            height: auto;
+            flex-shrink: 0;
+            object-fit: contain;
+            object-position: center center;
+            align-self: center;
+        }
+
+        @media (max-width: 768px) {
+            .expanded .button-content {
+                flex-direction: column;
+                gap: 30px;
+                padding: 20px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .expanded img {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+                object-fit: contain;
+                object-position: center center;
+                align-self: center;
+            }
+
+            .image-button.expanded {
+                min-height: auto;
+                padding: 20px;
+            }
+        }
+
+        .image-button .button-title {
+            width: 100%;
+            padding: 12px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            font-weight: 100;
+            letter-spacing: 0.03em;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        .expanded .button-title {
+            display: none;  /* Hide the original title when expanded */
+        }
+
+        .description h2 {
+            font-weight: 100;
+            letter-spacing: 0.03em;
+            margin: 0 0 20px 0;
+            font-size: 1.5em;
+        }
+
+        .image-button .description {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 100;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+            transform: translateY(20px);
+        }
+
+        .expanded .description {
+            opacity: 1;
+            max-height: 800px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transform: translateY(0);
+            text-align: center;
+            flex-shrink: 1;
+            min-width: 0;
+        }
+
+        .description p {
+            margin: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .expanded .description {
+                width: 100%;
+                max-height: none;
+                padding: 0 10px;
+                text-align: center;
+            }
+
+            .description h2 {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .description p {
+                font-size: 0.95em;
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .expanded .close-button {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .close-button:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .image-button:not(.expanded):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .vector-art {
+            max-width: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        .vector-art:hover {
+            transform: scale(1.2);
+        }
+
+        /* Gallery View Mode */
+        .gallery-view-mode .gallery {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .gallery-view-mode .header {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .gallery-view-mode .background-image {
+            opacity: 1 !important;
+            filter: brightness(1) contrast(1.2);
+        }
+
+        .gallery-view-mode .hamburger-menu {
+            z-index: 10;
+        }
+
+        /* SVG Interaction Styles */
+        .gallery-view-mode .background-image {
+            cursor: pointer;
+        }
+
+        /* Gallery Info Panel - Bottom Slide */
+        .gallery-info-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-view-mode .gallery-info-panel {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .gallery-info-panel.active {
+            transform: translateY(0);
+        }
+
+        .gallery-info-panel.closed {
+            transform: translateY(100%);
+        }
+
+        .panel-handle {
+            width: 40px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 2px;
+            margin: 12px auto 15px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .panel-content {
+            flex: 1;
+            padding: 0 30px 30px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .panel-content h2 {
+            margin: 0 0 25px 0;
+            font-size: 1.8em;
+            font-weight: 100;
+            text-align: center;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+        .artworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding-bottom: 20px;
+        }
+
+        .artwork-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .artwork-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .artwork-info {
+            text-align: center;
+        }
+
+        .artwork-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .artwork-info p {
+            margin: 0 0 15px 0;
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .artwork-info .year {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* About Shel Page Styles */
+        .about-shel-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .about-shel-page.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hide navigation bar when About Shel page is open */
+        .about-shel-page.active ~ * header,
+        .about-shel-page.active ~ header {
+            opacity: 0 !important;
+            transform: translateY(-20px) !important;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .close-about-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .close-about-button:hover {
+            background: rgba(255, 255, 255, 1);
+            color: #333;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-about-button:active {
+            transform: scale(0.95);
+        }
+
+        .about-content {
+            max-width: 800px;
+            width: 100%;
+            margin: 60px auto 20px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .author-photo {
+            flex-shrink: 0;
+        }
+
+        .portrait-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .author-intro h1 {
+            font-size: 3em;
+            font-weight: 100;
+            margin: 0 0 10px 0;
+            color: #333;
+            letter-spacing: 0.02em;
+        }
+
+        .author-intro .subtitle {
+            font-size: 1.3em;
+            color: #777;
+            font-weight: 300;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .bio-content {
+            line-height: 1.7;
+        }
+
+        .bio-section {
+            margin-bottom: 40px;
+        }
+
+        .bio-section h2 {
+            font-size: 2em;
+            font-weight: 100;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .bio-section h3 {
+            font-size: 1.5em;
+            font-weight: 200;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .bio-section p {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .bio-section em {
+            font-style: italic;
+            color: #555;
+        }
+
+        .quote-highlight {
+            background: rgba(0, 0, 0, 0.03);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border-left: 4px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .quote-highlight blockquote {
+            font-size: 1.3em;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+            color: #444;
+            margin: 0 0 20px 0;
+        }
+
+        .quote-highlight cite {
+            font-size: 1em;
+            color: #777;
+            font-weight: 400;
+        }
+
+        /* Mobile adjustments for About Shel page */
+        @media (max-width: 768px) {
+            .close-about-button {
+                top: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+                z-index: 1003;
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid rgba(0, 0, 0, 0.15);
+            }
+
+            .about-shel-page.active {
+                z-index: 1002;
+            }
+
+            .about-shel-page {
+                padding: 80px 15px 20px 15px;
+            }
+
+            .about-content {
+                margin: 0 auto;
+                padding: 25px 20px;
+                max-width: 100%;
+            }
+
+            .about-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+                margin-bottom: 40px;
+            }
+
+            .portrait-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .author-intro h1 {
+                font-size: 2.2em;
+            }
+
+            .author-intro .subtitle {
+                font-size: 1.1em;
+            }
+
+            .bio-section h2 {
+                font-size: 1.7em;
+            }
+
+            .bio-section h3 {
+                font-size: 1.3em;
+            }
+
+            .bio-section p {
+                font-size: 1em;
+            }
+
+            .quote-highlight {
+                padding: 25px 20px;
+                margin: 35px 0;
+            }
+
+            .quote-highlight blockquote {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-content {
+                padding: 25px 20px;
+            }
+
+            .author-intro h1 {
+                font-size: 1.9em;
+            }
+
+            .portrait-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .quote-highlight {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            /* Hide the desktop navigation completely on mobile */
+            header {
+                display: none !important;
+            }
+
+            /* Show mobile hamburger in top right */
+            .mobile-hamburger {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1002;
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 8px;
+                padding: 8px;
+                backdrop-filter: blur(5px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 30px;
+                height: 30px;
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+                transform: scale(1);
+            }
+
+            .mobile-hamburger:hover {
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                transform: scale(1.05);
+            }
+
+            .mobile-hamburger span {
+                width: 100%;
+                height: 2px;
+                background: #333;
+                transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                transform-origin: center;
+            }
+
+            .mobile-hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .mobile-hamburger.active span:nth-child(2) {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            .mobile-hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .mobile-menu {
+                display: block !important;
+                position: fixed !important;
+                top: 70px !important;
+                right: 15px !important;
+                width: 0 !important;
+                height: 0 !important;
+                z-index: 1000 !important;
+                opacity: 0 !important;
+                transform: scale(0) !important;
+                transform-origin: top right !important;
+                pointer-events: none !important;
+            }
+
+            .mobile-menu.active {
+                display: block !important;
+                width: 160px !important;
+                height: auto !important;
+                min-height: 350px !important;
+                max-height: calc(100vh - 100px) !important;
+                opacity: 1 !important;
+                transform: scale(1) !important;
+                pointer-events: auto !important;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .scrollable-content {
+                padding: 160px 20px 20px; /* Adjusted for mobile */
+            }
+
+            .header {
+                top: 30px; /* Slightly higher on mobile */
+            }
+
+            .header-vector {
+                max-width: 250px; /* Smaller on mobile */
+            }
+
+            .british-library-logo {
+                top: 20px;
+                left: 20px;
+            }
+
+            .british-library-image {
+                width: 70px; /* Even smaller on mobile */
+            }
+
+            .website-footer {
+                padding: 40px 20px 30px;
+                margin-top: 60px;
+            }
+
+            .footer-logo-image {
+                max-width: 200px;
+            }
+
+            .footer-info {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .footer-copyright {
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .gallery-info-panel {
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                gap: 20px;
+                padding: 0 15px;
+            }
+
+            .header-nav {
+                padding: 10px 20px;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .mobile-menu {
+                width: 100vw;
+                right: -100vw;
+                padding: 20px;
+            }
+
+            .british-library-logo {
+                top: 15px;
+                left: 15px;
+            }
+
+            .british-library-image {
+                width: 60px;
+            }
+
+            .website-footer {
+                padding: 30px 15px 25px;
+            }
+
+            .footer-logo-image {
+                max-width: 150px;
+            }
+
+            .footer-info {
+                gap: 25px;
+                margin-bottom: 30px;
+            }
+
+            .footer-section h3 {
+                font-size: 1.1em;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .gallery-info-panel {
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Shel Header -->
+    <div style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%); z-index: 9999; text-align: center;">
+        <img src="vectors/shel-name-1.svg" alt="Shel Silverstein" width="320" height="auto" style="display: block !important; visibility: visible !important; opacity: 1 !important;">
+    </div>
+
+    <!-- Mobile Hamburger Menu (Shows only on mobile) -->
+    <div class="mobile-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header style="position: fixed; top: 200px; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 999; padding: 15px 30px; border-bottom: 1px solid rgba(0, 0, 0, 0.1);">
+        <div class="nav-container">
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <li><a href="#about-shel" id="about-shel-toggle">About Shel</a></li>
+                <li><a href="#gallery-view" id="gallery-view-toggle">View the Gallery</a></li>
+                <li><a href="#light-in-the-attic">A Light in the Attic</a></li>
+                <li><a href="#giving-tree">The Giving Tree</a></li>
+                <li><a href="#runny-babbit">Runny Babbit</a></li>
+                <li><a href="#missing-piece">The Missing Piece</a></li>
+                <li><a href="#where-sidewalk-ends">Where the Sidewalk Ends</a></li>
+            </nav>
+            
+            <!-- Mobile Hamburger -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-backdrop"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <ul>
+                <li><a href="#about-shel" id="mobile-about-shel-toggle">About Shel</a></li>
+                <li><a href="#gallery-view" id="mobile-gallery-view-toggle">View the Gallery</a></li>
+                <li><a href="#light-in-the-attic">A Light in the Attic</a></li>
+                <li><a href="#giving-tree">The Giving Tree</a></li>
+                <li><a href="#runny-babbit">Runny Babbit</a></li>
+                <li><a href="#missing-piece">The Missing Piece</a></li>
+                <li><a href="#where-sidewalk-ends">Where the Sidewalk Ends</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="background-collage">
+        <!-- Example of how to add more pieces to the collage:
+        <img src="vectors/some-vector.svg" alt="Collage Piece" class="collage-piece" style="top: 20%; left: 10%; width: 300px;">
+        -->
+    </div>
+    <div class="static-content">
+        <div class="british-library-logo">
+            <img src="vectors/BritishLibrary.svg" alt="British Library" class="british-library-image">
+        </div>
+        <div class="background-artwork">
+            <img src="vectors/background.svg" alt="Background Artwork" class="background-image">
+        </div>
+    </div>
+    <div class="scrollable-content">
+    <div class="gallery">
+        <div id="light-in-the-attic" class="image-button">
+            <div class="button-content">
+                <img src="vectors/light-in-the-attic.svg" alt="A Light in the Attic">
+                <div class="description">
+                    <h2>A Light in the Attic</h2>
+                    <p>First published in 1981, this classic collection features some of Shel Silverstein's most memorable and beloved poems. The book combines whimsical illustrations with playful verses that explore themes of imagination, friendship, and the joy of looking at the world from different perspectives.</p>
+                    <p>The artwork captures Silverstein's distinctive style, bringing his words to life with simple yet expressive black-and-white drawings that have enchanted readers for generations.</p>
+                </div>
+            </div>
+            <div class="button-title">A Light in the Attic</div>
+            <button class="close-button">×</button>
+        </div>
+        
+        <div id="giving-tree" class="image-button">
+            <div class="button-content">
+                <img src="vectors/the-giving-tree.svg" alt="The Giving Tree">
+                <div class="description">
+                    <h2>The Giving Tree</h2>
+                    <p>Published in 1964, "The Giving Tree" tells the poignant story of the relationship between a boy and a tree. Through Silverstein's simple yet powerful illustrations, the book explores themes of unconditional love, selflessness, and the complex nature of giving and taking.</p>
+                    <p>The minimalist artwork emphasizes the emotional depth of the story, using clean lines and stark contrasts to convey both joy and melancholy.</p>
+                </div>
+            </div>
+            <div class="button-title">The Giving Tree</div>
+            <button class="close-button">×</button>
+        </div>
+        
+        <div id="runny-babbit" class="image-button">
+            <div class="button-content">
+                <img src="vectors/runny-babbit.svg" alt="Runny Babbit">
+                <div class="description">
+                    <h2>Runny Babbit</h2>
+                    <p>Published posthumously in 2005, "Runny Babbit" is a collection of spoonerism-based poems that showcase Silverstein's love of wordplay and linguistic creativity. The book features delightful characters and silly situations created by swapping the first letters of words.</p>
+                    <p>The illustrations complement the playful nature of the text, with Silverstein's characteristic style bringing these tongue-twisting tales to vivid life.</p>
+                </div>
+            </div>
+            <div class="button-title">Runny Babbit</div>
+            <button class="close-button">×</button>
+        </div>
+        
+        <div id="missing-piece" class="image-button">
+            <div class="button-content">
+                <img src="vectors/the-missing-piece.svg" alt="The Missing Piece">
+                <div class="description">
+                    <h2>The Missing Piece</h2>
+                    <p>Published in 1976, "The Missing Piece" follows the journey of a circle looking for its missing piece. Through simple yet profound illustrations, Silverstein explores themes of self-discovery, completeness, and the nature of happiness.</p>
+                    <p>The artwork's minimalist approach perfectly captures the philosophical undertones of the story, using basic geometric shapes to convey complex emotional concepts.</p>
+                </div>
+            </div>
+            <div class="button-title">The Missing Piece</div>
+            <button class="close-button">×</button>
+        </div>
+
+        <div id="where-sidewalk-ends" class="image-button">
+            <div class="button-content">
+                <img src="vectors/edge.svg" alt="Where the Sidewalk Ends">
+                <div class="description">
+                    <h2>Where the Sidewalk Ends</h2>
+                    <p>Published in 1974, "Where the Sidewalk Ends" is perhaps Shel Silverstein's most beloved collection of poems and drawings. This timeless work captures the wonder and whimsy of childhood imagination, taking readers on a journey to a magical place where anything is possible.</p>
+                    <p>The collection features over 100 poems accompanied by Silverstein's distinctive black-and-white illustrations, each one inviting readers to explore the boundless creativity that exists just beyond the edge of the ordinary world.</p>
+                </div>
+            </div>
+            <div class="button-title">Where the Sidewalk Ends</div>
+            <button class="close-button">×</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="website-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="vectors/shel-name-2.svg" alt="Shel Silverstein" class="footer-logo-image">
+            </div>
+            
+            <div class="footer-info">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>Shel Silverstein Literary Estate</p>
+                    <p>123 Poetry Lane</p>
+                    <p>Chicago, IL 60601</p>
+                    <p>Phone: (555) 123-POEM</p>
+                    <p>Email: info@shelsilverstein.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Educational Resources</h3>
+                    <p class="resources-intro">Free downloadable materials for teachers and educators:</p>
+                    <ul class="download-links">
+                        <li><a href="https://dhjhkxawhe8q4.cloudfront.net/shel-silverstein-wp/wp-content/uploads/2021/06/09191200/Shel_Silverstein_2013_Poetry_Workshop_Kit.pdf" target="_blank" rel="noopener">Poetry Workshop Kit (PDF)</a></li>
+                        <li><a href="https://dhjhkxawhe8q4.cloudfront.net/shel-silverstein-wp/wp-content/uploads/2021/05/06153015/Falling_Up_Door_Hanger_Final.pdf" target="_blank" rel="noopener">Falling Up Door Hanger (PDF)</a></li>
+                        <li><a href="https://dhjhkxawhe8q4.cloudfront.net/shel-silverstein-wp/wp-content/uploads/2021/05/05091915/bookmark_1.pdf" target="_blank" rel="noopener">Printable Bookmark (PDF)</a></li>
+                        <li><a href="https://dhjhkxawhe8q4.cloudfront.net/shel-silverstein-wp/wp-content/uploads/2021/04/27132615/EightBalloonsBooklet.pdf" target="_blank" rel="noopener">Eight Balloons Booklet (PDF)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#light-in-the-attic">A Light in the Attic</a></li>
+                        <li><a href="#giving-tree">The Giving Tree</a></li>
+                        <li><a href="#runny-babbit">Runny Babbit</a></li>
+                        <li><a href="#missing-piece">The Missing Piece</a></li>
+                        <li><a href="#where-sidewalk-ends">Where the Sidewalk Ends</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>About & Resources</h3>
+                    <ul>
+                        <li><a href="#about-shel">About Shel Silverstein</a></li>
+                        <li><a href="#gallery-view">View the Gallery</a></li>
+                        <li><a href="#">Teacher's Guide</a></li>
+                        <li><a href="#">Reading Activities</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Copyright Information</a></li>
+                        <li><a href="#">Licensing</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <p>Follow the Legacy:</p>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                </div>
+                
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Shel Silverstein Literary Estate. All rights reserved.</p>
+                    <p>Artwork and writings by Shel Silverstein used with permission.</p>
+                    <p>In partnership with the British Library.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- About Shel Page -->
+    <div class="about-shel-page" id="about-shel-page">
+        <button class="close-about-button" id="close-about-button">×</button>
+        <div class="about-content">
+            <div class="about-header">
+                <div class="author-photo">
+                    <img src="vectors/Shel.jpg" alt="Shel Silverstein Portrait" class="portrait-image">
+                </div>
+                <div class="author-intro">
+                    <h1>Shel Silverstein</h1>
+                    <p class="subtitle">1930 - 1999</p>
+                </div>
+            </div>
+            
+            <div class="bio-content">
+                <div class="bio-section">
+                    <h2>The Man Behind the Magic</h2>
+                    <p>Sheldon Allan "Shel" Silverstein was an American writer, poet, cartoonist, songwriter, and playwright whose unique blend of humor and wisdom touched millions of readers worldwide.</p>
+                    
+                    <p>Best known for his children's books including <em>The Giving Tree</em>, <em>Where the Sidewalk Ends</em>, and <em>A Light in the Attic</em>, Silverstein's work transcended age barriers, speaking to both children and adults with equal power.</p>
+                </div>
+                
+                <div class="bio-section">
+                    <h3>A Creative Journey</h3>
+                    <p>Born in Chicago, Silverstein began his career as a cartoonist for magazines like <em>Playboy</em> before discovering his passion for children's literature. His distinctive black-and-white illustrations, combined with playful yet profound storytelling, created a new standard in children's books.</p>
+                    
+                    <p>Beyond children's literature, Silverstein was also a successful songwriter, penning hits for artists like Johnny Cash and Dr. Hook, proving his versatility across creative mediums.</p>
+                </div>
+                
+                <div class="quote-highlight">
+                    <blockquote>
+                        "If you are a dreamer, come in. If you are a dreamer, a wisher, a liar, a hope-er, a pray-er, a magic bean buyer... If you're a pretender, come sit by my fire, for we have some flax golden tales to spin."
+                    </blockquote>
+                    <cite>— Where the Sidewalk Ends</cite>
+                </div>
+                
+                <div class="bio-section">
+                    <h3>Legacy</h3>
+                    <p>Silverstein's work continues to inspire new generations of readers and creators. His ability to find wonder in the everyday and present complex emotions through simple illustrations has cemented his place as one of the most beloved children's authors of all time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Info Panel - slides up from bottom -->
+    <div class="gallery-info-panel" id="gallery-info-panel">
+        <div class="panel-handle"></div>
+        <div class="panel-content">
+            <h2>Shel Silverstein Collection</h2>
+            <div class="artworks-grid">
+                <div class="artwork-card" data-artwork="light-in-the-attic">
+                    <div class="artwork-image">
+                        <img src="vectors/light-in-the-attic.svg" alt="A Light in the Attic">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>A Light in the Attic</h3>
+                        <p>Published in 1981, this classic collection features whimsical illustrations with playful verses exploring imagination and friendship.</p>
+                        <span class="year">1981</span>
+                    </div>
+                </div>
+                <div class="artwork-card" data-artwork="giving-tree">
+                    <div class="artwork-image">
+                        <img src="vectors/the-giving-tree.svg" alt="The Giving Tree">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>The Giving Tree</h3>
+                        <p>A poignant 1964 story exploring unconditional love and selflessness through simple yet powerful illustrations.</p>
+                        <span class="year">1964</span>
+                    </div>
+                </div>
+                <div class="artwork-card" data-artwork="runny-babbit">
+                    <div class="artwork-image">
+                        <img src="vectors/runny-babbit.svg" alt="Runny Babbit">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>Runny Babbit</h3>
+                        <p>Published posthumously in 2005, showcasing Silverstein's love of wordplay through spoonerism-based poems.</p>
+                        <span class="year">2005</span>
+                    </div>
+                </div>
+                <div class="artwork-card" data-artwork="missing-piece">
+                    <div class="artwork-image">
+                        <img src="vectors/the-missing-piece.svg" alt="The Missing Piece">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>The Missing Piece</h3>
+                        <p>A 1976 philosophical journey using minimalist artwork to explore themes of self-discovery and completeness.</p>
+                        <span class="year">1976</span>
+                    </div>
+                </div>
+                <div class="artwork-card" data-artwork="edge">
+                    <div class="artwork-image">
+                        <img src="vectors/edge.svg" alt="Where the Sidewalk Ends">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>Where the Sidewalk Ends</h3>
+                        <p>Published in 1974, this beloved collection of poems and drawings captures the wonder and whimsy of childhood imagination.</p>
+                        <span class="year">1974</span>
+                    </div>
+                </div>
+                <div class="artwork-card" data-artwork="poet-tree">
+                    <div class="artwork-image">
+                        <img src="vectors/poet_tree.svg" alt="The Poet Tree">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>The Poet Tree</h3>
+                        <p>A visual representation of Silverstein's creative spirit, showcasing the organic growth of poetry and artistic expression.</p>
+                        <span class="year">Artwork</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enhanced Parallax effect with window-based scaling
+            const backgroundImage = document.querySelector('.background-image');
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // Calculate how far through the document we've scrolled (0 to 1)
+                const scrollProgress = scrolled / (documentHeight - windowHeight);
+
+                // Much slower parallax movement - only move 10% of scroll distance
+                const yOffset = scrolled * 0.1;
+                
+                // Transform relative to both scroll position and window center
+                backgroundImage.style.transform = `translateX(-50%) translateY(calc(${-yOffset}px))`;
+            }
+
+            // Initial position and event listeners
+            window.addEventListener('scroll', updateParallax);
+            window.addEventListener('resize', updateParallax);
+            updateParallax();
+            const hamburger = document.querySelector('.hamburger');
+            const mobileHamburger = document.querySelector('.mobile-hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuBackdrop = document.querySelector('.mobile-menu-backdrop');
+            const allNavLinks = document.querySelectorAll('.desktop-nav a, .mobile-menu a');
+            
+            console.log('Mobile menu elements found:', {
+                hamburger: !!hamburger,
+                mobileHamburger: !!mobileHamburger,
+                mobileMenu: !!mobileMenu,
+                mobileMenuBackdrop: !!mobileMenuBackdrop
+            });
+
+            // Mobile menu uses fixed positioning - no scroll tracking needed
+
+            // Close mobile menu when clicking backdrop
+            if (mobileMenuBackdrop) {
+                mobileMenuBackdrop.addEventListener('click', function() {
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (mobileHamburger) mobileHamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBackdrop.classList.remove('active');
+                    
+                    // Remove body class for Shel header animation
+                    document.body.classList.remove('mobile-menu-active');
+                });
+            }
+
+            // Toggle mobile menu when clicking mobile hamburger
+            if (mobileHamburger) {
+                mobileHamburger.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    if (mobileMenuBackdrop) mobileMenuBackdrop.classList.toggle('active');
+                    
+                    // Toggle body class for Shel header animation
+                    document.body.classList.toggle('mobile-menu-active');
+                });
+            }
+
+            // Legacy hamburger support (desktop)
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    if (mobileMenuBackdrop) mobileMenuBackdrop.classList.toggle('active');
+                    
+                    // Toggle body class for Shel header animation
+                    document.body.classList.toggle('mobile-menu-active');
+                });
+            }
+
+            // Close mobile menu when clicking on a link
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (mobileHamburger) mobileHamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    if (mobileMenuBackdrop) mobileMenuBackdrop.classList.remove('active');
+                    
+                    // Remove body class for Shel header animation
+                    document.body.classList.remove('mobile-menu-active');
+                });
+            });
+
+            // Handle image button expansion
+            const imageButtons = document.querySelectorAll('.image-button');
+            let currentlyExpanded = null;
+
+            function closeExpandedButton() {
+                if (currentlyExpanded) {
+                    currentlyExpanded.classList.remove('expanded');
+                    currentlyExpanded = null;
+                }
+            }
+
+            imageButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('close-button')) {
+                        closeExpandedButton();
+                        return;
+                    }
+
+                    if (this === currentlyExpanded) {
+                        return;
+                    }
+
+                    closeExpandedButton();
+                    this.classList.add('expanded');
+                    currentlyExpanded = this;
+                    
+                    // Smooth scroll to expanded button
+                    setTimeout(() => {
+                        this.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 50);
+                });
+            });
+
+            // Close expanded button when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.image-button') && currentlyExpanded) {
+                    closeExpandedButton();
+                }
+                
+                // Close mobile menu when clicking outside
+                const isClickInsideMenu = e.target.closest('.mobile-menu');
+                const isClickOnHamburger = e.target.closest('.hamburger') || e.target.closest('.mobile-hamburger');
+                
+                if (!isClickInsideMenu && !isClickOnHamburger && mobileMenu && mobileMenu.classList.contains('active')) {
+                    // Close the mobile menu
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (mobileHamburger) mobileHamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    if (mobileMenuBackdrop) mobileMenuBackdrop.classList.remove('active');
+                    
+                    // Restore Shel header visibility
+                    const shelHeader = document.querySelector('[style*="z-index: 9999"]');
+                    if (shelHeader) {
+                        shelHeader.style.display = 'block';
+                    }
+                }
+            });
+
+            // Handle smooth scrolling for navigation items
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Handle gallery view toggle
+                    if (this.id === 'gallery-view-toggle' || this.id === 'mobile-gallery-view-toggle') {
+                        e.preventDefault();
+                        toggleGalleryView();
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        return;
+                    }
+
+                    // Handle about Shel toggle
+                    if (this.id === 'about-shel-toggle' || this.id === 'mobile-about-shel-toggle') {
+                        e.preventDefault();
+                        toggleAboutPage();
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        return;
+                    }
+
+                    // Handle book navigation (works in both normal and gallery mode)
+                    if (this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        
+                        // If in gallery mode, exit first
+                        if (isGalleryView) {
+                            toggleGalleryView();
+                            
+                            // Wait for gallery transition, then navigate to book
+                            setTimeout(() => {
+                                navigateToBook(targetId);
+                            }, 400); // Reduced from 600ms for smoother feel
+                        } else {
+                            // In normal mode, navigate directly
+                            navigateToBook(targetId);
+                        }
+                        
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        return;
+                    }
+                });
+            });
+
+            // Gallery View Mode functionality
+            let isGalleryView = false;
+            let isPanelOpen = false;
+            let isAboutPageOpen = false;
+            const galleryViewToggle = document.getElementById('gallery-view-toggle');
+            const mobileGalleryViewToggle = document.getElementById('mobile-gallery-view-toggle');
+            const aboutShelToggle = document.getElementById('about-shel-toggle');
+            const mobileAboutShelToggle = document.getElementById('mobile-about-shel-toggle');
+            const closeAboutButton = document.getElementById('close-about-button');
+            const galleryPanel = document.getElementById('gallery-info-panel');
+            const aboutShelPage = document.getElementById('about-shel-page');
+            const backgroundArtwork = document.querySelector('.background-artwork');
+            const staticContent = document.querySelector('.static-content');
+
+            function toggleGalleryView() {
+                // Close about page if open
+                if (isAboutPageOpen) {
+                    closeAboutPage();
+                }
+
+                isGalleryView = !isGalleryView;
+                
+                if (isGalleryView) {
+                    document.body.classList.add('gallery-view-mode');
+                    // Don't lock scrolling or open panel automatically - let user explore
+                    galleryViewToggle.textContent = 'Back to Books';
+                    galleryViewToggle.classList.add('active');
+                    
+                    // Close any expanded buttons
+                    if (currentlyExpanded) {
+                        closeExpandedButton();
+                    }
+
+                    // Set up gallery interaction but don't open panel
+                    setupGalleryInteraction();
+                    // Panel starts closed - user can open with handle
+                    closeGalleryPanel();
+                } else {
+                    document.body.classList.remove('gallery-view-mode');
+                    document.body.style.overflow = ''; // Restore scrolling when exiting
+                    galleryViewToggle.textContent = 'View the Gallery';
+                    galleryViewToggle.classList.remove('active');
+                    
+                    // Close panel if open
+                    closeGalleryPanel();
+                    
+                    // Clean up any event listeners if needed
+                }
+            }
+
+            function toggleAboutPage() {
+                // Close gallery view if open
+                if (isGalleryView) {
+                    toggleGalleryView();
+                }
+
+                isAboutPageOpen = !isAboutPageOpen;
+                const navigationHeader = document.querySelector('header');
+                const shelHeader = document.querySelector('div[style*="position: fixed"][style*="top: 60px"]');
+                
+                if (isAboutPageOpen) {
+                    // Scroll main document to top first
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Hide navigation bar
+                    if (navigationHeader) {
+                        navigationHeader.style.opacity = '0';
+                        navigationHeader.style.transform = 'translateY(-20px)';
+                        navigationHeader.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        navigationHeader.style.pointerEvents = 'none';
+                    }
+                    
+                    // Hide Shel name vector
+                    if (shelHeader) {
+                        shelHeader.style.opacity = '0';
+                        shelHeader.style.transform = 'translateX(-50%) translateY(-20px)';
+                        shelHeader.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    }
+                    
+                    // Small delay to let scroll complete, then show About page
+                    setTimeout(() => {
+                        aboutShelPage.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling behind
+                        
+                        // Ensure About page content is at top
+                        aboutShelPage.scrollTop = 0;
+                    }, 300);
+                    
+                    aboutShelToggle.textContent = 'Back to Books';
+                    aboutShelToggle.classList.add('active');
+                    
+                    // Close any expanded buttons
+                    if (currentlyExpanded) {
+                        closeExpandedButton();
+                    }
+                } else {
+                    closeAboutPage();
+                }
+            }
+
+            function closeAboutPage() {
+                aboutShelPage.classList.remove('active');
+                aboutShelToggle.textContent = 'About Shel';
+                aboutShelToggle.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                // Show navigation bar again
+                const navigationHeader = document.querySelector('header');
+                const shelHeader = document.querySelector('div[style*="position: fixed"][style*="top: 60px"]');
+                
+                if (navigationHeader) {
+                    navigationHeader.style.opacity = '1';
+                    navigationHeader.style.transform = 'translateY(0)';
+                    navigationHeader.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    navigationHeader.style.pointerEvents = 'auto';
+                }
+                
+                // Show Shel name vector again
+                if (shelHeader) {
+                    shelHeader.style.opacity = '1';
+                    shelHeader.style.transform = 'translateX(-50%) translateY(0)';
+                    shelHeader.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                }
+                
+                isAboutPageOpen = false;
+            }
+
+            // Close button event listener
+            closeAboutButton.addEventListener('click', function() {
+                if (isAboutPageOpen) {
+                    closeAboutPage();
+                }
+            });
+
+            // Navigate to book function - works in both normal and gallery modes
+            function navigateToBook(targetId) {
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) return;
+                
+                // Close any currently expanded button
+                if (currentlyExpanded) {
+                    closeExpandedButton();
+                }
+                
+                // Scroll to the target book with smoother timing
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Expand the target book after a shorter delay for smoother feel
+                setTimeout(() => {
+                    targetElement.classList.add('expanded');
+                    currentlyExpanded = targetElement;
+                }, 500); // Reduced from 800ms
+            }
+
+            function toggleGalleryPanel() {
+                if (isPanelOpen) {
+                    closeGalleryPanel();
+                } else {
+                    openGalleryPanel();
+                }
+            }
+
+            function openGalleryPanel() {
+                isPanelOpen = true;
+                document.body.style.overflow = 'hidden'; // Lock background scrolling when panel is open
+                galleryPanel.classList.add('active');
+                galleryPanel.classList.remove('closed');
+                
+                // Ensure panel content starts at the top
+                setTimeout(() => {
+                    galleryPanel.scrollTop = 0;
+                }, 100);
+            }
+
+            function closeGalleryPanel() {
+                isPanelOpen = false;
+                document.body.style.overflow = ''; // Allow background scrolling when panel is closed
+                galleryPanel.classList.remove('active');
+                galleryPanel.classList.add('closed');
+            }
+
+            function highlightArtwork(artworkKey) {
+                // Remove previous highlights
+                document.querySelectorAll('.artwork-card').forEach(card => {
+                    card.style.border = '2px solid transparent';
+                    card.style.background = 'rgba(255, 255, 255, 0.8)';
+                });
+
+                // Highlight selected artwork
+                const selectedCard = document.querySelector(`[data-artwork="${artworkKey}"]`);
+                if (selectedCard) {
+                    selectedCard.style.border = '2px solid rgba(0, 0, 0, 0.3)';
+                    selectedCard.style.background = 'rgba(255, 255, 255, 0.95)';
+                    
+                    // Scroll to the card
+                    selectedCard.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }
+            }
+
+            function setupGalleryInteraction() {
+                // Add panel handle click
+                const panelHandle = document.querySelector('.panel-handle');
+                if (panelHandle) {
+                    panelHandle.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent document click
+                        toggleGalleryPanel();
+                    });
+                }
+
+                // Add artwork card click handlers
+                const artworkCards = document.querySelectorAll('.artwork-card');
+                artworkCards.forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent panel from closing
+                        const artwork = this.dataset.artwork;
+                        highlightArtwork(artwork);
+                    });
+                });
+            }
+        });
+
+        // Mobile menu scroll tracking is now handled earlier in the code
+    </script>
+</body>
+</html>

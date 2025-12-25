@@ -394,3 +394,113 @@ class MobileNav {
         }
     }
 }
+
+// ======================
+// 5. 3D CAROUSEL MOUSE TRACKING
+// ======================
+class Carousel3DEffect {
+    constructor() {
+        this.carousel = document.querySelector('.carousel-wrapper');
+        this.activeCard = null;
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.currentX = 0;
+        this.currentY = 0;
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (this.carousel) {
+            this.init();
+        }
+    }
+    
+    init() {
+        if (this.isMobile) {
+            // Use gyroscope/device orientation for mobile
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', (e) => {
+                    // Beta: front-back tilt (-180 to 180)
+                    // Gamma: left-right tilt (-90 to 90)
+                    const beta = e.beta || 0;  // Front-back tilt
+                    const gamma = e.gamma || 0; // Left-right tilt
+                    
+                    // Normalize to -1 to 1 range
+                    // Gamma: -90 to 90 -> -1 to 1
+                    this.mouseX = Math.max(-1, Math.min(1, gamma / 45));
+                    // Beta: Use 30-90 range (phone held upright to tilted forward)
+                    this.mouseY = Math.max(-1, Math.min(1, (beta - 60) / 30));
+                });
+                
+                // Request permission for iOS 13+
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    // Will be requested when user interacts with carousel
+                    this.carousel.addEventListener('click', () => {
+                        DeviceOrientationEvent.requestPermission()
+                            .then(permissionState => {
+                                if (permissionState === 'granted') {
+                                    console.log('Gyroscope permission granted');
+                                }
+                            })
+                            .catch(console.error);
+                    }, { once: true });
+                }
+            }
+        } else {
+            // Track mouse movement for desktop
+            document.addEventListener('mousemove', (e) => {
+                // Get mouse position relative to viewport center (-1 to 1)
+                this.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                this.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            });
+        }
+        
+        // Start animation loop
+        this.animate();
+    }
+    
+    animate() {
+        // Get active card
+        this.activeCard = this.carousel.querySelector('.carousel-slide.position-0');
+        
+        // Reset all non-active cards to prevent 3D effects
+        const allSlides = this.carousel.querySelectorAll('.carousel-slide');
+        allSlides.forEach(slide => {
+            if (!slide.classList.contains('position-0')) {
+                const card = slide.querySelector('.carousel-card');
+                if (card) {
+                    card.style.transform = '';
+                }
+            }
+        });
+        
+        if (this.activeCard) {
+            // Smooth interpolation
+            this.currentX += (this.mouseX - this.currentX) * 0.1;
+            this.currentY += (this.mouseY - this.currentY) * 0.1;
+            
+            // Calculate rotation based on mouse position
+            const rotateY = this.currentX * 12; // Max 12 degrees rotation
+            const rotateX = -this.currentY * 12; // Negative for natural feeling
+            
+            // Apply 3D transform ONLY to active card
+            const card = this.activeCard.querySelector('.carousel-card');
+            if (card) {
+                card.style.transform = `
+                    perspective(1000px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateZ(20px)
+                    scale3d(1.02, 1.02, 1.02)
+                `;
+            }
+        }
+        
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Initialize 3D effect
+try {
+    new Carousel3DEffect();
+} catch (e) {
+    console.log('3D carousel effect not initialized');
+}
