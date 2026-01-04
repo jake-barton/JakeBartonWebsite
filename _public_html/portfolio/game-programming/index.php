@@ -57,6 +57,21 @@
                 </div>
             </div>
 
+            <!-- DeskPet -->
+            <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.3s ease;">
+                <div style="height: 250px; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
+                    <img src="DeskPet/AppIcon.png" alt="DeskPet" class="portfolio-image" style="width: 200px; height: 200px; object-fit: contain; image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;">
+                </div>
+                <div style="padding: 30px;">
+                    <h3 style="color: var(--accent-white); margin-bottom: 10px; font-size: 1.8rem;">DeskPet</h3>
+                    <p style="color: var(--accent-cyan); font-size: 0.9rem; margin-bottom: 15px; font-family: 'Oswald', sans-serif; letter-spacing: 1px;">MACOS APP • DESKTOP COMPANION</p>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">
+                        A delightful desktop companion app for macOS. Download and install to bring a friendly pet to your screen!
+                    </p>
+                    <a href="DeskPet/DeskPet_Simple.dmg" download class="btn portfolio-btn" style="display: inline-block;">DOWNLOAD FOR MAC →</a>
+                </div>
+            </div>
+
             <!-- Captain's Log -->
             <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.3s ease;">
                 <div style="height: 250px; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
