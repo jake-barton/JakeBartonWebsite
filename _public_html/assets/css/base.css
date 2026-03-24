@@ -1,0 +1,301 @@
+/* ============================================================
+   BASE.CSS  —  Jake Barton Portfolio Style Kit
+   Global reset, CSS variables, typography, page shell
+   — Theme: black & white monochrome —
+   ============================================================ */
+
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Bebas+Neue&family=Playfair+Display:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────── */
+:root {
+  /* Brand accent — pure white */
+  --accent:        #ffffff;
+  --accent-light:  #e0e0e0;
+  --accent-glow:   rgba(255, 255, 255, 0.15);
+  --accent-subtle: rgba(255, 255, 255, 0.07);
+
+  /* Secondary accent — light grey (replaces gold) */
+  --gold:          #c0c0c0;
+  --gold-glow:     rgba(192, 192, 192, 0.15);
+
+  /* Keep cyan/pink as aliases so no existing markup breaks */
+  --cyan:          var(--accent);
+  --cyan-dark:     #aaaaaa;
+  --cyan-glow:     var(--accent-glow);
+  --pink:          #bbbbbb;
+  --pink-glow:     rgba(187, 187, 187, 0.2);
+  --blue:          #999999;
+  --blue-glow:     rgba(153, 153, 153, 0.2);
+
+  /* Pure black backgrounds */
+  --bg:            #0a0a0a;
+  --bg-mid:        #111111;
+  --bg-card:       #161616;
+  --bg-card2:      #1e1e1e;
+
+  /* Borders — white-tinted */
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-cyan:   rgba(255, 255, 255, 0.2);
+  --border-warm:   rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --text:          #f5f5f5;
+  --text-muted:    #888888;
+  --text-faint:    #444444;
+
+  /* Spacing */
+  --spacing-xs:  0.5rem;
+  --spacing-sm:  1rem;
+  --spacing-md:  1.5rem;
+  --spacing-lg:  2.5rem;
+  --spacing-xl:  4rem;
+  --spacing-2xl: 6rem;
+
+  /* Border Radius */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+
+  /* Transitions */
+  --transition:       all 0.3s ease;
+  --transition-slow:  all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Font Stacks */
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', 'Bebas Neue', Georgia, serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Container padding fallback */
+  --container-pad: var(--spacing-md);
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: none; /* custom cursor active */
+}
+
+/* Restore cursor on touch devices */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--text);
+  text-shadow: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ── Custom Cursor ────────────────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, opacity 0.3s ease, width 0.25s ease, height 0.25s ease, background 0.25s ease;
+  mix-blend-mode: difference;
+}
+
+#cursor-outline {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, opacity 0.3s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+/* Hover state — grows outline, dot disappears */
+body.cursor-hover #cursor-dot {
+  width: 4px; height: 4px;
+  opacity: 0.5;
+}
+body.cursor-hover #cursor-outline {
+  width: 52px; height: 52px;
+  border-color: rgba(255,255,255,0.7);
+}
+
+/* Hide on touch/coarse pointer */
+@media (hover: none), (pointer: coarse) {
+  #cursor-dot, #cursor-outline { display: none !important; }
+  body { cursor: auto; }
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: none;   /* removed ALL-CAPS — Claude style is mixed-case */
+  color: var(--text);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+h1 { font-size: clamp(2.6rem, 6vw, 5.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 2rem); }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1.05rem; }
+h6 { font-size: 0.95rem; }
+
+p { color: var(--text-muted); line-height: 1.75; }
+
+/* Gradient heading — white to grey sweep */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 50%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 5s linear infinite;
+}
+
+.gradient-text-pink {
+  background: linear-gradient(135deg, #ffffff 0%, #cccccc 60%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 5s linear infinite;
+}
+
+/* Accent label above headings */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ── Layout Shell ─────────────────────────────────────────── */
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Full-screen canvas background (populated by beams-bg.js) */
+#beams-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ribbon canvas overlay (populated by cursor-ribbons.js) */
+#ribbons-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9990;
+  pointer-events: none;
+}
+
+/* Content must sit above the background canvas */
+.site-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Max-width container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Section spacing */
+.section {
+  padding: var(--spacing-2xl) 0;
+}
+
+.section-sm {
+  padding: var(--spacing-xl) 0;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background: var(--accent-subtle);
+  color: var(--text);
+}

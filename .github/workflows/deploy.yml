@@ -1,0 +1,34 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 157.173.214.227
+          username: u335085697
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          # Uploads the contents of _public_html/ to your Hostinger public_html/
+          local-dir: ./_public_html/
+          server-dir: /home/u335085697/domains/jakebartoncreative.com/public_html/
+          # Only upload changed files — much faster on repeat deploys
+          state-name: .ftp-deploy-sync-state.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            **/Thumbs.db
+            **/*.log
+            **/*.tmp

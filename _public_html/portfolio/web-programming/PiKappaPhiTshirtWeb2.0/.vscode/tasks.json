@@ -1,0 +1,66 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start PHP Server",
+            "type": "shell",
+            "command": "php",
+            "args": ["-S", "localhost:8080"],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "."
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "Development Server.*started"
+                }
+            }
+        },
+        {
+            "label": "Stop PHP Server",
+            "type": "shell",
+            "command": "lsof -ti:8080 | xargs kill -9 || true",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Open Website",
+            "type": "shell",
+            "command": "open",
+            "args": ["http://localhost:8080/index.php"],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "dependsOn": ["Start PHP Server"]
+        },
+        {
+            "label": "Open Admin Panel",
+            "type": "shell",
+            "command": "open",
+            "args": ["http://localhost:8080/admin.php"],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Launch Site",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Stop PHP Server", "Start PHP Server", "Open Website"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}

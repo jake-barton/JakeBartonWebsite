@@ -37,27 +37,25 @@ $page_description = isset($custom_description) ? $custom_description : SITE_DESC
     
     <title><?php echo htmlspecialchars($page_title); ?></title>
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Style Kit CSS (order matters) -->
+    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/base.css">
+    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/animations.css">
+    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/components.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?php echo $base_path; ?>favicon.ico">
     
     <!-- Scripts -->
-    <script src="<?php echo $base_path; ?>assets/js/effects.js" defer></script>
     <?php if (isset($include_gallery) && $include_gallery): ?>
     <script src="<?php echo $base_path; ?>assets/js/gallery.js" defer></script>
     <?php endif; ?>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
 
-    <header>
-        <nav>
+  <!-- Navigation -->
+  <header class="site-nav" id="site-nav">
+    <a href="<?php echo $base_path; ?>index.php" class="nav-logo">JB</a>
+    <nav class="nav-links">
             <div class="nav-logo">JB</div>
             <ul>
                 <li><a href="<?php echo $base_path; ?>index.php" <?php echo (get_current_page() == 'index.php' && $depth == 0) ? 'class="active"' : ''; ?>>Home</a></li>

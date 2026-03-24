@@ -2,7 +2,6 @@
 // Games Portfolio
 $pageTitle = "Game Projects";
 
-// Games data
 $games = [
     [
         'id' => 1,
@@ -11,12 +10,13 @@ $games = [
         'year' => '2024',
         'tech' => ['Godot', 'GDScript', 'Web Export'],
         'thumbnail' => 'phase-runner/PhaseRunnerWeb.png',
-        'playLink' => 'phase-runner/',
+        'playLink' => 'https://clervercarpet99.itch.io/phase-runner',
+        'external' => true,
         'controls' => 'Keyboard: Arrow Keys or WASD to move'
     ],
     [
         'id' => 2,
-        'title' => 'Captain\'s Log',
+        'title' => "Captain's Log",
         'description' => 'Pixel art tileset and sprite design for a retro-style adventure game. Custom hand-crafted tiles and character sprites.',
         'year' => '2024',
         'tech' => ['Pixel Art', 'Game Design', 'Sprites & Tiles'],
@@ -24,7 +24,6 @@ $games = [
         'playLink' => null,
         'isArt' => true
     ],
-    // Add more games here as you create them
 ];
 ?>
 <!DOCTYPE html>
@@ -33,253 +32,131 @@ $games = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle; ?> - Jake Barton</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    <script src="../../assets/js/effects.js" defer></script>
-    <style>
-        .game-card {
-            background: var(--secondary-black);
-            border: 3px solid var(--border-gray);
-            padding: 0;
-            margin-bottom: 40px;
-            transition: all 0.3s ease;
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 0;
-        }
-
-        .game-card:hover {
-            border-color: var(--accent-white);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
-        }
-
-        .game-thumbnail {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-right: 3px solid var(--border-gray);
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-        }
-
-        .game-card:hover .game-thumbnail {
-            filter: grayscale(0%);
-        }
-
-        .game-info {
-            padding: 40px;
-        }
-
-        .game-info h3 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-        }
-
-        .game-meta {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        .tech-tag {
-            background: var(--primary-black);
-            border: 2px solid var(--border-gray);
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .tech-tag:hover {
-            border-color: var(--accent-white);
-            color: var(--accent-white);
-        }
-
-        .game-controls {
-            background: var(--primary-black);
-            padding: 15px;
-            margin-top: 20px;
-            border: 2px solid var(--border-gray);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .game-controls strong {
-            color: var(--accent-white);
-        }
-
-        @media (max-width: 768px) {
-            .game-card {
-                grid-template-columns: 1fr;
-            }
-
-            .game-thumbnail {
-                height: 250px;
-                border-right: none;
-                border-bottom: 3px solid var(--border-gray);
-            }
-
-            .game-info {
-                padding: 25px;
-            }
-        }
-    </style>
-    
-    <script>
-        // Mobile nav toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.querySelector('.nav-toggle');
-            const menu = document.getElementById('primary-menu');
-            if (!btn || !menu) return;
-            
-            btn.addEventListener('click', function(e){
-                e.stopPropagation();
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                menu.classList.toggle('open');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-            
-            // Close on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && menu.classList.contains('open')) {
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
 </head>
 <body>
-    <div class="animated-bg"></div>
 
-    <header>
-        <nav>
-            <a href="../../index.php" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
-            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul id="primary-menu">
-                <li class="mobile-visible"><a href="../../index.php">Home</a></li>
-                <li class="mobile-visible"><a href="../">Portfolio</a></li>
-                <li><a href="../professional-works/">Professional Works</a></li>
-                <li><a href="./">Games</a></li>
-                <li><a href="../tshirt-designs/">T-Shirt Designs</a></li>
-                <li><a href="../../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
-                <li class="mobile-visible"><a href="../../index.php#contact">Contact</a></li>
-            </ul>
+  <!-- Scroll progress line -->
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:100001;transition:width 0.1s linear;pointer-events:none"></div>
+
+  <!-- Ambient cursor glow -->
+  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>  </div>
+    <header class="site-nav" id="site-nav">
+        <a href="../../index.php" class="nav-logo">JB</a>
+        <nav class="nav-links">
+            <a href="../../index.php#about">About</a>
+            <a href="../../index.php#skills">Skills</a>
+            <a href="../">Portfolio</a>
+            <a href="../../assets/Jake%20Barton%20-%20Resume.pdf" class="btn btn-secondary btn-sm" download>Resume</a>
+            <a href="../../index.php#contact">Contact</a>
         </nav>
+        <button class="nav-toggle" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
-    <div class="container">
-        <div class="content-section" style="text-align: center; padding: 80px;">
-            <h1 style="font-size: 4.5rem;">GAME PROJECTS</h1>
-            <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 25px; max-width: 900px; margin-left: auto; margin-right: auto;">
-                Interactive experiences built with <strong style="color: var(--accent-white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">GODOT ENGINE</strong>, 
-                <strong style="color: var(--accent-white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">UNREAL ENGINE 5</strong>, 
-                and <strong style="color: var(--accent-white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">UNITY</strong>. 
-                Click to play directly in your browser!
-            </p>
-        </div>
+    <div class="stagger-menu-overlay" id="stagger-menu">
+        <nav>
+            <a href="../../index.php">Home</a>
+            <a href="../">Portfolio</a>
+            <a href="../../index.php#about">About</a>
+            <a href="../../index.php#contact">Contact</a>
+            <a href="../../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+        </nav>
+    </div>
 
-        <div class="content-section">
-            <?php foreach ($games as $game): ?>
-                <div class="game-card">
-                    <img src="<?php echo $game['thumbnail']; ?>" 
-                         alt="<?php echo htmlspecialchars($game['title']); ?>"
-                         class="game-thumbnail">
-                    <div class="game-info">
-                        <h3><?php echo strtoupper(htmlspecialchars($game['title'])); ?></h3>
-                        <p class="game-meta">
-                            <strong style="color: var(--accent-white);">YEAR:</strong> <?php echo $game['year']; ?>
-                        </p>
-                        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
-                            <?php echo htmlspecialchars($game['description']); ?>
-                        </p>
-                        
-                        <div class="tech-tags">
+    <main class="site-content">
+
+        <!-- Hero -->
+        <section class="section" style="padding-top: 140px; padding-bottom: 60px; text-align: center;">
+            <div style="max-width: 800px; margin: 0 auto; padding: 0 var(--container-pad);">
+                <p class="eyebrow hero-eyebrow">Portfolio → Playable Games</p>
+                <h1 class="reveal" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--text);margin-bottom:1rem">Game Projects</h1>
+                <div class="divider reveal" style="margin:1.5rem auto;max-width:80px"></div>
+                <p class="reveal" style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.5rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height:1.75;transition-delay:0.12s">
+                    Built with <strong style="color: var(--accent-light);">Godot</strong>,
+                    <strong style="color: var(--accent-light);">Unreal Engine 5</strong>,
+                    and <strong style="color: var(--accent-light);">Unity</strong> — click to play right here.
+                </p>
+            </div>
+        </section>
+
+        <!-- Games List -->
+        <section class="section-sm">
+            <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--container-pad);">
+                <div class="section-header reveal" style="margin-bottom:2rem">
+                    <span class="eyebrow">Playable</span>
+                    <h2>All Games</h2>
+                </div>
+                <?php foreach ($games as $game): ?>
+                <div class="glass-card tilt-card reveal" style="display: grid; grid-template-columns: 380px 1fr; gap: 0; overflow: hidden; margin-bottom: 40px; padding: 0;">
+                    <div style="position: relative; overflow: hidden; min-height: 280px;">
+                        <img src="<?php echo $game['thumbnail']; ?>"
+                             alt="<?php echo htmlspecialchars($game['title']); ?>"
+                             style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;">
+                    </div>
+                    <div style="padding: 40px;">
+                        <p class="eyebrow"><?php echo $game['year']; ?></p>
+                        <h3 style="font-size: 2.2rem; margin-bottom: 1rem;"><?php echo strtoupper(htmlspecialchars($game['title'])); ?></h3>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;"><?php echo htmlspecialchars($game['description']); ?></p>
+
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem;" class="stagger-pop">
                             <?php foreach ($game['tech'] as $tech): ?>
-                                <span class="tech-tag"><?php echo strtoupper($tech); ?></span>
+                                <span class="skill-pill"><?php echo $tech; ?></span>
                             <?php endforeach; ?>
                         </div>
 
                         <?php if (!empty($game['controls'])): ?>
-                        <div class="game-controls">
-                            <strong>CONTROLS:</strong> <?php echo $game['controls']; ?>
-                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; margin-bottom: 1.5rem;">
+                            <strong style="color: var(--accent);">Controls:</strong> <?php echo $game['controls']; ?>
+                        </p>
                         <?php endif; ?>
 
                         <?php if (!empty($game['playLink'])): ?>
-                        <a href="<?php echo $game['playLink']; ?>" class="btn" style="margin-top: 25px; display: inline-block;">
-                            PLAY NOW
-                        </a>
+                        <a href="<?php echo $game['playLink']; ?>" class="btn-primary magnetic" <?php if (!empty($game['external'])): ?>target="_blank"<?php endif; ?>>Play Now →</a>
                         <?php elseif (isset($game['isArt']) && $game['isArt']): ?>
-                        <span class="btn" style="margin-top: 25px; display: inline-block; opacity: 0.8; cursor: default;">
-                            GAME ART
-                        </span>
+                        <span class="btn-secondary" style="opacity: 0.6; cursor: default;">Game Art</span>
                         <?php endif; ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
+                <?php endforeach; ?>
 
-        <div class="content-section" style="text-align: center;">
-            <p style="color: var(--text-muted); font-size: 1.1rem;">
-                More games coming soon! Check back regularly for new projects.
-            </p>
+                <div class="glass-card reveal" style="text-align: center; padding: 40px;">
+                    <p style="color: var(--text-muted);">More games coming soon — check back regularly for new projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section-sm" style="text-align: center;">
+            <a href="../" class="btn-secondary magnetic reveal">← Back to Portfolio</a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-copy">&copy; <?php echo date('Y'); ?> Jake Barton. All rights reserved.</span>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
+                    <a href="https://instagram.com/jakebarton13" target="_blank" class="btn-icon" aria-label="Instagram">IG</a>
+                </div>
+            </div>
         </div>
-    </div>
-    
+    </footer>
+
+    <canvas id="beams-canvas"></canvas>
+    <script src="../../assets/js/beams-bg.js"></script>
+    <script src="../../assets/js/cursor-ribbons.js"></script>
+    <script src="../../assets/js/fuzzy-text.js"></script>
+    <script src="../../assets/js/effects-stylekit.js"></script>
     <script>
-        // Mobile nav toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.querySelector('.nav-toggle');
-            const menu = document.getElementById('primary-menu');
-            if (!btn || !menu) return;
-            
-            btn.addEventListener('click', function(e){
-                e.stopPropagation();
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                menu.classList.toggle('open');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-            
-            // Close on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && menu.classList.contains('open')) {
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
+      (function(){var b=document.getElementById('scroll-progress');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;b.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});})();
+      (function(){var g=document.getElementById('cursor-glow');if(!g||window.matchMedia('(pointer:coarse)').matches)return;var cx=0,cy=0,tx=0,ty=0;document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;g.style.opacity='1';});document.addEventListener('mouseleave',function(){g.style.opacity='0';});function lerp(a,b,t){return a+(b-a)*t;}(function loop(){cx=lerp(cx,tx,0.07);cy=lerp(cy,ty,0.07);g.style.left=cx+'px';g.style.top=cy+'px';requestAnimationFrame(loop);})();})();
     </script>
+
 </body>
 </html>

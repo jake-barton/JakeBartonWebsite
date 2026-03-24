@@ -80,88 +80,151 @@ $designs = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle; ?> - Jake Barton</title>
-    <link rel="stylesheet" href="../../../assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    <script src="../../../assets/js/effects.js" defer></script>
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../../assets/css/components.css">
+    <style>
+        .filter-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+        .filter-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted); padding: 10px 24px; border-radius: 100px; cursor: pointer; font-family: var(--font-body); font-size: 0.9rem; transition: all 0.3s ease; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+        .gallery-item { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.35s ease; }
+        .gallery-item:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(255,255,255,0.08); }
+        .gallery-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #111; display: block; }
+        .gallery-item-info { padding: 16px 20px; }
+        .gallery-item-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+        .gallery-item-info p { color: var(--text-muted); font-size: 0.85rem; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.open { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; max-width: 90vw; max-height: 90vh; overflow: hidden; display: grid; grid-template-columns: 1fr 340px; }
+        .modal-content img { max-height: 80vh; width: 100%; object-fit: contain; background: #111; padding: 24px; }
+        .modal-info { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .modal-info h2 { font-size: 1.8rem; margin-bottom: 12px; color: var(--text); }
+        .modal-info p { color: var(--text-muted); margin-bottom: 8px; }
+        .close { position: absolute; top: 20px; right: 28px; font-size: 2rem; cursor: pointer; color: var(--text-muted); }
+        .close:hover { color: var(--accent); }
+        .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; cursor: pointer; color: var(--text-muted); padding: 12px; background: rgba(0,0,0,0.5); border-radius: 50%; transition: color 0.2s; }
+        .modal-nav:hover { color: var(--accent); }
+        .modal-prev { left: 20px; }
+        .modal-next { right: 20px; }
+        @media (max-width: 768px) {
+            .modal-content { grid-template-columns: 1fr; }
+            .modal-content img { max-height: 50vh; }
+        }
+    </style>
 </head>
-<body>
-    <div class="animated-bg"></div>
+<body>  </div>
 
-    <header>
-        <nav>
-            <a href="../../../index.php" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
-            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul id="primary-menu">
-                <li class="mobile-visible"><a href="../../../index.php">Home</a></li>
-                <li class="mobile-visible"><a href="../../">Portfolio</a></li>
-                <li><a href="../">Professional Works</a></li>
-                <li><a href="../../games/">Games</a></li>
-                <li><a href="../../tshirt-designs/">T-Shirt Designs</a></li>
-                <li><a href="../../../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
-                <li class="mobile-visible"><a href="../../../index.php#contact">Contact</a></li>
-            </ul>
+
+    <header class="site-nav" id="site-nav">
+        <a href="../../../index.php" class="nav-logo">JB</a>
+        <nav class="nav-links">
+            <a href="../../../index.php#about">About</a>
+            <a href="../../../index.php#skills">Skills</a>
+            <a href="../../">Portfolio</a>
+            <a href="../../../assets/Jake%20Barton%20-%20Resume.pdf" class="btn btn-secondary btn-sm" download>Resume</a>
+            <a href="../../../index.php#contact">Contact</a>
         </nav>
+        <button class="nav-toggle" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
-    <div class="container">
-        <div class="content-section" style="text-align: center; padding: 80px;">
-            <h1 style="font-size: 4.5rem;">33MILES - PROFESSIONAL GRAPHICS</h1>
-            <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 25px; max-width: 900px; margin-left: auto; margin-right: auto;">
-                Professional graphic design work for <strong style="color: var(--accent-white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">33MILES</strong>, 
-                a Christian band. Created social media graphics and event advertisement materials featuring both grainy textured and clean modern designs.
-            </p>
-        </div>
-
-        <div class="content-section">
-            <!-- Filter Controls removed as requested -->
-            <div class="filter-controls" style="display:none"></div>
-
-            <!-- Gallery Grid -->
-            <div class="gallery-grid">
-                <?php foreach ($designs as $design): ?>
-                    <div class="gallery-item" 
-                        data-title="<?php echo htmlspecialchars($design['title']); ?>"
-                        data-description="<?php echo htmlspecialchars($design['description']); ?>"
-                        data-year="<?php echo $design['year']; ?>"
-                        data-full="<?php echo $design['full']; ?>">
-                        <img src="<?php echo $design['thumbnail']; ?>" 
-                             alt="<?php echo htmlspecialchars($design['title']); ?>"
-                             loading="lazy">
-                        <div class="gallery-item-info">
-                            <h3><?php echo htmlspecialchars($design['title']); ?></h3>
-                            <p><?php echo $design['year']; ?></p>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-        <div class="content-section" style="text-align: center;">
-            <p style="color: var(--text-muted); font-size: 1.1rem;">
-                Click on any design to view it in full size. This project showcases professional client work for social media and event marketing.
-            </p>
-        </div>
+    <div class="stagger-menu-overlay" id="stagger-menu">
+        <nav>
+            <a href="../../../index.php">Home</a>
+            <a href="../../">Portfolio</a>
+            <a href="../">Professional Works</a>
+            <a href="../../../index.php#contact">Contact</a>
+            <a href="../../../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+        </nav>
     </div>
 
-    <!-- Modal for full-size images -->
-    <div id="designModal" class="modal">
-        <span class="close">&times;</span>
-        <span class="modal-nav modal-prev">&#10094;</span>
-        <span class="modal-nav modal-next">&#10095;</span>
+    <main class="site-content">
+
+        <section class="section" style="padding-top: 140px; padding-bottom: 60px; text-align: center;">
+            <div class="container" style="max-width: 800px;">
+                                                                <h1 class="reveal" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--text);margin-bottom:1rem">33Miles Graphics</h1>
+                <div class="divider reveal" style="margin:1.5rem auto;max-width:80px"></div>
+                <p class="reveal" style="font-size: 1.2rem; margin-top: 1.5rem;">
+                    Professional graphic design work for <strong style="color: var(--accent);">33MILES</strong>,
+                    a Christian band — social media graphics and event advertisement materials featuring grainy textured and clean modern designs.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-sm">
+            <div class="container">
+                <div class="filter-controls reveal">
+                    <button class="filter-btn active" data-filter="all">All Graphics</button>
+                    <button class="filter-btn" data-filter="grainy">Grainy Style</button>
+                    <button class="filter-btn" data-filter="regular">Clean Style</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <?php foreach ($designs as $design): ?>
+                        <div class="gallery-item"
+                             data-title="<?php echo htmlspecialchars($design['title']); ?>"
+                             data-description="<?php echo htmlspecialchars($design['description']); ?>"
+                             data-year="<?php echo $design['year']; ?>"
+                             data-full="<?php echo $design['full']; ?>">
+                            <img src="<?php echo $design['thumbnail']; ?>"
+                                 alt="<?php echo htmlspecialchars($design['title']); ?>"
+                                 loading="lazy">
+                            <div class="gallery-item-info">
+                                <h3><?php echo htmlspecialchars($design['title']); ?></h3>
+                                <p><?php echo $design['year']; ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <p class="reveal" style="text-align: center; color: var(--text-muted); margin-top: 40px;">
+                    Click any design to view full size. Professional client work for social media and event marketing.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-sm" style="text-align: center;">
+            <div class="container">
+                <a href="../" class="btn btn-secondary">&#8592; Back to Professional Works</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal -->
+    <div id="designModal" class="modal" role="dialog" aria-modal="true">
+        <span class="close" id="modalClose">&times;</span>
+        <span class="modal-nav modal-prev" id="modalPrev">&#10094;</span>
+        <span class="modal-nav modal-next" id="modalNext">&#10095;</span>
         <div class="modal-content">
             <img id="modalImage" src="" alt="">
             <div class="modal-info">
+                <p class="eyebrow" id="modalYear"></p>
                 <h2 id="modalTitle"></h2>
                 <p id="modalDescription"></p>
-                <p><strong style="color: var(--accent-blue);">Year:</strong> <span id="modalYear"></span></p>
             </div>
         </div>
     </div>
 
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-copy">&copy; <?php echo date('Y'); ?> Jake Barton. All rights reserved.</span>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
+                    <a href="https://instagram.com/jakebarton13" target="_blank" class="btn-icon" aria-label="Instagram">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../assets/js/beams-bg.js"></script>
+    <script src="../../../assets/js/cursor-ribbons.js"></script>
+    <script src="../../../assets/js/fuzzy-text.js"></script>
+    <script src="../../../assets/js/effects-stylekit.js"></script>
     <script src="../../../assets/js/gallery.js"></script>
+
 </body>
 </html>

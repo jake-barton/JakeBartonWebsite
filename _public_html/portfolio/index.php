@@ -1,114 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Jake Barton</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Three.js Library -->
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Jake Barton</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=20260325">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    .portfolio-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1rem;
     }
-    </script>
-    
-    <script src="../assets/js/effects.js" defer></script>
-    <script type="module" src="../assets/js/three-effects.js" defer></script>
+    .portfolio-hero-title em {
+      color: var(--accent-light);
+      font-style: italic;
+    }
+    .discipline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) { .discipline-grid { grid-template-columns: 1fr; } }
+    .discipline-card {
+      text-decoration: none;
+      display: block;
+    }
+    .discipline-card .work-card-img {
+      height: 200px;
+      overflow: hidden;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .discipline-card .work-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+    .discipline-card:hover .work-card-img img { transform: scale(1.04); }
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 768px) { .sub-grid { grid-template-columns: 1fr; } }
+    .sub-card {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+    }
+    .sub-card-icon {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      font-family: monospace;
+      color: var(--accent);
+      flex-shrink: 0;
+      line-height: 1;
+      min-width: 2.5rem;
+      text-align: center;
+    }
+    .sub-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .sub-card p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+  </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
 
-    <header>
-        <nav>
-            <a href="../index.php" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="../index.php#about">About</a></li>
-                <li><a href="./">Portfolio</a></li>
-                <li><a href="../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
-                <li><a href="../index.php#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Scroll progress line -->
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:100001;transition:width 0.1s linear;pointer-events:none"></div>
 
+  <!-- Ambient cursor glow -->
+  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>  </div>
+
+  <header class="site-nav" id="site-nav">
+    <a href="../index.php" class="nav-logo">JB</a>
+    <nav class="nav-links">
+      <a href="../index.php#about">About</a>
+      <a href="../index.php#skills">Skills</a>
+      <a href="./">Portfolio</a>
+      <a href="../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+      <a href="../index.php#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="stagger-menu-overlay" id="stagger-menu">
+    <nav>
+      <a href="../index.php#about">About</a>
+      <a href="../index.php#skills">Skills</a>
+      <a href="./">Portfolio</a>
+      <a href="../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+      <a href="../index.php#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main class="site-content">
+
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <section class="section" style="padding-top:calc(var(--spacing-2xl) + 4rem)">
+      <div class="container">
+        <span class="eyebrow hero-eyebrow">All Work</span>
+        <h1 class="portfolio-hero-title reveal">
+          Games, websites,<br><em>and everything in between.</em>
+        </h1>
+        <p class="reveal" style="font-size:1.1rem;max-width:540px;color:var(--text-muted);margin-top:1rem;line-height:1.75;transition-delay:0.12s">
+          Three disciplines, one through-line: every project is a problem I wanted to solve.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Three main disciplines ────────────────────────── -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="section-header reveal" style="margin-bottom:2rem">
+          <span class="eyebrow">Disciplines</span>
+          <h2>What I Build</h2>
+        </div>
+        <div class="discipline-grid stagger-children">
+
+          <a href="game-programming/" class="discipline-card work-card tilt-card reveal">
+            <div class="work-card-img">
+              <img src="../assets/images/phaserunnercover.png" alt="Game Programming">
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-tags stagger-pop" style="margin-bottom:0.6rem">
+                <span class="tag">Godot</span>
+                <span class="tag tag-muted">Unreal 5</span>
+                <span class="tag tag-muted">C++</span>
+              </div>
+              <h2 class="work-card-title" style="font-size:1.2rem">Game Programming</h2>
+              <p class="work-card-desc">Custom engines, platformers, VR experiences, and desktop companions.</p>
+              <span class="work-card-cta" style="margin-top:0.75rem;display:inline-block">View Projects →</span>
+            </div>
+          </a>
+
+          <a href="web-programming/" class="discipline-card work-card tilt-card reveal">
+            <div class="work-card-img">
+              <img src="../assets/images/mariokart.png" alt="Web Programming">
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-tags stagger-pop" style="margin-bottom:0.6rem">
+                <span class="tag">PHP</span>
+                <span class="tag tag-muted">JavaScript</span>
+                <span class="tag tag-muted">Next.js</span>
+              </div>
+              <h2 class="work-card-title" style="font-size:1.2rem">Web Programming</h2>
+              <p class="work-card-desc">Full-stack apps, AI tools, e-commerce, and this portfolio itself.</p>
+              <span class="work-card-cta" style="margin-top:0.75rem;display:inline-block">View Projects →</span>
+            </div>
+          </a>
+
+          <a href="art/" class="discipline-card work-card tilt-card reveal">
+            <div class="work-card-img">
+              <img src="professional-works/33-miles-graphics/images/full/33-miles-01-grain-regular.png" alt="Art and Design" style="object-fit:cover">
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-tags stagger-pop" style="margin-bottom:0.6rem">
+                <span class="tag">Branding</span>
+                <span class="tag tag-muted">Illustration</span>
+                <span class="tag tag-muted">Print</span>
+              </div>
+              <h2 class="work-card-title" style="font-size:1.2rem">Art &amp; Design</h2>
+              <p class="work-card-desc">Client graphics, band merch, apparel, and 3D modelling work.</p>
+              <span class="work-card-cta" style="margin-top:0.75rem;display:inline-block">View Work →</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Divider + sub-categories ─────────────────────── -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="divider reveal" style="margin-bottom:3rem"></div>
+        <div class="section-header reveal">
+          <span class="eyebrow">Sub-categories</span>
+          <h2>Browse by Focus</h2>
+        </div>
+        <div class="sub-grid stagger-children" style="margin-top:2rem">
+
+          <a href="professional-works/" class="glass-card sub-card tilt-card">
+            <span class="sub-card-icon">PRO</span>
+            <div>
+              <h3>Professional Works</h3>
+              <p>Client projects &amp; paid graphic design</p>
+            </div>
+          </a>
+
+          <a href="tshirt-designs/" class="glass-card sub-card tilt-card">
+            <span class="sub-card-icon">TEE</span>
+            <div>
+              <h3>T-Shirt Designs</h3>
+              <p>Custom apparel for Pi Kappa Phi</p>
+            </div>
+          </a>
+
+          <a href="games/" class="glass-card sub-card tilt-card">
+            <span class="sub-card-icon">GD</span>
+            <div>
+              <h3>Playable Games</h3>
+              <p>Run them right here in the browser</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stats ─────────────────────────────────────────── -->
+    <section class="section-sm" style="text-align:center">
+      <div class="container">
+        <div class="hero-stats reveal" style="display:inline-flex;margin-top:0">
+          <div class="hero-stat"><span class="hero-stat-num" data-count="3" data-suffix="+">3+</span><span class="hero-stat-label">Years Building</span></div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat"><span class="hero-stat-num" data-count="20" data-suffix="+">20+</span><span class="hero-stat-label">Projects</span></div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat"><span class="hero-stat-num" data-count="3" data-suffix="">3</span><span class="hero-stat-label">Disciplines</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
     <div class="container">
-        <div class="content-section" style="text-align: center; padding: 100px 60px 60px;">
-            <h1 style="font-size: 5rem; margin-bottom: 20px;">MY PORTFOLIO</h1>
-            <p style="font-size: 1.4rem; color: var(--text-muted); margin-top: 20px; font-family: 'Oswald', sans-serif; letter-spacing: 2px; text-transform: uppercase;">
-                Explore my work across three main disciplines
-            </p>
+      <div class="footer-inner">
+        <span class="footer-copy">&copy; <?php echo date('Y'); ?> Jake Barton. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
+          <a href="https://instagram.com/jakebarton13" target="_blank" class="btn-icon" aria-label="Instagram">IG</a>
+          <a href="https://github.com/jake-barton" target="_blank" class="btn-icon" aria-label="GitHub">GH</a>
         </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin: 60px 0; padding: 0 20px;">
-            
-            <!-- Game Programming Card -->
-            <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.4s ease; cursor: pointer; position: relative;"
-                 onclick="window.location.href='game-programming/';">
-                <div style="height: 250px; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
-                    <img src="../assets/images/phaserunnercover.png" alt="Game Programming" class="portfolio-image" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
-                </div>
-                <div style="padding: 30px;">
-                    <h2 style="color: var(--accent-white); margin-bottom: 15px; font-size: 2rem;">GAME PROGRAMMING</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 10px; font-family: 'Oswald', sans-serif;">
-                        2 Projects
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6;">
-                        Interactive game projects built with Godot and custom game engines
-                    </p>
-                    <a href="game-programming/" class="btn portfolio-btn" style="display: inline-block;" onclick="event.stopPropagation();">VIEW PROJECTS →</a>
-                </div>
-            </div>
-
-            <!-- Web Programming Card -->
-            <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.4s ease; cursor: pointer; position: relative;"
-                 onclick="window.location.href='web-programming/';">
-                <div style="height: 250px; background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%); display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
-                    <img src="../assets/images/mariokart.png" alt="Web Programming" class="portfolio-image" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
-                </div>
-                <div style="padding: 30px;">
-                    <h2 style="color: var(--accent-white); margin-bottom: 15px; font-size: 2rem;">WEB PROGRAMMING</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 10px; font-family: 'Oswald', sans-serif;">
-                        4 Projects
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6;">
-                        Full-stack web applications and interactive JavaScript projects
-                    </p>
-                    <a href="web-programming/" class="btn portfolio-btn" style="display: inline-block;" onclick="event.stopPropagation();">VIEW PROJECTS →</a>
-                </div>
-            </div>
-
-            <!-- Art Card -->
-            <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.4s ease; cursor: pointer; position: relative;"
-                 onclick="window.location.href='art/';">
-                <div style="height: 250px; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
-                    <img src="professional-works/33-miles-graphics/images/full/33-miles-01-grain-regular.png" alt="Art & Design" class="portfolio-image" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
-                </div>
-                <div style="padding: 30px;">
-                    <h2 style="color: var(--accent-white); margin-bottom: 15px; font-size: 2rem;">ART</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 10px; font-family: 'Oswald', sans-serif;">
-                        Professional Graphics + 15 T-Shirt Designs
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6;">
-                        Professional work and custom apparel designs
-                    </p>
-                    <a href="art/" class="btn portfolio-btn" style="display: inline-block;" onclick="event.stopPropagation();">VIEW WORK →</a>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Quick Stats -->
-        <div style="text-align: center; padding: 40px 20px; margin-top: 40px;">
-            <p style="color: var(--text-muted); font-size: 1.1rem; font-family: 'Oswald', sans-serif; letter-spacing: 1px;">
-                TOTAL PROJECTS: <span style="color: var(--accent-cyan); font-weight: bold;">20+</span>
-            </p>
-        </div>
+      </div>
     </div>
+  </footer>
+
+  <canvas id="beams-canvas"></canvas>
+  <script src="../assets/js/beams-bg.js"></script>
+  <script src="../assets/js/cursor-ribbons.js"></script>
+  <script src="../assets/js/fuzzy-text.js"></script>
+  <script src="../assets/js/effects-stylekit.js"></script>
+  <script>
+    (function(){var b=document.getElementById('scroll-progress');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;b.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});})();
+    (function(){var g=document.getElementById('cursor-glow');if(!g||window.matchMedia('(pointer:coarse)').matches)return;var cx=0,cy=0,tx=0,ty=0;document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;g.style.opacity='1';});document.addEventListener('mouseleave',function(){g.style.opacity='0';});function lerp(a,b,t){return a+(b-a)*t;}(function loop(){cx=lerp(cx,tx,0.07);cy=lerp(cy,ty,0.07);g.style.left=cx+'px';g.style.top=cy+'px';requestAnimationFrame(loop);})();})();
+  </script>
+
 </body>
 </html>

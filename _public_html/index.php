@@ -4,873 +4,1045 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Barton - Game Designer & 3D Artist</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20251130">
-    <link rel="alternate icon" href="assets/images/favicon.svg?v=20251130">
-    <link rel="stylesheet" href="assets/css/styles.css?v=20251130-glassmorphism">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Scripts -->
-    <script src="assets/js/effects.js?v=20251201-3d" defer></script>
-    <script src="assets/js/three-effects.js?v=20251201" defer></script>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20260325">
+    <link rel="alternate icon" href="assets/images/favicon.svg?v=20260325">
+
+    <!-- Style Kit CSS (order matters) -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
+  <!-- Scroll progress line -->
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:100001;transition:width 0.1s linear;pointer-events:none"></div>
 
-    <?php
-    $name = "Jake Barton";
-    $university = "Samford University";
-    $location = "Birmingham, AL";
-    $major = "Game Design & 3D Animation";
-    $minor = "Computer Science";
-    $year = "Junior"; // Class standing
-    $gradYear = 2027; // Graduation year per resume
-    $gpa = 3.5; // University GPA
-    
-    $skills = [
-        "C++", "Python", "JavaScript", "HTML", "CSS",
-        "Unreal Blueprint", "Unreal Engine", "Godot Engine",
-        "Autodesk Maya", "Blender", "Substance Painter",
-        "Adobe Photoshop", "Adobe Illustrator", "Figma",
-        "Web Development", "Game Programming", "Level Design",
-        "Project Management", "UX Design"
-    ];
-    
-    $leadership = [
-        "Social Chair - Pi Kappa Phi (2025–Current)",
-        "Executive Council - Philanthropy Chair (2025–Current)",
-        "T-Shirt Chair - Pi Kappa Phi (2023–2025)"
-    ];
-    
-    $contact = [
-        'email' => 'jbarton4@samford.edu',
-        'phone' => '(615) 943 9722',
-        'website' => 'https://jakebartoncreative.com',
-        'address' => 'Birmingham, AL',
-        'instagram' => 'jakebarton13',
-        'github' => '',
-        'youtube' => ''
-    ];
-    ?>
+  <!-- Ambient cursor glow -->
+  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>  </div>
 
-    <header>
-        <nav>
-            <a href="#home" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
-            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul id="primary-menu">
-                <li class="mobile-visible"><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="portfolio/">Portfolio</a></li>
-                <li><a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
-                <li class="mobile-visible"><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="content-section" id="home" style="text-align: center; padding: 120px 60px; margin-top: 60px;">
-            <h1 style="font-size: 6rem; margin-bottom: 20px; animation: fadeInUp 0.8s ease-out;">
-                <?php echo $name; ?>
-            </h1>
-            <p style="font-size: 1.8rem; color: var(--accent-white); margin-bottom: 15px; animation: fadeInUp 1s ease-out; font-family: 'Bebas Neue', sans-serif; letter-spacing: 3px;">
-                GAME DESIGNER | 3D ARTIST | DEVELOPER
-            </p>
-            <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 50px; animation: fadeInUp 1.2s ease-out;">
-                <?php echo $year; ?> at <?php echo $university; ?>, <?php echo $location; ?>
-            </p>
-            <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; animation: fadeInUp 1.4s ease-out;">
-                <a href="portfolio/" class="btn">VIEW MY WORK</a>
-                <a href="assets/Jake%20Barton%20-%20Resume.pdf" download class="btn" style="background: var(--primary-black); border:3px solid var(--accent-white); color: var(--accent-white);">DOWNLOAD RESUME (PDF)</a>
-            </div>
+<?php
+$name = "Jake Barton";
+$university = "Samford University";
+$location = "Birmingham, AL";
+$major = "Game Design & 3D Animation";
+$minor = "Computer Science";
+$year = "Junior";
+$gradYear = 2027;
+$gpa = 3.5;
+
+$skills = [
+    "C++", "Python", "JavaScript", "HTML", "CSS",
+    "Unreal Blueprint", "Unreal Engine", "Godot Engine",
+    "Autodesk Maya", "Blender", "Substance Painter",
+    "Adobe Photoshop", "Adobe Illustrator", "Figma",
+    "Web Development", "Game Programming", "Level Design",
+    "Project Management", "UX Design"
+];
+
+$leadership = [
+    "Lead Programmer - Samford Game Design Studio (2025–Current)",
+    "Social Chair - Pi Kappa Phi (2025–Current)",
+    "Executive Council - Philanthropy Chair (2025–Current)",
+    "T-Shirt Chair - Pi Kappa Phi (2023–2025)"
+];
+
+$contact = [
+    'email' => 'jbarton4@samford.edu',
+    'phone' => '(615) 943 9722',
+    'website' => 'https://jakebartoncreative.com',
+    'address' => 'Birmingham, AL',
+    'instagram' => 'jakebarton13',
+    'github' => 'jake-barton',
+    'youtube' => ''
+];
+?>
+
+  <!-- Navigation -->
+  <header class="site-nav" id="site-nav">
+    <a href="#home" class="nav-logo">JB</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="portfolio/">Portfolio</a>
+      <a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile full-screen overlay -->
+  <div class="stagger-menu-overlay" id="stagger-menu">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="portfolio/">Portfolio</a>
+      <a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main class="site-content">
+
+    <!-- ── Hero Section ──────────────────────────────────── -->
+    <section class="hero section" id="home">
+
+      <span class="hero-eyebrow">Seeking Internship &amp; Entry-Level Roles · Birmingham, AL</span>
+
+      <h1 class="hero-name" data-parallax="0.18">Jake Barton</h1>
+
+      <p class="hero-tagline" data-parallax="0.10">Game developer building <em class="rotating-text" data-words='["gameplay systems","creative tools","3D worlds","UI & web work","real-time systems"]' data-interval="2800">gameplay systems</em> — from game engines to the browser.</p>
+
+      <p class="hero-subtitle">
+        Junior at Samford University studying Game Design &amp; 3D Animation —
+        currently <strong style="color:var(--text)">Lead Programmer at Samford Game Design Studio</strong>,
+        building in Unreal Engine 5, Godot 4, and the web.
+      </p>
+
+      <div class="hero-cta">
+        <a href="portfolio/" class="btn btn-primary magnetic">See My Work</a>
+        <a href="assets/Jake%20Barton%20-%20Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+        <a href="https://github.com/jake-barton" target="_blank" class="btn btn-secondary">GitHub</a>
+      </div>
+
+      <!-- Quick stats bar -->
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-num" data-count="3" data-suffix="+">3+</span><span class="hero-stat-label">Years Building</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num" data-count="20" data-suffix="+">20+</span><span class="hero-stat-label">Projects Built</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num" data-count="3.5" data-suffix="">3.5</span><span class="hero-stat-label">GPA · Samford</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num" data-count="2027" data-suffix="">2027</span><span class="hero-stat-label">Graduation</span></div>
+      </div>
+
+    </section>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%)">Scroll</div>
+
+    <!-- ── Currently Building marquee strip ────────────── -->
+    <div class="now-strip">
+      <div class="now-marquee-track" aria-hidden="true">
+        <div class="now-marquee-inner">
+          <!-- duplicated for seamless loop -->
+          <span class="now-item"><span class="now-dot"></span><strong>Lead Programmer</strong> · Samford Game Design Studio</span>
+          <span class="now-sep">✦</span>
+          <span class="now-item">Phase Runner — released on itch.io · Godot 4</span>
+          <span class="now-sep">✦</span>
+          <span class="now-item">Mario Kart Recreation — JavaScript · Mode-7 renderer</span>
+          <span class="now-sep">✦</span>
+          <span class="now-item">VR Rhythm Game — Unreal Engine 5 · C++</span>
+          <span class="now-sep">✦</span>
+          <!-- repeat -->
+          <span class="now-item"><span class="now-dot"></span><strong>Lead Programmer</strong> · Samford Game Design Studio</span>
+          <span class="now-sep">✦</span>
+          <span class="now-item">Phase Runner — released on itch.io · Godot 4</span>
+          <span class="now-sep">✦</span>
+          <span class="now-item">Mario Kart Recreation — JavaScript · Mode-7 renderer</span>
+          <span class="now-sep">✦</span>
+          <span class="now-item">VR Rhythm Game — Unreal Engine 5 · C++</span>
+          <span class="now-sep">✦</span>
         </div>
-
-        <!-- Auto-Rotating Showcase Gallery -->
-        <div class="content-section" style="padding: 60px 40px; overflow: visible;">
-            <h2 style="text-align: center; margin-bottom: 50px;">FEATURED WORK</h2>
-            
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- Phase Runner Game -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/phaserunnercover.png" alt="Phase Runner Game">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Phase Runner</h3>
-                                <p>Godot Game Project</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Mario Kart Game -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/mariokart.png" alt="Mario Kart Reverse Engineered">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Mario Kart Recreation</h3>
-                                <p>JavaScript Game</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Shel Silverstein Website -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/shelcover.png" alt="Shel Silverstein Website">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Shel Silverstein Tribute</h3>
-                                <p>Web Design Project</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 33Miles Graphics -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/33miles-cover.png" alt="33Miles Graphics">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>33Miles Band Graphics</h3>
-                                <p>Professional Client Work</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fall Recruitment T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/Fall Recruitment '25-01.svg" alt="Fall Recruitment 2025">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Fall Recruitment 2025</h3>
-                                <p>T-Shirt Design</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Southern Gents T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/SouthernGents-01.svg" alt="Southern Gents Design">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Southern Gents</h3>
-                                <p>Album-Inspired T-Shirt</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Barn Bash T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/Barn Bash 2025.svg" alt="Barn Bash 2025">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Barn Bash 2025</h3>
-                                <p>Event T-Shirt Design</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rose Ball T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/Rose Ball.svg" alt="Rose Ball Design">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Rose Ball</h3>
-                                <p>Formal Event Design</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Navigation Dots -->
-                <div class="carousel-dots"></div>
-            </div>
-
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="portfolio/" class="btn">EXPLORE FULL PORTFOLIO</a>
-            </div>
-        </div>
-
-        <!-- Skills Section -->
-        <div class="content-section" id="skills">
-            <h2>TECHNICAL SKILLS & TOOLS</h2>
-            <div class="skills-container">
-                <?php foreach ($skills as $skill): ?>
-                    <span class="skill-tag"><?php echo $skill; ?></span>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        
-        <!-- About Section -->
-        <div class="content-section" id="about">
-            <h2>ABOUT ME</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9;">
-                I'm a <?php echo $year; ?> at <strong style="color: var(--accent-white);"><?php echo $university; ?></strong> 
-                in <?php echo $location; ?>, majoring in <strong style="color: var(--accent-white);"><?php echo $major; ?></strong> 
-                with a minor in <strong style="color: var(--accent-white);"><?php echo $minor; ?></strong>. Expected graduation: <strong style="color: var(--accent-white);"><?php echo $gradYear; ?></strong>. Current GPA: <strong style="color: var(--accent-white);"><?php echo number_format($gpa,2); ?></strong>.
-            </p>
-            
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-top: 20px;">
-                I specialize in creating immersive gaming experiences and stunning 3D visuals, combining technical expertise 
-                with creative design. From coding in <strong style="color: var(--accent-white);">Python</strong> and <strong style="color: var(--accent-white);">C++</strong> to bringing worlds to life in 
-                <strong style="color: var(--accent-white);">Unreal Engine 5</strong>, <strong style="color: var(--accent-white);">Godot</strong>, and <strong style="color: var(--accent-white);">Unity</strong>, I'm passionate about every 
-                aspect of game development.
-            </p>
-
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-top: 20px;">
-                My creative toolkit includes <strong style="color: var(--accent-white);">Autodesk Maya</strong>, <strong style="color: var(--accent-white);">Blender</strong>, <strong style="color: var(--accent-white);">Adobe Creative Suite</strong>, 
-                and <strong style="color: var(--accent-white);">Figma</strong>, allowing me to craft everything from 3D models to user interfaces and graphic designs.
-            </p>
-        </div>
-
-        <!-- Leadership Section -->
-        <div class="content-section">
-            <h2>LEADERSHIP & EXPERIENCE (PI KAPPA PHI)</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9;">
-                As a committed member of <strong style="color: var(--accent-white);">Pi Kappa Phi Fraternity - Alpha Eta Chapter</strong>, 
-                I serve in multiple leadership roles driving event planning, apparel production, and philanthropy impact:
-            </p>
-            <ul style="margin-top: 25px; font-size: 1.1rem; line-height: 2;">
-                <?php foreach ($leadership as $position): ?>
-                    <li style="color: var(--text-muted); margin-bottom: 10px;">
-                        <span style="color: var(--accent-white);">▸</span> <?php echo $position; ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            
-            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
-                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                    SOCIAL CHAIR
-                </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
-                    As <strong style="color: var(--accent-white);">Social Chair</strong>, I specialize in 
-                    <strong style="color: var(--accent-white);">event planning and organization</strong>, coordinating 
-                    all aspects of our chapter's formal events. My responsibilities include:
-                </p>
-                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Leading a committee and coordinating team efforts for large-scale events
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Organizing and securing venues for chapter formal events
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Booking and coordinating with live bands and entertainment
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Creating custom banner artworks and event branding materials
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Managing event logistics, budgets, and timelines
-                    </li>
-                </ul>
-            </div>
-
-            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
-                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                    T-SHIRT CHAIR
-                </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
-                    For two years as <strong style="color: var(--accent-white);">T-Shirt Chair</strong>, I've designed and produced 
-                    custom apparel for our chapter, collaborating with vendors to ensure quality and timely delivery. My responsibilities include:
-                </p>
-                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Designing custom t-shirts and apparel for chapter events and recruitment
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Managing vendor relationships and coordinating production timelines
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Creating designs that reflect chapter identity and event themes
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Ensuring quality control and timely delivery for all orders
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> View the <a href="portfolio/tshirt-designs/" style="color: var(--accent-white); text-decoration: none; border-bottom: 3px solid var(--accent-white); font-weight: bold;">t-shirt design portfolio</a> to see selected work
-                    </li>
-                </ul>
-            </div>
-            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
-                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                    PHILANTHROPY CHAIR (EXECUTIVE COUNCIL)
-                </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
-                    As <strong style="color: var(--accent-white);">Philanthropy Chair</strong>, I coordinate initiatives supporting disability inclusion, 
-                    partnering with organizations to raise funds and awareness. My responsibilities include:
-                </p>
-                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Leading partnerships with <strong style="color: var(--accent-white);">Unless U</strong> and <strong style="color: var(--accent-white);">The Ability Experience</strong>
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Planning and executing chapter-wide service and fundraising events
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Promoting disability inclusion initiatives within the campus community
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Coordinating volunteer efforts and tracking impact metrics
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Managing event logistics, volunteer scheduling, and donor relations
-                    </li>
-                </ul>
-            </div>
-        </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="content-section" id="contact">
-            <h2>GET IN TOUCH</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 40px;">
-                Interested in collaborating on a project or want to learn more about my work? 
-                Feel free to reach out!
-            </p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
-                <!-- Contact Form -->
-                <div style="background: var(--secondary-black); padding: 40px; border: 3px solid var(--border-gray); border-radius: 0px;">
-                    <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                        SEND ME A MESSAGE
-                    </h3>
-                    <form id="contactForm" method="post">
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; color: var(--text-light); margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">YOUR NAME</label>
-                            <input type="text" name="name" id="contactName" required 
-                                   style="width: 100%; padding: 15px; background: var(--primary-black); border: 2px solid var(--border-gray); 
-                                   color: var(--text-light); font-size: 1rem; border-radius: 0px; transition: border-color 0.3s;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; color: var(--text-light); margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">YOUR EMAIL</label>
-                            <input type="email" name="email" id="contactEmail" required 
-                                   style="width: 100%; padding: 15px; background: var(--primary-black); border: 2px solid var(--border-gray); 
-                                   color: var(--text-light); font-size: 1rem; border-radius: 0px; transition: border-color 0.3s;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; color: var(--text-light); margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">MESSAGE</label>
-                            <textarea name="message" id="contactMessage" rows="6" required 
-                                      style="width: 100%; padding: 15px; background: var(--primary-black); border: 2px solid var(--border-gray); 
-                                      color: var(--text-light); font-size: 1rem; border-radius: 0px; resize: vertical; transition: border-color 0.3s;"></textarea>
-                        </div>
-                        <div id="formMessage" style="margin-bottom: 15px; padding: 10px; display: none; border-radius: 0px; font-weight: bold; letter-spacing: 1px;"></div>
-                        <button type="submit" id="submitBtn" class="btn" style="width: 100%; margin: 0;">SEND MESSAGE</button>
-                    </form>
-                </div>
-
-                <!-- Contact Information -->
-                <div>
-                    <div style="background: var(--secondary-black); padding: 40px; border: 3px solid var(--border-gray); border-radius: 0px; margin-bottom: 30px;">
-                        <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                            CONTACT INFO
-                        </h3>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">EMAIL</p>
-                            <a href="mailto:<?php echo $contact['email']; ?>" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                <?php echo $contact['email']; ?>
-                            </a>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">PHONE</p>
-                            <a href="tel:+16159439722" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                <?php echo $contact['phone']; ?>
-                            </a>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">WEBSITE</p>
-                            <a href="<?php echo $contact['website']; ?>" target="_blank" style="color: var(--accent-white); font-size: 1.05rem; text-decoration: none; border-bottom:2px solid var(--accent-white);">
-                                jakebartoncreative.com
-                            </a>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">ADDRESS</p>
-                            <p style="color: var(--accent-white); font-size: 1.1rem;">
-                                <?php echo $contact['address']; ?>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div style="background: var(--secondary-black); padding: 40px; border: 3px solid var(--border-gray); border-radius: 0px;">
-                        <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                            SOCIAL MEDIA
-                        </h3>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">LINKEDIN</p>
-                            <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                linkedin.com/in/jakebartoncreative
-                            </a>
-                        </div>
-                        <?php if (!empty($contact['instagram'])): ?>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">INSTAGRAM</p>
-                            <a href="https://instagram.com/<?php echo $contact['instagram']; ?>" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                @<?php echo $contact['instagram']; ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                        <?php if (!empty($contact['github'])): ?>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">GITHUB</p>
-                            <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                github.com/<?php echo $contact['github']; ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                        <?php if (!empty($contact['youtube'])): ?>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">YOUTUBE</p>
-                            <a href="https://youtube.com/@<?php echo $contact['youtube']; ?>" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                youtube.com/@<?php echo $contact['youtube']; ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="content-section" style="text-align: center; padding: 80px;">
-            <h2 style="margin-bottom: 25px;">READY TO SEE WHAT I'VE CREATED?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 40px;">
-                Explore my portfolio featuring game projects, 3D artwork, and design work.
-            </p>
-            <a href="portfolio/" class="btn">VIEW PORTFOLIO</a>
-        </div>
+      </div>
     </div>
 
-    <style>
-        /* Additional Hero Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    <!-- ── Featured Work ─────────────────────────────────── -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-num">01</span>
+          <span class="eyebrow">Selected Work</span>
+          <h2>What I've Built</h2>
+          <p>Games, websites, and client work — each one a different problem to solve.</p>
+        </div>
 
-        /* Card Stack Carousel - Silky Smooth */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            height: 500px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+        <div class="showcase-grid stagger-children">
 
-        .carousel-track {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transform: translateZ(0);
-            perspective: 1000px;
-        }
+          <!-- Hero card — Phase Runner -->
+          <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" class="showcase-card showcase-card--hero tilt-card">
+            <img src="assets/images/phaserunnercover.png" alt="Phase Runner" class="showcase-img">
+            <div class="showcase-overlay">
+              <div class="showcase-tags">
+                <span class="tag">Game Design</span>
+                <span class="tag tag-muted">Godot 4</span>
+                <span class="tag tag-muted">GDScript</span>
+              </div>
+              <h3 class="showcase-title">Phase Runner</h3>
+              <p class="showcase-desc">2D side-scrolling shooter — custom physics, 10+ weapons, procedural chunks, invincibility dash. Solo-developed, live on itch.io.</p>
+              <span class="showcase-cta">Play Now →</span>
+            </div>
+            <div class="showcase-badge">Featured</div>
+          </a>
 
-        .carousel-slide {
-            position: absolute;
-            width: 100%;
-            max-width: 600px;
-            height: 450px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            -webkit-font-smoothing: subpixel-antialiased;
-        }
+          <!-- VR Game -->
+          <a href="portfolio/game-programming/" class="showcase-card showcase-card--tall">
+            <div class="showcase-placeholder">
+              <span class="showcase-placeholder-label">VR</span>
+            </div>
+            <div class="showcase-overlay">
+              <div class="showcase-tags">
+                <span class="tag">VR Game</span>
+                <span class="tag tag-muted">Unreal 5</span>
+              </div>
+              <h3 class="showcase-title">VR Rhythm Game</h3>
+              <p class="showcase-desc">Unreal Engine 5 — your movements control a dragon in a rhythm-based VR experience.</p>
+              <span class="showcase-cta">View →</span>
+            </div>
+          </a>
 
-        /* Active card - front and center */
-        .carousel-slide.position-0 {
-            transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1) rotateY(0deg);
-            opacity: 1;
-            z-index: 30;
-        }
+          <!-- Mario Kart -->
+          <a href="portfolio/game-programming/" class="showcase-card showcase-card--wide">
+            <img src="assets/images/mariokart.png" alt="Mario Kart Recreation" class="showcase-img">
+            <div class="showcase-overlay">
+              <div class="showcase-tags">
+                <span class="tag">Web Game</span>
+                <span class="tag tag-muted">JavaScript</span>
+              </div>
+              <h3 class="showcase-title">Mario Kart Recreation</h3>
+              <p class="showcase-desc">Mode-7 SNES engine in vanilla JS — raycasting, sprite sheets, lap logic.</p>
+              <span class="showcase-cta">View →</span>
+            </div>
+          </a>
 
-        /* First card behind - stacked right */
-        .carousel-slide.position-1 {
-            transform: translate(-50%, -50%) translate3d(30px, 15px, -50px) scale(0.94) rotateY(-5deg);
-            opacity: 0.7;
-            z-index: 20;
-            pointer-events: none;
-        }
+          <!-- 33Miles -->
+          <a href="portfolio/professional-works/" class="showcase-card showcase-card--wide">
+            <img src="assets/images/33miles-cover.png" alt="33Miles Graphics" class="showcase-img">
+            <div class="showcase-overlay">
+              <div class="showcase-tags">
+                <span class="tag">Client Work</span>
+                <span class="tag tag-muted">Illustrator</span>
+              </div>
+              <h3 class="showcase-title">33Miles Band Graphics</h3>
+              <p class="showcase-desc">Paid brand &amp; merchandise design for a signed Christian music group.</p>
+              <span class="showcase-cta">View →</span>
+            </div>
+          </a>
 
-        /* Second card behind - more stacked */
-        .carousel-slide.position-2 {
-            transform: translate(-50%, -50%) translate3d(60px, 30px, -100px) scale(0.88) rotateY(-10deg);
-            opacity: 0.4;
-            z-index: 10;
-            pointer-events: none;
-        }
+        </div>
 
-        /* Cards exiting to the left */
-        .carousel-slide.position-exit {
-            transform: translate(-50%, -50%) translate3d(-120%, -20px, -150px) scale(0.85) rotateY(15deg);
-            opacity: 0;
-            z-index: 5;
-            pointer-events: none;
-        }
+        <div style="text-align:center;margin-top:3rem">
+          <a href="portfolio/" class="btn btn-primary magnetic">Explore Full Portfolio</a>
+        </div>
+      </div>
+    </section>
 
-        /* Cards entering from the right */
-        .carousel-slide.position-enter {
-            transform: translate(-50%, -50%) translate3d(120%, 40px, -150px) scale(0.82) rotateY(-15deg);
-            opacity: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
+    <!-- ── Skills Section ────────────────────────────────── -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-num">02</span>
+          <span class="eyebrow">Toolkit</span>
+          <h2>Skills &amp; Tools</h2>
+          <p>What I reach for — organised by discipline.</p>
+        </div>
 
-        .carousel-card {
-            background: var(--secondary-black);
-            border: 2px solid var(--border-gray);
-            border-radius: 12px;
-            padding: 40px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-            transform: translateZ(0);
-        }
+        <div class="skills-grid stagger-children">
 
-        .carousel-slide.position-0 .carousel-card {
-            border-color: var(--accent-white);
-            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
-        }
+          <div class="skill-group glass-card">
+            <div class="skill-group-header">
+              <span class="skill-group-icon">GD</span>
+              <h3 class="skill-group-title">Game Development</h3>
+            </div>
+            <div class="skill-group-pills stagger-pop">
+              <span class="skill-pill primary"><span class="dot"></span>Unreal Engine 5</span>
+              <span class="skill-pill primary"><span class="dot"></span>Godot 4</span>
+              <span class="skill-pill primary"><span class="dot"></span>Unreal Blueprint</span>
+              <span class="skill-pill"><span class="dot"></span>Unity</span>
+              <span class="skill-pill"><span class="dot"></span>Level Design</span>
+              <span class="skill-pill"><span class="dot"></span>Game Programming</span>
+            </div>
+          </div>
 
-        .carousel-card img {
-            width: 100%;
-            max-width: 450px;
-            height: 280px;
-            object-fit: contain;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            transform: translateZ(0);
-        }
+          <div class="skill-group glass-card">
+            <div class="skill-group-header">
+              <span class="skill-group-icon">&lt;/&gt;</span>
+              <h3 class="skill-group-title">Programming</h3>
+            </div>
+            <div class="skill-group-pills stagger-pop">
+              <span class="skill-pill primary"><span class="dot"></span>C++</span>
+              <span class="skill-pill primary"><span class="dot"></span>Python</span>
+              <span class="skill-pill primary"><span class="dot"></span>JavaScript</span>
+              <span class="skill-pill"><span class="dot"></span>HTML &amp; CSS</span>
+              <span class="skill-pill"><span class="dot"></span>PHP</span>
+              <span class="skill-pill"><span class="dot"></span>Web Development</span>
+            </div>
+          </div>
 
-        .carousel-info {
-            text-align: center;
-            width: 100%;
-        }
+          <div class="skill-group glass-card">
+            <div class="skill-group-header">
+              <span class="skill-group-icon">ART</span>
+              <h3 class="skill-group-title">Art &amp; Design</h3>
+            </div>
+            <div class="skill-group-pills stagger-pop">
+              <span class="skill-pill primary"><span class="dot"></span>Autodesk Maya</span>
+              <span class="skill-pill primary"><span class="dot"></span>Adobe Illustrator</span>
+              <span class="skill-pill"><span class="dot"></span>Blender</span>
+              <span class="skill-pill"><span class="dot"></span>Substance Painter</span>
+              <span class="skill-pill"><span class="dot"></span>Photoshop</span>
+              <span class="skill-pill"><span class="dot"></span>Figma</span>
+            </div>
+          </div>
 
-        .carousel-info h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.2rem;
-            letter-spacing: 2px;
-            color: var(--accent-white);
-            margin-bottom: 10px;
-        }
+        </div>
+      </div>
+    </section>
 
-        .carousel-info p {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            letter-spacing: 1px;
-        }
+    <!-- ── About Section ─────────────────────────────────── -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
 
-        /* Hide dots */
-        .carousel-dots {
-            display: none;
-        }
+          <!-- Left: text -->
+          <div class="about-text reveal-left">
+            <span class="eyebrow">About Me</span>
+            <h2 style="margin-bottom:1.5rem">Building games, tools, and<br><em>interactive experiences.</em></h2>
 
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .carousel-wrapper {
-                max-width: 600px;
-                height: 450px;
-            }
+            <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.25rem">
+              I'm a Junior at <strong style="color:var(--text)">Samford University</strong> majoring in
+              Game Design &amp; 3D Animation with a Computer Science minor — currently serving as
+              <strong style="color:var(--text)">Lead Programmer at Samford's Game Design Studio</strong>.
+              I work across gameplay programming, systems design, and UI implementation, with a
+              focus on delivering polished, playable results.
+            </p>
 
-            .carousel-slide {
-                max-width: 520px;
-                height: 400px;
-            }
-            
-            .carousel-card {
-                padding: 30px;
-            }
-            
-            .carousel-card img {
-                height: 240px;
-                max-width: 380px;
-            }
-            
-            .carousel-info h3 {
-                font-size: 1.9rem;
-            }
+            <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.25rem">
+              My background spans code (C++, GDScript, Python), 3D art (Maya, Blender),
+              and front-end web development. I'm comfortable working end to end on a project —
+              from core gameplay mechanics to UI layout and visual polish.
+            </p>
 
-            .carousel-slide.position-1 {
-                transform: translate(-50%, -50%) translate3d(25px, 12px, -50px) scale(0.95) rotateY(-4deg);
-            }
+            <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted)">
+              Outside of projects I hold leadership roles in
+              <strong style="color:var(--text)">Pi Kappa Phi</strong>, where I've developed
+              practical skills in project coordination, event management, and cross-team communication.
+            </p>
 
-            .carousel-slide.position-2 {
-                transform: translate(-50%, -50%) translate3d(50px, 24px, -100px) scale(0.90) rotateY(-8deg);
-            }
-        }
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem">
+              <a href="portfolio/" class="btn btn-primary magnetic">View Portfolio</a>
+              <a href="https://github.com/jake-barton" target="_blank" class="btn btn-secondary">GitHub</a>
+            </div>
+          </div>
 
-        @media (max-width: 768px) {
-            .carousel-wrapper {
-                max-width: 100%;
-                height: 420px;
-                padding: 0 20px;
-            }
+          <!-- Right: credential card -->
+          <div class="about-creds reveal-right">
+            <div class="cred-card glass-card">
+              <div class="cred-row">
+                <span class="cred-label">Degree</span>
+                <span class="cred-value">Game Design &amp; 3D Animation</span>
+              </div>
+              <div class="cred-row">
+                <span class="cred-label">Minor</span>
+                <span class="cred-value">Computer Science</span>
+              </div>
+              <div class="cred-row">
+                <span class="cred-label">University</span>
+                <span class="cred-value">Samford University</span>
+              </div>
+              <div class="cred-row">
+                <span class="cred-label">GPA</span>
+                <span class="cred-value" style="color:var(--accent-light);font-weight:600">3.50</span>
+              </div>
+              <div class="cred-row">
+                <span class="cred-label">Graduation</span>
+                <span class="cred-value">May 2027</span>
+              </div>
+              <div class="cred-row">
+                <span class="cred-label">Location</span>
+                <span class="cred-value">Birmingham, AL</span>
+              </div>
+              <div class="cred-row" style="border-bottom:none">
+                <span class="cred-label">Status</span>
+                <span class="cred-value" style="color:var(--accent-light)">● Open to Work</span>
+              </div>
+            </div>
+          </div>
 
-            .carousel-slide {
-                max-width: 100%;
-                height: 380px;
-                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                            opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
+        </div>
+      </div>
+    </section>
 
-            .carousel-card {
-                padding: 25px;
-            }
+    <!-- ── Leadership Section ────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-num">03</span>
+          <span class="eyebrow">Experience &amp; Leadership</span>
+          <h2>Leadership &amp; Experience</h2>
+          <p>Building technical and leadership experience across game development and student organisations.</p>
+        </div>
 
-            .carousel-card img {
-                height: 220px;
-                max-width: 320px;
-            }
+        <div class="grid-3 stagger-children" style="margin-top:2rem">
+          <!-- Samford Game Design Studio -->
+          <div class="glass-card reveal-up">
+            <span class="eyebrow">2025 – Current</span>
+            <h3 style="margin-bottom:1rem">Lead Programmer</h3>
+            <p style="font-size:0.8rem;color:var(--accent-light);margin-bottom:0.75rem;font-weight:600">Samford Game Design Studio</p>
+            <ul style="display:flex;flex-direction:column;gap:0.6rem">
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Lead core gameplay systems in Unreal Engine 5</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Systems optimisation &amp; cross-team technical coordination</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Technical direction across multiple teams</li>
+            </ul>
+          </div>
+          <div class="glass-card reveal-up" style="transition-delay:0.08s">
+            <span class="eyebrow">2025 – Current</span>
+            <h3 style="margin-bottom:1rem">Social Chair</h3>
+            <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:0.75rem;font-weight:600">Pi Kappa Phi · Alpha Eta</p>
+            <ul style="display:flex;flex-direction:column;gap:0.6rem">
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Plan &amp; execute large-scale chapter events</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Venue sourcing, budget management &amp; logistics</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Custom banner artwork &amp; event branding</li>
+            </ul>
+          </div>
 
-            .carousel-info h3 {
-                font-size: 1.6rem;
-            }
+          <!-- T-Shirt Chair -->
+          <div class="glass-card reveal-up" style="transition-delay:0.16s">
+            <span class="eyebrow">2023 – 2025</span>
+            <h3 style="margin-bottom:1rem">T-Shirt Chair</h3>
+            <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:0.75rem;font-weight:600">Pi Kappa Phi · Alpha Eta</p>
+            <ul style="display:flex;flex-direction:column;gap:0.6rem">
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Designed &amp; produced 15+ chapter apparel runs</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Managed vendor relationships &amp; print deadlines</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span><a href="portfolio/tshirt-designs/">View the T-Shirt portfolio →</a></li>
+            </ul>
+          </div>
 
-            .carousel-info p {
-                font-size: 1rem;
-            }
+          <!-- Philanthropy Chair -->
+          <div class="glass-card reveal-up" style="transition-delay:0.24s">
+            <span class="eyebrow">2025 – Current</span>
+            <h3 style="margin-bottom:1rem">Philanthropy Chair</h3>
+            <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:0.75rem;font-weight:600">Pi Kappa Phi · Alpha Eta</p>
+            <ul style="display:flex;flex-direction:column;gap:0.6rem">
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Partner: Unless U &amp; The Ability Experience</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Chapter-wide fundraising &amp; service events</li>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Disability inclusion advocacy on campus</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            .carousel-slide.position-1 {
-                transform: translate(-50%, -50%) translate3d(20px, 10px, -30px) scale(0.94) rotateY(-3deg);
-            }
+    <!-- ── Contact Section ───────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow">Get In Touch</span>
+          <h2>Let's Work Together</h2>
+          <p>Whether it's a studio role, freelance project, or just a conversation — I'd love to hear from you.</p>
+        </div>
 
-            .carousel-slide.position-2 {
-                transform: translate(-50%, -50%) translate3d(40px, 20px, -60px) scale(0.88) rotateY(-6deg);
-            }
+        <div class="grid-2 stagger-children" style="align-items:start">
+          <!-- Contact Form -->
+          <div class="glass-card reveal-left">
+            <h3 style="margin-bottom:1.5rem">Send Me a Message</h3>
+            <form id="contactForm" method="post">
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" id="contactName" required class="form-input" placeholder="Jane Smith">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Email</label>
+                <input type="email" name="email" id="contactEmail" required class="form-input" placeholder="you@company.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea name="message" id="contactMessage" rows="6" required class="form-input" placeholder="Tell me about the role or project..."></textarea>
+              </div>
+              <div id="formMessage" style="margin-bottom:1rem;padding:0.75rem;display:none;border-radius:var(--radius-md);font-size:0.9rem"></div>
+              <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%">Send Message →</button>
+            </form>
+          </div>
 
-            .carousel-slide.position-exit {
-                transform: translate(-50%, -50%) translate3d(-100%, -15px, -90px) scale(0.85) rotateY(10deg);
-            }
+          <!-- Contact Info -->
+          <div style="display:flex;flex-direction:column;gap:1.5rem" class="reveal-right">
+            <div class="glass-card">
+              <h3 style="margin-bottom:1.25rem">Contact Info</h3>
+              <div style="display:flex;flex-direction:column;gap:1rem">
+                <div>
+                  <p class="form-label">Email</p>
+                  <a href="mailto:<?php echo $contact['email']; ?>" style="color:var(--accent);font-size:1rem"><?php echo $contact['email']; ?></a>
+                </div>
+                <div>
+                  <p class="form-label">Phone</p>
+                  <a href="tel:+16159439722" style="color:var(--accent);font-size:1rem"><?php echo $contact['phone']; ?></a>
+                </div>
+                <div>
+                  <p class="form-label">Website</p>
+                  <a href="<?php echo $contact['website']; ?>" target="_blank" style="color:var(--accent);font-size:1rem">jakebartoncreative.com</a>
+                </div>
+                <div>
+                  <p class="form-label">Location</p>
+                  <p style="color:var(--text);font-size:1rem"><?php echo $contact['address']; ?></p>
+                </div>
+              </div>
+            </div>
 
-            .carousel-slide.position-enter {
-                transform: translate(-50%, -50%) translate3d(100%, 30px, -90px) scale(0.82) rotateY(-10deg);
-            }
-        }
+            <div class="glass-card">
+              <h3 style="margin-bottom:1.25rem">Find Me Online</h3>
+              <div style="display:flex;flex-direction:column;gap:0.75rem">
+                <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
+                  <span style="color:var(--accent)">in</span>&nbsp; linkedin.com/in/jakebartoncreative
+                </a>
+                <?php if (!empty($contact['github'])): ?>
+                <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  &nbsp;github.com/<?php echo $contact['github']; ?>
+                </a>
+                <?php endif; ?>
+                <?php if (!empty($contact['instagram'])): ?>
+                <a href="https://instagram.com/<?php echo $contact['instagram']; ?>" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
+                  <span style="color:var(--pink)">IG</span>&nbsp; @<?php echo $contact['instagram']; ?>
+                </a>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        /* Contact Form Styles */
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-white) !important;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
+    <!-- ── Let's Talk — full-bleed CTA ────────────────────── -->
+    <section class="cta-full">
+      <div class="container">
+        <span class="cta-full-eyebrow reveal-up">Ready to work together?</span>
+        <h2 class="cta-full-heading reveal-up" style="transition-delay:0.1s">
+          Let's <em>Talk.</em>
+        </h2>
+        <p class="cta-full-sub reveal-up" style="transition-delay:0.22s">
+          Studio role, freelance gig, or just a conversation about a project —
+          I'd love to hear from you.
+        </p>
+        <div class="cta-full-actions reveal-up" style="transition-delay:0.34s">
+          <a href="mailto:jbarton4@samford.edu" class="btn btn-primary magnetic">Email Me →</a>
+          <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn btn-secondary">LinkedIn</a>
+        </div>
+      </div>
+    </section>
 
-        input:hover, textarea:hover {
-            border-color: var(--text-muted) !important;
-        }
+  </main>
 
-        /* Contact Links Hover Effects */
-        #contact a {
-            transition: all 0.3s ease;
-        }
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© <?php echo date('Y'); ?> Jake Barton. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
+          <?php if (!empty($contact['github'])): ?>
+          <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn-icon" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          </a>
+          <?php endif; ?>
+          <?php if (!empty($contact['instagram'])): ?>
+          <a href="https://instagram.com/<?php echo $contact['instagram']; ?>" target="_blank" class="btn-icon" aria-label="Instagram">IG</a>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-        #contact a:hover {
-            color: var(--text-light) !important;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            border-bottom-color: var(--text-light) !important;
-        }
+  <style>
+    /* ── Hero name — clean h1, no canvas ────────────── */
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-style: normal;
+    }
+    /* em inside tagline — only applies before JS replaces it with .rt-wrap */
+    .hero-tagline em {
+      color: var(--accent-light);
+      font-style: italic;
+    }
 
-        /* Responsive Contact Grid */
-        @media (max-width: 768px) {
-            #contact > div:nth-child(3) {
-                grid-template-columns: 1fr !important;
-            }
-        }
-    </style>
+    /* ── Hero Stats Bar ──────────────────────────────── */
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      margin-top: 4rem;
+      padding: 1.5rem 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      height: 2.5rem;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    @media (max-width: 640px) {
+      .hero-stats { gap: 1rem; padding: 1.25rem; }
+      .hero-stat { padding: 0 1rem; }
+      .hero-stat-divider { display: none; }
+    }
 
-    <script>
-        // Fallback mobile nav (in case effects.js fails to load)
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.querySelector('.nav-toggle');
-            const menu = document.getElementById('primary-menu');
-            if (!btn || !menu) return;
-            if (!menu.classList.contains('open')) menu.classList.remove('open');
-            btn.addEventListener('click', function(e){
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                menu.classList.toggle('open');
-            });
-            // Handle link clicks through event delegation
-            menu.addEventListener('click', function(e) {
-                const link = e.target.closest('a');
-                if (link && link.href) {
-                    e.preventDefault();
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                    setTimeout(() => {
-                        if (link.hasAttribute('download')) {
-                            const tempLink = document.createElement('a');
-                            tempLink.href = link.href;
-                            tempLink.download = link.getAttribute('download') || '';
-                            document.body.appendChild(tempLink);
-                            tempLink.click();
-                            document.body.removeChild(tempLink);
-                        } else {
-                            window.location.href = link.href;
-                        }
-                    }, 150);
-                }
-            });
+    /* ── Scroll indicator fade ───────────────────────── */
+    .scroll-indicator { transition: opacity 0.4s ease; }
+
+    /* ── Currently Building marquee strip ───────────── */
+    .now-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 0;
+      overflow: hidden;
+      background: var(--bg-card2);
+      position: relative;
+    }
+    .now-marquee-track {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+    }
+    .now-marquee-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      white-space: nowrap;
+      animation: marquee-scroll 28s linear infinite;
+      will-change: transform;
+    }
+    .now-strip:hover .now-marquee-inner {
+      animation-play-state: paused;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .now-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .now-item strong { color: var(--text); font-weight: 600; }
+    .now-sep {
+      font-size: 0.6rem;
+      color: var(--accent);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .now-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.35); }
+      50% { opacity: 0.8; transform: scale(0.8); box-shadow: 0 0 0 4px rgba(255,255,255,0); }
+    }
+
+    /* ── Showcase Grid ───────────────────────────────── */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    /* Hero card spans 2 rows on the left */
+    .showcase-card--hero {
+      grid-row: 1 / 3;
+    }
+
+    /* All cards share base styles */
+    .showcase-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+      background: var(--bg-card2);
+      /* remove visible border — image IS the card */
+    }
+
+    /* Hero card is tall */
+    .showcase-card--hero { min-height: 520px; }
+
+    /* VR card: tall right-side card */
+    .showcase-card--tall { min-height: 250px; }
+
+    /* Wide cards on bottom row */
+    .showcase-card--wide { min-height: 210px; }
+
+    /* Full-bleed image */
+    .showcase-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+      display: block;
+    }
+    .showcase-card:hover .showcase-img {
+      transform: scale(1.06);
+    }
+
+    /* Placeholder for cards without an image */
+    .showcase-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card2);
+    }
+    .showcase-placeholder-label {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: 0.1em;
+    }
+
+    /* Gradient overlay — text lives here */
+    .showcase-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(0,0,0,0.92) 0%,
+        rgba(0,0,0,0.55) 40%,
+        rgba(0,0,0,0.1)  70%,
+        transparent      100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      transition: background 0.4s ease;
+    }
+    .showcase-card:hover .showcase-overlay {
+      background: linear-gradient(to top,
+        rgba(0,0,0,0.97) 0%,
+        rgba(0,0,0,0.65) 50%,
+        rgba(0,0,0,0.15) 80%,
+        transparent      100%);
+    }
+
+    /* Tags */
+    .showcase-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Title */
+    .showcase-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin: 0 0 0.4rem;
+    }
+    .showcase-card--hero .showcase-title {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+    }
+
+    /* Description — hidden by default, revealed on hover */
+    .showcase-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.55;
+      margin: 0 0 0.75rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+    }
+    .showcase-card:hover .showcase-desc {
+      max-height: 80px;
+      opacity: 1;
+    }
+
+    /* CTA arrow */
+    .showcase-cta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+      display: inline-block;
+    }
+    .showcase-card:hover .showcase-cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Featured badge */
+    .showcase-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: #fff;
+      color: #000;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+    }
+
+    /* Subtle border that glows on hover */
+    .showcase-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0);
+      transition: border-color 0.3s ease;
+      pointer-events: none;
+    }
+    .showcase-card:hover::after {
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    @media (max-width: 900px) {
+      .showcase-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .showcase-card--hero { grid-row: 1; grid-column: 1 / 3; min-height: 340px; }
+      .showcase-card--tall, .showcase-card--wide { min-height: 200px; }
+    }
+    @media (max-width: 600px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-card--hero { grid-column: 1; min-height: 280px; }
+      .showcase-desc { max-height: none; opacity: 1; }
+      .showcase-cta { opacity: 1; transform: none; }
+    }
+
+    /* ── Skills Grid ─────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .skill-group-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-group-icon { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1; color: var(--accent); font-family: var(--font-mono, monospace); }
+    .skill-group-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .skill-group-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-pill.primary {
+      border-color: var(--border-cyan);
+      color: var(--text);
+      background: var(--bg-card2);
+    }
+    .skill-pill.primary .dot { background: var(--accent); }
+
+    /* Skill pill hover pop */
+    .skill-pill {
+      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.2s ease,
+                  background 0.2s ease;
+    }
+    .skill-pill:hover {
+      transform: translateY(-2px) scale(1.04);
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.04);
+    }
+    @media (max-width: 768px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── About 2-col layout ──────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2; }
+    .about-text h2 em { color: var(--accent-light); font-style: italic; }
+    .cred-card { padding: 0; overflow: hidden; }
+    .cred-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .cred-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cred-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      text-align: right;
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── Carousel hidden ─────────────────────────────── */
+    .carousel-wrapper, .carousel-track, .carousel-slide,
+    .carousel-card, .carousel-card-image, .carousel-info,
+    .carousel-dots { display: none; }
+  </style>
+
+  <script>
+    /* ── Scroll progress bar ──────────────────────────── */
+    (function() {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', function() {
+        var scrolled = window.scrollY;
+        var total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+      }, { passive: true });
+    })();
+
+    /* ── Scroll indicator fade ────────────────────────── */
+    (function() {
+      var indicator = document.querySelector('.scroll-indicator');
+      if (!indicator) return;
+      window.addEventListener('scroll', function() {
+        indicator.style.opacity = window.scrollY > 80 ? '0' : '1';
+        indicator.style.pointerEvents = window.scrollY > 80 ? 'none' : 'auto';
+      }, { passive: true });
+    })();
+
+    /* ── Ambient cursor glow ──────────────────────────── */
+    (function() {
+      var glow = document.getElementById('cursor-glow');
+      if (!glow || window.matchMedia('(pointer:coarse)').matches) return;
+      var cx = 0, cy = 0, tx = 0, ty = 0, raf;
+      document.addEventListener('mousemove', function(e) {
+        tx = e.clientX; ty = e.clientY;
+        glow.style.opacity = '1';
+      });
+      document.addEventListener('mouseleave', function() {
+        glow.style.opacity = '0';
+      });
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function loop() {
+        cx = lerp(cx, tx, 0.07);
+        cy = lerp(cy, ty, 0.07);
+        glow.style.left = cx + 'px';
+        glow.style.top  = cy + 'px';
+        raf = requestAnimationFrame(loop);
+      }
+      loop();
+    })();
+
+    /* ── Hero parallax (name/tagline depth layers) ────── */
+    (function() {
+      var parallaxEls = document.querySelectorAll('[data-parallax]');
+      if (!parallaxEls.length) return;
+      function onScroll() {
+        var sy = window.scrollY;
+        parallaxEls.forEach(function(el) {
+          var speed = parseFloat(el.dataset.parallax) || 0.15;
+          el.style.transform = 'translateY(' + (sy * speed) + 'px)';
         });
-        // Card Stack Carousel - Enhanced Shifting
-        class Carousel {
-            constructor() {
-                this.slides = Array.from(document.querySelectorAll('.carousel-slide'));
-                this.currentIndex = 0;
-                this.totalSlides = this.slides.length;
-                this.autoplayInterval = null;
-                
-                if (this.totalSlides === 0) return;
-                
-                this.init();
-            }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
 
-            init() {
-                // Set initial positions
-                this.updatePositions();
-                
-                // Start autoplay
-                this.startAutoplay();
-            }
-
-            updatePositions() {
-                this.slides.forEach((slide, index) => {
-                    // Calculate relative position
-                    let relativePos = (index - this.currentIndex + this.totalSlides) % this.totalSlides;
-                    
-                    // Remove all position classes
-                    slide.className = 'carousel-slide';
-                    
-                    // Assign position class with more states
-                    if (relativePos === 0) {
-                        slide.classList.add('position-0'); // Active center
-                    } else if (relativePos === 1) {
-                        slide.classList.add('position-1'); // First behind
-                    } else if (relativePos === 2) {
-                        slide.classList.add('position-2'); // Second behind
-                    } else if (relativePos === this.totalSlides - 1) {
-                        slide.classList.add('position-exit'); // Exiting to left
-                    } else {
-                        slide.classList.add('position-enter'); // Entering from right
-                    }
-                });
-            }
-
-            next() {
-                this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-                this.updatePositions();
-            }
-
-            startAutoplay() {
-                this.autoplayInterval = setInterval(() => this.next(), 3500);
-            }
-
-            stopAutoplay() {
-                if (this.autoplayInterval) {
-                    clearInterval(this.autoplayInterval);
-                    this.autoplayInterval = null;
-                }
-            }
-        }
-
-                // Initialize
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => new Carousel());
+    /* ── Contact form ─────────────────────────────────── */
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var submitBtn = document.getElementById('submitBtn');
+      var formMessage = document.getElementById('formMessage');
+      var formData = new FormData(this);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formMessage.style.display = 'none';
+      try {
+        var response = await fetch('contact-handler.php', { method: 'POST', body: formData });
+        var data = await response.json();
+        if (data.success) {
+          formMessage.textContent = data.message;
+          formMessage.style.cssText = 'display:block;background:var(--accent-subtle);border:1px solid var(--accent);color:var(--accent-light);padding:0.75rem;border-radius:var(--radius-md)';
+          this.reset();
         } else {
-            new Carousel();
+          formMessage.textContent = data.errors.join(', ');
+          formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid var(--pink);color:var(--pink);padding:0.75rem;border-radius:var(--radius-md)';
         }
+      } catch(err) {
+        formMessage.textContent = 'Error sending message. Please email directly.';
+        formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid var(--pink);color:var(--pink);padding:0.75rem;border-radius:var(--radius-md)';
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message →';
+    });
+  </script>
 
-        // Contact Form Handler
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
-            const formData = new FormData(this);
-            
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-            formMessage.style.display = 'none';
-            
-            try {
-                const response = await fetch('contact-handler.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    // Success message
-                    formMessage.textContent = data.message;
-                    formMessage.style.background = 'rgba(0, 255, 0, 0.1)';
-                    formMessage.style.border = '2px solid #00ff00';
-                    formMessage.style.color = '#00ff00';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset form
-                    document.getElementById('contactForm').reset();
-                } else {
-                    // Error message
-                    formMessage.textContent = data.errors.join(', ');
-                    formMessage.style.background = 'rgba(255, 0, 0, 0.1)';
-                    formMessage.style.border = '2px solid #ff0000';
-                    formMessage.style.color = '#ff0000';
-                    formMessage.style.display = 'block';
-                }
-            } catch (error) {
-                // Network error
-                formMessage.textContent = 'Error sending message. Please try emailing directly.';
-                formMessage.style.background = 'rgba(255, 0, 0, 0.1)';
-                formMessage.style.border = '2px solid #ff0000';
-                formMessage.style.color = '#ff0000';
-                formMessage.style.display = 'block';
-            }
-            
-            // Re-enable button
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'SEND MESSAGE';
-        });
-    </script>
+  <!-- ── Style Kit JS ───────────────────────────────────── -->
+  <script src="assets/js/beams-bg.js"></script>
+  <script src="assets/js/cursor-ribbons.js"></script>
+  <script src="assets/js/fuzzy-text.js"></script>
+  <script src="assets/js/effects-stylekit.js"></script>
+
 </body>
 </html>
-```
