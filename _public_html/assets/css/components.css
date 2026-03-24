@@ -10,7 +10,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1010;
   padding: 1.1rem var(--spacing-md);
   display: flex;
   align-items: center;
@@ -76,95 +76,96 @@
 
 /* ── Staggered Menu (GSAP-powered slide-in panel) ──────────── */
 
-/* Toggle button — sits inside .site-nav on mobile */
+/* Toggle button — sits inside .site-nav, shown only on mobile */
 .sm-toggle {
-  display: none;                /* shown via media query below */
-  align-items: center;
-  gap: 0.55rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--text);
-  padding: 4px 0;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  line-height: 1;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Cycling text "Menu" / "Close" */
-.sm-toggle-textWrap {
-  display: inline-block;
-  overflow: hidden;
-  height: 1.1em;
-  vertical-align: middle;
-}
-.sm-toggle-textInner {
-  display: flex;
-  flex-direction: column;
-  will-change: transform;
-}
-.sm-toggle-line {
-  display: block;
-  height: 1.1em;
-  line-height: 1.1em;
-  white-space: nowrap;
-}
-
-/* Plus → X icon */
-.sm-icon {
+  padding: 0;
+  flex-shrink: 0;
   position: relative;
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  will-change: transform;
-}
-.sm-icon-line {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 18px;
-  height: 1.5px;
-  background: currentColor;
-  border-radius: 2px;
-  transform: translate(-50%, -50%) rotate(0deg);
-  transform-origin: center;
-}
-.sm-icon-line-v {
-  transform: translate(-50%, -50%) rotate(90deg);
+  z-index: 1010; /* always above the panel layers */
 }
 
-/* Pre-layers container */
-.sm-prelayers {
+/* The 3 hamburger bars */
+.sm-bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+              opacity   0.2s ease;
+}
+
+/* Hamburger → X when open */
+.sm-toggle--open .sm-bar-top {
+  transform: translateY(8px) rotate(45deg);
+}
+.sm-toggle--open .sm-bar-mid {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.sm-toggle--open .sm-bar-bot {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Backdrop — blurs the page content behind the menu */
+.sm-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease,
+              backdrop-filter 0.4s ease,
+              -webkit-backdrop-filter 0.4s ease,
+              background 0.4s ease;
 }
-.sm-prelayer {
-  position: absolute;
-  inset: 0;
-  will-change: transform;
+.sm-backdrop--visible {
+  opacity: 1;
+  pointer-events: all;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-/* Main panel */
+/* Pre-layers (wipe behind panel — same width/position as panel) */
+.sm-prelayer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 88vw);
+  pointer-events: none;
+  will-change: transform;
+}
+.sm-prelayer-a { background: #2a2a2a; z-index: 1000; }
+.sm-prelayer-b { background: #1a1a1a; z-index: 1001; }
+
+/* Main panel — on top of both pre-layers */
 .sm-panel {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: min(440px, 100vw);
+  width: min(420px, 88vw);
   background: var(--bg);
   border-left: 1px solid var(--border);
-  z-index: 1001;
+  z-index: 1002;
   will-change: transform;
   overflow-y: auto;
   overflow-x: hidden;
+  pointer-events: all;
 }
 
 .sm-panel-inner {
@@ -183,12 +184,10 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .sm-panel-itemWrap {
   overflow: hidden;
-  line-height: 1;
 }
 
 .sm-panel-item {
@@ -196,31 +195,28 @@
   align-items: baseline;
   gap: 0.75rem;
   text-decoration: none;
-  cursor: pointer;
-  padding: 0.3rem 0;
+  padding: 0.2rem 0;
 }
 
 /* Counter number */
-.sm-panel-item[data-index]::before {
-  content: attr(data-index);
-  font-size: 0.7rem;
+.sm-panel-item[data-num]::before {
+  content: attr(data-num);
+  font-size: 0.65rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--text-faint);
-  opacity: var(--sm-num-opacity, 0);
   align-self: center;
-  transition: color 0.2s;
   flex-shrink: 0;
+  transition: color 0.2s;
 }
-
-.sm-panel-item:hover[data-index]::before {
+.sm-panel-item:hover[data-num]::before {
   color: var(--text-muted);
 }
 
-.sm-panel-itemLabel {
+.sm-panel-label {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-size: clamp(2.8rem, 9vw, 4.5rem);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.1;
@@ -228,14 +224,8 @@
   will-change: transform, opacity;
   transition: color 0.2s ease;
 }
-
-.sm-panel-item:hover .sm-panel-itemLabel {
+.sm-panel-item:hover .sm-panel-label {
   color: var(--text);
-}
-
-/* Underline on hover */
-.sm-panel-item::after {
-  display: none;
 }
 
 /* Socials */
@@ -246,16 +236,14 @@
   border-top: 1px solid var(--border);
   padding-top: 1.5rem;
 }
-
 .sm-socials-title {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-faint);
   margin: 0;
 }
-
 .sm-socials-list {
   list-style: none;
   margin: 0;
@@ -264,7 +252,6 @@
   gap: 1.5rem;
   flex-wrap: wrap;
 }
-
 .sm-socials-link {
   font-size: 0.875rem;
   font-weight: 500;
@@ -272,27 +259,25 @@
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: color 0.2s ease;
-  will-change: transform, opacity;
 }
+.sm-socials-link:hover { color: var(--text); }
 
-.sm-socials-link:hover {
-  color: var(--text);
-}
-
-/* Show toggle on mobile, hide desktop nav links */
+/* Show toggle on mobile, hide desktop nav */
 @media (max-width: 768px) {
-  .nav-links    { display: none; }
-  .sm-toggle    { display: flex; }
-  .nav-toggle   { display: none !important; } /* hide old toggle */
+  .nav-links  { display: none; }
+  .sm-toggle  { display: flex; }
+  .nav-toggle { display: none !important; }
+
+  .sm-panel-inner {
+    padding: 5rem 1.75rem 2rem;
+  }
+
+  .sm-panel-label {
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
+  }
 }
 
-/* Wrapper (just a mount point, not visually used) */
-.sm-wrapper {
-  position: fixed;
-  z-index: 1000;
-  pointer-events: none;
-}
-.sm-wrapper > * { pointer-events: all; }
+
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn {
