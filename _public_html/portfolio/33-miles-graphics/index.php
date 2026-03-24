@@ -296,20 +296,8 @@ $categories = array_unique(array_column($designs, 'category'));
             <a href="../../assets/Jake%20Barton%20-%20Resume.pdf" class="btn btn-secondary btn-sm" download>Resume</a>
             <a href="../../index.php#contact">Contact</a>
         </nav>
-        <button class="nav-toggle" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
     </header>
 
-    <div class="stagger-menu-overlay" id="stagger-menu">
-        <nav>
-            <a href="../../index.php">Home</a>
-            <a href="../">Portfolio</a>
-            <a href="../../index.php#about">About</a>
-            <a href="../../index.php#contact">Contact</a>
-            <a href="../../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
-        </nav>
-    </div>
 
     <main class="site-content">
 
@@ -396,6 +384,8 @@ $categories = array_unique(array_column($designs, 'category'));
     <script src="../../assets/js/cursor-ribbons.js"></script>
     <script src="../../assets/js/fuzzy-text.js"></script>
     <script src="../../assets/js/effects-stylekit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="../../assets/js/staggered-menu.js"></script>
     <script src="../../assets/js/gallery.js"></script>
 
 </body>

@@ -87,20 +87,8 @@
       <a href="../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
       <a href="../index.php#contact">Contact</a>
     </nav>
-    <button class="nav-toggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
   </header>
 
-  <div class="stagger-menu-overlay" id="stagger-menu">
-    <nav>
-      <a href="../index.php#about">About</a>
-      <a href="../index.php#skills">Skills</a>
-      <a href="./">Portfolio</a>
-      <a href="../assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
-      <a href="../index.php#contact">Contact</a>
-    </nav>
-  </div>
 
   <main class="site-content">
 
@@ -249,6 +237,8 @@
   <script src="../assets/js/cursor-ribbons.js"></script>
   <script src="../assets/js/fuzzy-text.js"></script>
   <script src="../assets/js/effects-stylekit.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../assets/js/staggered-menu.js"></script>
   <script>
     (function(){var b=document.getElementById('scroll-progress');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;b.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});})();
     (function(){var g=document.getElementById('cursor-glow');if(!g||window.matchMedia('(pointer:coarse)').matches)return;var cx=0,cy=0,tx=0,ty=0;document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;g.style.opacity='1';});document.addEventListener('mouseleave',function(){g.style.opacity='0';});function lerp(a,b,t){return a+(b-a)*t;}(function loop(){cx=lerp(cx,tx,0.07);cy=lerp(cy,ty,0.07);g.style.left=cx+'px';g.style.top=cy+'px';requestAnimationFrame(loop);})();})();
