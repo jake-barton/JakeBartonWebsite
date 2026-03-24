@@ -12,23 +12,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
       - name: Deploy via FTP to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: 157.173.214.227
-          username: u335085697
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          # Uploads the contents of _public_html/ to your Hostinger public_html/
-          local-dir: ./_public_html/
-          server-dir: /domains/jakebartoncreative.com/public_html/
-          # Only upload changed files — much faster on repeat deploys
-          state-name: .ftp-deploy-sync-state.json
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.DS_Store
-            **/Thumbs.db
-            **/*.log
-            **/*.tmp
+        env:
+          FTP_HOST: 157.173.214.227
+          FTP_USER: u335085697
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+            set ftp:ssl-allow no;
+            set net:timeout 30;
+            set net:max-retries 3;
+            set net:reconnect-interval-base 5;
+            open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
+            mirror --reverse --delete --verbose \
+              --exclude-glob .git \
+              --exclude-glob .github \
+              --exclude-glob node_modules \
+              --exclude-glob .DS_Store \
+              --exclude-glob '*.log' \
+              ./_public_html/ /domains/jakebartoncreative.com/public_html/;
+            bye
+          "
