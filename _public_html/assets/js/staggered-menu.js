@@ -6,18 +6,20 @@
   'use strict';
 
   // ── Config ────────────────────────────────────────────────────────────────
+  // All links are absolute (root-relative) so they work from any page depth.
+  // Anchor links (#about etc.) go via the homepage so they scroll correctly.
   const ITEMS = [
-    { label: 'About',   link: '#about',                        num: '01' },
-    { label: 'Skills',  link: '#skills',                       num: '02' },
-    { label: 'Work',    link: 'portfolio/',                    num: '03' },
-    { label: 'Resume',  link: 'assets/Jake_Barton_Resume.pdf', num: '04', download: true },
-    { label: 'Contact', link: '#contact',                      num: '05' },
+    { label: 'About',   link: '/#about',                              num: '01' },
+    { label: 'Skills',  link: '/#skills',                             num: '02' },
+    { label: 'Work',    link: '/portfolio/',                          num: '03' },
+    { label: 'Resume',  link: '/assets/Jake_Barton_Resume.pdf',       num: '04', download: true },
+    { label: 'Contact', link: '/#contact',                            num: '05' },
   ];
 
   const SOCIALS = [
     { label: 'GitHub',    link: 'https://github.com/jake-barton' },
     { label: 'Instagram', link: 'https://instagram.com/jakebarton13' },
-    { label: 'LinkedIn',  link: '#contact' },
+    { label: 'LinkedIn',  link: 'https://www.linkedin.com/in/jakebartoncreative' },
   ];
 
   // ── State ─────────────────────────────────────────────────────────────────
