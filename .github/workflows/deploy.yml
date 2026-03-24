@@ -21,7 +21,7 @@ jobs:
           port: 21
           # Uploads the contents of _public_html/ to your Hostinger public_html/
           local-dir: ./_public_html/
-          server-dir: /home/u335085697/domains/jakebartoncreative.com/public_html/
+          server-dir: /domains/jakebartoncreative.com/public_html/
           # Only upload changed files — much faster on repeat deploys
           state-name: .ftp-deploy-sync-state.json
           exclude: |
