@@ -74,81 +74,225 @@
   width: 100%;
 }
 
-/* Hamburger (mobile) */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
+/* ── Staggered Menu (GSAP-powered slide-in panel) ──────────── */
+
+/* Toggle button — sits inside .site-nav on mobile */
+.sm-toggle {
+  display: none;                /* shown via media query below */
+  align-items: center;
+  gap: 0.55rem;
   background: none;
   border: none;
-  padding: 4px;
+  cursor: pointer;
+  color: var(--text);
+  padding: 4px 0;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 1.5px;
-  background: var(--text-muted);
-  border-radius: 2px;
-  transition: var(--transition);
+/* Cycling text "Menu" / "Close" */
+.sm-toggle-textWrap {
+  display: inline-block;
+  overflow: hidden;
+  height: 1.1em;
+  vertical-align: middle;
 }
-
-.nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-/* Staggered menu (full-screen overlay) */
-.stagger-menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 999;
+.sm-toggle-textInner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 0 var(--spacing-xl);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  will-change: transform;
 }
-
-.stagger-menu-overlay.open {
-  pointer-events: all;
-  opacity: 1;
-}
-
-.stagger-menu-overlay nav a {
+.sm-toggle-line {
   display: block;
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
-  font-weight: 700;
+  height: 1.1em;
+  line-height: 1.1em;
+  white-space: nowrap;
+}
+
+/* Plus → X icon */
+.sm-icon {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  will-change: transform;
+}
+.sm-icon-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center;
+}
+.sm-icon-line-v {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Pre-layers container */
+.sm-prelayers {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+.sm-prelayer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* Main panel */
+.sm-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100vw);
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  z-index: 1001;
+  will-change: transform;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sm-panel-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 6rem 3rem 3rem;
+  gap: 3rem;
+}
+
+/* Nav list */
+.sm-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sm-panel-itemWrap {
+  overflow: hidden;
+  line-height: 1;
+}
+
+.sm-panel-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.3rem 0;
+}
+
+/* Counter number */
+.sm-panel-item[data-index]::before {
+  content: attr(data-index);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  opacity: var(--sm-num-opacity, 0);
+  align-self: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.sm-panel-item:hover[data-index]::before {
   color: var(--text-muted);
-  text-transform: none;
-  line-height: 1.2;
-  transform: translateX(-40px);
-  opacity: 0;
-  transition: color 0.2s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
 }
 
-.stagger-menu-overlay.open nav a {
-  transform: translateX(0);
-  opacity: 1;
+.sm-panel-itemLabel {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--text-muted);
+  will-change: transform, opacity;
+  transition: color 0.2s ease;
 }
 
-.stagger-menu-overlay.open nav a:nth-child(1) { transition-delay: 0.04s; }
-.stagger-menu-overlay.open nav a:nth-child(2) { transition-delay: 0.08s; }
-.stagger-menu-overlay.open nav a:nth-child(3) { transition-delay: 0.12s; }
-.stagger-menu-overlay.open nav a:nth-child(4) { transition-delay: 0.16s; }
-.stagger-menu-overlay.open nav a:nth-child(5) { transition-delay: 0.20s; }
-
-.stagger-menu-overlay nav a:hover {
-  color: var(--accent-light);
-  text-shadow: none;
+.sm-panel-item:hover .sm-panel-itemLabel {
+  color: var(--text);
 }
+
+/* Underline on hover */
+.sm-panel-item::after {
+  display: none;
+}
+
+/* Socials */
+.sm-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.sm-socials-title {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0;
+}
+
+.sm-socials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.sm-socials-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+  will-change: transform, opacity;
+}
+
+.sm-socials-link:hover {
+  color: var(--text);
+}
+
+/* Show toggle on mobile, hide desktop nav links */
+@media (max-width: 768px) {
+  .nav-links    { display: none; }
+  .sm-toggle    { display: flex; }
+  .nav-toggle   { display: none !important; } /* hide old toggle */
+}
+
+/* Wrapper (just a mount point, not visually used) */
+.sm-wrapper {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+}
+.sm-wrapper > * { pointer-events: all; }
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn {

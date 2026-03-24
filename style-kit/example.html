@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jake Barton — Style Kit Demo</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style Kit CSS -->
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────── -->
+  <header class="site-nav" id="site-nav">
+    <a href="#" class="nav-logo">JB</a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Stagger menu overlay (mobile) -->
+  <div class="stagger-menu-overlay" id="stagger-menu">
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <!-- ── Main Content ───────────────────────────────── -->
+  <main class="site-content">
+
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+      <span class="hero-eyebrow">Available for Work</span>
+
+      <!-- Fuzzy text canvas: the text is rendered on a canvas with the fuzzy effect -->
+      <canvas class="fuzzy-text"
+              data-text="JAKE BARTON"
+              data-color="#00D9FF"
+              data-size="96"
+              data-weight="400"
+              data-family="Bebas Neue, Oswald, sans-serif"
+              data-intensity="0.18"
+              data-hover-intensity="0.5"
+              data-fuzz-range="30">
+      </canvas>
+
+      <p class="hero-subtitle">
+        <span class="rotating-text" data-words='["Designer","Developer","Creative"]'></span>
+        &nbsp;crafting digital experiences that live at the intersection of design and code.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+      </div>
+
+      <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <!-- Featured Work Section -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Portfolio</span>
+          <h2 class="gradient-text">Featured Work</h2>
+          <p>A selection of projects spanning branding, development, and interactive design.</p>
+        </div>
+
+        <div class="grid-2 stagger-children">
+          <!-- Project Card 1 -->
+          <a href="#" class="work-card tilt-card">
+            <img src="https://via.placeholder.com/800x450/0A0A0A/00D9FF?text=33+Miles+Branding" alt="33 Miles Project">
+            <div class="work-card-overlay">
+              <span class="btn btn-primary" style="pointer-events:none">View Project →</span>
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-title">33 Miles</div>
+              <p class="work-card-desc">Full brand identity — logo, merchandise, social assets for an independent music label.</p>
+              <div class="work-card-tags">
+                <span class="tag">Branding</span>
+                <span class="tag">Illustration</span>
+                <span class="tag">Print</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project Card 2 -->
+          <a href="#" class="work-card tilt-card">
+            <img src="https://via.placeholder.com/800x450/0A0A0A/1E40AF?text=Phase+Runner+Game" alt="Phase Runner">
+            <div class="work-card-overlay">
+              <span class="btn btn-primary" style="pointer-events:none">View Project →</span>
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-title">Phase Runner</div>
+              <p class="work-card-desc">2D platformer game — concept art, character design, level design, and UI.</p>
+              <div class="work-card-tags">
+                <span class="tag">Game Design</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Art</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project Card 3 -->
+          <a href="#" class="work-card tilt-card">
+            <img src="https://via.placeholder.com/800x450/0A0A0A/FF006B?text=T-Shirt+Designs" alt="T-Shirt Designs">
+            <div class="work-card-overlay">
+              <span class="btn btn-primary" style="pointer-events:none">View Project →</span>
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-title">T-Shirt Designs</div>
+              <p class="work-card-desc">Screen-print ready apparel graphics for local organisations and events.</p>
+              <div class="work-card-tags">
+                <span class="tag">Print</span>
+                <span class="tag">Typography</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project Card 4 -->
+          <a href="#" class="work-card tilt-card">
+            <img src="https://via.placeholder.com/800x450/0A0A0A/1E40AF?text=Web+Projects" alt="Web Projects">
+            <div class="work-card-overlay">
+              <span class="btn btn-primary" style="pointer-events:none">View Project →</span>
+            </div>
+            <div class="work-card-body">
+              <div class="work-card-title">Web Projects</div>
+              <p class="work-card-desc">Interactive web applications — Mario Kart tracker, Pi Kappa Phi org site, and more.</p>
+              <div class="work-card-tags">
+                <span class="tag">Web Dev</span>
+                <span class="tag">React</span>
+                <span class="tag">PHP</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="grid-2" style="align-items:center;gap:4rem">
+          <div class="reveal">
+            <span class="eyebrow">About Me</span>
+            <h2>Designer <span class="gradient-text">+</span> Developer</h2>
+            <p style="margin-top:1.5rem;line-height:1.8">
+              I'm Jake Barton — a creative professional who bridges the gap between
+              visual design and front-end development. I build things that look good
+              <em>and</em> work beautifully.
+            </p>
+            <p style="margin-top:1rem;line-height:1.8">
+              From brand identities and print materials to interactive web applications
+              and game assets, I bring ideas to life with precision and passion.
+            </p>
+            <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+              <a href="#contact" class="btn btn-primary">Hire Me</a>
+              <a href="Jake Barton - Resume.pdf" class="btn btn-secondary">Download CV</a>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stagger-children" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+            <div class="glass-card stat-card">
+              <span class="number animate-glow">50+</span>
+              <span class="label">Projects Delivered</span>
+            </div>
+            <div class="glass-card stat-card">
+              <span class="number animate-glow">4</span>
+              <span class="label">Years Experience</span>
+            </div>
+            <div class="glass-card stat-card">
+              <span class="number animate-glow">3D</span>
+              <span class="label">Modelling & Print</span>
+            </div>
+            <div class="glass-card stat-card">
+              <span class="number animate-glow">∞</span>
+              <span class="label">Ideas Per Day</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Toolkit</span>
+          <h2>Skills &amp; Tools</h2>
+          <p>Everything I reach for to get the job done.</p>
+        </div>
+
+        <div class="stagger-children" style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center">
+          <span class="skill-pill"><span class="dot"></span>Figma</span>
+          <span class="skill-pill"><span class="dot"></span>Adobe Illustrator</span>
+          <span class="skill-pill"><span class="dot"></span>Adobe Photoshop</span>
+          <span class="skill-pill"><span class="dot"></span>After Effects</span>
+          <span class="skill-pill"><span class="dot"></span>Blender</span>
+          <span class="skill-pill"><span class="dot"></span>React / Next.js</span>
+          <span class="skill-pill"><span class="dot"></span>TypeScript</span>
+          <span class="skill-pill"><span class="dot"></span>PHP</span>
+          <span class="skill-pill"><span class="dot"></span>Tailwind CSS</span>
+          <span class="skill-pill"><span class="dot"></span>WebGL / Canvas</span>
+          <span class="skill-pill"><span class="dot"></span>MySQL</span>
+          <span class="skill-pill"><span class="dot"></span>Git</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container" style="max-width:640px">
+        <div class="section-header reveal">
+          <span class="eyebrow">Get In Touch</span>
+          <h2>Let's Work Together</h2>
+          <p>Have a project in mind? I'd love to hear about it.</p>
+        </div>
+
+        <div class="glass-card reveal" style="margin-top:2rem">
+          <form>
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-input" placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-input" rows="5" placeholder="Tell me about your project..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2025 Jake Barton. All rights reserved.</span>
+        <div class="footer-socials">
+          <a href="#" class="btn-icon" aria-label="LinkedIn">in</a>
+          <a href="#" class="btn-icon" aria-label="GitHub">GH</a>
+          <a href="#" class="btn-icon" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Style Kit JS (order matters) ───────────────── -->
+  <script src="js/beams-bg.js"></script>
+  <script src="js/cursor-ribbons.js"></script>
+  <script src="js/fuzzy-text.js"></script>
+  <script src="js/effects.js"></script>
+
+</body>
+</html>

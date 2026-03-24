@@ -42,10 +42,25 @@
         <!-- Web Projects Grid -->
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; margin: 60px 20px;">
             
+            <!-- TechBirmingham AI Sponsor Research Agent -->
+            <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.3s ease;">
+                <div style="height: 250px; background: linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 100%); display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
+                    <img src="../../assets/images/tb-logo.jpg" alt="TechBirmingham" style="max-width: 65%; max-height: 65%; object-fit: contain; position: relative; z-index: 1; border-radius: 12px;">
+                </div>
+                <div style="padding: 30px;">
+                    <h3 style="color: var(--accent-white); margin-bottom: 10px; font-size: 1.8rem;">TechBirmingham Sponsor Research AI</h3>
+                    <p style="color: var(--accent-cyan); font-size: 0.9rem; margin-bottom: 15px; font-family: 'Oswald', sans-serif; letter-spacing: 1px;">NEXT.JS • AI AGENT • PRISMA • GOOGLE SHEETS</p>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">
+                        AI-powered sponsor research platform built for TechBirmingham. Conversational agent that researches companies, scores sponsorship fit, finds contact emails, and auto-exports data to Google Sheets.
+                    </p>
+                    <a href="https://techbirmingham-sponsor-ai.vercel.app" class="btn portfolio-btn" style="display: inline-block;" target="_blank">LAUNCH APP →</a>
+                </div>
+            </div>
+
             <!-- Pi Kappa Phi T-Shirt Website -->
             <div class="content-section portfolio-card" style="padding: 0; overflow: hidden; transition: all 0.3s ease;">
                 <div style="height: 250px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--border-gray); position: relative; overflow: hidden;">
-                    <img src="pikapptshirtweb/vectors/CardImg.png" alt="Pi Kappa Phi T-Shirt Store" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="PiKappaPhiTshirtWeb2.0/vectors/CardImg.png" alt="Pi Kappa Phi T-Shirt Store" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div style="padding: 30px;">
                     <h3 style="color: var(--accent-white); margin-bottom: 10px; font-size: 1.8rem;">Pi Kappa Phi T-Shirt Store</h3>
@@ -53,7 +68,7 @@
                     <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">
                         Full-stack e-commerce platform for Pi Kappa Phi fraternity apparel. Features admin dashboard, customer accounts, order management, email notifications, and secure authentication.
                     </p>
-                    <a href="pikapptshirtweb/index.php" class="btn portfolio-btn" style="display: inline-block;" target="_blank">VIEW SITE →</a>
+                    <a href="PiKappaPhiTshirtWeb2.0/index.php" class="btn portfolio-btn" style="display: inline-block;" target="_blank">VIEW SITE →</a>
                 </div>
             </div>
             

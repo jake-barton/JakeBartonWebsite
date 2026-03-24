@@ -67,21 +67,9 @@ $contact = [
       <a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="nav-toggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <!-- sm-toggle injected by staggered-menu.js -->
   </header>
-
-  <!-- Mobile full-screen overlay -->
-  <div class="stagger-menu-overlay" id="stagger-menu">
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="portfolio/">Portfolio</a>
-      <a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
+  <!-- sm-panel + sm-prelayers injected by staggered-menu.js -->
 
   <!-- Main Content -->
   <main class="site-content">
@@ -1039,9 +1027,11 @@ $contact = [
   </script>
 
   <!-- ── Style Kit JS ───────────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="assets/js/beams-bg.js"></script>
   <script src="assets/js/cursor-ribbons.js"></script>
   <script src="assets/js/fuzzy-text.js"></script>
+  <script src="assets/js/staggered-menu.js"></script>
   <script src="assets/js/effects-stylekit.js"></script>
 
 </body>

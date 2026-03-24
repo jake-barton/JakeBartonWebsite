@@ -278,29 +278,10 @@
   }
 
   // ────────────────────────────────────────────────────────
-  // 5. Mobile Nav Toggle / Stagger Menu
+  // 5. Mobile Nav Toggle — handled by staggered-menu.js
   // ────────────────────────────────────────────────────────
   function initMobileNav() {
-    var toggle = document.querySelector('.nav-toggle');
-    var overlay = document.querySelector('.stagger-menu-overlay');
-    if (!toggle) return;
-
-    toggle.addEventListener('click', function () {
-      var isOpen = toggle.classList.toggle('open');
-      if (overlay) overlay.classList.toggle('open', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Close when a link is clicked
-    if (overlay) {
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          toggle.classList.remove('open');
-          overlay.classList.remove('open');
-          document.body.style.overflow = '';
-        });
-      });
-    }
+    // No-op: staggered-menu.js owns the hamburger & panel
   }
 
   // ────────────────────────────────────────────────────────
@@ -423,7 +404,7 @@
   // ────────────────────────────────────────────────────────
   function initActiveNavLink() {
     var current = window.location.pathname.split('/').pop() || 'index.php';
-    document.querySelectorAll('.nav-links a, .stagger-menu-overlay a').forEach(function (link) {
+    document.querySelectorAll('.nav-links a, .sm-panel-item').forEach(function (link) {
       var href = link.getAttribute('href') || '';
       if (href === current || href.endsWith('/' + current)) {
         link.classList.add('active');

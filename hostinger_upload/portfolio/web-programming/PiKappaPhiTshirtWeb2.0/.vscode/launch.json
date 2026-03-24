@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Open Website in Browser",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}",
+            "preLaunchTask": "Start PHP Server",
+            "postDebugTask": "",
+            "serverReadyAction": {
+                "pattern": "started",
+                "uriFormat": "http://localhost:8080/index.php",
+                "action": "openExternally"
+            }
+        }
+    ]
+}
