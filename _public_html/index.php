@@ -21,39 +21,17 @@
 
 
 <?php
-$name = "Jake Barton";
-$university = "Samford University";
-$location = "Birmingham, AL";
-$major = "Game Design & 3D Animation";
-$minor = "Computer Science";
-$year = "Junior";
-$gradYear = 2027;
-$gpa = 3.5;
+require_once __DIR__ . '/includes/content.php';
 
-$skills = [
-    "C++", "Python", "JavaScript", "HTML", "CSS",
-    "Unreal Blueprint", "Unreal Engine", "Godot Engine",
-    "Autodesk Maya", "Blender", "Substance Painter",
-    "Adobe Photoshop", "Adobe Illustrator", "Figma",
-    "Web Development", "Game Programming", "Level Design",
-    "Project Management", "UX Design"
-];
-
-$leadership = [
-    "Lead Programmer - Samford Game Design Studio (2025–Current)",
-    "Social Chair - Pi Kappa Phi (2025–Current)",
-    "Executive Council - Philanthropy Chair (2025–Current)",
-    "T-Shirt Chair - Pi Kappa Phi (2023–2025)"
-];
-
+// Legacy aliases so existing $contact references below still work
 $contact = [
-    'email' => 'jbarton4@samford.edu',
-    'phone' => '(615) 943 9722',
-    'website' => 'https://jakebartoncreative.com',
-    'address' => 'Birmingham, AL',
-    'instagram' => 'jakebarton13',
-    'github' => 'jake-barton',
-    'youtube' => ''
+    'email'     => $content['email'],
+    'phone'     => $content['phone'],
+    'website'   => $content['website'],
+    'address'   => $content['location'],
+    'instagram' => $content['instagram'],
+    'github'    => $content['github'],
+    'youtube'   => '',
 ];
 ?>
 
@@ -77,33 +55,31 @@ $contact = [
     <!-- ── Hero Section ──────────────────────────────────── -->
     <section class="hero section" id="home">
 
-      <span class="hero-eyebrow">Seeking Internship &amp; Entry-Level Roles · Birmingham, AL</span>
+      <span class="hero-eyebrow"><?php echo $content['hero_eyebrow']; ?></span>
 
-      <h1 class="hero-name" data-parallax="0.18">Jake Barton</h1>
+      <h1 class="hero-name" data-parallax="0.18"><?php echo $content['name']; ?></h1>
 
-      <p class="hero-tagline" data-parallax="0.10">Game developer building <em class="rotating-text" data-words='["gameplay systems","creative tools","3D worlds","UI & web work","real-time systems"]' data-interval="2800">gameplay systems</em> — from game engines to the browser.</p>
+      <p class="hero-tagline" data-parallax="0.10">Game developer building <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em> — from game engines to the browser.</p>
 
       <p class="hero-subtitle">
-        Junior at Samford University studying Game Design &amp; 3D Animation —
-        currently <strong style="color:var(--text)">Lead Programmer at Samford Game Design Studio</strong>,
-        building in Unreal Engine 5, Godot 4, and the web.
+        <?php echo $content['hero_subtitle']; ?>
       </p>
 
       <div class="hero-cta">
-        <a href="portfolio/" class="btn btn-primary magnetic">See My Work</a>
-        <a href="assets/Jake%20Barton%20-%20Resume.pdf" download class="btn btn-secondary">Download Resume</a>
-        <a href="https://github.com/jake-barton" target="_blank" class="btn btn-secondary">GitHub</a>
+        <a href="/portfolio/" class="btn btn-primary magnetic">See My Work</a>
+        <a href="/assets/Jake_Barton_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+        <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-secondary">GitHub</a>
       </div>
 
       <!-- Quick stats bar -->
       <div class="hero-stats">
-        <div class="hero-stat"><span class="hero-stat-num" data-count="3" data-suffix="+">3+</span><span class="hero-stat-label">Years Building</span></div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat"><span class="hero-stat-num" data-count="20" data-suffix="+">20+</span><span class="hero-stat-label">Projects Built</span></div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat"><span class="hero-stat-num" data-count="3.5" data-suffix="">3.5</span><span class="hero-stat-label">GPA · Samford</span></div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat"><span class="hero-stat-num" data-count="2027" data-suffix="">2027</span><span class="hero-stat-label">Graduation</span></div>
+        <?php foreach ($content['hero_stats'] as $i => $stat): ?>
+          <?php if ($i > 0): ?><div class="hero-stat-divider"></div><?php endif; ?>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="<?php echo $stat['num']; ?>" data-suffix="<?php echo $stat['suffix']; ?>"><?php echo $stat['num'] . $stat['suffix']; ?></span>
+            <span class="hero-stat-label"><?php echo $stat['label']; ?></span>
+          </div>
+        <?php endforeach; ?>
       </div>
 
     </section>
@@ -115,24 +91,17 @@ $contact = [
     <div class="now-strip">
       <div class="now-marquee-track" aria-hidden="true">
         <div class="now-marquee-inner">
-          <!-- duplicated for seamless loop -->
-          <span class="now-item"><span class="now-dot"></span><strong>Lead Programmer</strong> · Samford Game Design Studio</span>
-          <span class="now-sep">✦</span>
-          <span class="now-item">Phase Runner — released on itch.io · Godot 4</span>
-          <span class="now-sep">✦</span>
-          <span class="now-item">Mario Kart Recreation — JavaScript · Mode-7 renderer</span>
-          <span class="now-sep">✦</span>
-          <span class="now-item">VR Rhythm Game — Unreal Engine 5 · C++</span>
-          <span class="now-sep">✦</span>
-          <!-- repeat -->
-          <span class="now-item"><span class="now-dot"></span><strong>Lead Programmer</strong> · Samford Game Design Studio</span>
-          <span class="now-sep">✦</span>
-          <span class="now-item">Phase Runner — released on itch.io · Godot 4</span>
-          <span class="now-sep">✦</span>
-          <span class="now-item">Mario Kart Recreation — JavaScript · Mode-7 renderer</span>
-          <span class="now-sep">✦</span>
-          <span class="now-item">VR Rhythm Game — Unreal Engine 5 · C++</span>
-          <span class="now-sep">✦</span>
+          <?php
+          // Duplicated for seamless loop
+          for ($pass = 0; $pass < 2; $pass++):
+            foreach ($content['marquee_items'] as $item): ?>
+              <span class="now-item">
+                <?php if ($item['bold']): ?><span class="now-dot"></span><strong><?php echo $item['bold']; ?></strong><?php endif; ?>
+                <?php echo $item['text']; ?>
+              </span>
+              <span class="now-sep">✦</span>
+            <?php endforeach;
+          endfor; ?>
         </div>
       </div>
     </div>
@@ -286,31 +255,17 @@ $contact = [
           <!-- Left: text -->
           <div class="about-text reveal-left">
             <span class="eyebrow">About Me</span>
-            <h2 style="margin-bottom:1.5rem">Building games, tools, and<br><em>interactive experiences.</em></h2>
+            <h2 style="margin-bottom:1.5rem"><?php echo $content['about_heading']; ?></h2>
 
+            <?php foreach ($content['about_paragraphs'] as $para): ?>
             <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.25rem">
-              I'm a Junior at <strong style="color:var(--text)">Samford University</strong> majoring in
-              Game Design &amp; 3D Animation with a Computer Science minor — currently serving as
-              <strong style="color:var(--text)">Lead Programmer at Samford's Game Design Studio</strong>.
-              I work across gameplay programming, systems design, and UI implementation, with a
-              focus on delivering polished, playable results.
+              <?php echo $para; ?>
             </p>
-
-            <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.25rem">
-              My background spans code (C++, GDScript, Python), 3D art (Maya, Blender),
-              and front-end web development. I'm comfortable working end to end on a project —
-              from core gameplay mechanics to UI layout and visual polish.
-            </p>
-
-            <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted)">
-              Outside of projects I hold leadership roles in
-              <strong style="color:var(--text)">Pi Kappa Phi</strong>, where I've developed
-              practical skills in project coordination, event management, and cross-team communication.
-            </p>
+            <?php endforeach; ?>
 
             <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem">
-              <a href="portfolio/" class="btn btn-primary magnetic">View Portfolio</a>
-              <a href="https://github.com/jake-barton" target="_blank" class="btn btn-secondary">GitHub</a>
+              <a href="/portfolio/" class="btn btn-primary magnetic">View Portfolio</a>
+              <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-secondary">GitHub</a>
             </div>
           </div>
 
@@ -319,27 +274,27 @@ $contact = [
             <div class="cred-card glass-card">
               <div class="cred-row">
                 <span class="cred-label">Degree</span>
-                <span class="cred-value">Game Design &amp; 3D Animation</span>
+                <span class="cred-value"><?php echo $content['major']; ?></span>
               </div>
               <div class="cred-row">
                 <span class="cred-label">Minor</span>
-                <span class="cred-value">Computer Science</span>
+                <span class="cred-value"><?php echo $content['minor']; ?></span>
               </div>
               <div class="cred-row">
                 <span class="cred-label">University</span>
-                <span class="cred-value">Samford University</span>
+                <span class="cred-value"><?php echo $content['university']; ?></span>
               </div>
               <div class="cred-row">
                 <span class="cred-label">GPA</span>
-                <span class="cred-value" style="color:var(--accent-light);font-weight:600">3.50</span>
+                <span class="cred-value" style="color:var(--accent-light);font-weight:600"><?php echo $content['gpa']; ?></span>
               </div>
               <div class="cred-row">
                 <span class="cred-label">Graduation</span>
-                <span class="cred-value">May 2027</span>
+                <span class="cred-value"><?php echo $content['grad_date']; ?></span>
               </div>
               <div class="cred-row">
                 <span class="cred-label">Location</span>
-                <span class="cred-value">Birmingham, AL</span>
+                <span class="cred-value"><?php echo $content['location']; ?></span>
               </div>
               <div class="cred-row" style="border-bottom:none">
                 <span class="cred-label">Status</span>
@@ -363,51 +318,21 @@ $contact = [
         </div>
 
         <div class="grid-3 stagger-children" style="margin-top:2rem">
-          <!-- Samford Game Design Studio -->
-          <div class="glass-card reveal-up">
-            <span class="eyebrow">2025 – Current</span>
-            <h3 style="margin-bottom:1rem">Lead Programmer</h3>
-            <p style="font-size:0.8rem;color:var(--accent-light);margin-bottom:0.75rem;font-weight:600">Samford Game Design Studio</p>
+          <?php foreach ($content['experience'] as $i => $exp):
+            $delay = $i * 0.08;
+            $style = $delay > 0 ? " style=\"transition-delay:{$delay}s\"" : '';
+          ?>
+          <div class="glass-card reveal-up"<?php echo $style; ?>>
+            <span class="eyebrow"><?php echo $exp['dates']; ?></span>
+            <h3 style="margin-bottom:1rem"><?php echo $exp['role']; ?></h3>
+            <p style="font-size:0.8rem;<?php echo $exp['org_style']; ?>;margin-bottom:0.75rem;font-weight:600"><?php echo $exp['org']; ?></p>
             <ul style="display:flex;flex-direction:column;gap:0.6rem">
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Lead core gameplay systems in Unreal Engine 5</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Systems optimisation &amp; cross-team technical coordination</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Technical direction across multiple teams</li>
+              <?php foreach ($exp['bullets'] as $bullet): ?>
+              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span><?php echo $bullet; ?></li>
+              <?php endforeach; ?>
             </ul>
           </div>
-          <div class="glass-card reveal-up" style="transition-delay:0.08s">
-            <span class="eyebrow">2025 – Current</span>
-            <h3 style="margin-bottom:1rem">Social Chair</h3>
-            <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:0.75rem;font-weight:600">Pi Kappa Phi · Alpha Eta</p>
-            <ul style="display:flex;flex-direction:column;gap:0.6rem">
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Plan &amp; execute large-scale chapter events</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Venue sourcing, budget management &amp; logistics</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Custom banner artwork &amp; event branding</li>
-            </ul>
-          </div>
-
-          <!-- T-Shirt Chair -->
-          <div class="glass-card reveal-up" style="transition-delay:0.16s">
-            <span class="eyebrow">2023 – 2025</span>
-            <h3 style="margin-bottom:1rem">T-Shirt Chair</h3>
-            <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:0.75rem;font-weight:600">Pi Kappa Phi · Alpha Eta</p>
-            <ul style="display:flex;flex-direction:column;gap:0.6rem">
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Designed &amp; produced 15+ chapter apparel runs</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Managed vendor relationships &amp; print deadlines</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span><a href="portfolio/tshirt-designs/">View the T-Shirt portfolio →</a></li>
-            </ul>
-          </div>
-
-          <!-- Philanthropy Chair -->
-          <div class="glass-card reveal-up" style="transition-delay:0.24s">
-            <span class="eyebrow">2025 – Current</span>
-            <h3 style="margin-bottom:1rem">Philanthropy Chair</h3>
-            <p style="font-size:0.8rem;color:var(--text-faint);margin-bottom:0.75rem;font-weight:600">Pi Kappa Phi · Alpha Eta</p>
-            <ul style="display:flex;flex-direction:column;gap:0.6rem">
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Partner: Unless U &amp; The Ability Experience</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Chapter-wide fundraising &amp; service events</li>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span>Disability inclusion advocacy on campus</li>
-            </ul>
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
@@ -494,17 +419,16 @@ $contact = [
     <!-- ── Let's Talk — full-bleed CTA ────────────────────── -->
     <section class="cta-full">
       <div class="container">
-        <span class="cta-full-eyebrow reveal-up">Ready to work together?</span>
+        <span class="cta-full-eyebrow reveal-up"><?php echo $content['cta_eyebrow']; ?></span>
         <h2 class="cta-full-heading reveal-up" style="transition-delay:0.1s">
-          Let's <em>Talk.</em>
+          <?php echo $content['cta_heading']; ?>
         </h2>
         <p class="cta-full-sub reveal-up" style="transition-delay:0.22s">
-          Studio role, freelance gig, or just a conversation about a project —
-          I'd love to hear from you.
+          <?php echo $content['cta_sub']; ?>
         </p>
         <div class="cta-full-actions reveal-up" style="transition-delay:0.34s">
-          <a href="mailto:jbarton4@samford.edu" class="btn btn-primary magnetic">Email Me →</a>
-          <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn btn-secondary">LinkedIn</a>
+          <a href="mailto:<?php echo $content['email']; ?>" class="btn btn-primary magnetic">Email Me →</a>
+          <a href="https://www.linkedin.com/in/<?php echo $content['linkedin']; ?>" target="_blank" class="btn btn-secondary">LinkedIn</a>
         </div>
       </div>
     </section>
