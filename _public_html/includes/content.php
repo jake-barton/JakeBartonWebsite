@@ -11,7 +11,7 @@
 
 // ── Personal / Contact ─────────────────────────────────────
 $content['name']        = 'Jake Barton';
-$content['title']       = 'Jake Barton — Game Designer & Developer';
+$content['title']       = 'Jake Barton — Gameplay Programmer & Technical Designer';
 $content['email']       = 'jbarton4@samford.edu';
 $content['phone']       = '(615) 943-9722';
 $content['location']    = 'Birmingham, AL';
@@ -138,9 +138,9 @@ $content['experience'] = [
         'org'      => 'Samford Game Design Studio',
         'org_style'=> 'color:var(--accent-light)',
         'bullets'  => [
-            'Lead core gameplay systems in Unreal Engine 5',
-            'Systems optimisation &amp; cross-team technical coordination',
-            'Technical direction across multiple teams',
+            'Lead gameplay programming for a 5-person team building a full playable demo in Unreal Engine 5',
+            'Own combat, movement, and interaction systems — reviewed &amp; integrated code from 4 contributors',
+            'Set technical direction across 3 sub-teams; bridge Blueprint prototypes into C++ production systems',
         ],
     ],
     [
