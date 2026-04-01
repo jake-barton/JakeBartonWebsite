@@ -79,7 +79,7 @@
   <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>  </div>
 
   <header class="site-nav" id="site-nav">
-    <a href="../index.php" class="nav-logo">JB</a>
+    <a href="../index.php" class="nav-logo"><img src="../assets/images/jb-logo.png" alt="JB" class="nav-logo-img"><span class="nav-logo-text">JB</span></a>
     <nav class="nav-links">
       <a href="../index.php#about">About</a>
       <a href="../index.php#skills">Skills</a>

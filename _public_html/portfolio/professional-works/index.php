@@ -17,7 +17,7 @@
 
 
     <header class="site-nav" id="site-nav">
-        <a href="../../index.php" class="nav-logo">JB</a>
+        <a href="../../index.php" class="nav-logo"><img src="../../assets/images/jb-logo.png" alt="JB" class="nav-logo-img"><span class="nav-logo-text">JB</span></a>
         <nav class="nav-links">
             <a href="../../index.php#about">About</a>
             <a href="../../index.php#skills">Skills</a>

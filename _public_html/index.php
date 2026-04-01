@@ -56,212 +56,241 @@ $contact = [
   <main class="site-content">
 
     <!-- ── Hero Section ──────────────────────────────────── -->
-    <section class="hero section" id="home">
+    <section class="hero" id="home">
 
-      <div class="hero-inner">
-        <div class="hero-label-row">
-          <span class="hero-eyebrow"><?php echo $content['hero_eyebrow']; ?></span>
-          <span class="hero-status-dot"><span class="hero-status-pulse"></span>Open to Work</span>
-        </div>
-
-        <h1 class="hero-name xl-reveal"><span><?php echo $content['name']; ?></span></h1>
-
-        <p class="hero-tagline" data-parallax="0.10">
-          Game developer building <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em><br>from game engines to the browser.
-        </p>
-
-        <p class="hero-subtitle"><?php echo $content['hero_subtitle']; ?></p>
-
-        <div class="hero-cta">
-          <a href="/portfolio/" class="btn btn-primary magnetic">See My Work</a>
-          <a href="/assets/Jake_Barton_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
-          <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-secondary btn-icon-text">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-            GitHub
-          </a>
-        </div>
+      <!-- Top meta row -->
+      <div class="hero-meta">
+        <span class="hero-eyebrow-tag"><?php echo $content['hero_eyebrow']; ?></span>
+        <span class="hero-location-tag">Birmingham, AL</span>
       </div>
 
-      <!-- Quick stats bar -->
-      <div class="hero-stats">
-        <?php foreach ($content['hero_stats'] as $i => $stat): ?>
-          <?php if ($i > 0): ?><div class="hero-stat-divider"></div><?php endif; ?>
-          <div class="hero-stat">
-            <span class="hero-stat-num" data-count="<?php echo $stat['num']; ?>" data-suffix="<?php echo $stat['suffix']; ?>"><?php echo $stat['num'] . $stat['suffix']; ?></span>
-            <span class="hero-stat-label"><?php echo $stat['label']; ?></span>
+      <!-- The name — takes up the full visual weight -->
+      <div class="hero-name-block">
+        <div class="xl-reveal"><span><?php echo explode(' ', $content['name'])[0]; ?></span></div>
+        <div class="xl-reveal" style="transition-delay:0.08s"><span><?php echo explode(' ', $content['name'])[1]; ?></span></div>
+      </div>
+
+      <!-- Bottom two-col info row -->
+      <div class="hero-bottom">
+        <div class="hero-bottom-left">
+          <p class="hero-tagline">
+            Game developer building<br>
+            <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em><br>
+            from game engines to the browser.
+          </p>
+          <div class="hero-cta">
+            <a href="/portfolio/" class="btn btn-primary">See My Work</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
           </div>
-        <?php endforeach; ?>
+        </div>
+        <div class="hero-bottom-right">
+          <p class="hero-subtitle"><?php echo $content['hero_subtitle']; ?></p>
+          <div class="hero-status-badge">
+            <span class="hero-status-pulse"></span>Open to Work — Birmingham, AL
+          </div>
+        </div>
       </div>
 
     </section>
 
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%)">Scroll</div>
-
-    <!-- ── Currently Building marquee strip ────────────── -->
-    <div class="now-strip">
-      <div class="now-marquee-track" aria-hidden="true">
-        <div class="now-marquee-inner">
-          <?php
-          // Duplicated for seamless loop
-          for ($pass = 0; $pass < 2; $pass++):
-            foreach ($content['marquee_items'] as $item): ?>
-              <span class="now-item">
-                <?php if ($item['bold']): ?><span class="now-dot"></span><strong><?php echo $item['bold']; ?></strong><?php endif; ?>
-                <?php echo $item['text']; ?>
-              </span>
-              <span class="now-sep">✦</span>
-            <?php endforeach;
-          endfor; ?>
+    <!-- ── Stats bar (full-bleed) ────────────────────────── -->
+    <div class="stats-bar">
+      <?php foreach ($content['hero_stats'] as $i => $stat): ?>
+        <?php if ($i > 0): ?><div class="stats-bar-divider"></div><?php endif; ?>
+        <div class="stats-bar-item">
+          <span class="stats-bar-num" data-count="<?php echo $stat['num']; ?>" data-suffix="<?php echo $stat['suffix']; ?>"><?php echo $stat['num'] . $stat['suffix']; ?></span>
+          <span class="stats-bar-label"><?php echo $stat['label']; ?></span>
         </div>
-      </div>
+      <?php endforeach; ?>
     </div>
 
-    <!-- ── Bold scrolling ticker strip ─────────────────── -->
+    <!-- ── Scrolling ticker ──────────────────────────────── -->
     <div class="bold-ticker" aria-hidden="true">
       <div class="bold-ticker-track">
         <?php for ($i = 0; $i < 2; $i++): ?>
-          <span>Game Design</span><span class="bull">—</span>
-          <span>Unreal Engine 5</span><span class="bull">—</span>
-          <span>3D Art</span><span class="bull">—</span>
-          <span>Web Development</span><span class="bull">—</span>
-          <span>C++</span><span class="bull">—</span>
-          <span>JavaScript</span><span class="bull">—</span>
-          <span>VR Development</span><span class="bull">—</span>
-          <span>Level Design</span><span class="bull">—</span>
-          <span>Godot 4</span><span class="bull">—</span>
-          <span>UI / UX</span><span class="bull">—</span>
+          <span>Game Design</span><span class="bull">·</span>
+          <span>Unreal Engine 5</span><span class="bull">·</span>
+          <span>3D Art</span><span class="bull">·</span>
+          <span>Web Development</span><span class="bull">·</span>
+          <span>C++</span><span class="bull">·</span>
+          <span>JavaScript</span><span class="bull">·</span>
+          <span>VR Development</span><span class="bull">·</span>
+          <span>Level Design</span><span class="bull">·</span>
+          <span>Godot 4</span><span class="bull">·</span>
+          <span>UI / UX</span><span class="bull">·</span>
+          <span>Samford University</span><span class="bull">·</span>
         <?php endfor; ?>
       </div>
     </div>
 
-    <!-- ── Featured Work ─────────────────────────────────── -->
-    <section class="section" id="work">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-num">01</span>
-          <span class="eyebrow">Selected Work</span>
-          <h2>What I've Built</h2>
-          <p>Games, websites, and client work — each one a different problem to solve.</p>
+    <!-- ── Selected Work ─────────────────────────────────── -->
+    <section class="work-section" id="work">
+
+      <!-- Section label row -->
+      <div class="work-label-row container-wide">
+        <span class="work-label-num">01</span>
+        <span class="work-label-text">Selected Work</span>
+        <a href="/portfolio/" class="work-label-link">View All →</a>
+      </div>
+
+      <!-- Featured hero project: Environment scene as cinematic backdrop -->
+      <a href="portfolio/game-programming/" class="work-hero-card reveal-up">
+        <video class="work-hero-video" autoplay muted loop playsinline preload="auto">
+          <source src="assets/images/environment-scene.mp4" type="video/mp4">
+        </video>
+        <div class="work-hero-gradient"></div>
+        <div class="work-hero-content">
+          <div class="work-hero-tags">
+            <span class="tag">3D Art</span>
+            <span class="tag tag-muted">Real-time</span>
+            <span class="tag tag-muted">Unreal 5</span>
+          </div>
+          <h2 class="work-hero-title">Mediterranean Environment</h2>
+          <p class="work-hero-desc">Real-time 3D scene built in Unreal Engine 5 — custom lighting, modular architecture, atmospheric FX.</p>
+          <span class="work-hero-cta">View All Work ↗</span>
         </div>
+        <div class="work-hero-badge">Featured</div>
+      </a>
 
-        <div class="showcase-grid stagger-children">
+      <!-- Project index list -->
+      <div class="work-list container-wide">
 
-          <!-- Hero card — Phase Runner -->
-          <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" class="showcase-card showcase-card--hero tilt-card">
-            <img src="assets/images/phaserunnercover.png" alt="Phase Runner" class="showcase-img">
-            <div class="showcase-overlay">
-              <div class="showcase-tags">
-                <span class="tag">Game Design</span>
+        <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" class="work-list-item reveal-row">
+          <div class="work-list-media video-card">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="work-list-info">
+            <span class="work-list-num">01</span>
+            <div>
+              <h3 class="work-list-title">Phase Runner</h3>
+              <p class="work-list-desc">2D side-scrolling shooter — custom physics, 10+ weapons, procedural chunks, invincibility dash. Solo-developed, live on itch.io.</p>
+              <div class="work-list-tags">
+                <span class="tag tag-muted">Game Design</span>
                 <span class="tag tag-muted">Godot 4</span>
-                <span class="tag tag-muted">GDScript</span>
+                <span class="tag tag-muted">Solo</span>
               </div>
-              <h3 class="showcase-title">Phase Runner</h3>
-              <p class="showcase-desc">2D side-scrolling shooter — custom physics, 10+ weapons, procedural chunks, invincibility dash. Solo-developed, live on itch.io.</p>
-              <span class="showcase-cta">Play Now →</span>
             </div>
-            <div class="showcase-badge">Featured</div>
-          </a>
+          </div>
+          <span class="work-list-arrow">↗</span>
+        </a>
 
-          <!-- VR Game — video card -->
-          <a href="portfolio/game-programming/" class="showcase-card showcase-card--tall video-card">
-            <video class="showcase-video" autoplay muted loop playsinline preload="metadata" poster="assets/images/phaserunnercover.png">
+        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
+          <div class="work-list-media video-card">
+            <video autoplay muted loop playsinline preload="metadata">
               <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
             </video>
-            <div class="showcase-overlay">
-              <div class="showcase-tags">
-                <span class="tag">VR Game</span>
+          </div>
+          <div class="work-list-info">
+            <span class="work-list-num">02</span>
+            <div>
+              <h3 class="work-list-title">VR Rhythm Game</h3>
+              <p class="work-list-desc">Body-movement dragon controller in Unreal Engine 5 — C++ gameplay, VR locomotion, rhythm mechanics.</p>
+              <div class="work-list-tags">
+                <span class="tag tag-muted">VR</span>
                 <span class="tag tag-muted">Unreal 5</span>
                 <span class="tag tag-muted">C++</span>
               </div>
-              <h3 class="showcase-title">VR Rhythm Game</h3>
-              <p class="showcase-desc">Unreal Engine 5 — your body movements control a dragon in a rhythm-based VR experience.</p>
-              <span class="showcase-cta">View →</span>
             </div>
-            <span class="video-play-badge">▶ Live</span>
-          </a>
+          </div>
+          <span class="work-list-arrow">↗</span>
+        </a>
 
-          <!-- Penguins Creed — video card -->
-          <a href="portfolio/game-programming/" class="showcase-card showcase-card--tall video-card">
-            <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
+          <div class="work-list-media video-card">
+            <video autoplay muted loop playsinline preload="metadata">
               <source src="assets/images/penguins-creed.mp4" type="video/mp4">
             </video>
-            <div class="showcase-overlay">
-              <div class="showcase-tags">
-                <span class="tag">Game Design</span>
+          </div>
+          <div class="work-list-info">
+            <span class="work-list-num">03</span>
+            <div>
+              <h3 class="work-list-title">Penguins Creed</h3>
+              <p class="work-list-desc">Third-person action game with stealth mechanics, AI patrol systems, and a penguin protagonist.</p>
+              <div class="work-list-tags">
+                <span class="tag tag-muted">Game Design</span>
                 <span class="tag tag-muted">Unreal 5</span>
                 <span class="tag tag-muted">Blueprints</span>
               </div>
-              <h3 class="showcase-title">Penguins Creed</h3>
-              <p class="showcase-desc">Third-person action game — stealth mechanics, AI patrol systems, penguin protagonist.</p>
-              <span class="showcase-cta">View →</span>
             </div>
-            <span class="video-play-badge">▶ Live</span>
-          </a>
+          </div>
+          <span class="work-list-arrow">↗</span>
+        </a>
 
-          <!-- Mario Kart -->
-          <a href="portfolio/game-programming/" class="showcase-card showcase-card--wide">
-            <img src="assets/images/mariokart.png" alt="Mario Kart Recreation" class="showcase-img">
-            <div class="showcase-overlay">
-              <div class="showcase-tags">
-                <span class="tag">Web Game</span>
+        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
+          <div class="work-list-media">
+            <img src="assets/images/mariokart.png" alt="Mario Kart Recreation">
+          </div>
+          <div class="work-list-info">
+            <span class="work-list-num">04</span>
+            <div>
+              <h3 class="work-list-title">Mario Kart Recreation</h3>
+              <p class="work-list-desc">Mode-7 SNES renderer in vanilla JS — raycasting, sprite sheets, full lap logic.</p>
+              <div class="work-list-tags">
+                <span class="tag tag-muted">Web Game</span>
                 <span class="tag tag-muted">JavaScript</span>
               </div>
-              <h3 class="showcase-title">Mario Kart Recreation</h3>
-              <p class="showcase-desc">Mode-7 SNES engine in vanilla JS — raycasting, sprite sheets, lap logic.</p>
-              <span class="showcase-cta">View →</span>
             </div>
-          </a>
+          </div>
+          <span class="work-list-arrow">↗</span>
+        </a>
 
-          <!-- Venice Art — juried show piece -->
-          <a href="portfolio/" class="showcase-card showcase-card--wide art-card">
-            <img src="assets/images/venice-art.jpg" alt="Venice — Juried Art Show" class="showcase-img showcase-img--portrait">
-            <div class="showcase-overlay">
-              <div class="showcase-tags">
-                <span class="tag">Fine Art</span>
+        <a href="portfolio/" class="work-list-item reveal-row">
+          <div class="work-list-media">
+            <img src="assets/images/venice-art.jpg" alt="Venice — Juried Art Show" style="object-position:center top">
+          </div>
+          <div class="work-list-info">
+            <span class="work-list-num">05</span>
+            <div>
+              <h3 class="work-list-title">Venice</h3>
+              <p class="work-list-desc">Digital art piece accepted into the Samford University Juried Art Show 2025.</p>
+              <div class="work-list-tags">
+                <span class="tag tag-muted">Fine Art</span>
                 <span class="tag tag-muted">Digital</span>
-                <span class="tag tag-muted">Accepted</span>
+                <span class="tag tag-muted">Juried Show</span>
               </div>
-              <h3 class="showcase-title">Venice</h3>
-              <p class="showcase-desc">Accepted into the Samford University Juried Art Show 2025.</p>
-              <span class="showcase-cta">View →</span>
             </div>
-            <div class="showcase-badge showcase-badge--art">Juried Show</div>
-          </a>
+          </div>
+          <span class="work-list-arrow">↗</span>
+        </a>
 
-          <!-- 33Miles -->
-          <a href="portfolio/professional-works/" class="showcase-card showcase-card--wide">
-            <img src="assets/images/33miles-cover.png" alt="33Miles Graphics" class="showcase-img">
-            <div class="showcase-overlay">
-              <div class="showcase-tags">
-                <span class="tag">Client Work</span>
+        <a href="portfolio/professional-works/" class="work-list-item reveal-row">
+          <div class="work-list-media">
+            <img src="assets/images/33miles-cover.png" alt="33Miles Band Graphics">
+          </div>
+          <div class="work-list-info">
+            <span class="work-list-num">06</span>
+            <div>
+              <h3 class="work-list-title">33Miles Band Graphics</h3>
+              <p class="work-list-desc">Paid brand &amp; merchandise design for a signed Christian music group.</p>
+              <div class="work-list-tags">
+                <span class="tag tag-muted">Client Work</span>
                 <span class="tag tag-muted">Illustrator</span>
               </div>
-              <h3 class="showcase-title">33Miles Band Graphics</h3>
-              <p class="showcase-desc">Paid brand &amp; merchandise design for a signed Christian music group.</p>
-              <span class="showcase-cta">View →</span>
             </div>
-          </a>
+          </div>
+          <span class="work-list-arrow">↗</span>
+        </a>
 
-        </div>
-
-        <div style="text-align:center;margin-top:3rem">
-          <a href="portfolio/" class="btn btn-primary magnetic">Explore Full Portfolio</a>
-        </div>
       </div>
+
+      <div class="work-footer container-wide">
+        <a href="portfolio/" class="btn btn-primary">Explore Full Portfolio →</a>
+      </div>
+
     </section>
 
     <!-- ── Skills Section ────────────────────────────────── -->
     <section class="section" id="skills">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-num">02</span>
-          <span class="eyebrow">Toolkit</span>
-          <h2>Skills &amp; Tools</h2>
-          <p>What I reach for — organised by discipline.</p>
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">02</span>
+          <span class="work-label-text">Toolkit</span>
         </div>
+        <h2 class="section-big-heading reveal-up">Skills &amp; Tools</h2>
 
-        <div class="skills-grid stagger-children">
+        <div class="skills-grid stagger-reveal reveal-up">
 
           <div class="skill-group glass-card">
             <div class="skill-group-header">
@@ -313,87 +342,79 @@ $contact = [
     </section>
 
     <!-- ── About Section ─────────────────────────────────── -->
-    <section class="section" id="about">
+    <section class="about-section" id="about">
       <div class="container">
-        <div class="about-grid">
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">03</span>
+          <span class="work-label-text">About Me</span>
+        </div>
+      </div>
 
-          <!-- Left: text -->
-          <div class="about-text reveal-left">
-            <span class="eyebrow">About Me</span>
-            <h2 style="margin-bottom:1.5rem"><?php echo $content['about_heading']; ?></h2>
-
-            <?php foreach ($content['about_paragraphs'] as $para): ?>
-            <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.25rem">
-              <?php echo $para; ?>
-            </p>
-            <?php endforeach; ?>
-
-            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:2rem">
-              <a href="/portfolio/" class="btn btn-primary magnetic">View Portfolio</a>
-              <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-secondary">GitHub</a>
+      <!-- Full-bleed heading + image side-by-side -->
+      <div class="about-editorial">
+        <div class="about-editorial-text reveal-left">
+          <h2 class="about-big-heading"><?php echo $content['about_heading']; ?></h2>
+          <?php foreach ($content['about_paragraphs'] as $i => $para): ?>
+          <p class="about-para" style="transition-delay:<?php echo 0.1 + $i * 0.08; ?>s"><?php echo $para; ?></p>
+          <?php endforeach; ?>
+          <div class="about-actions reveal-up" style="transition-delay:0.35s">
+            <a href="/portfolio/" class="btn btn-primary">View Portfolio</a>
+            <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-ghost">GitHub</a>
+          </div>
+        </div>
+        <div class="about-editorial-creds reveal-right">
+          <div class="cred-card glass-card">
+            <div class="cred-row">
+              <span class="cred-label">Degree</span>
+              <span class="cred-value"><?php echo $content['major']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">Minor</span>
+              <span class="cred-value"><?php echo $content['minor']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">University</span>
+              <span class="cred-value"><?php echo $content['university']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">GPA</span>
+              <span class="cred-value" style="font-weight:700"><?php echo $content['gpa']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">Graduation</span>
+              <span class="cred-value"><?php echo $content['grad_date']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">Location</span>
+              <span class="cred-value"><?php echo $content['location']; ?></span>
+            </div>
+            <div class="cred-row" style="border-bottom:none">
+              <span class="cred-label">Status</span>
+              <span class="cred-value"><span style="color:#3ddb74">●</span> Open to Work</span>
             </div>
           </div>
-
-          <!-- Right: credential card -->
-          <div class="about-creds reveal-right">
-            <div class="cred-card glass-card">
-              <div class="cred-row">
-                <span class="cred-label">Degree</span>
-                <span class="cred-value"><?php echo $content['major']; ?></span>
-              </div>
-              <div class="cred-row">
-                <span class="cred-label">Minor</span>
-                <span class="cred-value"><?php echo $content['minor']; ?></span>
-              </div>
-              <div class="cred-row">
-                <span class="cred-label">University</span>
-                <span class="cred-value"><?php echo $content['university']; ?></span>
-              </div>
-              <div class="cred-row">
-                <span class="cred-label">GPA</span>
-                <span class="cred-value" style="color:var(--accent-light);font-weight:600"><?php echo $content['gpa']; ?></span>
-              </div>
-              <div class="cred-row">
-                <span class="cred-label">Graduation</span>
-                <span class="cred-value"><?php echo $content['grad_date']; ?></span>
-              </div>
-              <div class="cred-row">
-                <span class="cred-label">Location</span>
-                <span class="cred-value"><?php echo $content['location']; ?></span>
-              </div>
-              <div class="cred-row" style="border-bottom:none">
-                <span class="cred-label">Status</span>
-                <span class="cred-value" style="color:var(--accent-light)">● Open to Work</span>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ── Leadership Section ────────────────────────────── -->
-    <section class="section">
+    <!-- ── Experience (horizontal index) ─────────────────── -->
+    <section class="section" id="experience">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-num">03</span>
-          <span class="eyebrow">Experience &amp; Leadership</span>
-          <h2>Leadership &amp; Experience</h2>
-          <p>Building technical and leadership experience across game development and student organisations.</p>
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">04</span>
+          <span class="work-label-text">Experience &amp; Leadership</span>
         </div>
-
-        <div class="grid-3 stagger-children" style="margin-top:2rem">
-          <?php foreach ($content['experience'] as $i => $exp):
-            $delay = $i * 0.08;
-            $style = $delay > 0 ? " style=\"transition-delay:{$delay}s\"" : '';
-          ?>
-          <div class="glass-card reveal-up"<?php echo $style; ?>>
-            <span class="eyebrow"><?php echo $exp['dates']; ?></span>
-            <h3 style="margin-bottom:1rem"><?php echo $exp['role']; ?></h3>
-            <p style="font-size:0.8rem;<?php echo $exp['org_style']; ?>;margin-bottom:0.75rem;font-weight:600"><?php echo $exp['org']; ?></p>
-            <ul style="display:flex;flex-direction:column;gap:0.6rem">
-              <?php foreach ($exp['bullets'] as $bullet): ?>
-              <li style="color:var(--text-muted);font-size:0.9rem"><span style="color:var(--accent);margin-right:0.5rem">▸</span><?php echo $bullet; ?></li>
+        <div class="exp-list stagger-reveal">
+          <?php foreach ($content['experience'] as $i => $exp): ?>
+          <div class="exp-item reveal-up" style="transition-delay:<?php echo $i * 0.07; ?>s">
+            <span class="exp-dates"><?php echo $exp['dates']; ?></span>
+            <div class="exp-main">
+              <h3 class="exp-role"><?php echo $exp['role']; ?></h3>
+              <p class="exp-org" style="<?php echo $exp['org_style']; ?>"><?php echo $exp['org']; ?></p>
+            </div>
+            <ul class="exp-bullets">
+              <?php foreach ($exp['bullets'] as $b): ?>
+              <li><?php echo $b; ?></li>
               <?php endforeach; ?>
             </ul>
           </div>
@@ -405,16 +426,15 @@ $contact = [
     <!-- ── Contact Section ───────────────────────────────── -->
     <section class="section" id="contact">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="eyebrow">Get In Touch</span>
-          <h2>Let's Work Together</h2>
-          <p>Whether it's a studio role, freelance project, or just a conversation — I'd love to hear from you.</p>
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">05</span>
+          <span class="work-label-text">Get In Touch</span>
         </div>
 
-        <div class="grid-2 stagger-children" style="align-items:start">
+        <div class="contact-grid stagger-reveal">
           <!-- Contact Form -->
           <div class="glass-card reveal-left">
-            <h3 style="margin-bottom:1.5rem">Send Me a Message</h3>
+            <h3 style="margin-bottom:1.5rem;font-size:1.3rem;letter-spacing:-0.02em">Send Me a Message</h3>
             <form id="contactForm" method="post">
               <div class="form-group">
                 <label class="form-label">Your Name</label>
@@ -426,7 +446,7 @@ $contact = [
               </div>
               <div class="form-group">
                 <label class="form-label">Message</label>
-                <textarea name="message" id="contactMessage" rows="6" required class="form-input" placeholder="Tell me about the role or project..."></textarea>
+                <textarea name="message" id="contactMessage" rows="5" required class="form-input" placeholder="Tell me about the role or project..."></textarea>
               </div>
               <div id="formMessage" style="margin-bottom:1rem;padding:0.75rem;display:none;border-radius:var(--radius-md);font-size:0.9rem"></div>
               <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%">Send Message →</button>
@@ -434,21 +454,17 @@ $contact = [
           </div>
 
           <!-- Contact Info -->
-          <div style="display:flex;flex-direction:column;gap:1.5rem" class="reveal-right">
+          <div class="reveal-right" style="display:flex;flex-direction:column;gap:1.25rem">
             <div class="glass-card">
-              <h3 style="margin-bottom:1.25rem">Contact Info</h3>
+              <h3 style="margin-bottom:1.25rem;font-size:1.3rem;letter-spacing:-0.02em">Contact Info</h3>
               <div style="display:flex;flex-direction:column;gap:1rem">
                 <div>
                   <p class="form-label">Email</p>
-                  <a href="mailto:<?php echo $contact['email']; ?>" style="color:var(--accent);font-size:1rem"><?php echo $contact['email']; ?></a>
+                  <a href="mailto:<?php echo $contact['email']; ?>" style="color:var(--text);font-size:1rem"><?php echo $contact['email']; ?></a>
                 </div>
                 <div>
                   <p class="form-label">Phone</p>
-                  <a href="tel:+16159439722" style="color:var(--accent);font-size:1rem"><?php echo $contact['phone']; ?></a>
-                </div>
-                <div>
-                  <p class="form-label">Website</p>
-                  <a href="<?php echo $contact['website']; ?>" target="_blank" style="color:var(--accent);font-size:1rem">jakebartoncreative.com</a>
+                  <a href="tel:+16159439722" style="color:var(--text);font-size:1rem"><?php echo $contact['phone']; ?></a>
                 </div>
                 <div>
                   <p class="form-label">Location</p>
@@ -456,22 +472,16 @@ $contact = [
                 </div>
               </div>
             </div>
-
             <div class="glass-card">
-              <h3 style="margin-bottom:1.25rem">Find Me Online</h3>
+              <h3 style="margin-bottom:1.25rem;font-size:1.3rem;letter-spacing:-0.02em">Find Me Online</h3>
               <div style="display:flex;flex-direction:column;gap:0.75rem">
                 <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
-                  <span style="color:var(--accent)">in</span>&nbsp; linkedin.com/in/jakebartoncreative
+                  <span>in</span>&nbsp; linkedin.com/in/jakebartoncreative
                 </a>
                 <?php if (!empty($contact['github'])): ?>
                 <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   &nbsp;github.com/<?php echo $contact['github']; ?>
-                </a>
-                <?php endif; ?>
-                <?php if (!empty($contact['instagram'])): ?>
-                <a href="https://instagram.com/<?php echo $contact['instagram']; ?>" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
-                  <span style="color:var(--pink)">IG</span>&nbsp; @<?php echo $contact['instagram']; ?>
                 </a>
                 <?php endif; ?>
               </div>
@@ -481,19 +491,15 @@ $contact = [
       </div>
     </section>
 
-    <!-- ── Let's Talk — full-bleed CTA ────────────────────── -->
+    <!-- ── CTA Banner ──────────────────────────────────────── -->
     <section class="cta-full">
       <div class="container">
         <span class="cta-full-eyebrow reveal-up"><?php echo $content['cta_eyebrow']; ?></span>
-        <h2 class="cta-full-heading reveal-up" style="transition-delay:0.1s">
-          <?php echo $content['cta_heading']; ?>
-        </h2>
-        <p class="cta-full-sub reveal-up" style="transition-delay:0.22s">
-          <?php echo $content['cta_sub']; ?>
-        </p>
+        <h2 class="cta-full-heading reveal-up" style="transition-delay:0.1s"><?php echo $content['cta_heading']; ?></h2>
+        <p class="cta-full-sub reveal-up" style="transition-delay:0.22s"><?php echo $content['cta_sub']; ?></p>
         <div class="cta-full-actions reveal-up" style="transition-delay:0.34s">
-          <a href="mailto:<?php echo $content['email']; ?>" class="btn btn-primary magnetic">Email Me →</a>
-          <a href="https://www.linkedin.com/in/<?php echo $content['linkedin']; ?>" target="_blank" class="btn btn-secondary">LinkedIn</a>
+          <a href="mailto:<?php echo $content['email']; ?>" class="btn btn-primary">Email Me →</a>
+          <a href="https://www.linkedin.com/in/<?php echo $content['linkedin']; ?>" target="_blank" class="btn btn-ghost">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -502,25 +508,34 @@ $contact = [
 
   <!-- ── Footer ────────────────────────────────────────────── -->
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-copy">© <?php echo date('Y'); ?> Jake Barton. All rights reserved.</span>
-        <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
-          <?php if (!empty($contact['github'])): ?>
-          <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn-icon" aria-label="GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-          </a>
-          <?php endif; ?>
-          <?php if (!empty($contact['instagram'])): ?>
-          <a href="https://instagram.com/<?php echo $contact['instagram']; ?>" target="_blank" class="btn-icon" aria-label="Instagram">IG</a>
-          <?php endif; ?>
-        </div>
+    <div class="footer-inner container-wide">
+      <a href="/" class="footer-logo nav-logo">
+        <img src="assets/images/jb-logo.png" alt="JB" class="nav-logo-img">
+        <span class="nav-logo-text">JB</span>
+      </a>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="/portfolio/">Work</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
+        <?php if (!empty($contact['github'])): ?>
+        <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn-icon" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        </a>
+        <?php endif; ?>
       </div>
+      <span class="footer-copy">© <?php echo date('Y'); ?> Jake Barton</span>
     </div>
   </footer>
 
   <style>
+    /* ═══════════════════════════════════════════════════════
+       Homepage — inline styles (layout-specific overrides)
+    ═══════════════════════════════════════════════════════ */
+
     /* ── Film grain overlay ─────────────────────────────── */
     body::before {
       content: '';
@@ -536,586 +551,686 @@ $contact = [
       animation: grain-shift 0.8s steps(1) infinite;
     }
 
-    /* ── Nav logo — image + text fallback ──────────────── */
+    /* ── Scroll progress bar ────────────────────────────── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--text);
+      width: 0%;
+      z-index: 99999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Nav logo ───────────────────────────────────────── */
     .nav-logo-img {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       object-fit: contain;
       filter: invert(1);
       display: inline-block;
     }
-    .nav-logo-text {
-      display: none;
-    }
-    /* If image fails to load, show text */
-    .nav-logo-img[aria-hidden="true"] + .nav-logo-text { display: inline; }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .nav-logo-text { display: none; }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
 
-    /* ── Hero redesign ──────────────────────────────────── */
+    /* ── Hero ───────────────────────────────────────────── */
     .hero {
       min-height: 100svh;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       justify-content: flex-end;
-      padding: var(--spacing-xl) var(--spacing-md) calc(var(--spacing-xl) + 8rem);
+      padding: 2rem var(--spacing-md) 6rem;
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
     }
-    @media (max-width: 768px) {
-      .hero {
-        align-items: center;
-        text-align: center;
-        padding-bottom: calc(var(--spacing-xl) + 5rem);
-      }
-    }
-
-    .hero-inner {
-      max-width: 900px;
-    }
-
-    .hero-label-row {
+    .hero-meta {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: clamp(4rem, 12vh, 8rem);
+      width: 100%;
     }
-    @media (max-width: 768px) {
-      .hero-label-row { justify-content: center; }
-    }
-
-    .hero-status-dot {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .hero-eyebrow-tag {
       font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-faint);
-      padding: 0.25rem 0.75rem 0.25rem 0.5rem;
       border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
       border-radius: 99px;
     }
-    .hero-status-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #3ddb74;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 0 rgba(61, 219, 116, 0.5);
-      animation: status-pulse 2.5s ease-in-out infinite;
+    .hero-location-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
     }
-    @keyframes status-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(61, 219, 116, 0.5); }
-      50% { box-shadow: 0 0 0 5px rgba(61, 219, 116, 0); }
+    .hero-name-block {
+      margin-bottom: clamp(2rem, 5vh, 4rem);
     }
-
-    .hero-name {
+    .hero-name-block .xl-reveal {
+      display: block;
+      overflow: hidden;
+      line-height: 0.92;
+    }
+    .hero-name-block .xl-reveal span {
+      display: block;
       font-family: var(--font-display);
-      font-size: clamp(4rem, 11vw, 10rem);
+      font-size: clamp(3.8rem, 11vw, 10rem);
       font-weight: 800;
-      line-height: 0.95;
       letter-spacing: -0.04em;
+      line-height: 0.92;
       color: var(--text);
-      margin-bottom: 1.5rem;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease;
+    }
+    .hero-name-block .xl-reveal.is-visible span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 4rem;
+      width: 100%;
+      align-items: end;
     }
     .hero-tagline {
-      font-family: var(--font-display);
-      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
-      font-weight: 500;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
       color: var(--text-muted);
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-      line-height: 1.5;
+      margin-bottom: 1.75rem;
     }
     .hero-tagline em {
-      color: var(--text);
       font-style: italic;
+      color: var(--text);
+      font-family: var(--font-serif);
     }
     .hero-subtitle {
-      font-size: clamp(0.88rem, 1.5vw, 1rem);
+      font-size: 0.9rem;
       color: var(--text-faint);
-      max-width: 500px;
-      margin-bottom: 2.5rem;
       line-height: 1.75;
-    }
-    @media (max-width: 768px) {
-      .hero-subtitle { margin-left: auto; margin-right: auto; }
-    }
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-    }
-    @media (max-width: 768px) {
-      .hero-cta { justify-content: center; }
-    }
-    .btn-icon-text {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* ── Hero Stats Bar ──────────────────────────────────── */
-    .hero-stats {
-      display: flex;
-      align-items: center;
-      margin-top: 4rem;
-      padding: 1.5rem 2.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0;
-      width: 100%;
-      max-width: 900px;
-    }
-    .hero-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 2rem;
-    }
-    .hero-stat-num {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--text);
-      line-height: 1;
-    }
-    .hero-stat-label {
-      font-size: 0.68rem;
-      color: var(--text-faint);
-      margin-top: 0.3rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .hero-stat-divider {
-      width: 1px;
-      height: 2.5rem;
-      background: var(--border);
-      flex-shrink: 0;
-    }
-    @media (max-width: 640px) {
-      .hero-stats { gap: 1rem; padding: 1.25rem; }
-      .hero-stat { padding: 0 1rem; }
-      .hero-stat-divider { display: none; }
-    }
-
-    /* ── Scroll indicator fade ───────────────────────────── */
-    .scroll-indicator { transition: opacity 0.4s ease; }
-
-    /* ── Currently Building marquee strip ───────────── */
-    .now-strip {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0.6rem 0;
-      overflow: hidden;
-      background: var(--bg-card2);
-      position: relative;
-    }
-    .now-marquee-track {
-      display: flex;
-      width: 100%;
-      overflow: hidden;
-    }
-    .now-marquee-inner {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      white-space: nowrap;
-      animation: marquee-scroll 28s linear infinite;
-      will-change: transform;
-    }
-    .now-strip:hover .now-marquee-inner {
-      animation-play-state: paused;
-    }
-    @keyframes marquee-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .now-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .now-item strong { color: var(--text); font-weight: 600; }
-    .now-sep {
-      font-size: 0.6rem;
-      color: var(--accent);
-      opacity: 0.3;
-      flex-shrink: 0;
-    }
-    .now-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
-      animation: pulse-dot 2s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.35); }
-      50% { opacity: 0.8; transform: scale(0.8); box-shadow: 0 0 0 4px rgba(255,255,255,0); }
-    }
-
-    /* ── Showcase Grid ───────────────────────────────── */
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      gap: 1rem;
-    }
-
-    /* Hero card spans 2 rows on the left */
-    .showcase-card--hero {
-      grid-row: 1 / 3;
-    }
-
-    /* All cards share base styles */
-    .showcase-card {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      display: block;
-      text-decoration: none;
-      cursor: pointer;
-      background: var(--bg-card2);
-    }
-
-    /* Hero card is tall */
-    .showcase-card--hero { min-height: 520px; }
-
-    /* Tall right-side cards */
-    .showcase-card--tall { min-height: 260px; }
-
-    /* Wide cards on bottom row */
-    .showcase-card--wide { min-height: 210px; }
-
-    /* Full-bleed image */
-    .showcase-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
-      display: block;
-    }
-    .showcase-img--portrait {
-      object-position: center top;
-    }
-    .showcase-card:hover .showcase-img {
-      transform: scale(1.06);
-    }
-
-    /* Video card */
-    .video-card .showcase-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
-    }
-    .video-card:hover .showcase-video {
-      transform: scale(1.04);
-    }
-    .video-play-badge {
-      position: absolute;
-      top: 0.85rem;
-      right: 0.85rem;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.65rem;
-      border-radius: 99px;
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(6px);
-      z-index: 2;
-    }
-
-    /* Gradient overlay — text lives here */
-    .showcase-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-        rgba(0,0,0,0.95) 0%,
-        rgba(0,0,0,0.5) 40%,
-        rgba(0,0,0,0.05) 70%,
-        transparent 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      transition: background 0.4s ease;
-      z-index: 1;
-    }
-    .showcase-card:hover .showcase-overlay {
-      background: linear-gradient(to top,
-        rgba(0,0,0,0.98) 0%,
-        rgba(0,0,0,0.7) 50%,
-        rgba(0,0,0,0.15) 80%,
-        transparent 100%);
-    }
-
-    /* Tags */
-    .showcase-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.6rem;
-    }
-
-    /* Title */
-    .showcase-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
-      margin: 0 0 0.4rem;
-      letter-spacing: -0.02em;
-    }
-    .showcase-card--hero .showcase-title {
-      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    }
-
-    /* Description */
-    .showcase-desc {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.55;
-      margin: 0 0 0.75rem;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
-    }
-    .showcase-card:hover .showcase-desc {
-      max-height: 80px;
-      opacity: 1;
-    }
-    @media (max-width: 600px) {
-      .showcase-desc { max-height: none; opacity: 1; }
-      .showcase-cta { opacity: 1; transform: none; }
-    }
-
-    /* CTA arrow */
-    .showcase-cta {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-      display: inline-block;
-    }
-    .showcase-card:hover .showcase-cta {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Featured badge */
-    .showcase-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: #fff;
-      color: #000;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.65rem;
-      border-radius: 99px;
-      z-index: 2;
-    }
-    .showcase-badge--art {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-
-    /* Border glow */
-    .showcase-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0);
-      transition: border-color 0.3s ease;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .showcase-card:hover::after {
-      border-color: rgba(255,255,255,0.12);
-    }
-
-    @media (max-width: 900px) {
-      .showcase-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-      .showcase-card--hero { grid-row: 1; grid-column: 1 / 3; min-height: 340px; }
-      .showcase-card--tall, .showcase-card--wide { min-height: 200px; }
-    }
-    @media (max-width: 600px) {
-      .showcase-grid { grid-template-columns: 1fr; }
-      .showcase-card--hero { grid-column: 1; min-height: 280px; }
-    }
-
-    /* ── Skills Grid ─────────────────────────────────── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .skill-group-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
       margin-bottom: 1.25rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
     }
-    .skill-group-icon { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1; color: var(--text-faint); font-family: var(--font-mono, monospace); }
-    .skill-group-title {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
-    .skill-group-pills {
-      display: flex;
-      flex-wrap: wrap;
+    .hero-status-badge {
+      display: inline-flex;
+      align-items: center;
       gap: 0.5rem;
-    }
-    .skill-pill.primary {
-      border-color: rgba(255,255,255,0.15);
-      color: var(--text);
-      background: var(--bg-card2);
-    }
-    .skill-pill.primary .dot { background: var(--accent); }
-    .skill-pill {
-      transition: transform 0.2s cubic-bezier(0.16,1,0.3,1),
-                  border-color 0.2s ease,
-                  background 0.2s ease;
-    }
-    .skill-pill:hover {
-      transform: translateY(-2px) scale(1.04);
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-    @media (max-width: 768px) {
-      .skills-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── About 2-col layout ──────────────────────────── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 4rem;
-      align-items: start;
-    }
-    .about-text h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.03em; }
-    .about-text h2 em { color: var(--text-muted); font-style: italic; font-family: var(--font-serif); }
-    .cred-card { padding: 0; overflow: hidden; }
-    .cred-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 0.9rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
-    }
-    .cred-label {
       font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-faint);
-      white-space: nowrap;
-      flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 0.3rem 0.85rem 0.3rem 0.6rem;
     }
-    .cred-value {
-      font-size: 0.9rem;
-      color: var(--text);
-      text-align: right;
+    .hero-status-pulse {
+      width: 7px; height: 7px;
+      background: #3ddb74;
+      border-radius: 50%;
+      animation: pulse-green 2s ease infinite;
     }
-    @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(61,219,116,0.5); }
+      50% { box-shadow: 0 0 0 5px rgba(61,219,116,0); }
     }
 
-    /* ── Carousel hidden ─────────────────────────────── */
-    .carousel-wrapper, .carousel-track, .carousel-slide,
-    .carousel-card, .carousel-card-image, .carousel-info,
-    .carousel-dots { display: none; }
-
-    /* ── Bold scrolling ticker ──────────────────────── */
-    .bold-ticker {
-      overflow: hidden;
-      padding: 1.5rem 0;
+    /* ── Stats bar ──────────────────────────────────────── */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .stats-bar-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 1.5rem 2rem;
+      min-width: 130px;
+    }
+    .stats-bar-divider {
+      width: 1px;
+      align-self: stretch;
+      background: var(--border);
+    }
+    .stats-bar-num {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .stats-bar-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ── Bold ticker ────────────────────────────────────── */
+    .bold-ticker {
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 0;
       background: var(--bg);
     }
     .bold-ticker-track {
       display: flex;
       align-items: center;
-      gap: 2.5rem;
-      width: max-content;
-      animation: scroll-x 22s linear infinite;
-      will-change: transform;
-    }
-    .bold-ticker:hover .bold-ticker-track {
-      animation-play-state: paused;
+      gap: 2rem;
+      white-space: nowrap;
+      animation: ticker-track 30s linear infinite;
     }
     .bold-ticker-track span {
       font-family: var(--font-display);
-      font-size: clamp(1rem, 2.5vw, 1.6rem);
-      font-weight: 800;
-      color: var(--text-faint);
-      letter-spacing: -0.02em;
-      white-space: nowrap;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--text-faint);
+      flex-shrink: 0;
+    }
+    .bold-ticker-track .bull { color: var(--text-faint); opacity: 0.4; }
+    @keyframes ticker-track {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Work section ───────────────────────────────────── */
+    .work-section { padding: clamp(4rem, 8vw, 8rem) 0; }
+    .container-wide {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    .work-label-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-label-num {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+    }
+    .work-label-text {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      flex: 1;
+    }
+    .work-label-link {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      text-decoration: none;
       transition: color 0.2s;
     }
-    .bold-ticker-track span:hover { color: var(--text); }
-    .bold-ticker-track .bull {
-      font-weight: 300;
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.12);
-      font-family: var(--font-body);
+    .work-label-link:hover { color: var(--text); }
+
+    /* Featured hero card */
+    .work-hero-card {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: clamp(320px, 55vw, 620px);
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 1px;
+    }
+    .work-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .work-hero-card:hover .work-hero-video { transform: scale(1.04); }
+    .work-hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+    }
+    .work-hero-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .work-hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .work-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+      margin: 0;
+    }
+    .work-hero-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+      max-width: 60ch;
+      margin: 0;
+    }
+    .work-hero-cta {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-top: 0.5rem;
+      transition: letter-spacing 0.3s;
+    }
+    .work-hero-card:hover .work-hero-cta { letter-spacing: 0.18em; }
+    .work-hero-badge {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Work index list */
+    .work-list {
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .work-list-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 1.5rem 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+    .work-list-item:hover { background: rgba(255,255,255,0.025); }
+    .work-list-media {
+      width: 100px; height: 68px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .work-list-media img,
+    .work-list-media video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .work-list-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .work-list-num {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      padding-top: 0.2em;
+      flex-shrink: 0;
+      min-width: 20px;
+    }
+    .work-list-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 0 0 0.35rem;
+    }
+    .work-list-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0 0 0.5rem;
+    }
+    .work-list-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .work-list-arrow {
+      font-size: 1.25rem;
+      color: var(--text-faint);
+      transition: transform 0.25s, color 0.25s;
+      flex-shrink: 0;
+      padding-right: 0.5rem;
+    }
+    .work-list-item:hover .work-list-arrow {
+      transform: translate(3px, -3px);
+      color: var(--text);
+    }
+    .work-footer {
+      margin-top: 2.5rem;
+      display: flex;
+    }
+
+    /* ── SilkTricky-style scroll reveals ───────────────── */
+    /* Base: everything starts invisible and shifted down  */
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    .reveal-row,
+    .reveal-fade {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-up    { transform: translateY(48px); }
+    .reveal-left  { transform: translateX(-48px); }
+    .reveal-right { transform: translateX(48px); }
+    .reveal-fade  { transform: translateY(20px); }
+
+    /* Work rows: slide up + very slight x-shift */
+    .reveal-row {
+      transform: translateY(40px);
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.65s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.65s ease;
+    }
+    /* Visible state */
+    .reveal-up.is-visible,
+    .reveal-left.is-visible,
+    .reveal-right.is-visible,
+    .reveal-fade.is-visible,
+    .reveal-row.is-visible {
+      opacity: 1;
+      transform: none;
+      border-color: var(--border);
+    }
+    /* Stagger children — each child gets a small delay */
+    .stagger-reveal > * {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .stagger-reveal.is-visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
+    .stagger-reveal.is-visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
+    .stagger-reveal.is-visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
+    .stagger-reveal.is-visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+    .stagger-reveal.is-visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
+
+    /* ── Section label row ──────────────────────────────── */
+    .section-label-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Section big heading ────────────────────────────── */
+    .section-big-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 3rem;
+    }
+
+    /* ── About editorial layout ─────────────────────────── */
+    .about-section { padding: clamp(4rem, 8vw, 8rem) 0; }
+    .about-editorial {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+      align-items: start;
+    }
+    .about-big-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+    .about-para {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .about-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+    .cred-card { display: flex; flex-direction: column; gap: 0; }
+    .cred-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .cred-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      flex-shrink: 0;
+    }
+    .cred-value { font-size: 0.88rem; color: var(--text-muted); text-align: right; }
+
+    /* ── Experience list ────────────────────────────────── */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 1rem 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .exp-dates {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding-top: 0.3em;
+    }
+    .exp-role {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .exp-org { font-size: 0.8rem; color: var(--text-muted); }
+    .exp-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exp-bullets li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--text-faint); }
+
+    /* ── Contact section ────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+
+    /* ── CTA banner ─────────────────────────────────────── */
+    .cta-full {
+      padding: clamp(5rem, 10vw, 10rem) var(--spacing-md);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-full-eyebrow {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1.5rem;
+    }
+    .cta-full-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .cta-full-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 50ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-full-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo { flex-shrink: 0; }
+    .footer-nav { display: flex; gap: 2rem; flex: 1; }
+    .footer-nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--text); }
+    .footer-socials { display: flex; gap: 0.75rem; align-items: center; }
+    .footer-copy { font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.06em; }
+
+    /* ── Tags ───────────────────────────────────────────── */
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+    }
+    .tag-muted { color: rgba(255,255,255,0.45); border-color: rgba(255,255,255,0.1); }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-bottom { grid-template-columns: 1fr; }
+      .about-editorial { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-bottom: 5rem; }
+      .work-list-item { grid-template-columns: 70px 1fr auto; gap: 0.75rem 1rem; }
+      .work-list-media { width: 70px; height: 50px; }
+      .stats-bar-item { padding: 1rem 1.25rem; }
     }
   </style>
 
   <script>
-    /* ── XL Hero reveal (name) ────────────────────────── */
+    /* ── XL Hero reveal (name lines) ─────────────────── */
     (function() {
-      var el = document.querySelector('.xl-reveal');
-      if (!el) return;
-      setTimeout(function() { el.classList.add('in'); }, 100);
+      var els = document.querySelectorAll('.hero-name-block .xl-reveal');
+      if (!els.length) return;
+      setTimeout(function() {
+        els.forEach(function(el) { el.classList.add('is-visible'); });
+      }, 80);
+    })();
+
+    /* ── Scroll reveal — IntersectionObserver ─────────── */
+    (function() {
+      // Reveal single elements
+      var singles = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-fade');
+      var singleObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            singleObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      singles.forEach(function(el) { singleObs.observe(el); });
+
+      // Reveal work rows with staggered delay
+      var rows = document.querySelectorAll('.reveal-row');
+      var rowObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            // Find index among siblings for stagger
+            var siblings = entry.target.parentElement.querySelectorAll('.reveal-row');
+            var idx = 0;
+            siblings.forEach(function(s, i) { if (s === entry.target) idx = i; });
+            entry.target.style.transitionDelay = (idx * 0.06) + 's';
+            entry.target.classList.add('is-visible');
+            rowObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+      rows.forEach(function(el) { rowObs.observe(el); });
+
+      // Stagger-reveal containers
+      var staggerGroups = document.querySelectorAll('.stagger-reveal');
+      var groupObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            groupObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      staggerGroups.forEach(function(el) { groupObs.observe(el); });
     })();
 
     /* ── Scroll progress bar ──────────────────────────── */
@@ -1126,16 +1241,6 @@ $contact = [
         var scrolled = window.scrollY;
         var total = document.documentElement.scrollHeight - window.innerHeight;
         bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-      }, { passive: true });
-    })();
-
-    /* ── Scroll indicator fade ────────────────────────── */
-    (function() {
-      var indicator = document.querySelector('.scroll-indicator');
-      if (!indicator) return;
-      window.addEventListener('scroll', function() {
-        indicator.style.opacity = window.scrollY > 80 ? '0' : '1';
-        indicator.style.pointerEvents = window.scrollY > 80 ? 'none' : 'auto';
       }, { passive: true });
     })();
 
@@ -1160,47 +1265,36 @@ $contact = [
       loop();
     })();
 
-    /* ── Hero parallax (tagline depth layer) ─────────── */
-    (function() {
-      var parallaxEls = document.querySelectorAll('[data-parallax]');
-      if (!parallaxEls.length) return;
-      function onScroll() {
-        var sy = window.scrollY;
-        parallaxEls.forEach(function(el) {
-          var speed = parseFloat(el.dataset.parallax) || 0.15;
-          el.style.transform = 'translateY(' + (sy * speed) + 'px)';
-        });
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-    })();
-
     /* ── Contact form ─────────────────────────────────── */
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var submitBtn = document.getElementById('submitBtn');
-      var formMessage = document.getElementById('formMessage');
-      var formData = new FormData(this);
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-      formMessage.style.display = 'none';
-      try {
-        var response = await fetch('contact-handler.php', { method: 'POST', body: formData });
-        var data = await response.json();
-        if (data.success) {
-          formMessage.textContent = data.message;
-          formMessage.style.cssText = 'display:block;background:var(--accent-subtle);border:1px solid var(--accent);color:var(--accent-light);padding:0.75rem;border-radius:var(--radius-md)';
-          this.reset();
-        } else {
-          formMessage.textContent = data.errors.join(', ');
-          formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid var(--pink);color:var(--pink);padding:0.75rem;border-radius:var(--radius-md)';
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var submitBtn = document.getElementById('submitBtn');
+        var formMessage = document.getElementById('formMessage');
+        var formData = new FormData(this);
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        formMessage.style.display = 'none';
+        try {
+          var response = await fetch('contact-handler.php', { method: 'POST', body: formData });
+          var data = await response.json();
+          if (data.success) {
+            formMessage.textContent = data.message;
+            formMessage.style.cssText = 'display:block;background:rgba(61,219,116,0.1);border:1px solid rgba(61,219,116,0.4);color:#3ddb74;padding:0.75rem;border-radius:8px';
+            this.reset();
+          } else {
+            formMessage.textContent = data.errors.join(', ');
+            formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid rgba(255,0,107,0.4);color:#ff006b;padding:0.75rem;border-radius:8px';
+          }
+        } catch(err) {
+          formMessage.textContent = 'Error sending message. Please email directly.';
+          formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid rgba(255,0,107,0.4);color:#ff006b;padding:0.75rem;border-radius:8px';
         }
-      } catch(err) {
-        formMessage.textContent = 'Error sending message. Please email directly.';
-        formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid var(--pink);color:var(--pink);padding:0.75rem;border-radius:var(--radius-md)';
-      }
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send Message →';
-    });
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+      });
+    }
   </script>
 
   <!-- ── Style Kit JS ───────────────────────────────────── -->
