@@ -37,7 +37,10 @@ $contact = [
 
   <!-- Navigation -->
   <header class="site-nav" id="site-nav">
-    <a href="#home" class="nav-logo">JB</a>
+    <a href="#home" class="nav-logo">
+      <img src="assets/images/jb-logo.png" alt="Jake Barton" class="nav-logo-img">
+      <span class="nav-logo-text">JB</span>
+    </a>
     <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
@@ -55,20 +58,28 @@ $contact = [
     <!-- ── Hero Section ──────────────────────────────────── -->
     <section class="hero section" id="home">
 
-      <span class="hero-eyebrow"><?php echo $content['hero_eyebrow']; ?></span>
+      <div class="hero-inner">
+        <div class="hero-label-row">
+          <span class="hero-eyebrow"><?php echo $content['hero_eyebrow']; ?></span>
+          <span class="hero-status-dot"><span class="hero-status-pulse"></span>Open to Work</span>
+        </div>
 
-      <h1 class="hero-name" data-parallax="0.18"><?php echo $content['name']; ?></h1>
+        <h1 class="hero-name xl-reveal"><span><?php echo $content['name']; ?></span></h1>
 
-      <p class="hero-tagline" data-parallax="0.10">Game developer building <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em> — from game engines to the browser.</p>
+        <p class="hero-tagline" data-parallax="0.10">
+          Game developer building <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em><br>from game engines to the browser.
+        </p>
 
-      <p class="hero-subtitle">
-        <?php echo $content['hero_subtitle']; ?>
-      </p>
+        <p class="hero-subtitle"><?php echo $content['hero_subtitle']; ?></p>
 
-      <div class="hero-cta">
-        <a href="/portfolio/" class="btn btn-primary magnetic">See My Work</a>
-        <a href="/assets/Jake_Barton_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
-        <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-secondary">GitHub</a>
+        <div class="hero-cta">
+          <a href="/portfolio/" class="btn btn-primary magnetic">See My Work</a>
+          <a href="/assets/Jake_Barton_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+          <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-secondary btn-icon-text">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
 
       <!-- Quick stats bar -->
@@ -106,6 +117,24 @@ $contact = [
       </div>
     </div>
 
+    <!-- ── Bold scrolling ticker strip ─────────────────── -->
+    <div class="bold-ticker" aria-hidden="true">
+      <div class="bold-ticker-track">
+        <?php for ($i = 0; $i < 2; $i++): ?>
+          <span>Game Design</span><span class="bull">—</span>
+          <span>Unreal Engine 5</span><span class="bull">—</span>
+          <span>3D Art</span><span class="bull">—</span>
+          <span>Web Development</span><span class="bull">—</span>
+          <span>C++</span><span class="bull">—</span>
+          <span>JavaScript</span><span class="bull">—</span>
+          <span>VR Development</span><span class="bull">—</span>
+          <span>Level Design</span><span class="bull">—</span>
+          <span>Godot 4</span><span class="bull">—</span>
+          <span>UI / UX</span><span class="bull">—</span>
+        <?php endfor; ?>
+      </div>
+    </div>
+
     <!-- ── Featured Work ─────────────────────────────────── -->
     <section class="section" id="work">
       <div class="container">
@@ -134,20 +163,40 @@ $contact = [
             <div class="showcase-badge">Featured</div>
           </a>
 
-          <!-- VR Game -->
-          <a href="portfolio/game-programming/" class="showcase-card showcase-card--tall">
-            <div class="showcase-placeholder">
-              <span class="showcase-placeholder-label">VR</span>
-            </div>
+          <!-- VR Game — video card -->
+          <a href="portfolio/game-programming/" class="showcase-card showcase-card--tall video-card">
+            <video class="showcase-video" autoplay muted loop playsinline preload="metadata" poster="assets/images/phaserunnercover.png">
+              <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
+            </video>
             <div class="showcase-overlay">
               <div class="showcase-tags">
                 <span class="tag">VR Game</span>
                 <span class="tag tag-muted">Unreal 5</span>
+                <span class="tag tag-muted">C++</span>
               </div>
               <h3 class="showcase-title">VR Rhythm Game</h3>
-              <p class="showcase-desc">Unreal Engine 5 — your movements control a dragon in a rhythm-based VR experience.</p>
+              <p class="showcase-desc">Unreal Engine 5 — your body movements control a dragon in a rhythm-based VR experience.</p>
               <span class="showcase-cta">View →</span>
             </div>
+            <span class="video-play-badge">▶ Live</span>
+          </a>
+
+          <!-- Penguins Creed — video card -->
+          <a href="portfolio/game-programming/" class="showcase-card showcase-card--tall video-card">
+            <video class="showcase-video" autoplay muted loop playsinline preload="metadata">
+              <source src="assets/images/penguins-creed.mp4" type="video/mp4">
+            </video>
+            <div class="showcase-overlay">
+              <div class="showcase-tags">
+                <span class="tag">Game Design</span>
+                <span class="tag tag-muted">Unreal 5</span>
+                <span class="tag tag-muted">Blueprints</span>
+              </div>
+              <h3 class="showcase-title">Penguins Creed</h3>
+              <p class="showcase-desc">Third-person action game — stealth mechanics, AI patrol systems, penguin protagonist.</p>
+              <span class="showcase-cta">View →</span>
+            </div>
+            <span class="video-play-badge">▶ Live</span>
           </a>
 
           <!-- Mario Kart -->
@@ -162,6 +211,22 @@ $contact = [
               <p class="showcase-desc">Mode-7 SNES engine in vanilla JS — raycasting, sprite sheets, lap logic.</p>
               <span class="showcase-cta">View →</span>
             </div>
+          </a>
+
+          <!-- Venice Art — juried show piece -->
+          <a href="portfolio/" class="showcase-card showcase-card--wide art-card">
+            <img src="assets/images/venice-art.jpg" alt="Venice — Juried Art Show" class="showcase-img showcase-img--portrait">
+            <div class="showcase-overlay">
+              <div class="showcase-tags">
+                <span class="tag">Fine Art</span>
+                <span class="tag tag-muted">Digital</span>
+                <span class="tag tag-muted">Accepted</span>
+              </div>
+              <h3 class="showcase-title">Venice</h3>
+              <p class="showcase-desc">Accepted into the Samford University Juried Art Show 2025.</p>
+              <span class="showcase-cta">View →</span>
+            </div>
+            <div class="showcase-badge showcase-badge--art">Juried Show</div>
           </a>
 
           <!-- 33Miles -->
@@ -456,31 +521,150 @@ $contact = [
   </footer>
 
   <style>
-    /* ── Hero name — clean h1, no canvas ────────────── */
+    /* ── Film grain overlay ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 99998;
+      animation: grain-shift 0.8s steps(1) infinite;
+    }
+
+    /* ── Nav logo — image + text fallback ──────────────── */
+    .nav-logo-img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: invert(1);
+      display: inline-block;
+    }
+    .nav-logo-text {
+      display: none;
+    }
+    /* If image fails to load, show text */
+    .nav-logo-img[aria-hidden="true"] + .nav-logo-text { display: inline; }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ── Hero redesign ──────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: var(--spacing-xl) var(--spacing-md) calc(var(--spacing-xl) + 8rem);
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      .hero {
+        align-items: center;
+        text-align: center;
+        padding-bottom: calc(var(--spacing-xl) + 5rem);
+      }
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    .hero-label-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 768px) {
+      .hero-label-row { justify-content: center; }
+    }
+
+    .hero-status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+    }
+    .hero-status-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3ddb74;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(61, 219, 116, 0.5);
+      animation: status-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes status-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(61, 219, 116, 0.5); }
+      50% { box-shadow: 0 0 0 5px rgba(61, 219, 116, 0); }
+    }
+
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(3.5rem, 10vw, 7.5rem);
-      font-weight: 700;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
+      font-size: clamp(4rem, 11vw, 10rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
       color: var(--text);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .hero-tagline {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      font-weight: 400;
+      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+      font-weight: 500;
       color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      font-style: normal;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
     }
-    /* em inside tagline — only applies before JS replaces it with .rt-wrap */
     .hero-tagline em {
-      color: var(--accent-light);
+      color: var(--text);
       font-style: italic;
     }
+    .hero-subtitle {
+      font-size: clamp(0.88rem, 1.5vw, 1rem);
+      color: var(--text-faint);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+    @media (max-width: 768px) {
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .hero-cta { justify-content: center; }
+    }
+    .btn-icon-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-    /* ── Hero Stats Bar ──────────────────────────────── */
+    /* ── Hero Stats Bar ──────────────────────────────────── */
     .hero-stats {
       display: flex;
       align-items: center;
@@ -492,6 +676,8 @@ $contact = [
       flex-wrap: wrap;
       justify-content: center;
       gap: 0;
+      width: 100%;
+      max-width: 900px;
     }
     .hero-stat {
       display: flex;
@@ -502,15 +688,16 @@ $contact = [
     .hero-stat-num {
       font-family: var(--font-display);
       font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--accent-light);
+      font-weight: 800;
+      color: var(--text);
       line-height: 1;
     }
     .hero-stat-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
+      font-size: 0.68rem;
+      color: var(--text-faint);
       margin-top: 0.3rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       white-space: nowrap;
     }
     .hero-stat-divider {
@@ -525,7 +712,7 @@ $contact = [
       .hero-stat-divider { display: none; }
     }
 
-    /* ── Scroll indicator fade ───────────────────────── */
+    /* ── Scroll indicator fade ───────────────────────────── */
     .scroll-indicator { transition: opacity 0.4s ease; }
 
     /* ── Currently Building marquee strip ───────────── */
@@ -569,7 +756,7 @@ $contact = [
     .now-sep {
       font-size: 0.6rem;
       color: var(--accent);
-      opacity: 0.6;
+      opacity: 0.3;
       flex-shrink: 0;
     }
     .now-dot {
@@ -590,7 +777,7 @@ $contact = [
     .showcase-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr;
-      grid-template-rows: auto auto;
+      grid-template-rows: auto auto auto;
       gap: 1rem;
     }
 
@@ -608,14 +795,13 @@ $contact = [
       text-decoration: none;
       cursor: pointer;
       background: var(--bg-card2);
-      /* remove visible border — image IS the card */
     }
 
     /* Hero card is tall */
     .showcase-card--hero { min-height: 520px; }
 
-    /* VR card: tall right-side card */
-    .showcase-card--tall { min-height: 250px; }
+    /* Tall right-side cards */
+    .showcase-card--tall { min-height: 260px; }
 
     /* Wide cards on bottom row */
     .showcase-card--wide { min-height: 210px; }
@@ -630,25 +816,40 @@ $contact = [
       transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
       display: block;
     }
+    .showcase-img--portrait {
+      object-position: center top;
+    }
     .showcase-card:hover .showcase-img {
       transform: scale(1.06);
     }
 
-    /* Placeholder for cards without an image */
-    .showcase-placeholder {
+    /* Video card */
+    .video-card .showcase-video {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-card2);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
     }
-    .showcase-placeholder-label {
-      font-family: var(--font-display);
-      font-size: 4rem;
+    .video-card:hover .showcase-video {
+      transform: scale(1.04);
+    }
+    .video-play-badge {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 0.6rem;
       font-weight: 700;
-      color: rgba(255,255,255,0.08);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      z-index: 2;
     }
 
     /* Gradient overlay — text lives here */
@@ -656,22 +857,23 @@ $contact = [
       position: absolute;
       inset: 0;
       background: linear-gradient(to top,
-        rgba(0,0,0,0.92) 0%,
-        rgba(0,0,0,0.55) 40%,
-        rgba(0,0,0,0.1)  70%,
-        transparent      100%);
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.5) 40%,
+        rgba(0,0,0,0.05) 70%,
+        transparent 100%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 1.5rem;
       transition: background 0.4s ease;
+      z-index: 1;
     }
     .showcase-card:hover .showcase-overlay {
       background: linear-gradient(to top,
-        rgba(0,0,0,0.97) 0%,
-        rgba(0,0,0,0.65) 50%,
+        rgba(0,0,0,0.98) 0%,
+        rgba(0,0,0,0.7) 50%,
         rgba(0,0,0,0.15) 80%,
-        transparent      100%);
+        transparent 100%);
     }
 
     /* Tags */
@@ -686,19 +888,20 @@ $contact = [
     .showcase-title {
       font-family: var(--font-display);
       font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
-      line-height: 1.2;
+      line-height: 1.1;
       margin: 0 0 0.4rem;
+      letter-spacing: -0.02em;
     }
     .showcase-card--hero .showcase-title {
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
     }
 
-    /* Description — hidden by default, revealed on hover */
+    /* Description */
     .showcase-desc {
       font-size: 0.82rem;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.65);
       line-height: 1.55;
       margin: 0 0 0.75rem;
       max-height: 0;
@@ -710,13 +913,17 @@ $contact = [
       max-height: 80px;
       opacity: 1;
     }
+    @media (max-width: 600px) {
+      .showcase-desc { max-height: none; opacity: 1; }
+      .showcase-cta { opacity: 1; transform: none; }
+    }
 
     /* CTA arrow */
     .showcase-cta {
-      font-size: 0.78rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 700;
       color: #fff;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       opacity: 0;
       transform: translateY(6px);
@@ -735,15 +942,21 @@ $contact = [
       left: 1rem;
       background: #fff;
       color: #000;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 0.25rem 0.65rem;
       border-radius: 99px;
+      z-index: 2;
+    }
+    .showcase-badge--art {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.5);
     }
 
-    /* Subtle border that glows on hover */
+    /* Border glow */
     .showcase-card::after {
       content: '';
       position: absolute;
@@ -752,9 +965,10 @@ $contact = [
       border: 1px solid rgba(255,255,255,0);
       transition: border-color 0.3s ease;
       pointer-events: none;
+      z-index: 2;
     }
     .showcase-card:hover::after {
-      border-color: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.12);
     }
 
     @media (max-width: 900px) {
@@ -768,8 +982,6 @@ $contact = [
     @media (max-width: 600px) {
       .showcase-grid { grid-template-columns: 1fr; }
       .showcase-card--hero { grid-column: 1; min-height: 280px; }
-      .showcase-desc { max-height: none; opacity: 1; }
-      .showcase-cta { opacity: 1; transform: none; }
     }
 
     /* ── Skills Grid ─────────────────────────────────── */
@@ -786,12 +998,13 @@ $contact = [
       padding-bottom: 1rem;
       border-bottom: 1px solid var(--border);
     }
-    .skill-group-icon { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1; color: var(--accent); font-family: var(--font-mono, monospace); }
+    .skill-group-icon { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1; color: var(--text-faint); font-family: var(--font-mono, monospace); }
     .skill-group-title {
       font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--text);
+      letter-spacing: -0.02em;
     }
     .skill-group-pills {
       display: flex;
@@ -799,13 +1012,11 @@ $contact = [
       gap: 0.5rem;
     }
     .skill-pill.primary {
-      border-color: var(--border-cyan);
+      border-color: rgba(255,255,255,0.15);
       color: var(--text);
       background: var(--bg-card2);
     }
     .skill-pill.primary .dot { background: var(--accent); }
-
-    /* Skill pill hover pop */
     .skill-pill {
       transition: transform 0.2s cubic-bezier(0.16,1,0.3,1),
                   border-color 0.2s ease,
@@ -813,7 +1024,7 @@ $contact = [
     }
     .skill-pill:hover {
       transform: translateY(-2px) scale(1.04);
-      border-color: var(--accent);
+      border-color: rgba(255,255,255,0.3);
       background: rgba(255,255,255,0.04);
     }
     @media (max-width: 768px) {
@@ -827,8 +1038,8 @@ $contact = [
       gap: 4rem;
       align-items: start;
     }
-    .about-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2; }
-    .about-text h2 em { color: var(--accent-light); font-style: italic; }
+    .about-text h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.03em; }
+    .about-text h2 em { color: var(--text-muted); font-style: italic; font-family: var(--font-serif); }
     .cred-card { padding: 0; overflow: hidden; }
     .cred-row {
       display: flex;
@@ -839,9 +1050,9 @@ $contact = [
       gap: 1rem;
     }
     .cred-label {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-faint);
       white-space: nowrap;
@@ -860,9 +1071,53 @@ $contact = [
     .carousel-wrapper, .carousel-track, .carousel-slide,
     .carousel-card, .carousel-card-image, .carousel-info,
     .carousel-dots { display: none; }
+
+    /* ── Bold scrolling ticker ──────────────────────── */
+    .bold-ticker {
+      overflow: hidden;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .bold-ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      width: max-content;
+      animation: scroll-x 22s linear infinite;
+      will-change: transform;
+    }
+    .bold-ticker:hover .bold-ticker-track {
+      animation-play-state: paused;
+    }
+    .bold-ticker-track span {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      font-weight: 800;
+      color: var(--text-faint);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .bold-ticker-track span:hover { color: var(--text); }
+    .bold-ticker-track .bull {
+      font-weight: 300;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.12);
+      font-family: var(--font-body);
+    }
   </style>
 
   <script>
+    /* ── XL Hero reveal (name) ────────────────────────── */
+    (function() {
+      var el = document.querySelector('.xl-reveal');
+      if (!el) return;
+      setTimeout(function() { el.classList.add('in'); }, 100);
+    })();
+
     /* ── Scroll progress bar ──────────────────────────── */
     (function() {
       var bar = document.getElementById('scroll-progress');
@@ -888,26 +1143,24 @@ $contact = [
     (function() {
       var glow = document.getElementById('cursor-glow');
       if (!glow || window.matchMedia('(pointer:coarse)').matches) return;
-      var cx = 0, cy = 0, tx = 0, ty = 0, raf;
+      var cx = 0, cy = 0, tx = 0, ty = 0;
       document.addEventListener('mousemove', function(e) {
         tx = e.clientX; ty = e.clientY;
         glow.style.opacity = '1';
       });
-      document.addEventListener('mouseleave', function() {
-        glow.style.opacity = '0';
-      });
+      document.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
       function lerp(a, b, t) { return a + (b - a) * t; }
       function loop() {
         cx = lerp(cx, tx, 0.07);
         cy = lerp(cy, ty, 0.07);
         glow.style.left = cx + 'px';
         glow.style.top  = cy + 'px';
-        raf = requestAnimationFrame(loop);
+        requestAnimationFrame(loop);
       }
       loop();
     })();
 
-    /* ── Hero parallax (name/tagline depth layers) ────── */
+    /* ── Hero parallax (tagline depth layer) ─────────── */
     (function() {
       var parallaxEls = document.querySelectorAll('[data-parallax]');
       if (!parallaxEls.length) return;

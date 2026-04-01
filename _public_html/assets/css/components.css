@@ -31,11 +31,29 @@
 .nav-logo {
   font-family: var(--font-display);
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text) !important;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
   text-transform: none;
   text-shadow: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: invert(1);
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .nav-links {
@@ -45,11 +63,11 @@
 }
 
 .nav-links a {
-  font-size: 0.875rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: none;
-  color: var(--text-muted);
+  color: var(--text-faint);
   position: relative;
   padding-bottom: 3px;
 }
@@ -217,9 +235,9 @@
   display: inline-block;
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 9vw, 4.5rem);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
   color: var(--text-muted);
   will-change: transform, opacity;
   transition: color 0.2s ease;
@@ -1022,14 +1040,14 @@ button.btn-secondary:not(.btn):hover {
   transform: translateX(-50%);
   font-family: var(--font-display);
   font-size: clamp(5rem, 15vw, 11rem);
-  font-weight: 700;
-  color: rgba(255,255,255,0.025);
+  font-weight: 800;
+  color: rgba(255,255,255,0.018);
   line-height: 1;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
   z-index: 0;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
 }
 .section-header > *:not(.section-num) {
   position: relative;
@@ -1064,10 +1082,10 @@ button.btn-secondary:not(.btn):hover {
 }
 .cta-full-heading {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 9vw, 7.5rem);
-  font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   color: var(--text);
   margin-bottom: 2rem;
   position: relative;

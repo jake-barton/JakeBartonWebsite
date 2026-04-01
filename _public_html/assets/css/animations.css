@@ -644,3 +644,156 @@ span.rotating-text.exiting,
 .nav-links a.active::after {
   width: 100%;
 }
+
+/* ============================================================
+   FRAMER-STYLE ENHANCEMENTS — added for visual overhaul
+   ============================================================ */
+
+/* ── Char split reveal ───────────────────────────────────── */
+@keyframes char-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%) rotate(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes char-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%) rotate(-5deg);
+  }
+}
+
+/* Clip reveal — line by line, lines overflow hidden */
+.line-reveal-wrap {
+  overflow: hidden;
+  display: block;
+}
+.line-reveal {
+  display: block;
+  opacity: 0;
+  transform: translateY(110%);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.line-reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Horizontal marquee (project strip) ─────────────────── */
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes scroll-x-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Grain/noise overlay ─────────────────────────────────── */
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0) scale(1.05); }
+  10%  { transform: translate(-2%, -3%) scale(1.05); }
+  20%  { transform: translate(3%, 2%) scale(1.05); }
+  30%  { transform: translate(-1%, 4%) scale(1.05); }
+  40%  { transform: translate(4%, -1%) scale(1.05); }
+  50%  { transform: translate(-3%, 3%) scale(1.05); }
+  60%  { transform: translate(2%, -4%) scale(1.05); }
+  70%  { transform: translate(-4%, 1%) scale(1.05); }
+  80%  { transform: translate(1%, -2%) scale(1.05); }
+  90%  { transform: translate(-2%, 4%) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1.05); }
+}
+
+/* ── Parallax utility classes (JS sets --scroll-y custom prop) */
+[data-para="slow"]  { transform: translateY(calc(var(--scroll-y, 0) * -0.08px)); will-change: transform; }
+[data-para="med"]   { transform: translateY(calc(var(--scroll-y, 0) * -0.15px)); will-change: transform; }
+[data-para="fast"]  { transform: translateY(calc(var(--scroll-y, 0) * -0.25px)); will-change: transform; }
+
+/* ── Stretched link overlay (card clickable area) ───────── */
+.stretched-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ── Ticker / infinite scroll ───────────────────────────── */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-x 30s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+.ticker-track--reverse {
+  animation: scroll-x-reverse 30s linear infinite;
+}
+
+/* ── Number counter accent ───────────────────────────────── */
+@keyframes num-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.num-popped { animation: num-pop 0.4s cubic-bezier(0.16,1,0.3,1); }
+
+/* ── Video card shimmer loader ───────────────────────────── */
+@keyframes video-shimmer {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 0.6; }
+  100% { opacity: 0.3; }
+}
+
+/* ── Oversized text reveal (hero) ───────────────────────── */
+.xl-reveal {
+  overflow: hidden;
+  display: block;
+}
+.xl-reveal > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(105%);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.xl-reveal.in > span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Framer-style card hover tilt ───────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* ── Slide-in from bottom (big distance) ────────────────── */
+.reveal-far {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-far.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Bold section divider text ───────────────────────────── */
+@keyframes scroll-text {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
