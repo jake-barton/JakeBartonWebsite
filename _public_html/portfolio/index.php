@@ -341,7 +341,7 @@
       </div>
 
       <!-- Grid -->
-      <div class="bento rv-stagger">
+      <div class="bento" id="bento-grid">
 
         <!-- 1. Phase Runner — hero -->
         <a href="game-programming/" class="b-card b-hero" data-cat="game">
@@ -430,7 +430,9 @@
 
         <!-- 6. Mediterranean Environment — placeholder (coming soon) -->
         <a href="art/" class="b-card b-sq b-accent-art" data-cat="art">
-          <img class="b-media" src="../assets/images/venice-art.jpg" alt="Venice Art" style="opacity:0.6">
+          <video class="b-media" autoplay muted loop playsinline preload="auto" style="opacity:0.75">
+            <source src="../assets/images/environment-scene.mp4" type="video/mp4">
+          </video>
           <div class="b-overlay"></div>
           <div class="b-content">
             <span class="b-eyebrow">3D Art · Unreal Engine 5</span>
@@ -477,14 +479,14 @@
           <span class="b-arrow">↗</span>
         </a>
 
-        <!-- 10. Phase Runner (playable) — strip -->
-        <a href="games/phase-runner/" class="b-card b-strip" data-cat="game">
-          <img class="b-media" src="../assets/images/phaserunnercover.png" alt="Phase Runner Playable">
+        <!-- 10. Mario Kart play strip -->
+        <a href="../MarioKartLatest/" class="b-card b-strip" data-cat="web">
+          <img class="b-media" src="../assets/images/mariokart.png" alt="Mario Kart Playable" style="object-position:center 30%">
           <div class="b-overlay" style="background:linear-gradient(to right,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.3) 60%,transparent 100%)"></div>
           <div class="b-content">
             <div class="b-text">
-              <span class="b-eyebrow">Playable in Browser</span>
-              <h2 class="b-title">Phase Runner — Play Now</h2>
+              <span class="b-eyebrow">Playable in Browser · Mode-7 JS</span>
+              <h2 class="b-title">Mario Kart Recreation — Play Now</h2>
             </div>
             <span class="tag" style="flex-shrink:0">Play →</span>
           </div>
@@ -492,8 +494,9 @@
 
         <!-- 11. College Guys PW — qtr -->
         <a href="professional-works/College%20Guys%20Pressure%20Washing/" class="b-card b-qtr b-accent-art" data-cat="art">
-          <div class="b-overlay" style="background:none"></div>
-          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+          <img class="b-media" src="professional-works/College%20Guys%20Pressure%20Washing/College%20Guys%20Pressure%20Washing%20Banner.svg" alt="College Guys Pressure Washing" style="object-fit:contain;padding:1rem;opacity:0.8">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
             <span class="b-eyebrow">Client Work</span>
             <h2 class="b-title">College Guys Pressure Washing</h2>
           </div>
@@ -502,6 +505,8 @@
 
         <!-- 12. This portfolio — qtr -->
         <a href="../index.php" class="b-card b-qtr b-no-media b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/jb-logo.png" alt="JB Portfolio" style="object-fit:contain;padding:2rem;opacity:0.15">
+          <div class="b-overlay" style="background:none"></div>
           <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
             <span class="b-eyebrow">PHP · JS · GSAP</span>
             <h2 class="b-title">jakebartoncreative.com</h2>
@@ -511,8 +516,10 @@
 
         <!-- 13. DeskPet — qtr -->
         <a href="game-programming/DeskPet/DeskPet_Simple.dmg" download class="b-card b-qtr b-accent-game" data-cat="game">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.18;">🐾</div>
+          <div class="b-overlay" style="background:none"></div>
           <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
-            <span class="b-eyebrow">macOS App</span>
+            <span class="b-eyebrow">macOS App · Download</span>
             <h2 class="b-title">DeskPet</h2>
             <p class="b-desc" style="font-size:0.78rem">Download for Mac →</p>
           </div>
@@ -520,7 +527,9 @@
 
         <!-- 14. Art & 3D section link — qtr -->
         <a href="art/" class="b-card b-qtr b-accent-art" data-cat="art">
-          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+          <img class="b-media" src="../assets/images/venice-art.jpg" alt="3D Art" style="opacity:0.4">
+          <div class="b-overlay"></div>
+          <div class="b-content">
             <span class="b-eyebrow">Maya · Blender · UE5</span>
             <h2 class="b-title">3D Art &amp; Modelling</h2>
           </div>
@@ -648,15 +657,27 @@
       var rows=document.querySelectorAll('.rv-row');
       var rObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var sibs=x.target.parentElement.querySelectorAll('.rv-row');var idx=0;sibs.forEach(function(s,i){if(s===x.target)idx=i;});x.target.style.transitionDelay=(idx*0.07)+'s';x.target.classList.add('is-visible');rObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
       rows.forEach(function(el){rObs.observe(el);});
-
-      var grps=document.querySelectorAll('.rv-stagger');
-      var gObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-visible');gObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
-      grps.forEach(function(el){gObs.observe(el);});
     })();
+
+    /* Bento card entrance — stagger in on load, no IntersectionObserver conflict */
+    (function(){
+      var cards = document.querySelectorAll('#bento-grid .b-card');
+      cards.forEach(function(c, i){
+        c.style.opacity = '0';
+        c.style.transform = 'translateY(24px)';
+        c.style.transition = 'opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1)';
+        setTimeout(function(){ c.style.opacity='1'; c.style.transform='none'; }, 80 + i * 45);
+      });
+      /* restart videos after they become visible */
+      document.querySelectorAll('#bento-grid video').forEach(function(v){
+        v.play().catch(function(){});
+      });
+    })();
+
     /* Filter */
     (function(){
       var btns=document.querySelectorAll('.filter-btn');
-      var cards=document.querySelectorAll('.b-card[data-cat]');
+      var cards=document.querySelectorAll('#bento-grid .b-card[data-cat]');
       btns.forEach(function(btn){
         btn.addEventListener('click',function(e){
           e.preventDefault();
@@ -664,12 +685,13 @@
           btn.classList.add('active');
           var f=btn.getAttribute('data-filter');
           cards.forEach(function(c){
-            if(f==='all'||c.getAttribute('data-cat')===f){
-              c.style.opacity='1';c.style.pointerEvents='auto';
-            } else {
-              c.style.opacity='0.15';c.style.pointerEvents='none';
-            }
+            var match = f==='all' || c.getAttribute('data-cat')===f;
+            c.style.opacity = match ? '1' : '0.12';
+            c.style.transform = match ? 'none' : 'scale(0.97)';
+            c.style.pointerEvents = match ? 'auto' : 'none';
           });
+          /* restart videos in case they paused while hidden */
+          document.querySelectorAll('#bento-grid video').forEach(function(v){ v.play().catch(function(){}); });
         });
       });
     })();
