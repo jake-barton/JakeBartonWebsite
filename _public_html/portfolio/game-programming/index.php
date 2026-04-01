@@ -190,7 +190,7 @@
                         <p class="eyebrow" style="margin-bottom:0.5rem">Web Game · JavaScript</p>
                         <h3>Mario Kart Recreation</h3>
                         <p>SNES-style Mode-7 renderer built from scratch in vanilla JS — raycasting, sprite sheets, lap logic, and multi-character selection. No libraries.</p>
-                        <a href="/portfolio/game-programming/mario-kart/" class="btn-secondary" style="font-size:0.85rem">View Project →</a>
+                        <a href="/MarioKartLatest/" class="btn-secondary" style="font-size:0.85rem">Play Now →</a>
                     </div>
                     <div class="cs-other-card">
                         <p class="eyebrow" style="margin-bottom:0.5rem">3D Art · Unreal Engine 5</p>

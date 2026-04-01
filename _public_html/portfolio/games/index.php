@@ -6,23 +6,24 @@ $games = [
     [
         'id' => 1,
         'title' => 'Phase Runner',
-        'description' => 'A fast-paced endless runner where you phase through dimensions to avoid obstacles. Built with Godot Engine.',
+        'description' => 'A fast-paced endless runner where you phase through dimensions to avoid obstacles. Solo-built with Godot 4 — custom physics, 10+ weapons, procedural level chunks.',
         'year' => '2024',
-        'tech' => ['Godot', 'GDScript', 'Web Export'],
-        'thumbnail' => 'phase-runner/PhaseRunnerWeb.png',
-        'playLink' => 'https://clervercarpet99.itch.io/phase-runner',
-        'external' => true,
-        'controls' => 'Keyboard: Arrow Keys or WASD to move'
+        'tech' => ['Godot 4', 'GDScript', 'WebGL Export'],
+        'thumbnail' => '../../assets/images/phaserunnercover.png',
+        'playLink' => 'phase-runner/',
+        'external' => false,
+        'controls' => 'Keyboard: Arrow Keys or WASD to move, Z / Space to shoot'
     ],
     [
         'id' => 2,
-        'title' => "Captain's Log",
-        'description' => 'Pixel art tileset and sprite design for a retro-style adventure game. Custom hand-crafted tiles and character sprites.',
+        'title' => 'Mario Kart Recreation',
+        'description' => 'A from-scratch SNES Mode-7 renderer in JavaScript — raycasting, sprite sheets, lap timing, character selection, and full race logic. No game engine.',
         'year' => '2024',
-        'tech' => ['Pixel Art', 'Game Design', 'Sprites & Tiles'],
-        'thumbnail' => '../captainslogtruetiles.png',
-        'playLink' => null,
-        'isArt' => true
+        'tech' => ['JavaScript', 'Mode-7 Rendering', 'Canvas API'],
+        'thumbnail' => '../../assets/images/mariokart.png',
+        'playLink' => '/MarioKartLatest/',
+        'external' => false,
+        'controls' => 'Arrow Keys to steer, Z to accelerate, X to brake/reverse'
     ],
 ];
 ?>

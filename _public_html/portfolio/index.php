@@ -9,113 +9,273 @@
   <link rel="stylesheet" href="../assets/css/animations.css">
   <link rel="stylesheet" href="../assets/css/components.css">
   <style>
-  /* ── Work section (mirrors homepage exactly) ─────────── */
-  .container-wide { max-width:1300px;margin:0 auto;padding:0 var(--spacing-md); }
+  /* ── Layout ─────────────────────────────────────────── */
+  .pw { max-width:1300px;margin:0 auto;padding:0 var(--spacing-md); }
 
-  /* Hero */
-  .port-hero { padding: clamp(7rem,14vw,11rem) 0 clamp(3rem,6vw,5rem); }
-  .port-hero-eyebrow {
-    font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
-    color:var(--text-faint);margin-bottom:1.25rem;display:block;
+  /* ── Hero — left-right split ───────────────────────── */
+  .port-hero {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3rem;
+    align-items:end;
+    padding:clamp(8rem,14vw,12rem) 0 clamp(3rem,5vw,4rem);
   }
-  .port-hero-title {
+  .port-hero-left h1 {
     font-family:var(--font-display);
-    font-size:clamp(3.5rem,9vw,7.5rem);
+    font-size:clamp(4rem,10vw,8rem);
+    font-weight:800;
+    letter-spacing:-0.05em;
+    line-height:0.95;
+    color:var(--text);
+    margin:0 0 1.5rem;
+  }
+  .port-hero-left h1 em {
+    font-style:italic;
+    font-family:'Playfair Display',Georgia,serif;
+    font-weight:400;
+    color:var(--text-muted);
+  }
+  .port-hero-right {
+    padding-bottom:0.5rem;
+  }
+  .port-hero-right p {
+    font-size:clamp(0.95rem,1.6vw,1.1rem);
+    color:var(--text-muted);
+    line-height:1.8;
+    margin-bottom:2rem;
+  }
+  .port-hero-stats {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .port-hero-stat {
+    background:var(--bg);
+    padding:1.25rem 1.5rem;
+  }
+  .port-hero-stat-num {
+    font-family:var(--font-display);
+    font-size:clamp(1.8rem,3vw,2.4rem);
     font-weight:800;
     letter-spacing:-0.04em;
-    line-height:1;
     color:var(--text);
-    margin-bottom:1.5rem;
+    display:block;
+    line-height:1;
   }
-  .port-hero-sub {
-    font-size:clamp(0.95rem,1.8vw,1.15rem);
+  .port-hero-stat-label {
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    display:block;
+    margin-top:0.35rem;
+  }
+
+  /* ── Filter tabs ────────────────────────────────────── */
+  .filter-row {
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    padding:2rem 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    margin-bottom:3rem;
+  }
+  .filter-label {
+    font-size:0.7rem;
+    font-weight:700;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    margin-right:0.75rem;
+  }
+  .filter-btn {
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.05em;
+    padding:0.4rem 1rem;
+    border-radius:99px;
+    border:1px solid rgba(255,255,255,0.12);
+    background:transparent;
     color:var(--text-muted);
-    line-height:1.75;
-    max-width:520px;
+    cursor:pointer;
+    transition:all 0.2s;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .filter-btn:hover,.filter-btn.active {
+    background:var(--text);
+    color:var(--bg);
+    border-color:var(--text);
   }
 
-  /* Label row */
-  .work-label-row {
-    display:flex;align-items:baseline;gap:1.25rem;
-    margin-bottom:3rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);
+  /* ── Bento grid ─────────────────────────────────────── */
+  .bento {
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-auto-rows:80px;
+    gap:12px;
+    margin-bottom:5rem;
   }
-  .work-label-num { font-family:var(--font-display);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;color:var(--text-faint); }
-  .work-label-text { font-family:var(--font-display);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);flex:1; }
-  .work-label-link { font-size:0.78rem;color:var(--text-faint);text-decoration:none;transition:color 0.2s; }
-  .work-label-link:hover { color:var(--text); }
 
-  /* Featured hero card */
-  .work-hero-card {
-    display:block;position:relative;width:100%;
-    height:clamp(300px,50vw,580px);overflow:hidden;text-decoration:none;margin-bottom:1px;
+  /* Card base */
+  .b-card {
+    position:relative;
+    overflow:hidden;
+    border-radius:12px;
+    background:#0f0f0f;
+    border:1px solid rgba(255,255,255,0.07);
+    text-decoration:none;
+    display:block;
+    transition:border-color 0.3s,transform 0.4s cubic-bezier(0.16,1,0.3,1);
   }
-  .work-hero-video, .work-hero-img {
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  .b-card:hover { border-color:rgba(255,255,255,0.22);transform:translateY(-3px); }
+  .b-card video,.b-card img.b-media {
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;
     transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    opacity:0.75;
   }
-  .work-hero-card:hover .work-hero-video,
-  .work-hero-card:hover .work-hero-img { transform:scale(1.04); }
-  .work-hero-gradient { position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.3) 50%,transparent 100%); }
-  .work-hero-content { position:absolute;bottom:0;left:0;right:0;padding:clamp(1.5rem,4vw,3rem);display:flex;flex-direction:column;gap:0.6rem; }
-  .work-hero-tags { display:flex;gap:0.5rem;flex-wrap:wrap; }
-  .work-hero-title { font-family:var(--font-display);font-size:clamp(2rem,5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1;margin:0; }
-  .work-hero-desc { font-size:0.95rem;color:rgba(255,255,255,0.7);line-height:1.65;max-width:60ch;margin:0; }
-  .work-hero-cta { font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);margin-top:0.5rem;transition:letter-spacing 0.3s; }
-  .work-hero-card:hover .work-hero-cta { letter-spacing:0.18em; }
-  .work-hero-badge { position:absolute;top:1.5rem;right:1.5rem;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text);border:1px solid rgba(255,255,255,0.3);padding:0.3rem 0.75rem;border-radius:99px;backdrop-filter:blur(8px); }
-
-  /* Work index list */
-  .work-list { border-top:1px solid var(--border);margin-top:0; }
-  .work-list-item {
-    display:grid;grid-template-columns:100px 1fr auto;align-items:center;
-    gap:1.5rem 2rem;padding:1.75rem 0;border-bottom:1px solid var(--border);
-    text-decoration:none;color:var(--text);transition:background 0.25s;cursor:pointer;
+  .b-card:hover video,.b-card:hover img.b-media { transform:scale(1.05);opacity:0.9; }
+  .b-overlay {
+    position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.2) 55%,transparent 100%);
   }
-  .work-list-item:hover { background:rgba(255,255,255,0.025); }
-  .work-list-media { width:100px;height:68px;border-radius:6px;overflow:hidden;flex-shrink:0; }
-  .work-list-media img, .work-list-media video { width:100%;height:100%;object-fit:cover;display:block; }
-  .work-list-info { display:flex;align-items:flex-start;gap:1.25rem; }
-  .work-list-num { font-family:var(--font-display);font-size:0.68rem;font-weight:800;letter-spacing:0.1em;color:var(--text-faint);padding-top:0.2em;flex-shrink:0;min-width:20px; }
-  .work-list-title { font-family:var(--font-display);font-size:clamp(1rem,2vw,1.35rem);font-weight:800;letter-spacing:-0.025em;color:var(--text);margin:0 0 0.35rem; }
-  .work-list-desc { font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0 0 0.5rem; }
-  .work-list-tags { display:flex;gap:0.4rem;flex-wrap:wrap; }
-  .work-list-arrow { font-size:1.25rem;color:var(--text-faint);transition:transform 0.25s,color 0.25s;flex-shrink:0;padding-right:0.5rem; }
-  .work-list-item:hover .work-list-arrow { transform:translate(3px,-3px);color:var(--text); }
+  .b-content {
+    position:absolute;bottom:0;left:0;right:0;
+    padding:1.25rem 1.5rem;
+  }
+  .b-eyebrow {
+    font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+    color:rgba(255,255,255,0.5);margin-bottom:0.4rem;display:block;
+  }
+  .b-title {
+    font-family:var(--font-display);font-weight:800;letter-spacing:-0.025em;
+    color:var(--text);line-height:1.1;margin:0 0 0.4rem;
+  }
+  .b-desc { font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.5;margin:0; }
+  .b-tags { display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.5rem; }
+  .b-arrow {
+    position:absolute;top:1.25rem;right:1.25rem;
+    font-size:1rem;color:rgba(255,255,255,0.35);
+    transition:color 0.2s,transform 0.2s;
+  }
+  .b-card:hover .b-arrow { color:var(--text);transform:translate(2px,-2px); }
+  .b-badge {
+    position:absolute;top:1.25rem;left:1.25rem;
+    font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--text);border:1px solid rgba(255,255,255,0.3);
+    padding:0.28rem 0.7rem;border-radius:99px;backdrop-filter:blur(8px);
+    background:rgba(0,0,0,0.4);
+  }
 
-  /* Reveal system */
-  .reveal-up,.reveal-row { opacity:0;transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-  .reveal-up { transform:translateY(48px); }
-  .reveal-row { transform:translateY(40px);border-bottom:1px solid transparent;transition:opacity 0.65s cubic-bezier(0.16,1,0.3,1),transform 0.65s cubic-bezier(0.16,1,0.3,1),border-color 0.65s ease; }
-  .reveal-up.is-visible,.reveal-row.is-visible { opacity:1;transform:none;border-color:var(--border); }
-  .stagger-reveal > * { opacity:0;transform:translateY(32px);transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1); }
-  .stagger-reveal.is-visible > *:nth-child(1){opacity:1;transform:none;transition-delay:0.05s}
-  .stagger-reveal.is-visible > *:nth-child(2){opacity:1;transform:none;transition-delay:0.12s}
-  .stagger-reveal.is-visible > *:nth-child(3){opacity:1;transform:none;transition-delay:0.19s}
+  /* ── Bento size presets ─────────────────────────────── */
+  /* Hero wide — spans 8 cols, 7 rows */
+  .b-hero { grid-column:span 8;grid-row:span 7; }
+  /* Tall right — spans 4 cols, 7 rows */
+  .b-tall { grid-column:span 4;grid-row:span 7; }
+  /* Wide half — 6 cols, 5 rows */
+  .b-wide { grid-column:span 6;grid-row:span 5; }
+  /* Square — 4 cols, 5 rows */
+  .b-sq { grid-column:span 4;grid-row:span 5; }
+  /* Third — 4 cols, 4 rows */
+  .b-third { grid-column:span 4;grid-row:span 4; }
+  /* Quarter — 3 cols, 4 rows */
+  .b-qtr { grid-column:span 3;grid-row:span 4; }
+  /* Full strip — 12 cols, 3 rows */
+  .b-strip { grid-column:span 12;grid-row:span 3; }
+  /* Two-third — 8 cols, 4 rows */
+  .b-two-third { grid-column:span 8;grid-row:span 4; }
 
-  /* Stats bar */
-  .port-stats { display:flex;align-items:center;gap:0;margin-top:clamp(3rem,6vw,5rem);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 0; }
-  .port-stat { flex:1;text-align:center;padding:0 1rem; }
-  .port-stat-num { font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.04em;color:var(--text);display:block; }
-  .port-stat-label { font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-faint);display:block;margin-top:0.25rem; }
-  .port-stat-divider { width:1px;height:2.5rem;background:var(--border);flex-shrink:0; }
+  /* Title size by card size */
+  .b-hero .b-title { font-size:clamp(1.8rem,4vw,3.2rem); }
+  .b-tall .b-title { font-size:clamp(1.4rem,2.5vw,2rem); }
+  .b-wide .b-title,.b-sq .b-title { font-size:clamp(1.2rem,2vw,1.7rem); }
+  .b-third .b-title,.b-qtr .b-title { font-size:1.1rem; }
+  .b-strip .b-title { font-size:1.1rem; }
 
-  /* Placeholder media blocks */
-  .media-placeholder { width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#111; }
-  .media-placeholder span { font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-faint); }
+  /* Strip layout — horizontal */
+  .b-strip .b-content { padding:1rem 1.5rem;display:flex;align-items:center;gap:1.5rem; }
+  .b-strip .b-text { flex:1; }
+  .b-strip .b-title { margin-bottom:0; }
+  .b-strip .b-desc { display:none; }
 
-  /* Section divider label */
-  .section-divider-row { display:flex;align-items:baseline;gap:1.25rem;padding:3rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:0; }
-  .section-divider-row span { font-family:var(--font-display);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint); }
+  /* Placeholder (no media) */
+  .b-no-media { background:#0d0d0d; }
+  .b-no-media .b-overlay { background:none; }
+  .b-no-media .b-content { bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end; }
 
-  @media(max-width:768px){
-    .work-list-item { grid-template-columns:72px 1fr auto;gap:0.75rem 1rem; }
-    .work-list-media { width:72px;height:52px; }
+  /* Color accent cards */
+  .b-accent-game { background:linear-gradient(135deg,#0d0d0d 0%,#0f1a2e 100%); }
+  .b-accent-web  { background:linear-gradient(135deg,#0d0d0d 0%,#1a1a0e 100%); }
+  .b-accent-art  { background:linear-gradient(135deg,#0d0d0d 0%,#1a0e1a 100%); }
+
+  /* ── Section heading row ────────────────────────────── */
+  .section-row {
+    display:flex;align-items:baseline;gap:1.5rem;
+    border-bottom:1px solid var(--border);
+    padding-bottom:1.25rem;margin-bottom:2.5rem;
+  }
+  .section-num { font-family:var(--font-display);font-size:0.7rem;font-weight:800;letter-spacing:0.12em;color:var(--text-faint); }
+  .section-title { font-family:var(--font-display);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);flex:1; }
+
+  /* ── Discipline index list (different from homepage — no media, text-only) */
+  .disc-list { list-style:none;padding:0;margin:0 0 5rem; }
+  .disc-item {
+    display:grid;
+    grid-template-columns:3rem 1fr auto;
+    align-items:center;
+    gap:1.5rem 2rem;
+    padding:1.5rem 0;
+    border-bottom:1px solid var(--border);
+    text-decoration:none;
+    color:var(--text);
+    transition:padding-left 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .disc-item:hover { padding-left:0.75rem; }
+  .disc-num { font-family:var(--font-display);font-size:0.68rem;font-weight:800;letter-spacing:0.1em;color:var(--text-faint); }
+  .disc-title { font-family:var(--font-display);font-size:clamp(1.3rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;line-height:1; }
+  .disc-sub { font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin-top:0.3rem; }
+  .disc-tags { display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.5rem; }
+  .disc-arrow { font-size:1.5rem;color:var(--text-faint);transition:transform 0.25s,color 0.25s;flex-shrink:0; }
+  .disc-item:hover .disc-arrow { transform:translate(4px,-4px);color:var(--text); }
+
+  /* ── Scroll reveals ─────────────────────────────────── */
+  .rv { opacity:0;transform:translateY(40px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .rv.is-visible { opacity:1;transform:none; }
+  .rv-row { opacity:0;transform:translateY(28px);transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .rv-row.is-visible { opacity:1;transform:none; }
+  .rv-stagger > * { opacity:0;transform:translateY(32px);transition:opacity 0.55s cubic-bezier(0.16,1,0.3,1),transform 0.55s cubic-bezier(0.16,1,0.3,1); }
+  .rv-stagger.is-visible > *:nth-child(1){opacity:1;transform:none;transition-delay:0.04s}
+  .rv-stagger.is-visible > *:nth-child(2){opacity:1;transform:none;transition-delay:0.10s}
+  .rv-stagger.is-visible > *:nth-child(3){opacity:1;transform:none;transition-delay:0.16s}
+  .rv-stagger.is-visible > *:nth-child(4){opacity:1;transform:none;transition-delay:0.22s}
+  .rv-stagger.is-visible > *:nth-child(5){opacity:1;transform:none;transition-delay:0.28s}
+  .rv-stagger.is-visible > *:nth-child(6){opacity:1;transform:none;transition-delay:0.34s}
+  .rv-stagger.is-visible > *:nth-child(7){opacity:1;transform:none;transition-delay:0.40s}
+  .rv-stagger.is-visible > *:nth-child(8){opacity:1;transform:none;transition-delay:0.46s}
+
+  @media(max-width:900px){
+    .port-hero { grid-template-columns:1fr;gap:2rem;padding-top:7rem; }
+    .b-hero { grid-column:span 12;grid-row:span 6; }
+    .b-tall { grid-column:span 12;grid-row:span 5; }
+    .b-wide { grid-column:span 12;grid-row:span 5; }
+    .b-sq   { grid-column:span 12;grid-row:span 5; }
+    .b-third{ grid-column:span 12;grid-row:span 4; }
+    .b-qtr  { grid-column:span 6; grid-row:span 4; }
+    .b-two-third { grid-column:span 12;grid-row:span 4; }
+    .b-strip{ grid-column:span 12;grid-row:span 3; }
+    .disc-title { font-size:1.4rem; }
   }
   @media(max-width:540px){
-    .work-list-item { grid-template-columns:1fr auto;gap:0.5rem; }
-    .work-list-media { display:none; }
-    .port-stats { flex-wrap:wrap;gap:1.5rem; }
-    .port-stat-divider { display:none; }
+    .b-qtr { grid-column:span 12;grid-row:span 4; }
+    .filter-btn { font-size:0.75rem;padding:0.35rem 0.8rem; }
   }
   </style>
 </head>
@@ -137,295 +297,320 @@
 
   <main class="site-content">
 
-    <!-- ── Hero ───────────────────────────────────────────── -->
-    <section class="port-hero container-wide">
-      <span class="port-hero-eyebrow reveal-up">All Work</span>
-      <h1 class="port-hero-title reveal-up" style="transition-delay:0.06s">Portfolio.</h1>
-      <p class="port-hero-sub reveal-up" style="transition-delay:0.12s">Games, websites, and everything in between — three disciplines, one through-line.</p>
-      <div class="port-stats stagger-reveal">
-        <div class="port-stat">
-          <span class="port-stat-num">3+</span>
-          <span class="port-stat-label">Years Building</span>
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <div class="pw">
+      <div class="port-hero">
+        <div class="port-hero-left">
+          <p class="rv" style="font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-faint);margin-bottom:1rem">All Work</p>
+          <h1 class="rv" style="transition-delay:0.06s">All<br><em>Projects.</em></h1>
         </div>
-        <div class="port-stat-divider"></div>
-        <div class="port-stat">
-          <span class="port-stat-num">20+</span>
-          <span class="port-stat-label">Projects Built</span>
-        </div>
-        <div class="port-stat-divider"></div>
-        <div class="port-stat">
-          <span class="port-stat-num">3</span>
-          <span class="port-stat-label">Disciplines</span>
-        </div>
-        <div class="port-stat-divider"></div>
-        <div class="port-stat">
-          <span class="port-stat-num">1</span>
-          <span class="port-stat-label">Shipped Game</span>
+        <div class="port-hero-right rv" style="transition-delay:0.12s">
+          <p>Games, websites, and everything in between. Three disciplines — gameplay programming, web development, and art &amp; design — built from scratch and shipped.</p>
+          <div class="port-hero-stats rv-stagger">
+            <div class="port-hero-stat">
+              <span class="port-hero-stat-num">20+</span>
+              <span class="port-hero-stat-label">Projects Built</span>
+            </div>
+            <div class="port-hero-stat">
+              <span class="port-hero-stat-num">3+</span>
+              <span class="port-hero-stat-label">Years Building</span>
+            </div>
+            <div class="port-hero-stat">
+              <span class="port-hero-stat-num">1</span>
+              <span class="port-hero-stat-label">Shipped Game</span>
+            </div>
+            <div class="port-hero-stat">
+              <span class="port-hero-stat-num">3</span>
+              <span class="port-hero-stat-label">Disciplines</span>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ── Work section ───────────────────────────────────── -->
-    <section style="padding-bottom:clamp(4rem,8vw,8rem);">
-      <div class="container-wide">
+    <!-- ── BENTO GRID ────────────────────────────────────── -->
+    <div class="pw" style="padding-bottom:clamp(4rem,8vw,8rem)">
 
-        <div class="work-label-row reveal-up">
-          <span class="work-label-num">01</span>
-          <span class="work-label-text">Selected Work</span>
-        </div>
+      <!-- Filter row -->
+      <div class="filter-row rv">
+        <span class="filter-label">Filter</span>
+        <a href="#all" class="filter-btn active" data-filter="all">All</a>
+        <a href="#games" class="filter-btn" data-filter="game">Games</a>
+        <a href="#web" class="filter-btn" data-filter="web">Web</a>
+        <a href="#art" class="filter-btn" data-filter="art">Art &amp; Design</a>
+      </div>
 
-        <!-- Featured: Phase Runner -->
-        <a href="game-programming/" class="work-hero-card reveal-up" style="transition-delay:0.08s">
-          <video class="work-hero-video" autoplay muted loop playsinline preload="auto">
+      <!-- Grid -->
+      <div class="bento rv-stagger">
+
+        <!-- 1. Phase Runner — hero -->
+        <a href="game-programming/" class="b-card b-hero" data-cat="game">
+          <video class="b-media" autoplay muted loop playsinline preload="auto">
             <source src="../assets/images/phase-runner-screen.mp4" type="video/mp4">
           </video>
-          <div class="work-hero-gradient"></div>
-          <div class="work-hero-content">
-            <div class="work-hero-tags">
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <div class="b-tags">
               <span class="tag">Game Programming</span>
               <span class="tag tag-muted">Godot 4</span>
               <span class="tag tag-muted">GDScript</span>
               <span class="tag tag-muted">Solo</span>
             </div>
-            <h2 class="work-hero-title">Phase Runner</h2>
-            <p class="work-hero-desc">2D side-scrolling shooter with custom physics, 10+ weapons, procedural level chunks, and invincibility dash. Solo-developed and live on itch.io.</p>
-            <span class="work-hero-cta">View Case Study →</span>
+            <h2 class="b-title">Phase Runner</h2>
+            <p class="b-desc">Custom physics, 10+ weapons, procedural level chunks — solo-built and live on itch.io.</p>
           </div>
-          <div class="work-hero-badge">Featured</div>
+          <div class="b-badge">Featured</div>
+          <span class="b-arrow">↗</span>
         </a>
 
-        <!-- Work list -->
-        <div class="work-list">
+        <!-- 2. VR Rhythm Game — tall -->
+        <a href="game-programming/" class="b-card b-tall b-accent-game" data-cat="game">
+          <video class="b-media" autoplay muted loop playsinline preload="metadata">
+            <source src="../assets/images/vr-gameplay.mp4" type="video/mp4">
+          </video>
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Lead Programmer · 5-Person Team</span>
+            <div class="b-tags">
+              <span class="tag tag-muted">UE5</span>
+              <span class="tag tag-muted">C++</span>
+              <span class="tag tag-muted">VR</span>
+            </div>
+            <h2 class="b-title">VR Rhythm Game</h2>
+            <p class="b-desc">Body-movement dragon controller in Unreal Engine 5. Custom C++ locomotion, OpenXR.</p>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="game-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media video-card">
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/images/vr-gameplay.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">01</span>
-              <div>
-                <h3 class="work-list-title">VR Rhythm Game</h3>
-                <p class="work-list-desc">Lead Programmer on a 5-person team — body-movement dragon controller in Unreal Engine 5, C++, OpenXR.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">UE5</span>
-                  <span class="tag tag-muted">C++</span>
-                  <span class="tag tag-muted">VR</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 3. Penguins Creed — wide -->
+        <a href="game-programming/" class="b-card b-wide b-accent-game" data-cat="game">
+          <video class="b-media" autoplay muted loop playsinline preload="metadata">
+            <source src="../assets/images/penguins-creed.mp4" type="video/mp4">
+          </video>
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">UE5 · Behavior Trees</span>
+            <h2 class="b-title">Penguins Creed</h2>
+            <p class="b-desc">Third-person stealth-action — patrol AI, line-of-sight detection, NavMesh chase.</p>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="game-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media video-card">
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/images/environment-scene.mp4" type="video/mp4">
-              </video>
+        <!-- 4. 33 Miles — square -->
+        <a href="professional-works/33-miles-graphics/" class="b-card b-sq" data-cat="art">
+          <img class="b-media" src="professional-works/33-miles-graphics/images/thumbnails/33-miles-01-grain-regular.png" alt="33 Miles" style="opacity:0.85">
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Paid Client Work</span>
+            <div class="b-tags">
+              <span class="tag tag-muted">Branding</span>
+              <span class="tag tag-muted">Illustrator</span>
             </div>
-            <div class="work-list-info">
-              <span class="work-list-num">02</span>
-              <div>
-                <h3 class="work-list-title">Mediterranean Environment</h3>
-                <p class="work-list-desc">Photorealistic real-time 3D scene built in Unreal Engine 5 — Lumen GI, Nanite, custom material layering.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">3D Art</span>
-                  <span class="tag tag-muted">Unreal 5</span>
-                  <span class="tag tag-muted">Real-time</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+            <h2 class="b-title">33 Miles Band Graphics</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="game-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media video-card">
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/images/penguins-creed.mp4" type="video/mp4">
-              </video>
+        <!-- 5. Mario Kart — wide -->
+        <a href="../MarioKartLatest/" class="b-card b-wide b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/mariokart.png" alt="Mario Kart">
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Web Game · Playable</span>
+            <div class="b-tags">
+              <span class="tag tag-muted">JavaScript</span>
+              <span class="tag tag-muted">Mode-7</span>
             </div>
-            <div class="work-list-info">
-              <span class="work-list-num">03</span>
-              <div>
-                <h3 class="work-list-title">Penguins Creed</h3>
-                <p class="work-list-desc">Third-person stealth-action in UE5 — patrol AI with Behavior Trees, line-of-sight detection, NavMesh chase logic.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">UE5</span>
-                  <span class="tag tag-muted">Blueprints</span>
-                  <span class="tag tag-muted">AI Systems</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+            <h2 class="b-title">Mario Kart Recreation</h2>
+            <p class="b-desc">SNES Mode-7 renderer from scratch — raycasting, sprite sheets, lap logic. Play now.</p>
+          </div>
+          <div class="b-badge">Playable ↗</div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="web-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="../assets/images/mariokart.png" alt="Mario Kart Recreation">
+        <!-- 6. Mediterranean Environment — placeholder (coming soon) -->
+        <a href="art/" class="b-card b-sq b-accent-art" data-cat="art">
+          <img class="b-media" src="../assets/images/venice-art.jpg" alt="Venice Art" style="opacity:0.6">
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">3D Art · Unreal Engine 5</span>
+            <div class="b-tags">
+              <span class="tag tag-muted">Lumen GI</span>
+              <span class="tag tag-muted">Nanite</span>
             </div>
-            <div class="work-list-info">
-              <span class="work-list-num">04</span>
-              <div>
-                <h3 class="work-list-title">Mario Kart Recreation</h3>
-                <p class="work-list-desc">SNES Mode-7 renderer in vanilla JS — raycasting, sprite sheets, lap logic, and multi-character selection. No libraries.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">JavaScript</span>
-                  <span class="tag tag-muted">Web Game</span>
-                  <span class="tag tag-muted">Mode-7</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+            <h2 class="b-title">Mediterranean Environment</h2>
+            <p class="b-desc">Photorealistic coastal scene — custom lighting, modular arch, atmospheric FX.</p>
+          </div>
+          <div class="b-badge">Coming Soon</div>
+        </a>
 
-          <a href="professional-works/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="professional-works/33-miles-graphics/images/full/33-miles-01-grain-regular.png" alt="33 Miles Brand Work" style="object-fit:cover">
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">05</span>
-              <div>
-                <h3 class="work-list-title">33Miles Band Graphics</h3>
-                <p class="work-list-desc">Paid brand &amp; merchandise design for a signed Christian music group — logo, merch, tour visuals.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">Branding</span>
-                  <span class="tag tag-muted">Illustrator</span>
-                  <span class="tag tag-muted">Print</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 7. T-Shirt Designs — third -->
+        <a href="tshirt-designs/" class="b-card b-third" data-cat="art">
+          <img class="b-media" src="../assets/images/shelcover.png" alt="T-Shirt Designs">
+          <div class="b-overlay"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">15+ Apparel Runs</span>
+            <h2 class="b-title">T-Shirt Designs</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="tshirt-designs/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="../assets/images/shelcover.png" alt="T-Shirt Designs" style="object-fit:cover">
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">06</span>
-              <div>
-                <h3 class="work-list-title">T-Shirt Design Portfolio</h3>
-                <p class="work-list-desc">15+ apparel runs designed and produced for Pi Kappa Phi — custom illustration, vendor management, print production.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">Apparel</span>
-                  <span class="tag tag-muted">Illustration</span>
-                  <span class="tag tag-muted">Print</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 8. Pi Kappa Phi T-Shirt Web — third -->
+        <a href="web-programming/PiKappaPhiTshirtWeb2.0/" class="b-card b-third b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/pikappaphi-cover.svg" alt="Pi Kappa Phi Web" style="object-fit:contain;padding:1rem;opacity:0.7">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Full-Stack PHP App</span>
+            <h2 class="b-title">PKP T-Shirt Platform</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="web-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <div class="media-placeholder"><span>PHP / JS</span></div>
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">07</span>
-              <div>
-                <h3 class="work-list-title">jakebartoncreative.com</h3>
-                <p class="work-list-desc">This portfolio — PHP, vanilla JS, GSAP animations, IntersectionObserver scroll reveals, and GitHub Actions deploy.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">PHP</span>
-                  <span class="tag tag-muted">JavaScript</span>
-                  <span class="tag tag-muted">GSAP</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 9. TechBirmingham — third -->
+        <a href="web-programming/" class="b-card b-third b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/tb-logo.jpg" alt="TechBirmingham" style="object-fit:contain;padding:1.5rem;opacity:0.6">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">AI · Next.js</span>
+            <h2 class="b-title">TechBirmingham Sponsor AI</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-        </div><!-- /.work-list -->
-
-        <!-- Divider: Browse by Discipline -->
-        <div class="section-divider-row reveal-up" style="margin-top:4rem">
-          <span class="work-label-num">02</span>
-          <span>Browse by Discipline</span>
-        </div>
-
-        <div class="work-list">
-
-          <a href="game-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="../assets/images/phaserunnercover.png" alt="Game Programming">
+        <!-- 10. Phase Runner (playable) — strip -->
+        <a href="games/phase-runner/" class="b-card b-strip" data-cat="game">
+          <img class="b-media" src="../assets/images/phaserunnercover.png" alt="Phase Runner Playable">
+          <div class="b-overlay" style="background:linear-gradient(to right,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.3) 60%,transparent 100%)"></div>
+          <div class="b-content">
+            <div class="b-text">
+              <span class="b-eyebrow">Playable in Browser</span>
+              <h2 class="b-title">Phase Runner — Play Now</h2>
             </div>
-            <div class="work-list-info">
-              <span class="work-list-num">GP</span>
-              <div>
-                <h3 class="work-list-title">Game Programming</h3>
-                <p class="work-list-desc">Godot 4, Unreal Engine 5, C++ — from solo indie games to team-built VR experiences. Includes 3 full case studies.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">Godot 4</span>
-                  <span class="tag tag-muted">UE5</span>
-                  <span class="tag tag-muted">C++</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+            <span class="tag" style="flex-shrink:0">Play →</span>
+          </div>
+        </a>
 
-          <a href="web-programming/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="../assets/images/mariokart.png" alt="Web Programming">
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">WP</span>
-              <div>
-                <h3 class="work-list-title">Web Programming</h3>
-                <p class="work-list-desc">Full-stack PHP apps, JavaScript tools, AI integrations, e-commerce, and this portfolio itself.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">PHP</span>
-                  <span class="tag tag-muted">JavaScript</span>
-                  <span class="tag tag-muted">Next.js</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 11. College Guys PW — qtr -->
+        <a href="professional-works/College%20Guys%20Pressure%20Washing/" class="b-card b-qtr b-accent-art" data-cat="art">
+          <div class="b-overlay" style="background:none"></div>
+          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+            <span class="b-eyebrow">Client Work</span>
+            <h2 class="b-title">College Guys Pressure Washing</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="art/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="professional-works/33-miles-graphics/images/full/33-miles-01-grain-regular.png" alt="Art & Design" style="object-fit:cover">
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">AD</span>
-              <div>
-                <h3 class="work-list-title">Art &amp; Design</h3>
-                <p class="work-list-desc">Client graphics, band merch, apparel design, 3D modelling, and photorealistic environment art.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">Maya</span>
-                  <span class="tag tag-muted">Illustrator</span>
-                  <span class="tag tag-muted">Blender</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 12. This portfolio — qtr -->
+        <a href="../index.php" class="b-card b-qtr b-no-media b-accent-web" data-cat="web">
+          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+            <span class="b-eyebrow">PHP · JS · GSAP</span>
+            <h2 class="b-title">jakebartoncreative.com</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-          <a href="games/" class="work-list-item reveal-row">
-            <div class="work-list-media">
-              <img src="../assets/images/phaserunnercover.png" alt="Playable Games">
-            </div>
-            <div class="work-list-info">
-              <span class="work-list-num">PG</span>
-              <div>
-                <h3 class="work-list-title">Playable Games</h3>
-                <p class="work-list-desc">Run Phase Runner and Mario Kart right here in the browser — no install required.</p>
-                <div class="work-list-tags">
-                  <span class="tag tag-muted">Browser</span>
-                  <span class="tag tag-muted">WebGL</span>
-                  <span class="tag tag-muted">JavaScript</span>
-                </div>
-              </div>
-            </div>
-            <span class="work-list-arrow">↗</span>
-          </a>
+        <!-- 13. DeskPet — qtr -->
+        <a href="game-programming/DeskPet/DeskPet_Simple.dmg" download class="b-card b-qtr b-accent-game" data-cat="game">
+          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+            <span class="b-eyebrow">macOS App</span>
+            <h2 class="b-title">DeskPet</h2>
+            <p class="b-desc" style="font-size:0.78rem">Download for Mac →</p>
+          </div>
+        </a>
 
-        </div><!-- /.discipline list -->
+        <!-- 14. Art & 3D section link — qtr -->
+        <a href="art/" class="b-card b-qtr b-accent-art" data-cat="art">
+          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+            <span class="b-eyebrow">Maya · Blender · UE5</span>
+            <h2 class="b-title">3D Art &amp; Modelling</h2>
+          </div>
+          <span class="b-arrow">↗</span>
+        </a>
 
-      </div><!-- /.container-wide -->
-    </section>
+      </div><!-- /.bento -->
+
+      <!-- ── DISCIPLINE INDEX ─────────────────────────── -->
+      <div class="section-row rv">
+        <span class="section-num">02</span>
+        <span class="section-title">Browse by Discipline</span>
+      </div>
+
+      <ul class="disc-list">
+        <li><a href="game-programming/" class="disc-item rv-row">
+          <span class="disc-num">01</span>
+          <div>
+            <div class="disc-title">Game Programming</div>
+            <div class="disc-sub">Godot 4, Unreal Engine 5, C++ — solo indie games to team-built VR. 3 full case studies.</div>
+            <div class="disc-tags">
+              <span class="tag tag-muted">Godot 4</span>
+              <span class="tag tag-muted">UE5</span>
+              <span class="tag tag-muted">C++</span>
+              <span class="tag tag-muted">GDScript</span>
+            </div>
+          </div>
+          <span class="disc-arrow">↗</span>
+        </a></li>
+
+        <li><a href="web-programming/" class="disc-item rv-row">
+          <span class="disc-num">02</span>
+          <div>
+            <div class="disc-title">Web Programming</div>
+            <div class="disc-sub">Full-stack PHP apps, JavaScript tools, AI integrations, and e-commerce platforms.</div>
+            <div class="disc-tags">
+              <span class="tag tag-muted">PHP</span>
+              <span class="tag tag-muted">JavaScript</span>
+              <span class="tag tag-muted">Next.js</span>
+              <span class="tag tag-muted">MySQL</span>
+            </div>
+          </div>
+          <span class="disc-arrow">↗</span>
+        </a></li>
+
+        <li><a href="art/" class="disc-item rv-row">
+          <span class="disc-num">03</span>
+          <div>
+            <div class="disc-title">Art &amp; Design</div>
+            <div class="disc-sub">3D modelling, photorealistic environment art, client branding, and apparel design.</div>
+            <div class="disc-tags">
+              <span class="tag tag-muted">Maya</span>
+              <span class="tag tag-muted">Blender</span>
+              <span class="tag tag-muted">Illustrator</span>
+              <span class="tag tag-muted">Substance</span>
+            </div>
+          </div>
+          <span class="disc-arrow">↗</span>
+        </a></li>
+
+        <li><a href="games/" class="disc-item rv-row">
+          <span class="disc-num">04</span>
+          <div>
+            <div class="disc-title">Playable Games</div>
+            <div class="disc-sub">Phase Runner and Mario Kart — run them right here in your browser.</div>
+            <div class="disc-tags">
+              <span class="tag tag-muted">Browser</span>
+              <span class="tag tag-muted">WebGL</span>
+              <span class="tag tag-muted">JavaScript</span>
+            </div>
+          </div>
+          <span class="disc-arrow">↗</span>
+        </a></li>
+
+        <li><a href="professional-works/" class="disc-item rv-row">
+          <span class="disc-num">05</span>
+          <div>
+            <div class="disc-title">Professional Works</div>
+            <div class="disc-sub">Paid client projects — band graphics, pressure washing brand, apparel campaigns.</div>
+            <div class="disc-tags">
+              <span class="tag tag-muted">Client Work</span>
+              <span class="tag tag-muted">Branding</span>
+              <span class="tag tag-muted">Print</span>
+            </div>
+          </div>
+          <span class="disc-arrow">↗</span>
+        </a></li>
+      </ul>
+
+    </div><!-- /.pw -->
 
   </main>
 
@@ -454,19 +639,39 @@
     (function(){var b=document.getElementById('scroll-progress');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;b.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});})();
     /* Cursor glow */
     (function(){var g=document.getElementById('cursor-glow');if(!g||window.matchMedia('(pointer:coarse)').matches)return;var cx=0,cy=0,tx=0,ty=0;document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;g.style.opacity='1';});document.addEventListener('mouseleave',function(){g.style.opacity='0';});function lerp(a,b,t){return a+(b-a)*t;}(function loop(){cx=lerp(cx,tx,0.07);cy=lerp(cy,ty,0.07);g.style.left=cx+'px';g.style.top=cy+'px';requestAnimationFrame(loop);})();})();
-    /* Scroll reveal */
+    /* Scroll reveals */
     (function(){
-      var singles=document.querySelectorAll('.reveal-up');
-      var sObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');sObs.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+      var singles=document.querySelectorAll('.rv');
+      var sObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-visible');sObs.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
       singles.forEach(function(el){sObs.observe(el);});
 
-      var rows=document.querySelectorAll('.reveal-row');
-      var rObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var siblings=e.target.parentElement.querySelectorAll('.reveal-row');var idx=0;siblings.forEach(function(s,i){if(s===e.target)idx=i;});e.target.style.transitionDelay=(idx*0.06)+'s';e.target.classList.add('is-visible');rObs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+      var rows=document.querySelectorAll('.rv-row');
+      var rObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var sibs=x.target.parentElement.querySelectorAll('.rv-row');var idx=0;sibs.forEach(function(s,i){if(s===x.target)idx=i;});x.target.style.transitionDelay=(idx*0.07)+'s';x.target.classList.add('is-visible');rObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
       rows.forEach(function(el){rObs.observe(el);});
 
-      var stagger=document.querySelectorAll('.stagger-reveal');
-      var gObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');gObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
-      stagger.forEach(function(el){gObs.observe(el);});
+      var grps=document.querySelectorAll('.rv-stagger');
+      var gObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-visible');gObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+      grps.forEach(function(el){gObs.observe(el);});
+    })();
+    /* Filter */
+    (function(){
+      var btns=document.querySelectorAll('.filter-btn');
+      var cards=document.querySelectorAll('.b-card[data-cat]');
+      btns.forEach(function(btn){
+        btn.addEventListener('click',function(e){
+          e.preventDefault();
+          btns.forEach(function(b){b.classList.remove('active');});
+          btn.classList.add('active');
+          var f=btn.getAttribute('data-filter');
+          cards.forEach(function(c){
+            if(f==='all'||c.getAttribute('data-cat')===f){
+              c.style.opacity='1';c.style.pointerEvents='auto';
+            } else {
+              c.style.opacity='0.15';c.style.pointerEvents='none';
+            }
+          });
+        });
+      });
     })();
   </script>
 

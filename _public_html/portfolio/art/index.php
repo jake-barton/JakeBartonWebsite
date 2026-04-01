@@ -51,6 +51,29 @@
                 </div>
                 <div class="grid-2 stagger-children">
 
+                    <!-- Mediterranean Environment — Coming Soon -->
+                    <div class="work-card reveal" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;gap:0;position:relative;border:1px solid rgba(255,255,255,0.12);">
+                        <div style="position:relative;overflow:hidden;min-height:280px;">
+                            <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.7;">
+                                <source src="../../assets/images/environment-scene.mp4" type="video/mp4">
+                            </video>
+                            <img src="../../assets/images/venice-art.jpg" alt="Venice Art" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.4s">
+                        </div>
+                        <div class="work-card-info" style="background:#0d0d0d;">
+                            <p class="eyebrow">Unreal Engine 5 · 3D Environment</p>
+                            <h3>Mediterranean Environment</h3>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin: 8px 0 12px;">
+                                Photorealistic coastal scene built in UE5 — Lumen global illumination, Nanite geometry, custom atmospheric effects, and modular architecture.
+                            </p>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">
+                                • Lumen GI &amp; Reflections<br>
+                                • Nanite Meshes<br>
+                                • Atmospheric FX &amp; Water
+                            </p>
+                            <span class="btn-secondary" style="opacity:0.55;cursor:default;font-size:0.85rem">Full Case Study Coming Soon</span>
+                        </div>
+                    </div>
+
                     <!-- Professional Graphics -->
                     <div class="work-card tilt-card reveal" style="cursor: pointer;" onclick="window.location.href='../professional-works/';">
                         <div class="work-card-img">
