@@ -133,21 +133,22 @@ $contact = [
         <a href="/portfolio/" class="work-label-link">View All →</a>
       </div>
 
-      <!-- Featured hero project: Environment scene as cinematic backdrop -->
-      <a href="portfolio/game-programming/" class="work-hero-card reveal-up">
+      <!-- Featured hero project: Phase Runner gameplay -->
+      <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" class="work-hero-card reveal-up">
         <video class="work-hero-video" autoplay muted loop playsinline preload="auto">
-          <source src="assets/images/environment-scene.mp4" type="video/mp4">
+          <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
         </video>
         <div class="work-hero-gradient"></div>
         <div class="work-hero-content">
           <div class="work-hero-tags">
-            <span class="tag">3D Art</span>
-            <span class="tag tag-muted">Real-time</span>
-            <span class="tag tag-muted">Unreal 5</span>
+            <span class="tag">Game Design</span>
+            <span class="tag tag-muted">Godot 4</span>
+            <span class="tag tag-muted">GDScript</span>
+            <span class="tag tag-muted">Solo</span>
           </div>
-          <h2 class="work-hero-title">Mediterranean Environment</h2>
-          <p class="work-hero-desc">Real-time 3D scene built in Unreal Engine 5 — custom lighting, modular architecture, atmospheric FX.</p>
-          <span class="work-hero-cta">View All Work ↗</span>
+          <h2 class="work-hero-title">Phase Runner</h2>
+          <p class="work-hero-desc">2D side-scrolling shooter with custom physics, 10+ weapons, procedural level chunks, and invincibility dash. Solo-developed and live on itch.io.</p>
+          <span class="work-hero-cta">Play on itch.io ↗</span>
         </div>
         <div class="work-hero-badge">Featured</div>
       </a>
@@ -155,21 +156,21 @@ $contact = [
       <!-- Project index list -->
       <div class="work-list container-wide">
 
-        <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" class="work-list-item reveal-row">
+        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
           <div class="work-list-media video-card">
             <video autoplay muted loop playsinline preload="metadata">
-              <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
+              <source src="assets/images/environment-scene.mp4" type="video/mp4">
             </video>
           </div>
           <div class="work-list-info">
             <span class="work-list-num">01</span>
             <div>
-              <h3 class="work-list-title">Phase Runner</h3>
-              <p class="work-list-desc">2D side-scrolling shooter — custom physics, 10+ weapons, procedural chunks, invincibility dash. Solo-developed, live on itch.io.</p>
+              <h3 class="work-list-title">Mediterranean Environment</h3>
+              <p class="work-list-desc">Real-time 3D scene built in Unreal Engine 5 — custom lighting, modular architecture, atmospheric FX.</p>
               <div class="work-list-tags">
-                <span class="tag tag-muted">Game Design</span>
-                <span class="tag tag-muted">Godot 4</span>
-                <span class="tag tag-muted">Solo</span>
+                <span class="tag tag-muted">3D Art</span>
+                <span class="tag tag-muted">Unreal 5</span>
+                <span class="tag tag-muted">Real-time</span>
               </div>
             </div>
           </div>
