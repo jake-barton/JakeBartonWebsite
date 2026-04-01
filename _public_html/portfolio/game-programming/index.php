@@ -11,7 +11,7 @@
     <style>
     .cs-container { max-width:900px;margin:0 auto;padding:0 var(--container-pad); }
     .cs-hero { padding:140px 0 72px; }
-    .cs-hero h1 { font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;color:var(--text);margin-bottom:1.25rem; }
+    .cs-hero h1 { font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.2rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;color:var(--text);margin-bottom:1.25rem;white-space:nowrap; }
     .cs-hero p.lead { font-size:clamp(1rem,2vw,1.2rem);color:var(--text-muted);line-height:1.75;max-width:640px; }
     .case-study { padding:72px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
     .case-study:last-child { border-bottom:none; }
@@ -65,7 +65,7 @@
         <div class="cs-container">
             <section class="cs-hero">
                 <p class="eyebrow reveal-up" style="margin-bottom:1rem">Portfolio → Game Programming</p>
-                <h1 class="reveal-up" style="transition-delay:0.05s">Game<br>Programming</h1>
+                <h1 class="reveal-up" style="transition-delay:0.05s">Game Programming</h1>
                 <div class="cs-divider reveal-up" style="transition-delay:0.1s;margin-top:1.5rem;"></div>
                 <p class="lead reveal-up" style="transition-delay:0.15s">
                     Gameplay systems, engine work, and shipped projects — built in Unreal Engine 5, Godot 4, and vanilla JavaScript. Currently <strong style="color:var(--text)">Lead Programmer at Samford Game Design Studio</strong> coordinating a 5-person team toward a full playable demo.
