@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jake Barton - Game Designer & 3D Artist</title>
+    <title>Jake Barton — Gameplay Programmer & Technical Designer</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20260325">
     <link rel="alternate icon" href="assets/images/favicon.svg?v=20260325">
 
@@ -17,7 +17,7 @@
   <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:100001;transition:width 0.1s linear;pointer-events:none"></div>
 
   <!-- Ambient cursor glow -->
-  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>  </div>
+  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>
 
 
 <?php
@@ -70,7 +70,19 @@ $contact = [
         <div class="xl-reveal" style="transition-delay:0.08s"><span><?php echo explode(' ', $content['name'])[1]; ?></span></div>
       </div>
 
-      <!-- Bottom two-col info row -->
+      <!-- Social icons under name -->
+      <div class="hero-social-icons">
+        <a href="https://github.com/jake-barton" target="_blank" rel="noopener" class="hero-social-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23A11.52 11.52 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.807 5.625-5.479 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" rel="noopener" class="hero-social-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
       <div class="hero-bottom">
         <div class="hero-bottom-left">
           <p class="hero-tagline">
@@ -123,160 +135,250 @@ $contact = [
       </div>
     </div>
 
-    <!-- ── Selected Work ─────────────────────────────────── -->
+    <!-- ── Selected Work  (sticky scroll accordion) ──────── -->
     <section class="work-section" id="work">
 
-      <!-- Section label row -->
-      <div class="work-label-row container-wide">
+      <!-- Section label row (outside sticky, scrolls normally) -->
+      <div class="work-label-row">
         <span class="work-label-num">01</span>
         <span class="work-label-text">Selected Work</span>
         <a href="/portfolio/" class="work-label-link">View All →</a>
       </div>
 
-      <!-- Featured hero project: Phase Runner gameplay -->
-      <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" class="work-hero-card reveal-up">
-        <video class="work-hero-video" autoplay muted loop playsinline preload="auto">
-          <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
-        </video>
-        <div class="work-hero-gradient"></div>
-        <div class="work-hero-content">
-          <div class="work-hero-tags">
-            <span class="tag">Game Design</span>
-            <span class="tag tag-muted">Godot 4</span>
-            <span class="tag tag-muted">GDScript</span>
-            <span class="tag tag-muted">Solo</span>
-          </div>
-          <h2 class="work-hero-title">Phase Runner</h2>
-          <p class="work-hero-desc">2D side-scrolling shooter with custom physics, 10+ weapons, procedural level chunks, and invincibility dash. Solo-developed and live on itch.io.</p>
-          <span class="work-hero-cta">Play on itch.io ↗</span>
-        </div>
-        <div class="work-hero-badge">Featured</div>
-      </a>
+      <!-- Scroll tunnel — its height gives the scroll room -->
+      <div class="work-scroll-tunnel" id="workTunnel">
 
-      <!-- Project index list -->
-      <div class="work-list container-wide">
+        <!-- Sticky viewport — this never moves -->
+        <div class="work-sticky" id="workSticky">
+          <div class="wa-stack" id="waStack">
 
-        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
-          <div class="work-list-media video-card">
-            <video autoplay muted loop playsinline preload="metadata">
-              <source src="assets/images/environment-scene.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="work-list-info">
-            <span class="work-list-num">01</span>
-            <div>
-              <h3 class="work-list-title">Mediterranean Environment</h3>
-              <p class="work-list-desc">Real-time 3D scene built in Unreal Engine 5 — custom lighting, modular architecture, atmospheric FX.</p>
-              <div class="work-list-tags">
-                <span class="tag tag-muted">3D Art</span>
-                <span class="tag tag-muted">Unreal 5</span>
-                <span class="tag tag-muted">Real-time</span>
+            <!-- Card 0 — Phase Runner (featured) -->
+            <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank"
+               class="wa-card" data-idx="0">
+              <!-- full-bleed media -->
+              <video class="wa-media" autoplay muted loop playsinline preload="auto">
+                <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
+              </video>
+              <div class="wa-grad"></div>
+              <!-- expanded content -->
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag">Game Design</span>
+                  <span class="tag tag-muted">Godot 4</span>
+                  <span class="tag tag-muted">GDScript</span>
+                  <span class="tag tag-muted">Solo</span>
+                </div>
+                <h2 class="wa-title">Phase Runner</h2>
+                <p class="wa-desc">2D side-scrolling shooter with custom physics, 10+ weapons, procedural level chunks, and invincibility dash. Solo-developed and live on itch.io.</p>
+                <span class="wa-cta">Play on itch.io ↗</span>
               </div>
-            </div>
-          </div>
-          <span class="work-list-arrow">↗</span>
-        </a>
-
-        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
-          <div class="work-list-media video-card">
-            <video autoplay muted loop playsinline preload="metadata">
-              <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="work-list-info">
-            <span class="work-list-num">02</span>
-            <div>
-              <h3 class="work-list-title">VR Rhythm Game</h3>
-              <p class="work-list-desc">Body-movement dragon controller in Unreal Engine 5 — C++ gameplay, VR locomotion, rhythm mechanics.</p>
-              <div class="work-list-tags">
-                <span class="tag tag-muted">VR</span>
-                <span class="tag tag-muted">Unreal 5</span>
-                <span class="tag tag-muted">C++</span>
+              <div class="wa-badge">Featured</div>
+              <!-- collapsed bar -->
+              <div class="wa-bar">
+                <span class="wa-bar-num">01</span>
+                <div class="wa-bar-thumb">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <span class="wa-bar-title">Phase Runner</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Game Design</span>
+                  <span class="tag tag-muted">Godot 4</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
               </div>
-            </div>
-          </div>
-          <span class="work-list-arrow">↗</span>
-        </a>
+            </a>
 
-        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
-          <div class="work-list-media video-card">
-            <video autoplay muted loop playsinline preload="metadata">
-              <source src="assets/images/penguins-creed.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="work-list-info">
-            <span class="work-list-num">03</span>
-            <div>
-              <h3 class="work-list-title">Penguins Creed</h3>
-              <p class="work-list-desc">Third-person action game with stealth mechanics, AI patrol systems, and a penguin protagonist.</p>
-              <div class="work-list-tags">
-                <span class="tag tag-muted">Game Design</span>
-                <span class="tag tag-muted">Unreal 5</span>
-                <span class="tag tag-muted">Blueprints</span>
+            <!-- Card 1 — Mediterranean Environment -->
+            <a href="portfolio/game-programming/" class="wa-card" data-idx="1">
+              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
+                <source src="assets/images/environment-scene.mp4" type="video/mp4">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">3D Art</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                  <span class="tag tag-muted">Real-time</span>
+                </div>
+                <h2 class="wa-title">Mediterranean Environment</h2>
+                <p class="wa-desc">Real-time 3D scene built in Unreal Engine 5 — custom lighting, modular architecture, atmospheric FX.</p>
+                <span class="wa-cta">View Project ↗</span>
               </div>
-            </div>
-          </div>
-          <span class="work-list-arrow">↗</span>
-        </a>
-
-        <a href="portfolio/game-programming/" class="work-list-item reveal-row">
-          <div class="work-list-media">
-            <img src="assets/images/mariokart.png" alt="Mario Kart Recreation">
-          </div>
-          <div class="work-list-info">
-            <span class="work-list-num">04</span>
-            <div>
-              <h3 class="work-list-title">Mario Kart Recreation</h3>
-              <p class="work-list-desc">Mode-7 SNES renderer in vanilla JS — raycasting, sprite sheets, full lap logic.</p>
-              <div class="work-list-tags">
-                <span class="tag tag-muted">Web Game</span>
-                <span class="tag tag-muted">JavaScript</span>
+              <div class="wa-bar">
+                <span class="wa-bar-num">02</span>
+                <div class="wa-bar-thumb">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/images/environment-scene.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <span class="wa-bar-title">Mediterranean Environment</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">3D Art</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
               </div>
-            </div>
-          </div>
-          <span class="work-list-arrow">↗</span>
-        </a>
+            </a>
 
-        <a href="portfolio/" class="work-list-item reveal-row">
-          <div class="work-list-media">
-            <img src="assets/images/venice-art.jpg" alt="Venice — Juried Art Show" style="object-position:center top">
-          </div>
-          <div class="work-list-info">
-            <span class="work-list-num">05</span>
-            <div>
-              <h3 class="work-list-title">Venice</h3>
-              <p class="work-list-desc">Digital art piece accepted into the Samford University Juried Art Show 2025.</p>
-              <div class="work-list-tags">
-                <span class="tag tag-muted">Fine Art</span>
-                <span class="tag tag-muted">Digital</span>
-                <span class="tag tag-muted">Juried Show</span>
+            <!-- Card 2 — VR Rhythm Game -->
+            <a href="portfolio/game-programming/" class="wa-card" data-idx="2">
+              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
+                <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">VR</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                  <span class="tag tag-muted">C++</span>
+                </div>
+                <h2 class="wa-title">VR Rhythm Game</h2>
+                <p class="wa-desc">Body-movement dragon controller in Unreal Engine 5 — C++ gameplay, VR locomotion, rhythm mechanics.</p>
+                <span class="wa-cta">View Project ↗</span>
               </div>
-            </div>
-          </div>
-          <span class="work-list-arrow">↗</span>
-        </a>
-
-        <a href="portfolio/professional-works/" class="work-list-item reveal-row">
-          <div class="work-list-media">
-            <img src="assets/images/33miles-cover.png" alt="33Miles Band Graphics">
-          </div>
-          <div class="work-list-info">
-            <span class="work-list-num">06</span>
-            <div>
-              <h3 class="work-list-title">33Miles Band Graphics</h3>
-              <p class="work-list-desc">Paid brand &amp; merchandise design for a signed Christian music group.</p>
-              <div class="work-list-tags">
-                <span class="tag tag-muted">Client Work</span>
-                <span class="tag tag-muted">Illustrator</span>
+              <div class="wa-bar">
+                <span class="wa-bar-num">03</span>
+                <div class="wa-bar-thumb">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <span class="wa-bar-title">VR Rhythm Game</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">VR</span>
+                  <span class="tag tag-muted">C++</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
               </div>
-            </div>
-          </div>
-          <span class="work-list-arrow">↗</span>
-        </a>
+            </a>
 
-      </div>
+            <!-- Card 3 — Penguins Creed -->
+            <a href="portfolio/game-programming/" class="wa-card" data-idx="3">
+              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
+                <source src="assets/images/penguins-creed.mp4" type="video/mp4">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Game Design</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                  <span class="tag tag-muted">Blueprints</span>
+                </div>
+                <h2 class="wa-title">Penguins Creed</h2>
+                <p class="wa-desc">Third-person action game with stealth mechanics, AI patrol systems, and a penguin protagonist.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">04</span>
+                <div class="wa-bar-thumb">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/images/penguins-creed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <span class="wa-bar-title">Penguins Creed</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Game Design</span>
+                  <span class="tag tag-muted">Blueprints</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-      <div class="work-footer container-wide">
+            <!-- Card 4 — Mario Kart Recreation -->
+            <a href="/MarioKartLatest/" class="wa-card" data-idx="4">
+              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
+                <source src="assets/images/mariokart.mp4" type="video/mp4">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Web Game</span>
+                  <span class="tag tag-muted">JavaScript</span>
+                  <span class="tag tag-muted">Playable</span>
+                </div>
+                <h2 class="wa-title">Mario Kart Recreation</h2>
+                <p class="wa-desc">Mode-7 SNES renderer in vanilla JS — raycasting, sprite sheets, full lap logic. Playable in browser.</p>
+                <span class="wa-cta">Play Now ↗</span>
+              </div>
+              <div class="wa-badge">Playable</div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">05</span>
+                <div class="wa-bar-thumb">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="assets/images/mariokart.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <span class="wa-bar-title">Mario Kart Recreation</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Web Game</span>
+                  <span class="tag tag-muted">JS</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
+
+            <!-- Card 5 — Venice -->
+            <a href="portfolio/art/" class="wa-card" data-idx="5">
+              <img class="wa-media" src="assets/images/venice-art.jpg" alt="Venice" style="object-position:center top">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Fine Art</span>
+                  <span class="tag tag-muted">Digital</span>
+                  <span class="tag tag-muted">Juried Show</span>
+                </div>
+                <h2 class="wa-title">Venice</h2>
+                <p class="wa-desc">Digital art piece accepted into the Samford University Juried Art Show 2025.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">06</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/venice-art.jpg" alt="Venice" style="object-position:center top">
+                </div>
+                <span class="wa-bar-title">Venice</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Fine Art</span>
+                  <span class="tag tag-muted">Digital</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
+
+            <!-- Card 6 — 33 Miles Band Graphics -->
+            <a href="portfolio/professional-works/" class="wa-card" data-idx="6">
+              <img class="wa-media" src="assets/images/33miles-cover.png" alt="33Miles Band Graphics">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Client Work</span>
+                  <span class="tag tag-muted">Illustrator</span>
+                </div>
+                <h2 class="wa-title">33 Miles Band</h2>
+                <p class="wa-desc">Paid brand &amp; merchandise design for a signed Christian music group.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">07</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/33miles-cover.png" alt="33Miles">
+                </div>
+                <span class="wa-bar-title">33 Miles Band Graphics</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Client Work</span>
+                  <span class="tag tag-muted">Illustrator</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
+
+          </div><!-- /wa-stack -->
+        </div><!-- /work-sticky -->
+      </div><!-- /work-scroll-tunnel -->
+
+      <div class="work-footer">
         <a href="portfolio/" class="btn btn-primary">Explore Full Portfolio →</a>
       </div>
 
@@ -609,7 +711,7 @@ $contact = [
       color: var(--text-faint);
     }
     .hero-name-block {
-      margin-bottom: clamp(2rem, 5vh, 4rem);
+      margin-bottom: clamp(1rem, 2.5vh, 2rem);
     }
     .hero-name-block .xl-reveal {
       display: block;
@@ -631,6 +733,37 @@ $contact = [
     .hero-name-block .xl-reveal.is-visible span {
       transform: translateY(0);
       opacity: 1;
+    }
+    .hero-social-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: clamp(1.5rem, 3.5vh, 3rem);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease 0.35s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.35s;
+    }
+    .hero-social-icons.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .hero-social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-faint);
+      background: rgba(255,255,255,0.03);
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .hero-social-link:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-2px);
     }
     .hero-bottom {
       display: grid;
@@ -746,190 +879,173 @@ $contact = [
     }
 
     /* ── Work section ───────────────────────────────────── */
-    .work-section { padding: clamp(4rem, 8vw, 8rem) 0; }
+    /* ══════════════════════════════════════════════════════
+       SELECTED WORK — sticky accordion scroll
+    ══════════════════════════════════════════════════════ */
+    .work-section { padding: 0; }
     .container-wide {
       max-width: 1300px;
       margin: 0 auto;
       padding: 0 var(--spacing-md);
     }
+    /* Label row above the sticky block */
     .work-label-row {
       display: flex;
       align-items: baseline;
       gap: 1.25rem;
-      margin-bottom: 3rem;
-      padding-bottom: 1.25rem;
+      padding: clamp(3rem,6vw,5rem) var(--spacing-md) 1.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
       border-bottom: 1px solid var(--border);
     }
     .work-label-num {
       font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      color: var(--text-faint);
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.12em; color: var(--text-faint);
     }
     .work-label-text {
       font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      flex: 1;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-faint); flex: 1;
     }
     .work-label-link {
-      font-size: 0.78rem;
-      color: var(--text-faint);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-size: 0.78rem; color: var(--text-faint);
+      text-decoration: none; transition: color 0.2s;
     }
     .work-label-link:hover { color: var(--text); }
 
-    /* Featured hero card */
-    .work-hero-card {
-      display: block;
+    /* Scroll tunnel: tall container so sticky panel has room to scroll */
+    .work-scroll-tunnel {
       position: relative;
-      width: 100%;
-      height: clamp(320px, 55vw, 620px);
+      /* 7 cards × 100vh each = total scroll distance */
+      height: calc(7 * 100vh);
+    }
+    /* Sticky viewport — stays in view while tunnel scrolls past */
+    .work-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       overflow: hidden;
-      text-decoration: none;
-      margin-bottom: 1px;
-    }
-    .work-hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
-    }
-    .work-hero-card:hover .work-hero-video { transform: scale(1.04); }
-    .work-hero-gradient {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
-    }
-    .work-hero-content {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: clamp(1.5rem, 4vw, 3rem);
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
     }
-    .work-hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .work-hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      line-height: 1;
-      margin: 0;
+    /* Stack of accordion cards */
+    .wa-stack {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
-    .work-hero-desc {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.65;
-      max-width: 60ch;
-      margin: 0;
-    }
-    .work-hero-cta {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-top: 0.5rem;
-      transition: letter-spacing 0.3s;
-    }
-    .work-hero-card:hover .work-hero-cta { letter-spacing: 0.18em; }
-    .work-hero-badge {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 0.3rem 0.75rem;
-      border-radius: 99px;
-      backdrop-filter: blur(8px);
-    }
-
-    /* Work index list */
-    .work-list {
-      border-top: 1px solid var(--border);
-      margin-top: 0;
-    }
-    .work-list-item {
-      display: grid;
-      grid-template-columns: 100px 1fr auto;
-      align-items: center;
-      gap: 1.5rem 2rem;
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text);
-      transition: background 0.25s, border-color 0.25s;
-      cursor: pointer;
-    }
-    .work-list-item:hover { background: rgba(255,255,255,0.025); }
-    .work-list-media {
-      width: 100px; height: 68px;
-      border-radius: 6px;
+    /* Individual card */
+    .wa-card {
+      position: relative;
       overflow: hidden;
       flex-shrink: 0;
+      /* height is driven by JS via --h CSS var */
+      height: var(--h, 72px);
+      transition: height 0.55s cubic-bezier(0.16,1,0.3,1);
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-    .work-list-media img,
-    .work-list-media video {
+    /* Media layer — fills the card */
+    .wa-media {
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      display: block;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+      opacity: 0;
     }
-    .work-list-info {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.25rem;
+    .wa-card.is-active .wa-media { opacity: 0.82; }
+    .wa-card.is-active .wa-media { transform: scale(1.0); }
+    /* Gradient over media */
+    .wa-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 50%, transparent 100%);
+      opacity: 0; transition: opacity 0.4s;
     }
-    .work-list-num {
+    .wa-card.is-active .wa-grad { opacity: 1; }
+    /* Collapsed row bar */
+    .wa-bar {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      padding: 0 clamp(1rem,3vw,2.5rem);
+      gap: 1.5rem;
+      opacity: 1; transition: opacity 0.3s;
+      background: rgba(10,10,10,0.95);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .wa-card.is-active .wa-bar { opacity: 0; pointer-events: none; }
+    .wa-bar-num {
+      font-family: var(--font-display); font-size: 0.65rem;
+      font-weight: 800; letter-spacing: 0.1em; color: var(--text-faint);
+      flex-shrink: 0; min-width: 22px;
+    }
+    .wa-bar-thumb {
+      width: 52px; height: 36px; border-radius: 4px;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .wa-bar-thumb img, .wa-bar-thumb video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .wa-bar-title {
+      font-family: var(--font-display); font-size: clamp(0.85rem,1.4vw,1rem);
+      font-weight: 700; letter-spacing: -0.015em; flex: 1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .wa-bar-tags { display: flex; gap: 0.3rem; flex-shrink: 0; }
+    .wa-bar-arrow {
+      font-size: 1rem; color: var(--text-faint);
+      transition: transform 0.25s, color 0.25s; flex-shrink: 0;
+    }
+    .wa-card:hover .wa-bar-arrow { transform: translate(2px,-2px); color: var(--text); }
+    /* Expanded content */
+    .wa-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: clamp(1.5rem,4vw,3rem);
+      display: flex; flex-direction: column; gap: 0.6rem;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.35s 0.1s, transform 0.35s 0.1s;
+      pointer-events: none;
+    }
+    .wa-card.is-active .wa-content {
+      opacity: 1; transform: none; pointer-events: auto;
+    }
+    .wa-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .wa-title {
       font-family: var(--font-display);
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
-      padding-top: 0.2em;
-      flex-shrink: 0;
-      min-width: 20px;
+      font-size: clamp(2rem,5vw,4.5rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      color: var(--text); line-height: 1; margin: 0;
     }
-    .work-list-title {
-      font-family: var(--font-display);
-      font-size: clamp(1rem, 2vw, 1.35rem);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      color: var(--text);
-      margin: 0 0 0.35rem;
+    .wa-desc {
+      font-size: 0.95rem; color: rgba(255,255,255,0.7);
+      line-height: 1.65; max-width: 60ch; margin: 0;
     }
-    .work-list-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin: 0 0 0.5rem;
+    .wa-cta {
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text); margin-top: 0.5rem;
+      transition: letter-spacing 0.3s;
     }
-    .work-list-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-    .work-list-arrow {
-      font-size: 1.25rem;
-      color: var(--text-faint);
-      transition: transform 0.25s, color 0.25s;
-      flex-shrink: 0;
-      padding-right: 0.5rem;
+    .wa-card.is-active:hover .wa-cta { letter-spacing: 0.18em; }
+    .wa-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text); border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.3rem 0.75rem; border-radius: 99px;
+      backdrop-filter: blur(8px);
+      opacity: 0; transition: opacity 0.3s;
     }
-    .work-list-item:hover .work-list-arrow {
-      transform: translate(3px, -3px);
-      color: var(--text);
-    }
+    .wa-card.is-active .wa-badge { opacity: 1; }
+
+    /* Footer CTA */
     .work-footer {
-      margin-top: 2.5rem;
-      display: flex;
+      padding: 2.5rem var(--spacing-md);
+      max-width: 1300px; margin: 0 auto;
     }
 
     /* ── SilkTricky-style scroll reveals ───────────────── */
@@ -1187,6 +1303,9 @@ $contact = [
       if (!els.length) return;
       setTimeout(function() {
         els.forEach(function(el) { el.classList.add('is-visible'); });
+        // Social icons fade in slightly after the name finishes
+        var icons = document.querySelector('.hero-social-icons');
+        if (icons) icons.classList.add('is-visible');
       }, 80);
     })();
 
@@ -1243,6 +1362,59 @@ $contact = [
         var total = document.documentElement.scrollHeight - window.innerHeight;
         bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
       }, { passive: true });
+    })();
+
+    /* ── Work accordion — scroll-driven ─────────────────
+       One card is "active" (expands to fill viewport).
+       Scrolling through the tunnel advances which card is active.
+    ─────────────────────────────────────────────────── */
+    (function() {
+      var tunnel  = document.getElementById('workTunnel');
+      var sticky  = document.getElementById('workSticky');
+      var cards   = Array.from(document.querySelectorAll('.wa-card'));
+      if (!tunnel || !cards.length) return;
+
+      var N           = cards.length;   // 7
+      var COLLAPSED_H = 68;             // px — collapsed bar height
+      var raf         = null;
+
+      /* Set initial state: card 0 active */
+      function setActive(idx) {
+        var stickyH = sticky.getBoundingClientRect().height || window.innerHeight;
+        var expandedH = stickyH - COLLAPSED_H * (N - 1);
+        expandedH = Math.max(expandedH, stickyH * 0.5); // floor at 50vh
+
+        cards.forEach(function(card, i) {
+          var h = (i === idx) ? expandedH : COLLAPSED_H;
+          card.style.setProperty('--h', h + 'px');
+          card.classList.toggle('is-active', i === idx);
+        });
+      }
+
+      function onScroll() {
+        var rect    = tunnel.getBoundingClientRect();
+        var total   = tunnel.offsetHeight - window.innerHeight;
+        /* progress: 0 when tunnel top just hits viewport top,
+                     1 when tunnel bottom hits viewport bottom */
+        var progress = Math.max(0, Math.min(1, -rect.top / total));
+        var idx = Math.min(N - 1, Math.floor(progress * N));
+        setActive(idx);
+      }
+
+      /* Run once on load so card 0 starts expanded */
+      setActive(0);
+
+      window.addEventListener('scroll', function() {
+        if (raf) return;
+        raf = requestAnimationFrame(function() {
+          raf = null;
+          onScroll();
+        });
+      }, { passive: true });
+
+      window.addEventListener('resize', function() { setActive(
+        parseInt(cards.findIndex(function(c){ return c.classList.contains('is-active'); }))
+      ); }, { passive: true });
     })();
 
     /* ── Ambient cursor glow ──────────────────────────── */

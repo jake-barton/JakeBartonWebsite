@@ -37,7 +37,7 @@
                 <h1 class="reveal" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--text);margin-bottom:1rem">Art &amp; Design</h1>
                 <div class="divider reveal" style="margin:1.5rem auto;max-width:80px"></div>
                 <p class="reveal" style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.5rem; line-height:1.75;transition-delay:0.12s">
-                    Professional graphics and custom apparel designs
+                    Professional graphics, fine art, and custom apparel designs
                 </p>
             </div>
         </section>
@@ -50,6 +50,46 @@
                     <h2>Art &amp; Design Work</h2>
                 </div>
                 <div class="grid-2 stagger-children">
+
+                    <!-- Venice — Juried Art Show -->
+                    <div class="work-card tilt-card reveal" style="grid-column:1/-1;cursor:zoom-in;" onclick="document.getElementById('venice-lightbox').classList.add('is-open')">
+                        <div class="work-card-img" style="max-height:420px;overflow:hidden;position:relative;">
+                            <img src="../../assets/images/venice-art.jpg" alt="Venice" style="width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);">
+                            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;background:rgba(0,0,0,0.35);" class="venice-hover-hint">
+                                <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.6);padding:0.45rem 1rem;border-radius:99px;backdrop-filter:blur(4px);">View Full Artwork</span>
+                            </div>
+                        </div>
+                        <div class="work-card-info">
+                            <p class="eyebrow">Digital Fine Art · Juried Exhibition</p>
+                            <h3>Venice</h3>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin: 8px 0 12px;">
+                                Original digital artwork accepted into the <strong style="color:var(--text)">Samford University Juried Art Show 2025</strong>. A stylised depiction of Venice capturing the interplay of light on water, architecture, and atmosphere.
+                            </p>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">
+                                • Digital painting / illustration<br>
+                                • Accepted into juried exhibition<br>
+                                • Samford University, 2025
+                            </p>
+                            <span class="btn-secondary" style="font-size:0.85rem;pointer-events:none;">View Full Artwork ↗</span>
+                        </div>
+                    </div>
+
+                    <!-- Venice lightbox -->
+                    <div id="venice-lightbox" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out;" onclick="this.classList.remove('is-open')">
+                        <button onclick="event.stopPropagation();document.getElementById('venice-lightbox').classList.remove('is-open')" style="position:absolute;top:1.25rem;right:1.5rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" aria-label="Close">✕</button>
+                        <img src="../../assets/images/venice-art.jpg" alt="Venice — Full Artwork"
+                             style="max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 24px 80px rgba(0,0,0,0.8);transform:scale(0.96);transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);"
+                             id="venice-lightbox-img">
+                        <div style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;">
+                            <p style="font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Venice · Samford University Juried Art Show 2025 · Click anywhere to close</p>
+                        </div>
+                    </div>
+
+                    <style>
+                      #venice-lightbox.is-open { display:flex !important; }
+                      #venice-lightbox.is-open #venice-lightbox-img { transform:scale(1); }
+                      .work-card:hover .venice-hover-hint { opacity:1 !important; }
+                    </style>
 
                     <!-- Mediterranean Environment — Coming Soon -->
                     <div class="work-card reveal" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;gap:0;position:relative;border:1px solid rgba(255,255,255,0.12);">

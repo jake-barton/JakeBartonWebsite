@@ -43,7 +43,7 @@ $page_description = isset($custom_description) ? $custom_description : SITE_DESC
     <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/components.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?php echo $base_path; ?>favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="<?php echo $base_path; ?>assets/images/favicon.svg">
     
     <!-- Scripts -->
     <?php if (isset($include_gallery) && $include_gallery): ?>

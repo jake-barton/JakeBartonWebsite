@@ -9,7 +9,7 @@ if ($uri === '/' || $uri === '') {
 }
 
 // Check if file exists
-$file = __DIR__ . $uri;
+$file = __DIR__ . urldecode($uri);
 if (file_exists($file) && !is_dir($file)) {
     return false; // Serve the file directly
 }
@@ -20,9 +20,13 @@ if (file_exists($file . '.php')) {
     exit;
 }
 
-// Default to index.php if not found
+// Default to index.php or index.html if not found
 if (is_dir($file) && file_exists($file . '/index.php')) {
     require $file . '/index.php';
+    exit;
+}
+if (is_dir($file) && file_exists($file . '/index.html')) {
+    require $file . '/index.html';
     exit;
 }
 

@@ -246,7 +246,35 @@
   .disc-arrow { font-size:1.5rem;color:var(--text-faint);transition:transform 0.25s,color 0.25s;flex-shrink:0; }
   .disc-item:hover .disc-arrow { transform:translate(4px,-4px);color:var(--text); }
 
-  /* ── Scroll reveals ─────────────────────────────────── */
+  /* ── Bento card entrance ───────────────────────────── */
+  @keyframes cardIn {
+    from { opacity:0; transform:translateY(28px); }
+    to   { opacity:1; transform:none; }
+  }
+  .bento.is-visible .b-card {
+    animation: cardIn 0.55s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .bento.is-visible .b-card:nth-child(1)  { animation-delay: 0.04s }
+  .bento.is-visible .b-card:nth-child(2)  { animation-delay: 0.09s }
+  .bento.is-visible .b-card:nth-child(3)  { animation-delay: 0.14s }
+  .bento.is-visible .b-card:nth-child(4)  { animation-delay: 0.19s }
+  .bento.is-visible .b-card:nth-child(5)  { animation-delay: 0.24s }
+  .bento.is-visible .b-card:nth-child(6)  { animation-delay: 0.29s }
+  .bento.is-visible .b-card:nth-child(7)  { animation-delay: 0.34s }
+  .bento.is-visible .b-card:nth-child(8)  { animation-delay: 0.39s }
+  .bento.is-visible .b-card:nth-child(9)  { animation-delay: 0.44s }
+  .bento.is-visible .b-card:nth-child(10) { animation-delay: 0.49s }
+  .bento.is-visible .b-card:nth-child(11) { animation-delay: 0.54s }
+  .bento.is-visible .b-card:nth-child(12) { animation-delay: 0.59s }
+  .bento.is-visible .b-card:nth-child(13) { animation-delay: 0.64s }
+  .bento.is-visible .b-card:nth-child(14) { animation-delay: 0.69s }
+  .bento.is-visible .b-card:nth-child(14) { animation-delay: 0.69s }
+
+
+  .bento:not(.is-visible) .b-card { opacity: 0; }
+  /* bento itself shouldn't slide — only its cards animate */
+  .bento.rv { transform: none !important; }
+
   .rv { opacity:0;transform:translateY(40px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1); }
   .rv.is-visible { opacity:1;transform:none; }
   .rv-row { opacity:0;transform:translateY(28px);transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1); }
@@ -341,7 +369,7 @@
       </div>
 
       <!-- Grid -->
-      <div class="bento" id="bento-grid">
+      <div class="bento rv">
 
         <!-- 1. Phase Runner — hero -->
         <a href="game-programming/" class="b-card b-hero" data-cat="game">
@@ -412,8 +440,10 @@
         </a>
 
         <!-- 5. Mario Kart — wide -->
-        <a href="../MarioKartLatest/" class="b-card b-wide b-accent-web" data-cat="web">
-          <img class="b-media" src="../assets/images/mariokart.png" alt="Mario Kart">
+        <a href="/MarioKartLatest/" class="b-card b-wide b-accent-web" data-cat="web">
+          <video class="b-media" autoplay muted loop playsinline preload="metadata">
+            <source src="../assets/images/mariokart.mp4" type="video/mp4">
+          </video>
           <div class="b-overlay"></div>
           <div class="b-content">
             <span class="b-eyebrow">Web Game · Playable</span>
@@ -430,7 +460,7 @@
 
         <!-- 6. Mediterranean Environment — placeholder (coming soon) -->
         <a href="art/" class="b-card b-sq b-accent-art" data-cat="art">
-          <video class="b-media" autoplay muted loop playsinline preload="auto" style="opacity:0.75">
+          <video class="b-media" autoplay muted loop playsinline preload="metadata">
             <source src="../assets/images/environment-scene.mp4" type="video/mp4">
           </video>
           <div class="b-overlay"></div>
@@ -448,7 +478,7 @@
 
         <!-- 7. T-Shirt Designs — third -->
         <a href="tshirt-designs/" class="b-card b-third" data-cat="art">
-          <img class="b-media" src="../assets/images/shelcover.png" alt="T-Shirt Designs">
+          <img class="b-media" src="tshirt-designs/images/thumbnails/Caribbean%20Party.svg" alt="T-Shirt Designs" style="object-fit:contain;padding:0.75rem;opacity:0.9">
           <div class="b-overlay"></div>
           <div class="b-content">
             <span class="b-eyebrow">15+ Apparel Runs</span>
@@ -459,7 +489,7 @@
 
         <!-- 8. Pi Kappa Phi T-Shirt Web — third -->
         <a href="web-programming/PiKappaPhiTshirtWeb2.0/" class="b-card b-third b-accent-web" data-cat="web">
-          <img class="b-media" src="../assets/images/pikappaphi-cover.svg" alt="Pi Kappa Phi Web" style="object-fit:contain;padding:1rem;opacity:0.7">
+          <img class="b-media" src="web-programming/PiKappaPhiTshirtWeb2.0/vectors/banner_logo.svg" alt="Pi Kappa Phi Web" style="object-fit:contain;padding:1.25rem;opacity:0.85">
           <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
           <div class="b-content">
             <span class="b-eyebrow">Full-Stack PHP App</span>
@@ -469,9 +499,22 @@
         </a>
 
         <!-- 9. TechBirmingham — third -->
-        <a href="web-programming/" class="b-card b-third b-accent-web" data-cat="web">
-          <img class="b-media" src="../assets/images/tb-logo.jpg" alt="TechBirmingham" style="object-fit:contain;padding:1.5rem;opacity:0.6">
-          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+        <a href="web-programming/" class="b-card b-third b-accent-web" data-cat="web" id="tb-card">
+          <!-- Static logo shown by default -->
+          <img class="b-media" src="../assets/images/tb-logo.jpg" alt="TechBirmingham" style="object-fit:contain;padding:1.5rem;opacity:0.6;transition:opacity 0.3s;">
+          <!-- Lottie loading screen shown on hover -->
+          <div id="tb-lottie-wrap" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;pointer-events:none;background:#fff;border-radius:12px;">
+            <lottie-player
+              id="tb-lottie"
+              src="/portfolio/web-programming/TechBirminghamSponsorAI/public/Frame-1-Playful.json"
+              background="white"
+              speed="1"
+              style="width:100%;height:100%;"
+            ></lottie-player>
+            <!-- Dark gradient so white card text stays readable over white animation -->
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.1) 55%,transparent 100%);border-radius:12px;pointer-events:none;"></div>
+          </div>
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%);transition:opacity 0.3s;"></div>
           <div class="b-content">
             <span class="b-eyebrow">AI · Next.js</span>
             <h2 class="b-title">TechBirmingham Sponsor AI</h2>
@@ -479,22 +522,9 @@
           <span class="b-arrow">↗</span>
         </a>
 
-        <!-- 10. Mario Kart play strip -->
-        <a href="../MarioKartLatest/" class="b-card b-strip" data-cat="web">
-          <img class="b-media" src="../assets/images/mariokart.png" alt="Mario Kart Playable" style="object-position:center 30%">
-          <div class="b-overlay" style="background:linear-gradient(to right,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.3) 60%,transparent 100%)"></div>
-          <div class="b-content">
-            <div class="b-text">
-              <span class="b-eyebrow">Playable in Browser · Mode-7 JS</span>
-              <h2 class="b-title">Mario Kart Recreation — Play Now</h2>
-            </div>
-            <span class="tag" style="flex-shrink:0">Play →</span>
-          </div>
-        </a>
-
         <!-- 11. College Guys PW — qtr -->
         <a href="professional-works/College%20Guys%20Pressure%20Washing/" class="b-card b-qtr b-accent-art" data-cat="art">
-          <img class="b-media" src="professional-works/College%20Guys%20Pressure%20Washing/College%20Guys%20Pressure%20Washing%20Banner.svg" alt="College Guys Pressure Washing" style="object-fit:contain;padding:1rem;opacity:0.8">
+          <img class="b-media" src="professional-works/College%20Guys%20Pressure%20Washing/College%20Guys%20Pressure%20Washing%20Banner.svg" alt="College Guys Pressure Washing" style="object-fit:contain;padding:1rem;opacity:0.75">
           <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
           <div class="b-content">
             <span class="b-eyebrow">Client Work</span>
@@ -503,37 +533,38 @@
           <span class="b-arrow">↗</span>
         </a>
 
-        <!-- 12. This portfolio — qtr -->
-        <a href="../index.php" class="b-card b-qtr b-no-media b-accent-web" data-cat="web">
-          <img class="b-media" src="../assets/images/jb-logo.png" alt="JB Portfolio" style="object-fit:contain;padding:2rem;opacity:0.15">
-          <div class="b-overlay" style="background:none"></div>
-          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+        <!-- 12. Venice — qtr -->
+        <a href="art/" class="b-card b-qtr b-accent-art" data-cat="art">
+          <img class="b-media" src="../assets/images/venice-art.jpg" alt="Venice" style="object-fit:cover;object-position:center top;opacity:0.85">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Juried Art Show 2025</span>
+            <h2 class="b-title">Venice</h2>
+          </div>
+          <div class="b-badge">Fine Art</div>
+          <span class="b-arrow">↗</span>
+        </a>
+
+        <!-- 13. This portfolio — qtr -->
+        <a href="../index.php" class="b-card b-qtr b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/jb-logo.png" alt="Jake Barton Portfolio" style="object-fit:contain;padding:1.5rem;opacity:0.4">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
             <span class="b-eyebrow">PHP · JS · GSAP</span>
             <h2 class="b-title">jakebartoncreative.com</h2>
           </div>
           <span class="b-arrow">↗</span>
         </a>
 
-        <!-- 13. DeskPet — qtr -->
+        <!-- 14. DeskPet — qtr -->
         <a href="game-programming/DeskPet/DeskPet_Simple.dmg" download class="b-card b-qtr b-accent-game" data-cat="game">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.18;">🐾</div>
-          <div class="b-overlay" style="background:none"></div>
-          <div class="b-content" style="bottom:auto;top:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
-            <span class="b-eyebrow">macOS App · Download</span>
+          <img class="b-media" src="game-programming/DeskPet/AppIcon.png" alt="DeskPet" style="object-fit:contain;padding:1.25rem;opacity:0.85">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">macOS App</span>
             <h2 class="b-title">DeskPet</h2>
             <p class="b-desc" style="font-size:0.78rem">Download for Mac →</p>
           </div>
-        </a>
-
-        <!-- 14. Art & 3D section link — qtr -->
-        <a href="art/" class="b-card b-qtr b-accent-art" data-cat="art">
-          <img class="b-media" src="../assets/images/venice-art.jpg" alt="3D Art" style="opacity:0.4">
-          <div class="b-overlay"></div>
-          <div class="b-content">
-            <span class="b-eyebrow">Maya · Blender · UE5</span>
-            <h2 class="b-title">3D Art &amp; Modelling</h2>
-          </div>
-          <span class="b-arrow">↗</span>
         </a>
 
       </div><!-- /.bento -->
@@ -657,27 +688,15 @@
       var rows=document.querySelectorAll('.rv-row');
       var rObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var sibs=x.target.parentElement.querySelectorAll('.rv-row');var idx=0;sibs.forEach(function(s,i){if(s===x.target)idx=i;});x.target.style.transitionDelay=(idx*0.07)+'s';x.target.classList.add('is-visible');rObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
       rows.forEach(function(el){rObs.observe(el);});
-    })();
 
-    /* Bento card entrance — stagger in on load, no IntersectionObserver conflict */
-    (function(){
-      var cards = document.querySelectorAll('#bento-grid .b-card');
-      cards.forEach(function(c, i){
-        c.style.opacity = '0';
-        c.style.transform = 'translateY(24px)';
-        c.style.transition = 'opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1)';
-        setTimeout(function(){ c.style.opacity='1'; c.style.transform='none'; }, 80 + i * 45);
-      });
-      /* restart videos after they become visible */
-      document.querySelectorAll('#bento-grid video').forEach(function(v){
-        v.play().catch(function(){});
-      });
+      var grps=document.querySelectorAll('.rv-stagger');
+      var gObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-visible');gObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+      grps.forEach(function(el){gObs.observe(el);});
     })();
-
     /* Filter */
     (function(){
       var btns=document.querySelectorAll('.filter-btn');
-      var cards=document.querySelectorAll('#bento-grid .b-card[data-cat]');
+      var cards=document.querySelectorAll('.b-card[data-cat]');
       btns.forEach(function(btn){
         btn.addEventListener('click',function(e){
           e.preventDefault();
@@ -685,17 +704,41 @@
           btn.classList.add('active');
           var f=btn.getAttribute('data-filter');
           cards.forEach(function(c){
-            var match = f==='all' || c.getAttribute('data-cat')===f;
-            c.style.opacity = match ? '1' : '0.12';
-            c.style.transform = match ? 'none' : 'scale(0.97)';
-            c.style.pointerEvents = match ? 'auto' : 'none';
+            if(f==='all'||c.getAttribute('data-cat')===f){
+              c.style.opacity='1';c.style.pointerEvents='auto';
+            } else {
+              c.style.opacity='0.15';c.style.pointerEvents='none';
+            }
           });
-          /* restart videos in case they paused while hidden */
-          document.querySelectorAll('#bento-grid video').forEach(function(v){ v.play().catch(function(){}); });
         });
       });
     })();
   </script>
 
+  <!-- Lottie Web player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@2/dist/lottie-player.js"></script>
+  <script>
+    /* TechBirmingham card — play Lottie on hover */
+    (function() {
+      var card  = document.getElementById('tb-card');
+      var wrap  = document.getElementById('tb-lottie-wrap');
+      var logo  = card ? card.querySelector('img.b-media') : null;
+      var overlay = card ? card.querySelector('.b-overlay') : null;
+      var player = document.getElementById('tb-lottie');
+      if (!card || !wrap || !player) return;
+
+      card.addEventListener('mouseenter', function() {
+        wrap.style.opacity = '1';
+        if (logo) logo.style.opacity = '0';
+        player.stop();
+        player.play();
+      });
+      card.addEventListener('mouseleave', function() {
+        wrap.style.opacity = '0';
+        if (logo) logo.style.opacity = '0.6';
+        player.stop();
+      });
+    })();
+  </script>
 </body>
 </html>
