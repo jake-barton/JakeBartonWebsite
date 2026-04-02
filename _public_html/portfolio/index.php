@@ -373,8 +373,9 @@
 
         <!-- 1. Phase Runner — hero -->
         <a href="game-programming/" class="b-card b-hero" data-cat="game">
-          <video class="b-media" autoplay muted loop playsinline preload="auto">
-            <source src="../assets/images/phase-runner-screen.mp4" type="video/mp4">
+          <video class="b-media" muted loop playsinline preload="none"
+                 data-src="../assets/images/phase-runner-screen.mp4"
+                 poster="../assets/images/phaserunnercover.png">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -393,8 +394,9 @@
 
         <!-- 2. VR Rhythm Game — tall -->
         <a href="game-programming/" class="b-card b-tall b-accent-game" data-cat="game">
-          <video class="b-media" autoplay muted loop playsinline preload="metadata">
-            <source src="../assets/images/vr-gameplay.mp4" type="video/mp4">
+          <video class="b-media" muted loop playsinline preload="none"
+                 data-src="../assets/images/vr-gameplay.mp4"
+                 poster="../assets/images/phaserunnercover.png">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -412,8 +414,9 @@
 
         <!-- 3. Penguins Creed — wide -->
         <a href="game-programming/" class="b-card b-wide b-accent-game" data-cat="game">
-          <video class="b-media" autoplay muted loop playsinline preload="metadata">
-            <source src="../assets/images/penguins-creed.mp4" type="video/mp4">
+          <video class="b-media" muted loop playsinline preload="none"
+                 data-src="../assets/images/penguins-creed.mp4"
+                 poster="../assets/images/shelcover.png">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -441,8 +444,9 @@
 
         <!-- 5. Mario Kart — wide -->
         <a href="/MarioKartLatest/" class="b-card b-wide b-accent-web" data-cat="web">
-          <video class="b-media" autoplay muted loop playsinline preload="metadata">
-            <source src="../assets/images/mariokart.mp4" type="video/mp4">
+          <video class="b-media" muted loop playsinline preload="none"
+                 data-src="../assets/images/mariokart.mp4"
+                 poster="../assets/images/mariokart.png">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -460,8 +464,9 @@
 
         <!-- 6. Mediterranean Environment — placeholder (coming soon) -->
         <a href="art/" class="b-card b-sq b-accent-art" data-cat="art">
-          <video class="b-media" autoplay muted loop playsinline preload="metadata">
-            <source src="../assets/images/environment-scene.mp4" type="video/mp4">
+          <video class="b-media" muted loop playsinline preload="none"
+                 data-src="../assets/images/environment-scene.mp4"
+                 poster="../assets/images/shelcover.png">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -692,6 +697,26 @@
       var grps=document.querySelectorAll('.rv-stagger');
       var gObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('is-visible');gObs.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
       grps.forEach(function(el){gObs.observe(el);});
+    })();
+    /* Lazy-load bento videos — IntersectionObserver */
+    (function(){
+      var vids = document.querySelectorAll('.b-media[data-src]');
+      if (!vids.length) return;
+      var vObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            if (v.dataset.src && !v.getAttribute('src')) {
+              v.src = v.dataset.src;
+              v.load();
+            }
+            v.play().catch(function(){});
+          } else {
+            if (!v.paused) v.pause();
+          }
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(function(v){ vObs.observe(v); });
     })();
     /* Filter */
     (function(){

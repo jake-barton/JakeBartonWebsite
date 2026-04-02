@@ -449,22 +449,22 @@ require_once __DIR__ . '/includes/content.php';
     <div class="bc-reel-track" id="bcTrack">
 
       <div class="bc-reel-clip">
-        <video src="assets/images/phase-runner-screen.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/phase-runner-screen.mp4" muted loop playsinline preload="none" poster="assets/images/phaserunnercover.png"></video>
         <span class="bc-reel-label">Phase Runner</span>
       </div>
 
       <div class="bc-reel-clip">
-        <video src="assets/images/mariokart.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/mariokart.mp4" muted loop playsinline preload="none" poster="assets/images/mariokart.png"></video>
         <span class="bc-reel-label">Mario Kart Recreation</span>
       </div>
 
       <div class="bc-reel-clip">
-        <video src="assets/images/environment-scene.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/environment-scene.mp4" muted loop playsinline preload="none" poster="assets/images/shelcover.png"></video>
         <span class="bc-reel-label">3D Environment</span>
       </div>
 
       <div class="bc-reel-clip">
-        <video src="assets/images/vr-gameplay.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/vr-gameplay.mp4" muted loop playsinline preload="none" poster="assets/images/phaserunnercover.png"></video>
         <span class="bc-reel-label">VR Rhythm Game</span>
       </div>
 
@@ -603,7 +603,7 @@ require_once __DIR__ . '/includes/content.php';
     <div class="bc-strip-inner">
 
       <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank" rel="noopener" class="bc-proj">
-        <video src="assets/images/phase-runner-screen.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/phase-runner-screen.mp4" muted loop playsinline preload="none" poster="assets/images/phaserunnercover.png"></video>
         <div class="bc-proj-info">
           <span class="bc-proj-title">Phase Runner</span>
           <span class="bc-proj-tag">Godot 4 · itch.io</span>
@@ -611,7 +611,7 @@ require_once __DIR__ . '/includes/content.php';
       </a>
 
       <a href="<?php echo $content['website']; ?>/portfolio/game-programming/" target="_blank" rel="noopener" class="bc-proj">
-        <video src="assets/images/vr-gameplay.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/vr-gameplay.mp4" muted loop playsinline preload="none" poster="assets/images/phaserunnercover.png"></video>
         <div class="bc-proj-info">
           <span class="bc-proj-title">VR Rhythm Game</span>
           <span class="bc-proj-tag">Unreal Engine 5</span>
@@ -619,7 +619,7 @@ require_once __DIR__ . '/includes/content.php';
       </a>
 
       <a href="<?php echo $content['website']; ?>/portfolio/game-programming/" target="_blank" rel="noopener" class="bc-proj">
-        <video src="assets/images/mariokart.mp4" autoplay muted loop playsinline></video>
+        <video data-src="assets/images/mariokart.mp4" muted loop playsinline preload="none" poster="assets/images/mariokart.png"></video>
         <div class="bc-proj-info">
           <span class="bc-proj-title">Mario Kart JS</span>
           <span class="bc-proj-tag">JavaScript · Mode-7</span>
@@ -668,6 +668,25 @@ require_once __DIR__ . '/includes/content.php';
   }
 
   setInterval(tick, INTERVAL);
+})();
+
+/* Lazy-load all card.php videos on page load */
+(function(){
+  function loadAndPlay(v) {
+    if (v.dataset.src && !v.getAttribute('src')) {
+      v.src = v.dataset.src;
+      v.load();
+    }
+    v.play().catch(function(){});
+  }
+  var vids = document.querySelectorAll('video[data-src]');
+  if (!vids.length) return;
+  // Load first clip immediately, stagger the rest to avoid saturating bandwidth
+  if (vids[0]) loadAndPlay(vids[0]);
+  vids.forEach(function(v, i){
+    if (i === 0) return;
+    setTimeout(function(){ loadAndPlay(v); }, i * 800);
+  });
 })();
 </script>
 </body>

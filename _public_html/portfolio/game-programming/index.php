@@ -85,8 +85,9 @@
                     <span class="cs-tag">Live on itch.io</span>
                 </div>
                 <div class="cs-video">
-                    <video autoplay muted loop playsinline>
-                        <source src="../../assets/images/phase-runner-screen.mp4" type="video/mp4">
+                    <video muted loop playsinline preload="none"
+                           data-src="../../assets/images/phase-runner-screen.mp4"
+                           poster="../../assets/images/phaserunnercover.png">
                     </video>
                 </div>
                 <div class="cs-detail-grid">
@@ -123,8 +124,9 @@
                     <span class="cs-tag">Samford Game Design Studio</span>
                 </div>
                 <div class="cs-video">
-                    <video autoplay muted loop playsinline>
-                        <source src="../../assets/images/vr-gameplay.mp4" type="video/mp4">
+                    <video muted loop playsinline preload="none"
+                           data-src="../../assets/images/vr-gameplay.mp4"
+                           poster="../../assets/images/phaserunnercover.png">
                     </video>
                 </div>
                 <div class="cs-detail-grid">
@@ -160,8 +162,9 @@
                     <span class="cs-tag">Stealth &amp; AI Systems</span>
                 </div>
                 <div class="cs-video">
-                    <video autoplay muted loop playsinline>
-                        <source src="../../assets/images/penguins-creed.mp4" type="video/mp4">
+                    <video muted loop playsinline preload="none"
+                           data-src="../../assets/images/penguins-creed.mp4"
+                           poster="../../assets/images/shelcover.png">
                     </video>
                 </div>
                 <div class="cs-detail-grid">
@@ -251,6 +254,23 @@
       (function(){var b=document.getElementById('scroll-progress');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;b.style.width=(t>0?(s/t)*100:0)+'%';},{passive:true});})();
       (function(){var g=document.getElementById('cursor-glow');if(!g||window.matchMedia('(pointer:coarse)').matches)return;var cx=0,cy=0,tx=0,ty=0;document.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;g.style.opacity='1';});document.addEventListener('mouseleave',function(){g.style.opacity='0';});function lerp(a,b,t){return a+(b-a)*t;}(function loop(){cx=lerp(cx,tx,0.07);cy=lerp(cy,ty,0.07);g.style.left=cx+'px';g.style.top=cy+'px';requestAnimationFrame(loop);})();})();
       (function(){var els=document.querySelectorAll('.reveal-up');if(!els.length)return;els.forEach(function(el){el.style.opacity='0';el.style.transform='translateY(32px)';el.style.transition='opacity 0.65s ease, transform 0.65s ease';});var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';io.unobserve(e.target);}});},{threshold:0.12});els.forEach(function(el){io.observe(el);});})();
+      /* Lazy-load case-study videos */
+      (function(){
+        var vids = document.querySelectorAll('video[data-src]');
+        if (!vids.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            var v = entry.target;
+            if (entry.isIntersecting) {
+              if (v.dataset.src && !v.getAttribute('src')) { v.src = v.dataset.src; v.load(); }
+              v.play().catch(function(){});
+            } else {
+              if (!v.paused) v.pause();
+            }
+          });
+        }, { threshold: 0.25 });
+        vids.forEach(function(v){ obs.observe(v); });
+      })();
     </script>
 
 </body>

@@ -156,8 +156,9 @@ $contact = [
             <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank"
                class="wa-card" data-idx="0">
               <!-- full-bleed media -->
-              <video class="wa-media" autoplay muted loop playsinline preload="auto">
-                <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/phase-runner-screen.mp4"
+                     poster="assets/images/phaserunnercover.png">
               </video>
               <div class="wa-grad"></div>
               <!-- expanded content -->
@@ -177,9 +178,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">01</span>
                 <div class="wa-bar-thumb">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/images/phase-runner-screen.mp4" type="video/mp4">
-                  </video>
+                  <img src="assets/images/phaserunnercover.png" alt="Phase Runner" loading="lazy">
                 </div>
                 <span class="wa-bar-title">Phase Runner</span>
                 <div class="wa-bar-tags">
@@ -192,8 +191,9 @@ $contact = [
 
             <!-- Card 1 — Mediterranean Environment -->
             <a href="portfolio/game-programming/" class="wa-card" data-idx="1">
-              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
-                <source src="assets/images/environment-scene.mp4" type="video/mp4">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/environment-scene.mp4"
+                     poster="assets/images/shelcover.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -209,9 +209,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">02</span>
                 <div class="wa-bar-thumb">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/images/environment-scene.mp4" type="video/mp4">
-                  </video>
+                  <img src="assets/images/shelcover.png" alt="Mediterranean Environment" loading="lazy">
                 </div>
                 <span class="wa-bar-title">Mediterranean Environment</span>
                 <div class="wa-bar-tags">
@@ -224,8 +222,9 @@ $contact = [
 
             <!-- Card 2 — VR Rhythm Game -->
             <a href="portfolio/game-programming/" class="wa-card" data-idx="2">
-              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
-                <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/vr-gameplay.mp4"
+                     poster="assets/images/phaserunnercover.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -241,9 +240,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">03</span>
                 <div class="wa-bar-thumb">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/images/vr-gameplay.mp4" type="video/mp4">
-                  </video>
+                  <img src="assets/images/phaserunnercover.png" alt="VR Rhythm Game" loading="lazy">
                 </div>
                 <span class="wa-bar-title">VR Rhythm Game</span>
                 <div class="wa-bar-tags">
@@ -256,8 +253,9 @@ $contact = [
 
             <!-- Card 3 — Penguins Creed -->
             <a href="portfolio/game-programming/" class="wa-card" data-idx="3">
-              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
-                <source src="assets/images/penguins-creed.mp4" type="video/mp4">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/penguins-creed.mp4"
+                     poster="assets/images/shelcover.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -273,9 +271,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">04</span>
                 <div class="wa-bar-thumb">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/images/penguins-creed.mp4" type="video/mp4">
-                  </video>
+                  <img src="assets/images/shelcover.png" alt="Penguins Creed" loading="lazy">
                 </div>
                 <span class="wa-bar-title">Penguins Creed</span>
                 <div class="wa-bar-tags">
@@ -288,8 +284,9 @@ $contact = [
 
             <!-- Card 4 — Mario Kart Recreation -->
             <a href="/MarioKartLatest/" class="wa-card" data-idx="4">
-              <video class="wa-media" autoplay muted loop playsinline preload="metadata">
-                <source src="assets/images/mariokart.mp4" type="video/mp4">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/mariokart.mp4"
+                     poster="assets/images/mariokart.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -306,9 +303,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">05</span>
                 <div class="wa-bar-thumb">
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="assets/images/mariokart.mp4" type="video/mp4">
-                  </video>
+                  <img src="assets/images/mariokart.png" alt="Mario Kart Recreation" loading="lazy">
                 </div>
                 <span class="wa-bar-title">Mario Kart Recreation</span>
                 <div class="wa-bar-tags">
@@ -1388,6 +1383,19 @@ $contact = [
           var h = (i === idx) ? expandedH : COLLAPSED_H;
           card.style.setProperty('--h', h + 'px');
           card.classList.toggle('is-active', i === idx);
+
+          // Lazy-load + play/pause control
+          var vid = card.querySelector('video.wa-media');
+          if (!vid) return;
+          if (i === idx) {
+            if (vid.dataset.src && !vid.getAttribute('src')) {
+              vid.src = vid.dataset.src;
+              vid.load();
+            }
+            vid.play().catch(function(){});
+          } else {
+            if (!vid.paused) vid.pause();
+          }
         });
       }
 
