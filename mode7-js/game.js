@@ -9,12 +9,14 @@ canvas.width = Settings.canvas.width;
 canvas.height = Settings.canvas.height;
 
 const screenManager = new ScreenManager(canvas);
-screenManager.setScreen(new MainMenuScreen(screenManager));
 
 const keys = {};
 
 // Mobile touch controls — injects into the same keys object
-new MobileControls(keys, canvas);
+const mobileControls = new MobileControls(keys, canvas);
+screenManager.mobileControls = mobileControls;
+
+screenManager.setScreen(new MainMenuScreen(screenManager));
 
 window.addEventListener('keydown', function(e) {
     keys[e.key] = true;

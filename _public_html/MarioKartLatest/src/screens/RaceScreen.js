@@ -189,6 +189,9 @@ export class RaceScreen {
     }
 
     async enter(gameData) {
+        // Switch mobile controls to race layout
+        this.screenManager.setMobileRaceMode();
+
         // Track loading start time for minimum display duration
         const loadingStartTime = Date.now();
         const minimumLoadingTime = 1500; // Show loading screen for at least 1.5 seconds
@@ -1404,10 +1407,11 @@ export class RaceScreen {
         // Small delay for visual feedback, then transition
         setTimeout(() => {
             if (selectedOption === 'NEXT RACE') {
-                // Restart the race
+                // Restart the race — keep race mode controls
                 this.screenManager.setScreen(new RaceScreen(this.screenManager));
             } else if (selectedOption === 'QUIT') {
-                // Return to main menu
+                // Return to main menu — switch back to menu controls
+                this.screenManager.setMobileMenuMode();
                 import('./MainMenuScreen.js').then((module) => {
                     this.screenManager.setScreen(new module.MainMenuScreen(this.screenManager));
                 });

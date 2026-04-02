@@ -12,11 +12,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #000;
             overflow: hidden;
@@ -34,141 +30,16 @@
             image-rendering: crisp-edges;
             image-rendering: -moz-crisp-edges;
             -ms-interpolation-mode: nearest-neighbor;
-
-            /* On desktop: fill height. On mobile: handled by JS resize */
             width: auto;
             height: 98vh;
             max-width: 100vw;
             max-height: 100vh;
-
             border: 2px solid #333;
         }
-
-        /* ── Mobile touch controls ─────────────────────── */
-        #mobile-controls {
-            display: none; /* shown via JS when touch device detected */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-        #mobile-controls.visible { display: flex; }
-
-        /* Left side: D-pad */
-        #dpad {
-            position: fixed;
-            bottom: 24px;
-            left: 20px;
-            width: 132px;
-            height: 132px;
-            pointer-events: none;
-        }
-        .dpad-btn {
-            position: absolute;
-            background: rgba(255,255,255,0.18);
-            border: 2px solid rgba(255,255,255,0.35);
-            border-radius: 10px;
-            pointer-events: all;
-            touch-action: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: rgba(255,255,255,0.75);
-            transition: background 0.08s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .dpad-btn.pressed {
-            background: rgba(255,255,255,0.45);
-        }
-        #btn-up    { top: 0;    left: 44px; width: 44px; height: 44px; }
-        #btn-down  { top: 88px; left: 44px; width: 44px; height: 44px; }
-        #btn-left  { top: 44px; left: 0;    width: 44px; height: 44px; }
-        #btn-right { top: 44px; left: 88px; width: 44px; height: 44px; }
-
-        /* Right side: action buttons */
-        #action-btns {
-            position: fixed;
-            bottom: 24px;
-            right: 20px;
-            width: 140px;
-            height: 132px;
-            pointer-events: none;
-        }
-        .action-btn {
-            position: absolute;
-            background: rgba(255,255,255,0.18);
-            border: 2px solid rgba(255,255,255,0.35);
-            border-radius: 50%;
-            pointer-events: all;
-            touch-action: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: bold;
-            font-family: monospace;
-            color: rgba(255,255,255,0.85);
-            transition: background 0.08s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .action-btn.pressed {
-            background: rgba(255,255,255,0.45);
-        }
-        /* A = accelerate, B = brake/reverse, L = drift/jump, Start = enter */
-        #btn-a     { bottom: 0;  right: 50px; width: 52px; height: 52px; background: rgba(80,200,80,0.25);  border-color: rgba(80,255,80,0.5); }
-        #btn-b     { bottom: 0;  right: 0;    width: 52px; height: 52px; background: rgba(200,80,80,0.25);  border-color: rgba(255,80,80,0.5); }
-        #btn-l     { top: 0;     right: 0;    width: 52px; height: 52px; background: rgba(80,80,200,0.25);  border-color: rgba(80,80,255,0.5); }
-        #btn-start { top: 0;     right: 55px; width: 52px; height: 52px; background: rgba(200,200,80,0.25); border-color: rgba(255,255,80,0.5); font-size: 11px; }
-
-        /* Portrait warning */
-        #portrait-warn {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: #000;
-            color: #fff;
-            font-family: monospace;
-            font-size: 18px;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 999;
-            flex-direction: column;
-            gap: 12px;
-        }
-        #portrait-warn.visible { display: flex; }
-        #portrait-warn .rotate-icon { font-size: 52px; }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
-
-    <!-- Portrait rotation warning (mobile only) -->
-    <div id="portrait-warn">
-        <div class="rotate-icon">↻</div>
-        <div>Rotate your device<br>to landscape to play</div>
-    </div>
-
-    <!-- D-pad -->
-    <div id="dpad">
-        <div class="dpad-btn" id="btn-up">▲</div>
-        <div class="dpad-btn" id="btn-down">▼</div>
-        <div class="dpad-btn" id="btn-left">◀</div>
-        <div class="dpad-btn" id="btn-right">▶</div>
-    </div>
-
-    <!-- Action buttons -->
-    <div id="action-btns">
-        <div class="action-btn" id="btn-a">A<br><small>GO</small></div>
-        <div class="action-btn" id="btn-b">B<br><small>BACK</small></div>
-        <div class="action-btn" id="btn-l">L<br><small>JUMP</small></div>
-        <div class="action-btn" id="btn-start">START</div>
-    </div>
-
-    <!-- Auto cache-busting: loads fresh game.js every time -->
     <script type="module">
         import('./game.js?t=' + new Date().getTime());
     </script>
