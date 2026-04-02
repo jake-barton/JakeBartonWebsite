@@ -190,10 +190,10 @@
                 <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-0.02em;color:var(--text);margin-bottom:2rem">More Projects</h2>
                 <div class="cs-other-grid">
                     <div class="cs-other-card">
-                        <p class="eyebrow" style="margin-bottom:0.5rem">Web Game · JavaScript</p>
+                        <p class="eyebrow" style="margin-bottom:0.5rem">Web Game · In Development</p>
                         <h3>Mario Kart Recreation</h3>
-                        <p>SNES-style Mode-7 renderer built from scratch in vanilla JS — raycasting, sprite sheets, lap logic, and multi-character selection. No libraries.</p>
-                        <a href="/MarioKartLatest/" class="btn-secondary" style="font-size:0.85rem">Play Now →</a>
+                        <p>SNES-style Mode-7 renderer built from scratch in vanilla JS — raycasting, sprite sheets, lap logic, and multi-character selection. Currently in development.</p>
+                        <a href="/MarioKartLatest/" class="btn-secondary" style="font-size:0.85rem">View Progress →</a>
                     </div>
                     <div class="cs-other-card">
                         <p class="eyebrow" style="margin-bottom:0.5rem">3D Art · Unreal Engine 5</p>

@@ -450,15 +450,15 @@
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
-            <span class="b-eyebrow">Web Game · Playable</span>
+            <span class="b-eyebrow">Web Game · In Development</span>
             <div class="b-tags">
               <span class="tag tag-muted">JavaScript</span>
               <span class="tag tag-muted">Mode-7</span>
             </div>
             <h2 class="b-title">Mario Kart Recreation</h2>
-            <p class="b-desc">SNES Mode-7 renderer from scratch — raycasting, sprite sheets, lap logic. Play now.</p>
+            <p class="b-desc">SNES Mode-7 renderer from scratch — raycasting, sprite sheets, lap logic. Currently in development.</p>
           </div>
-          <div class="b-badge">Playable ↗</div>
+          <div class="b-badge">In Development</div>
           <span class="b-arrow">↗</span>
         </a>
 

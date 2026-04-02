@@ -293,13 +293,13 @@ $contact = [
                 <div class="wa-tags">
                   <span class="tag tag-muted">Web Game</span>
                   <span class="tag tag-muted">JavaScript</span>
-                  <span class="tag tag-muted">Playable</span>
+                  <span class="tag tag-muted">In Development</span>
                 </div>
                 <h2 class="wa-title">Mario Kart Recreation</h2>
-                <p class="wa-desc">Mode-7 SNES renderer in vanilla JS — raycasting, sprite sheets, full lap logic. Playable in browser.</p>
-                <span class="wa-cta">Play Now ↗</span>
+                <p class="wa-desc">Mode-7 SNES renderer in vanilla JS — raycasting, sprite sheets, full lap logic. Currently in development.</p>
+                <span class="wa-cta">View Progress ↗</span>
               </div>
-              <div class="wa-badge">Playable</div>
+              <div class="wa-badge">In Development</div>
               <div class="wa-bar">
                 <span class="wa-bar-num">05</span>
                 <div class="wa-bar-thumb">
