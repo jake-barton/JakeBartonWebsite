@@ -32,7 +32,7 @@ define('CONTACT_FORM_LIMIT', 3); // Max submissions per hour
 define('RATE_LIMIT_WINDOW', 3600); // 1 hour in seconds
 
 // Development/Production Mode
-define('IS_DEVELOPMENT', true); // Set to false for production on Hostinger
+define('IS_DEVELOPMENT', false); // Production mode — errors hidden from users
 define('SHOW_ERRORS', IS_DEVELOPMENT);
 
 // Error Reporting
