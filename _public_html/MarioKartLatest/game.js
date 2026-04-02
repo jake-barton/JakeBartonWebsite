@@ -1,6 +1,7 @@
 import { Settings } from './src/core/Settings.js';
 import { ScreenManager } from './src/core/ScreenManager.js';
 import { MainMenuScreen } from './src/screens/MainMenuScreen.js';
+import { MobileControls } from './src/utils/MobileControls.js';
 
 
 const canvas = document.getElementById('gameCanvas');
@@ -11,6 +12,10 @@ const screenManager = new ScreenManager(canvas);
 screenManager.setScreen(new MainMenuScreen(screenManager));
 
 const keys = {};
+
+// Mobile touch controls — injects into the same keys object
+new MobileControls(keys, canvas);
+
 window.addEventListener('keydown', function(e) {
     keys[e.key] = true;
     e.preventDefault();
