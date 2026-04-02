@@ -30,18 +30,205 @@
             image-rendering: crisp-edges;
             image-rendering: -moz-crisp-edges;
             -ms-interpolation-mode: nearest-neighbor;
+            /* Natural pillarbox: fill full viewport height, let aspect ratio add side bars */
             width: auto;
-            height: 98vh;
-            max-width: 100vw;
-            max-height: 100vh;
+            height: 100dvh;
+            max-width: 100dvw;
+            max-height: 100dvh;
             border: 2px solid #333;
+        }
+
+        /* ── Fullscreen button ───────────────────────── */
+        #fs-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 500;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(11,34,64,0.80);
+            color: rgba(255,255,255,0.70);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.15s, color 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #fs-btn:hover { background: rgba(11,34,64,1); color: #fff; }
+        #fs-btn svg { width: 18px; height: 18px; pointer-events: none; }
+        /* Hide button while fullscreen — browser chrome is gone anyway */
+        :fullscreen #fs-btn,
+        :-webkit-full-screen #fs-btn { display: none; }
+
+        /* ── iOS install banner ──────────────────────── */
+        #ios-banner {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 600;
+            background: rgba(11,34,64,0.97);
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding: 14px 16px 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #fff;
+            touch-action: auto;
+            pointer-events: all;
+        }
+        #ios-banner.show { display: block; }
+        #ios-banner-close {
+            position: absolute;
+            top: 8px; right: 8px;
+            background: none; border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 18px; line-height: 1;
+            cursor: pointer;
+            /* Large tap target */
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: auto;
+            pointer-events: all;
+        }
+        #ios-banner h3 {
+            font-size: 14px; font-weight: 700;
+            letter-spacing: 0.03em;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        .ios-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.88);
+        }
+        .ios-step-num {
+            flex-shrink: 0;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700;
+        }
+        .ios-share-icon {
+            display: inline-flex; align-items: center;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
+
+    <!-- iOS fullscreen install banner -->
+    <div id="ios-banner">
+        <button id="ios-banner-close" aria-label="Dismiss">✕</button>
+        <h3>FOR BEST EXPERIENCE</h3>
+        <div class="ios-step">
+            <span class="ios-step-num">1</span>
+            <span>Tap the share button&nbsp;
+                <span class="ios-share-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16 6 12 2 8 6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </span>
+                &nbsp;at the bottom of Safari
+            </span>
+        </div>
+        <div class="ios-step">
+            <span class="ios-step-num">2</span>
+            <span>Scroll down and tap <strong>"Add to Home Screen"</strong></span>
+        </div>
+        <div class="ios-step">
+            <span class="ios-step-num">3</span>
+            <span>Open the app from your home screen — fully fullscreen, no browser bar</span>
+        </div>
+    </div>
+
+    <!-- Fullscreen toggle -->
+    <button id="fs-btn" title="Fullscreen" aria-label="Toggle fullscreen">
+        <!-- expand icon (shown when not fullscreen) -->
+        <svg id="fs-icon-expand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+            <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+        </svg>
+        <!-- collapse icon (shown when fullscreen) -->
+        <svg id="fs-icon-collapse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/>
+            <line x1="10" y1="14" x2="3" y2="21"/><line x1="21" y1="3" x2="14" y2="10"/>
+        </svg>
+    </button>
+
     <script type="module">
         import('./game.js?t=' + new Date().getTime());
+    </script>
+
+    <script>
+        (function () {
+            const btn     = document.getElementById('fs-btn');
+            const iconExp = document.getElementById('fs-icon-expand');
+            const iconCol = document.getElementById('fs-icon-collapse');
+            const banner  = document.getElementById('ios-banner');
+            const bannerClose = document.getElementById('ios-banner-close');
+
+            const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) ||
+                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isStandalone = window.navigator.standalone;
+
+            if (isIOS) {
+                // Hide the fullscreen button — API doesn't exist on iOS
+                btn.style.display = 'none';
+                // Show install banner unless already running as home screen app
+                if (!isStandalone && !sessionStorage.getItem('ios-banner-dismissed')) {
+                    setTimeout(() => banner.classList.add('show'), 1500);
+                }
+                function dismissBanner(e) {
+                    e.stopPropagation();
+                    banner.classList.remove('show');
+                    sessionStorage.setItem('ios-banner-dismissed', '1');
+                }
+                // Use pointerdown — 'click' can be swallowed by touch-action:none on body
+                bannerClose.addEventListener('pointerdown', dismissBanner);
+                bannerClose.addEventListener('touchend',    dismissBanner, { passive: true });
+                return;
+            }
+
+            const enter = document.documentElement.requestFullscreen ||
+                          document.documentElement.webkitRequestFullscreen;
+
+            if (!enter) { btn.style.display = 'none'; return; }
+
+            function isFullscreen() {
+                return !!(document.fullscreenElement || document.webkitFullscreenElement);
+            }
+
+            function updateIcon() {
+                const fs = isFullscreen();
+                iconExp.style.display = fs ? 'none' : '';
+                iconCol.style.display = fs ? ''     : 'none';
+            }
+
+            btn.addEventListener('click', () => {
+                if (isFullscreen()) {
+                    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+                    if (exit) exit.call(document).catch(e => console.warn('exitFullscreen:', e));
+                } else {
+                    enter.call(document.documentElement, { navigationUI: 'hide' })
+                         .catch(e => console.warn('requestFullscreen:', e));
+                }
+            });
+
+            document.addEventListener('fullscreenchange',       updateIcon);
+            document.addEventListener('webkitfullscreenchange', updateIcon);
+        })();
     </script>
 </body>
 </html>

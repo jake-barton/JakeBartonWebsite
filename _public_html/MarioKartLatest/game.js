@@ -28,42 +28,30 @@ window.addEventListener('keyup', function(e) {
 });
 
 // Frame rate configuration
-const TARGET_FPS = 60; // Set your target frame rate here (60 is recommended)
-const FRAME_TIME = 1000 / TARGET_FPS; // Time per frame in milliseconds
-const MAX_DELTA_TIME = 0.1; // Maximum deltaTime to prevent spiral of death
+const TARGET_FPS = 60;
+const FRAME_TIME = 1000 / TARGET_FPS;   // ms per logical tick  (~16.667ms)
+const FIXED_DT   = FRAME_TIME / 1000;   // seconds per tick     (0.01667s)
 
-let lastTime = performance.now();
+let lastTime    = performance.now();
 let accumulator = 0;
 
 function gameLoop(currentTime) {
-    const deltaTime = currentTime - lastTime;
+    // Clamp raw elapsed time so a tab-background pause doesn't cause a huge spike
+    const elapsed = Math.min(currentTime - lastTime, FRAME_TIME * 5);
     lastTime = currentTime;
-    
-    // Accumulate time
-    accumulator += deltaTime;
-    
-    // Only update if enough time has passed for the next frame
-    if (accumulator >= FRAME_TIME) {
-        // Calculate actual deltaTime in seconds
-        const dt = accumulator / 1000;
-        
-        // Clamp deltaTime to prevent huge jumps
-        const clampedDeltaTime = Math.min(dt, MAX_DELTA_TIME);
-        
-        if (clampedDeltaTime > 0) {
-            screenManager.update(keys, clampedDeltaTime);
-            screenManager.draw();
-        }
-        
-        // Reset accumulator (subtract frame time, not set to 0, to maintain accuracy)
+
+    accumulator += elapsed;
+
+    // Consume fixed-size ticks — keeps physics/speed identical regardless of
+    // whether the device runs at 60 Hz, 90 Hz, 120 Hz, or ProMotion 144 Hz
+    while (accumulator >= FRAME_TIME) {
+        screenManager.update(keys, FIXED_DT);
         accumulator -= FRAME_TIME;
-        
-        // If we've fallen too far behind, reset accumulator to prevent spiral
-        if (accumulator > FRAME_TIME * 5) {
-            accumulator = 0;
-        }
     }
-    
+
+    // Always draw once per rAF (interpolation could go here later)
+    screenManager.draw();
+
     requestAnimationFrame(gameLoop);
 }
 
