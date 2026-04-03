@@ -550,6 +550,42 @@
           <span class="b-arrow">↗</span>
         </a>
 
+        <!-- 10. Forge — qtr -->
+        <a href="web-programming/" class="b-card b-qtr b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/forge-cover.svg" alt="Forge" style="object-fit:cover;opacity:0.9">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Developer Social Platform</span>
+            <h2 class="b-title">Forge</h2>
+          </div>
+          <div class="b-badge">In Development</div>
+          <span class="b-arrow">↗</span>
+        </a>
+
+        <!-- 10b. ClearDesk — qtr -->
+        <a href="web-programming/" class="b-card b-qtr b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/cleardesk-cover.svg" alt="ClearDesk" style="object-fit:cover;opacity:0.9">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">AI Task Manager · macOS</span>
+            <h2 class="b-title">ClearDesk</h2>
+          </div>
+          <div class="b-badge">In Development</div>
+          <span class="b-arrow">↗</span>
+        </a>
+
+        <!-- 10c. October (JARVIS) — qtr -->
+        <a href="web-programming/" class="b-card b-qtr b-accent-web" data-cat="web">
+          <img class="b-media" src="../assets/images/october-cover.svg" alt="October AI" style="object-fit:cover;opacity:0.9">
+          <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
+          <div class="b-content">
+            <span class="b-eyebrow">Local AI Assistant · Python</span>
+            <h2 class="b-title">October</h2>
+          </div>
+          <div class="b-badge">In Development</div>
+          <span class="b-arrow">↗</span>
+        </a>
+
         <!-- 13. This portfolio — qtr -->
         <a href="../index.php" class="b-card b-qtr b-accent-web" data-cat="web">
           <img class="b-media" src="../assets/images/jb-logo.png" alt="Jake Barton Portfolio" style="object-fit:contain;padding:1.5rem;opacity:0.4">
