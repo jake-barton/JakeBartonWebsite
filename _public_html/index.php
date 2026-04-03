@@ -178,7 +178,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">01</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/phaserunnercover.png" alt="Phase Runner" loading="lazy">
+                  <video src="assets/images/phase-runner-screen.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Phase Runner</span>
                 <div class="wa-bar-tags">
@@ -209,7 +209,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">02</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/venice-art.jpg" alt="Mediterranean Environment" loading="lazy">
+                  <video src="assets/images/environment-scene.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Mediterranean Environment</span>
                 <div class="wa-bar-tags">
@@ -240,7 +240,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">03</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/phaserunnercover.png" alt="VR Rhythm Game" loading="lazy">
+                  <video src="assets/images/vr-gameplay.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">VR Rhythm Game</span>
                 <div class="wa-bar-tags">
@@ -271,7 +271,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">04</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/phaserunnercover.png" alt="Penguins Creed" loading="lazy">
+                  <video src="assets/images/penguins-creed.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Penguins Creed</span>
                 <div class="wa-bar-tags">
@@ -303,7 +303,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">05</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/mariokart.png" alt="Mario Kart Recreation" loading="lazy">
+                  <video src="assets/images/mariokart.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Mario Kart Recreation</span>
                 <div class="wa-bar-tags">
