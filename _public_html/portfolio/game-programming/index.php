@@ -164,7 +164,7 @@
                 <div class="cs-video">
                     <video muted loop playsinline preload="none"
                            data-src="../../assets/images/penguins-creed.mp4"
-                           poster="../../assets/images/shelcover.png">
+                           poster="../../assets/images/phaserunnercover.png">
                     </video>
                 </div>
                 <div class="cs-detail-grid">

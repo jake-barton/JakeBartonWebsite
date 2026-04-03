@@ -459,7 +459,7 @@ require_once __DIR__ . '/includes/content.php';
       </div>
 
       <div class="bc-reel-clip">
-        <video data-src="assets/images/environment-scene.mp4" muted loop playsinline preload="none" poster="assets/images/shelcover.png"></video>
+        <video data-src="assets/images/environment-scene.mp4" muted loop playsinline preload="none" poster="assets/images/venice-art.jpg"></video>
         <span class="bc-reel-label">3D Environment</span>
       </div>
 

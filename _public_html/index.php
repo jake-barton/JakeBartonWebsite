@@ -190,10 +190,10 @@ $contact = [
             </a>
 
             <!-- Card 1 — Mediterranean Environment -->
-            <a href="portfolio/game-programming/" class="wa-card" data-idx="1">
+            <a href="portfolio/art/" class="wa-card" data-idx="1">
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/environment-scene.mp4"
-                     poster="assets/images/shelcover.png">
+                     poster="assets/images/venice-art.jpg">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -209,7 +209,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">02</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/shelcover.png" alt="Mediterranean Environment" loading="lazy">
+                  <img src="assets/images/venice-art.jpg" alt="Mediterranean Environment" loading="lazy">
                 </div>
                 <span class="wa-bar-title">Mediterranean Environment</span>
                 <div class="wa-bar-tags">
@@ -255,7 +255,7 @@ $contact = [
             <a href="portfolio/game-programming/" class="wa-card" data-idx="3">
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/penguins-creed.mp4"
-                     poster="assets/images/shelcover.png">
+                     poster="assets/images/phaserunnercover.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -271,7 +271,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">04</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/shelcover.png" alt="Penguins Creed" loading="lazy">
+                  <img src="assets/images/phaserunnercover.png" alt="Penguins Creed" loading="lazy">
                 </div>
                 <span class="wa-bar-title">Penguins Creed</span>
                 <div class="wa-bar-tags">

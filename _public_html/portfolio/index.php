@@ -416,7 +416,7 @@
         <a href="game-programming/" class="b-card b-wide b-accent-game" data-cat="game">
           <video class="b-media" muted loop playsinline preload="none"
                  data-src="../assets/images/penguins-creed.mp4"
-                 poster="../assets/images/shelcover.png">
+                 poster="../assets/images/phaserunnercover.png">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -466,7 +466,7 @@
         <a href="art/" class="b-card b-sq b-accent-art" data-cat="art">
           <video class="b-media" muted loop playsinline preload="none"
                  data-src="../assets/images/environment-scene.mp4"
-                 poster="../assets/images/shelcover.png">
+                 poster="../assets/images/venice-art.jpg">
           </video>
           <div class="b-overlay"></div>
           <div class="b-content">
@@ -730,9 +730,13 @@
           var f=btn.getAttribute('data-filter');
           cards.forEach(function(c){
             if(f==='all'||c.getAttribute('data-cat')===f){
-              c.style.opacity='1';c.style.pointerEvents='auto';
+              c.style.display='';
+              c.style.opacity='1';
+              c.style.pointerEvents='auto';
             } else {
-              c.style.opacity='0.15';c.style.pointerEvents='none';
+              c.style.display='none';
+              c.style.opacity='0';
+              c.style.pointerEvents='none';
             }
           });
         });
