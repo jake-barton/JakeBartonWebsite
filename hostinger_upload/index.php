@@ -3,874 +3,1575 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jake Barton - Game Designer & 3D Artist</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20251130">
-    <link rel="alternate icon" href="assets/images/favicon.svg?v=20251130">
-    <link rel="stylesheet" href="assets/css/styles.css?v=20251130-glassmorphism">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Scripts -->
-    <script src="assets/js/effects.js?v=20251201-3d" defer></script>
-    <script src="assets/js/three-effects.js?v=20251201" defer></script>
+    <title>Jake Barton — Gameplay Programmer & Technical Designer</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20260325">
+    <link rel="alternate icon" href="assets/images/favicon.svg?v=20260325">
+
+    <!-- Style Kit CSS (order matters) -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
+  <!-- Scroll progress line -->
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:100001;transition:width 0.1s linear;pointer-events:none"></div>
 
-    <?php
-    $name = "Jake Barton";
-    $university = "Samford University";
-    $location = "Birmingham, AL";
-    $major = "Game Design & 3D Animation";
-    $minor = "Computer Science";
-    $year = "Junior"; // Class standing
-    $gradYear = 2027; // Graduation year per resume
-    $gpa = 3.5; // University GPA
-    
-    $skills = [
-        "C++", "Python", "JavaScript", "HTML", "CSS",
-        "Unreal Blueprint", "Unreal Engine", "Godot Engine",
-        "Autodesk Maya", "Blender", "Substance Painter",
-        "Adobe Photoshop", "Adobe Illustrator", "Figma",
-        "Web Development", "Game Programming", "Level Design",
-        "Project Management", "UX Design"
-    ];
-    
-    $leadership = [
-        "Social Chair - Pi Kappa Phi (2025–Current)",
-        "Executive Council - Philanthropy Chair (2025–Current)",
-        "T-Shirt Chair - Pi Kappa Phi (2023–2025)"
-    ];
-    
-    $contact = [
-        'email' => 'jbarton4@samford.edu',
-        'phone' => '(615) 943 9722',
-        'website' => 'https://jakebartoncreative.com',
-        'address' => 'Birmingham, AL',
-        'instagram' => 'jakebarton13',
-        'github' => '',
-        'youtube' => ''
-    ];
-    ?>
+  <!-- Ambient cursor glow -->
+  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;opacity:0"></div>
 
-    <header>
-        <nav>
-            <a href="#home" class="nav-logo" style="text-decoration: none; color: inherit;">JB</a>
-            <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul id="primary-menu">
-                <li class="mobile-visible"><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="portfolio/">Portfolio</a></li>
-                <li><a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a></li>
-                <li class="mobile-visible"><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="content-section" id="home" style="text-align: center; padding: 120px 60px; margin-top: 60px;">
-            <h1 style="font-size: 6rem; margin-bottom: 20px; animation: fadeInUp 0.8s ease-out;">
-                <?php echo $name; ?>
-            </h1>
-            <p style="font-size: 1.8rem; color: var(--accent-white); margin-bottom: 15px; animation: fadeInUp 1s ease-out; font-family: 'Bebas Neue', sans-serif; letter-spacing: 3px;">
-                GAME DESIGNER | 3D ARTIST | DEVELOPER
-            </p>
-            <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 50px; animation: fadeInUp 1.2s ease-out;">
-                <?php echo $year; ?> at <?php echo $university; ?>, <?php echo $location; ?>
-            </p>
-            <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; animation: fadeInUp 1.4s ease-out;">
-                <a href="portfolio/" class="btn">VIEW MY WORK</a>
-                <a href="assets/Jake%20Barton%20-%20Resume.pdf" download class="btn" style="background: var(--primary-black); border:3px solid var(--accent-white); color: var(--accent-white);">DOWNLOAD RESUME (PDF)</a>
-            </div>
+<?php
+require_once __DIR__ . '/includes/content.php';
+
+// Legacy aliases so existing $contact references below still work
+$contact = [
+    'email'     => $content['email'],
+    'phone'     => $content['phone'],
+    'website'   => $content['website'],
+    'address'   => $content['location'],
+    'instagram' => $content['instagram'],
+    'github'    => $content['github'],
+    'youtube'   => '',
+];
+?>
+
+  <!-- Navigation -->
+  <header class="site-nav" id="site-nav">
+    <a href="#home" class="nav-logo">
+      <img src="assets/images/jb-logo.png" alt="Jake Barton" class="nav-logo-img">
+      <span class="nav-logo-text">JB</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="portfolio/">Portfolio</a>
+      <a href="assets/Jake%20Barton%20-%20Resume.pdf" download>Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- sm-toggle injected by staggered-menu.js -->
+  </header>
+  <!-- sm-panel + sm-prelayers injected by staggered-menu.js -->
+
+  <!-- Main Content -->
+  <main class="site-content">
+
+    <!-- ── Hero Section ──────────────────────────────────── -->
+    <section class="hero" id="home">
+
+      <!-- Top meta row -->
+      <div class="hero-meta">
+        <span class="hero-eyebrow-tag"><?php echo $content['hero_eyebrow']; ?></span>
+        <span class="hero-location-tag">Birmingham, AL</span>
+      </div>
+
+      <!-- The name — takes up the full visual weight -->
+      <div class="hero-name-block">
+        <div class="xl-reveal"><span><?php echo explode(' ', $content['name'])[0]; ?></span></div>
+        <div class="xl-reveal" style="transition-delay:0.08s"><span><?php echo explode(' ', $content['name'])[1]; ?></span></div>
+      </div>
+
+      <!-- Social icons under name -->
+      <div class="hero-social-icons">
+        <a href="https://github.com/jake-barton" target="_blank" rel="noopener" class="hero-social-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23A11.52 11.52 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.807 5.625-5.479 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" rel="noopener" class="hero-social-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-bottom-left">
+          <p class="hero-tagline">
+            Game developer building<br>
+            <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em><br>
+            from game engines to the browser.
+          </p>
+          <div class="hero-cta">
+            <a href="/portfolio/" class="btn btn-primary">See My Work</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+          </div>
         </div>
-
-        <!-- Auto-Rotating Showcase Gallery -->
-        <div class="content-section" style="padding: 60px 40px; overflow: visible;">
-            <h2 style="text-align: center; margin-bottom: 50px;">FEATURED WORK</h2>
-            
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    <!-- Phase Runner Game -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/phaserunnercover.png" alt="Phase Runner Game">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Phase Runner</h3>
-                                <p>Godot Game Project</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Mario Kart Game -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/mariokart.png" alt="Mario Kart Reverse Engineered">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Mario Kart Recreation</h3>
-                                <p>JavaScript Game</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Shel Silverstein Website -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/shelcover.png" alt="Shel Silverstein Website">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Shel Silverstein Tribute</h3>
-                                <p>Web Design Project</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 33Miles Graphics -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="assets/images/33miles-cover.png" alt="33Miles Graphics">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>33Miles Band Graphics</h3>
-                                <p>Professional Client Work</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fall Recruitment T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/Fall Recruitment '25-01.svg" alt="Fall Recruitment 2025">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Fall Recruitment 2025</h3>
-                                <p>T-Shirt Design</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Southern Gents T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/SouthernGents-01.svg" alt="Southern Gents Design">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Southern Gents</h3>
-                                <p>Album-Inspired T-Shirt</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Barn Bash T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/Barn Bash 2025.svg" alt="Barn Bash 2025">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Barn Bash 2025</h3>
-                                <p>Event T-Shirt Design</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rose Ball T-Shirt -->
-                    <div class="carousel-slide">
-                        <div class="carousel-card">
-                            <div class="carousel-card-image">
-                                <img src="portfolio/tshirt-designs/images/thumbnails/Rose Ball.svg" alt="Rose Ball Design">
-                            </div>
-                            <div class="carousel-info">
-                                <h3>Rose Ball</h3>
-                                <p>Formal Event Design</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Navigation Dots -->
-                <div class="carousel-dots"></div>
-            </div>
-
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="portfolio/" class="btn">EXPLORE FULL PORTFOLIO</a>
-            </div>
+        <div class="hero-bottom-right">
+          <p class="hero-subtitle"><?php echo $content['hero_subtitle']; ?></p>
+          <div class="hero-status-badge">
+            <span class="hero-status-pulse"></span>Open to Work — Birmingham, AL
+          </div>
         </div>
+      </div>
 
-        <!-- Skills Section -->
-        <div class="content-section" id="skills">
-            <h2>TECHNICAL SKILLS & TOOLS</h2>
-            <div class="skills-container">
-                <?php foreach ($skills as $skill): ?>
-                    <span class="skill-tag"><?php echo $skill; ?></span>
-                <?php endforeach; ?>
-            </div>
+    </section>
+
+    <!-- ── Stats bar (full-bleed) ────────────────────────── -->
+    <div class="stats-bar">
+      <?php foreach ($content['hero_stats'] as $i => $stat): ?>
+        <?php if ($i > 0): ?><div class="stats-bar-divider"></div><?php endif; ?>
+        <div class="stats-bar-item">
+          <span class="stats-bar-num" data-count="<?php echo $stat['num']; ?>" data-suffix="<?php echo $stat['suffix']; ?>"><?php echo $stat['num'] . $stat['suffix']; ?></span>
+          <span class="stats-bar-label"><?php echo $stat['label']; ?></span>
         </div>
-        
-        <!-- About Section -->
-        <div class="content-section" id="about">
-            <h2>ABOUT ME</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9;">
-                I'm a <?php echo $year; ?> at <strong style="color: var(--accent-white);"><?php echo $university; ?></strong> 
-                in <?php echo $location; ?>, majoring in <strong style="color: var(--accent-white);"><?php echo $major; ?></strong> 
-                with a minor in <strong style="color: var(--accent-white);"><?php echo $minor; ?></strong>. Expected graduation: <strong style="color: var(--accent-white);"><?php echo $gradYear; ?></strong>. Current GPA: <strong style="color: var(--accent-white);"><?php echo number_format($gpa,2); ?></strong>.
-            </p>
-            
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-top: 20px;">
-                I specialize in creating immersive gaming experiences and stunning 3D visuals, combining technical expertise 
-                with creative design. From coding in <strong style="color: var(--accent-white);">Python</strong> and <strong style="color: var(--accent-white);">C++</strong> to bringing worlds to life in 
-                <strong style="color: var(--accent-white);">Unreal Engine 5</strong>, <strong style="color: var(--accent-white);">Godot</strong>, and <strong style="color: var(--accent-white);">Unity</strong>, I'm passionate about every 
-                aspect of game development.
-            </p>
-
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-top: 20px;">
-                My creative toolkit includes <strong style="color: var(--accent-white);">Autodesk Maya</strong>, <strong style="color: var(--accent-white);">Blender</strong>, <strong style="color: var(--accent-white);">Adobe Creative Suite</strong>, 
-                and <strong style="color: var(--accent-white);">Figma</strong>, allowing me to craft everything from 3D models to user interfaces and graphic designs.
-            </p>
-        </div>
-
-        <!-- Leadership Section -->
-        <div class="content-section">
-            <h2>LEADERSHIP & EXPERIENCE (PI KAPPA PHI)</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9;">
-                As a committed member of <strong style="color: var(--accent-white);">Pi Kappa Phi Fraternity - Alpha Eta Chapter</strong>, 
-                I serve in multiple leadership roles driving event planning, apparel production, and philanthropy impact:
-            </p>
-            <ul style="margin-top: 25px; font-size: 1.1rem; line-height: 2;">
-                <?php foreach ($leadership as $position): ?>
-                    <li style="color: var(--text-muted); margin-bottom: 10px;">
-                        <span style="color: var(--accent-white);">▸</span> <?php echo $position; ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            
-            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
-                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                    SOCIAL CHAIR
-                </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
-                    As <strong style="color: var(--accent-white);">Social Chair</strong>, I specialize in 
-                    <strong style="color: var(--accent-white);">event planning and organization</strong>, coordinating 
-                    all aspects of our chapter's formal events. My responsibilities include:
-                </p>
-                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Leading a committee and coordinating team efforts for large-scale events
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Organizing and securing venues for chapter formal events
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Booking and coordinating with live bands and entertainment
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Creating custom banner artworks and event branding materials
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Managing event logistics, budgets, and timelines
-                    </li>
-                </ul>
-            </div>
-
-            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
-                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                    T-SHIRT CHAIR
-                </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
-                    For two years as <strong style="color: var(--accent-white);">T-Shirt Chair</strong>, I've designed and produced 
-                    custom apparel for our chapter, collaborating with vendors to ensure quality and timely delivery. My responsibilities include:
-                </p>
-                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Designing custom t-shirts and apparel for chapter events and recruitment
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Managing vendor relationships and coordinating production timelines
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Creating designs that reflect chapter identity and event themes
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Ensuring quality control and timely delivery for all orders
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> View the <a href="portfolio/tshirt-designs/" style="color: var(--accent-white); text-decoration: none; border-bottom: 3px solid var(--accent-white); font-weight: bold;">t-shirt design portfolio</a> to see selected work
-                    </li>
-                </ul>
-            </div>
-            <div style="margin-top: 35px; padding: 30px; background: var(--secondary-black); border: 3px solid var(--border-gray); border-radius: 0px;">
-                <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                    PHILANTHROPY CHAIR (EXECUTIVE COUNCIL)
-                </h3>
-                <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">
-                    As <strong style="color: var(--accent-white);">Philanthropy Chair</strong>, I coordinate initiatives supporting disability inclusion, 
-                    partnering with organizations to raise funds and awareness. My responsibilities include:
-                </p>
-                <ul style="font-size: 1.1rem; line-height: 2; margin-left: 20px;">
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Leading partnerships with <strong style="color: var(--accent-white);">Unless U</strong> and <strong style="color: var(--accent-white);">The Ability Experience</strong>
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Planning and executing chapter-wide service and fundraising events
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Promoting disability inclusion initiatives within the campus community
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Coordinating volunteer efforts and tracking impact metrics
-                    </li>
-                    <li style="color: var(--text-muted); margin-bottom: 12px;">
-                        <span style="color: var(--accent-white);">▸</span> Managing event logistics, volunteer scheduling, and donor relations
-                    </li>
-                </ul>
-            </div>
-        </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="content-section" id="contact">
-            <h2>GET IN TOUCH</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 40px;">
-                Interested in collaborating on a project or want to learn more about my work? 
-                Feel free to reach out!
-            </p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
-                <!-- Contact Form -->
-                <div style="background: var(--secondary-black); padding: 40px; border: 3px solid var(--border-gray); border-radius: 0px;">
-                    <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                        SEND ME A MESSAGE
-                    </h3>
-                    <form id="contactForm" method="post">
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; color: var(--text-light); margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">YOUR NAME</label>
-                            <input type="text" name="name" id="contactName" required 
-                                   style="width: 100%; padding: 15px; background: var(--primary-black); border: 2px solid var(--border-gray); 
-                                   color: var(--text-light); font-size: 1rem; border-radius: 0px; transition: border-color 0.3s;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; color: var(--text-light); margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">YOUR EMAIL</label>
-                            <input type="email" name="email" id="contactEmail" required 
-                                   style="width: 100%; padding: 15px; background: var(--primary-black); border: 2px solid var(--border-gray); 
-                                   color: var(--text-light); font-size: 1rem; border-radius: 0px; transition: border-color 0.3s;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; color: var(--text-light); margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">MESSAGE</label>
-                            <textarea name="message" id="contactMessage" rows="6" required 
-                                      style="width: 100%; padding: 15px; background: var(--primary-black); border: 2px solid var(--border-gray); 
-                                      color: var(--text-light); font-size: 1rem; border-radius: 0px; resize: vertical; transition: border-color 0.3s;"></textarea>
-                        </div>
-                        <div id="formMessage" style="margin-bottom: 15px; padding: 10px; display: none; border-radius: 0px; font-weight: bold; letter-spacing: 1px;"></div>
-                        <button type="submit" id="submitBtn" class="btn" style="width: 100%; margin: 0;">SEND MESSAGE</button>
-                    </form>
-                </div>
-
-                <!-- Contact Information -->
-                <div>
-                    <div style="background: var(--secondary-black); padding: 40px; border: 3px solid var(--border-gray); border-radius: 0px; margin-bottom: 30px;">
-                        <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                            CONTACT INFO
-                        </h3>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">EMAIL</p>
-                            <a href="mailto:<?php echo $contact['email']; ?>" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                <?php echo $contact['email']; ?>
-                            </a>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">PHONE</p>
-                            <a href="tel:+16159439722" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                <?php echo $contact['phone']; ?>
-                            </a>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">WEBSITE</p>
-                            <a href="<?php echo $contact['website']; ?>" target="_blank" style="color: var(--accent-white); font-size: 1.05rem; text-decoration: none; border-bottom:2px solid var(--accent-white);">
-                                jakebartoncreative.com
-                            </a>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">ADDRESS</p>
-                            <p style="color: var(--accent-white); font-size: 1.1rem;">
-                                <?php echo $contact['address']; ?>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div style="background: var(--secondary-black); padding: 40px; border: 3px solid var(--border-gray); border-radius: 0px;">
-                        <h3 style="color: var(--accent-white); font-size: 2rem; margin-bottom: 25px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">
-                            SOCIAL MEDIA
-                        </h3>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">LINKEDIN</p>
-                            <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                linkedin.com/in/jakebartoncreative
-                            </a>
-                        </div>
-                        <?php if (!empty($contact['instagram'])): ?>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">INSTAGRAM</p>
-                            <a href="https://instagram.com/<?php echo $contact['instagram']; ?>" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                @<?php echo $contact['instagram']; ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                        <?php if (!empty($contact['github'])): ?>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">GITHUB</p>
-                            <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                github.com/<?php echo $contact['github']; ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                        <?php if (!empty($contact['youtube'])): ?>
-                        <div style="margin-bottom: 20px;">
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px;">YOUTUBE</p>
-                            <a href="https://youtube.com/@<?php echo $contact['youtube']; ?>" target="_blank" 
-                               style="color: var(--accent-white); font-size: 1.1rem; text-decoration: none; border-bottom: 2px solid var(--accent-white);">
-                                youtube.com/@<?php echo $contact['youtube']; ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="content-section" style="text-align: center; padding: 80px;">
-            <h2 style="margin-bottom: 25px;">READY TO SEE WHAT I'VE CREATED?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 40px;">
-                Explore my portfolio featuring game projects, 3D artwork, and design work.
-            </p>
-            <a href="portfolio/" class="btn">VIEW PORTFOLIO</a>
-        </div>
+      <?php endforeach; ?>
     </div>
 
-    <style>
-        /* Additional Hero Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    <!-- ── Scrolling ticker ──────────────────────────────── -->
+    <div class="bold-ticker" aria-hidden="true">
+      <div class="bold-ticker-track">
+        <?php for ($i = 0; $i < 2; $i++): ?>
+          <span>Game Design</span><span class="bull">·</span>
+          <span>Unreal Engine 5</span><span class="bull">·</span>
+          <span>3D Art</span><span class="bull">·</span>
+          <span>Web Development</span><span class="bull">·</span>
+          <span>C++</span><span class="bull">·</span>
+          <span>JavaScript</span><span class="bull">·</span>
+          <span>VR Development</span><span class="bull">·</span>
+          <span>Level Design</span><span class="bull">·</span>
+          <span>Godot 4</span><span class="bull">·</span>
+          <span>UI / UX</span><span class="bull">·</span>
+          <span>Samford University</span><span class="bull">·</span>
+        <?php endfor; ?>
+      </div>
+    </div>
 
-        /* Card Stack Carousel - Silky Smooth */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            height: 500px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+    <!-- ── Selected Work  (sticky scroll accordion) ──────── -->
+    <section class="work-section" id="work">
 
-        .carousel-track {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transform: translateZ(0);
-            perspective: 1000px;
-        }
+      <!-- Section label row (outside sticky, scrolls normally) -->
+      <div class="work-label-row">
+        <span class="work-label-num">01</span>
+        <span class="work-label-text">Selected Work</span>
+        <a href="/portfolio/" class="work-label-link">View All →</a>
+      </div>
 
-        .carousel-slide {
-            position: absolute;
-            width: 100%;
-            max-width: 600px;
-            height: 450px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            -webkit-font-smoothing: subpixel-antialiased;
-        }
+      <!-- Scroll tunnel — its height gives the scroll room -->
+      <div class="work-scroll-tunnel" id="workTunnel">
 
-        /* Active card - front and center */
-        .carousel-slide.position-0 {
-            transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1) rotateY(0deg);
-            opacity: 1;
-            z-index: 30;
-        }
+        <!-- Sticky viewport — this never moves -->
+        <div class="work-sticky" id="workSticky">
+          <div class="wa-stack" id="waStack">
 
-        /* First card behind - stacked right */
-        .carousel-slide.position-1 {
-            transform: translate(-50%, -50%) translate3d(30px, 15px, -50px) scale(0.94) rotateY(-5deg);
-            opacity: 0.7;
-            z-index: 20;
-            pointer-events: none;
-        }
+            <!-- Card 0 — Phase Runner (featured) -->
+            <a href="https://clervercarpet99.itch.io/phase-runner" target="_blank"
+               class="wa-card" data-idx="0">
+              <!-- full-bleed media -->
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/phase-runner-screen.mp4"
+                     poster="assets/images/phaserunnercover.png">
+              </video>
+              <div class="wa-grad"></div>
+              <!-- expanded content -->
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag">Game Design</span>
+                  <span class="tag tag-muted">Godot 4</span>
+                  <span class="tag tag-muted">GDScript</span>
+                  <span class="tag tag-muted">Solo</span>
+                </div>
+                <h2 class="wa-title">Phase Runner</h2>
+                <p class="wa-desc">2D side-scrolling shooter with custom physics, 10+ weapons, procedural level chunks, and invincibility dash. Solo-developed and live on itch.io.</p>
+                <span class="wa-cta">Play on itch.io ↗</span>
+              </div>
+              <div class="wa-badge">Featured</div>
+              <!-- collapsed bar -->
+              <div class="wa-bar">
+                <span class="wa-bar-num">01</span>
+                <div class="wa-bar-thumb">
+                  <video src="assets/images/phase-runner-screen.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
+                </div>
+                <span class="wa-bar-title">Phase Runner</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Game Design</span>
+                  <span class="tag tag-muted">Godot 4</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        /* Second card behind - more stacked */
-        .carousel-slide.position-2 {
-            transform: translate(-50%, -50%) translate3d(60px, 30px, -100px) scale(0.88) rotateY(-10deg);
-            opacity: 0.4;
-            z-index: 10;
-            pointer-events: none;
-        }
+            <!-- Card 1 — Mediterranean Environment -->
+            <a href="portfolio/art/" class="wa-card" data-idx="1">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/environment-scene.mp4"
+                     poster="assets/images/venice-art.jpg">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">3D Art</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                  <span class="tag tag-muted">Real-time</span>
+                </div>
+                <h2 class="wa-title">Mediterranean Environment</h2>
+                <p class="wa-desc">Real-time 3D scene built in Unreal Engine 5 — custom lighting, modular architecture, atmospheric FX.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">02</span>
+                <div class="wa-bar-thumb">
+                  <video src="assets/images/environment-scene.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
+                </div>
+                <span class="wa-bar-title">Mediterranean Environment</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">3D Art</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        /* Cards exiting to the left */
-        .carousel-slide.position-exit {
-            transform: translate(-50%, -50%) translate3d(-120%, -20px, -150px) scale(0.85) rotateY(15deg);
-            opacity: 0;
-            z-index: 5;
-            pointer-events: none;
-        }
+            <!-- Card 2 — VR Rhythm Game -->
+            <a href="portfolio/game-programming/" class="wa-card" data-idx="2">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/vr-gameplay.mp4"
+                     poster="assets/images/phaserunnercover.png">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">VR</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                  <span class="tag tag-muted">C++</span>
+                </div>
+                <h2 class="wa-title">VR Rhythm Game</h2>
+                <p class="wa-desc">Body-movement dragon controller in Unreal Engine 5 — C++ gameplay, VR locomotion, rhythm mechanics.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">03</span>
+                <div class="wa-bar-thumb">
+                  <video src="assets/images/vr-gameplay.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
+                </div>
+                <span class="wa-bar-title">VR Rhythm Game</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">VR</span>
+                  <span class="tag tag-muted">C++</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        /* Cards entering from the right */
-        .carousel-slide.position-enter {
-            transform: translate(-50%, -50%) translate3d(120%, 40px, -150px) scale(0.82) rotateY(-15deg);
-            opacity: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
+            <!-- Card 3 — Penguins Creed -->
+            <a href="portfolio/game-programming/" class="wa-card" data-idx="3">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/penguins-creed.mp4"
+                     poster="assets/images/phaserunnercover.png">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Game Design</span>
+                  <span class="tag tag-muted">Unreal 5</span>
+                  <span class="tag tag-muted">Blueprints</span>
+                </div>
+                <h2 class="wa-title">Penguins Creed</h2>
+                <p class="wa-desc">Third-person action game with stealth mechanics, AI patrol systems, and a penguin protagonist.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">04</span>
+                <div class="wa-bar-thumb">
+                  <video src="assets/images/penguins-creed.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
+                </div>
+                <span class="wa-bar-title">Penguins Creed</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Game Design</span>
+                  <span class="tag tag-muted">Blueprints</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        .carousel-card {
-            background: var(--secondary-black);
-            border: 2px solid var(--border-gray);
-            border-radius: 12px;
-            padding: 40px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-            transform: translateZ(0);
-        }
+            <!-- Card 4 — Mario Kart Recreation -->
+            <a href="/MarioKartLatest/" class="wa-card" data-idx="4">
+              <video class="wa-media" muted loop playsinline preload="none"
+                     data-src="assets/images/mariokart.mp4"
+                     poster="assets/images/mariokart.png">
+              </video>
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Web Game</span>
+                  <span class="tag tag-muted">JavaScript</span>
+                  <span class="tag tag-muted">In Development</span>
+                </div>
+                <h2 class="wa-title">Mario Kart Recreation</h2>
+                <p class="wa-desc">Mode-7 SNES renderer in vanilla JS — raycasting, sprite sheets, full lap logic. Currently in development.</p>
+                <span class="wa-cta">View Progress ↗</span>
+              </div>
+              <div class="wa-badge">In Development</div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">05</span>
+                <div class="wa-bar-thumb">
+                  <video src="assets/images/mariokart.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
+                </div>
+                <span class="wa-bar-title">Mario Kart Recreation</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Web Game</span>
+                  <span class="tag tag-muted">JS</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        .carousel-slide.position-0 .carousel-card {
-            border-color: var(--accent-white);
-            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
-        }
+            <!-- Card 5 — Venice -->
+            <a href="portfolio/art/" class="wa-card" data-idx="5">
+              <img class="wa-media" src="assets/images/venice-art.jpg" alt="Venice" style="object-position:center top">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Fine Art</span>
+                  <span class="tag tag-muted">Digital</span>
+                  <span class="tag tag-muted">Juried Show</span>
+                </div>
+                <h2 class="wa-title">Venice</h2>
+                <p class="wa-desc">Digital art piece accepted into the Samford University Juried Art Show 2025.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">06</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/venice-art.jpg" alt="Venice" style="object-position:center top">
+                </div>
+                <span class="wa-bar-title">Venice</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Fine Art</span>
+                  <span class="tag tag-muted">Digital</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        .carousel-card img {
-            width: 100%;
-            max-width: 450px;
-            height: 280px;
-            object-fit: contain;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            transform: translateZ(0);
-        }
+            <!-- Card 6 — 33 Miles Band Graphics -->
+            <a href="portfolio/professional-works/" class="wa-card" data-idx="6">
+              <img class="wa-media" src="assets/images/33miles-cover.png" alt="33Miles Band Graphics">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Client Work</span>
+                  <span class="tag tag-muted">Illustrator</span>
+                </div>
+                <h2 class="wa-title">33 Miles Band</h2>
+                <p class="wa-desc">Paid brand &amp; merchandise design for a signed Christian music group.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">07</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/33miles-cover.png" alt="33Miles">
+                </div>
+                <span class="wa-bar-title">33 Miles Band Graphics</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Client Work</span>
+                  <span class="tag tag-muted">Illustrator</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        .carousel-info {
-            text-align: center;
-            width: 100%;
-        }
+            <!-- Card 7 — Forge -->
+            <a href="https://forge-jakebarton.vercel.app" target="_blank" class="wa-card" data-idx="7">
+              <img class="wa-media" src="assets/images/forge-cover.svg" alt="Forge" style="object-fit:cover">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Next.js 14</span>
+                  <span class="tag tag-muted">TypeScript</span>
+                  <span class="tag tag-muted">In Development</span>
+                </div>
+                <h2 class="wa-title">Forge</h2>
+                <p class="wa-desc">A social platform where projects are posts — built for junior devs to build in public, remix work, and grow with an AI mentor.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-badge">In Development</div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">08</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/forge-cover.svg" alt="Forge" style="object-fit:cover;width:100%;height:100%">
+                </div>
+                <span class="wa-bar-title">Forge</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Next.js 14</span>
+                  <span class="tag tag-muted">TypeScript</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        .carousel-info h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.2rem;
-            letter-spacing: 2px;
-            color: var(--accent-white);
-            margin-bottom: 10px;
-        }
+            <!-- Card 8 — ClearDesk -->
+            <a href="portfolio/web-programming/" class="wa-card" data-idx="8">
+              <img class="wa-media" src="assets/images/cleardesk-cover.svg" alt="ClearDesk" style="object-fit:cover">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Electron</span>
+                  <span class="tag tag-muted">React</span>
+                  <span class="tag tag-muted">In Development</span>
+                </div>
+                <h2 class="wa-title">ClearDesk</h2>
+                <p class="wa-desc">AI-powered macOS task manager that converts inbox chaos into a clear daily plan — email parsing, OCR invoices, SMS digest.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-badge">In Development</div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">09</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/cleardesk-cover.svg" alt="ClearDesk" style="object-fit:cover;width:100%;height:100%">
+                </div>
+                <span class="wa-bar-title">ClearDesk</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Electron</span>
+                  <span class="tag tag-muted">AI</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        .carousel-info p {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            letter-spacing: 1px;
-        }
+            <!-- Card 9 — October -->
+            <a href="portfolio/web-programming/" class="wa-card" data-idx="9">
+              <img class="wa-media" src="assets/images/october-cover.svg" alt="October AI" style="object-fit:cover">
+              <div class="wa-grad"></div>
+              <div class="wa-content">
+                <div class="wa-tags">
+                  <span class="tag tag-muted">Python</span>
+                  <span class="tag tag-muted">Ollama</span>
+                  <span class="tag tag-muted">In Development</span>
+                </div>
+                <h2 class="wa-title">October</h2>
+                <p class="wa-desc">Voice-controlled macOS AI assistant running 100% locally — Whisper STT, Llama 3 via Ollama, persistent memory, and tool execution.</p>
+                <span class="wa-cta">View Project ↗</span>
+              </div>
+              <div class="wa-badge">In Development</div>
+              <div class="wa-bar">
+                <span class="wa-bar-num">10</span>
+                <div class="wa-bar-thumb">
+                  <img src="assets/images/october-cover.svg" alt="October" style="object-fit:cover;width:100%;height:100%">
+                </div>
+                <span class="wa-bar-title">October</span>
+                <div class="wa-bar-tags">
+                  <span class="tag tag-muted">Python</span>
+                  <span class="tag tag-muted">Local AI</span>
+                </div>
+                <span class="wa-bar-arrow">↗</span>
+              </div>
+            </a>
 
-        /* Hide dots */
-        .carousel-dots {
-            display: none;
-        }
+          </div><!-- /wa-stack -->
+        </div><!-- /work-sticky -->
+      </div><!-- /work-scroll-tunnel -->
 
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .carousel-wrapper {
-                max-width: 600px;
-                height: 450px;
-            }
+      <div class="work-footer">
+        <a href="portfolio/" class="btn btn-primary">Explore Full Portfolio →</a>
+      </div>
 
-            .carousel-slide {
-                max-width: 520px;
-                height: 400px;
-            }
-            
-            .carousel-card {
-                padding: 30px;
-            }
-            
-            .carousel-card img {
-                height: 240px;
-                max-width: 380px;
-            }
-            
-            .carousel-info h3 {
-                font-size: 1.9rem;
-            }
+    </section>
 
-            .carousel-slide.position-1 {
-                transform: translate(-50%, -50%) translate3d(25px, 12px, -50px) scale(0.95) rotateY(-4deg);
-            }
+    <!-- ── Skills Section ────────────────────────────────── -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">02</span>
+          <span class="work-label-text">Toolkit</span>
+        </div>
+        <h2 class="section-big-heading reveal-up">Skills &amp; Tools</h2>
 
-            .carousel-slide.position-2 {
-                transform: translate(-50%, -50%) translate3d(50px, 24px, -100px) scale(0.90) rotateY(-8deg);
-            }
-        }
+        <div class="skills-grid stagger-reveal reveal-up">
 
-        @media (max-width: 768px) {
-            .carousel-wrapper {
-                max-width: 100%;
-                height: 420px;
-                padding: 0 20px;
-            }
+          <div class="skill-group glass-card">
+            <div class="skill-group-header">
+              <span class="skill-group-icon">GD</span>
+              <h3 class="skill-group-title">Game Development</h3>
+            </div>
+            <div class="skill-group-pills stagger-pop">
+              <span class="skill-pill primary"><span class="dot"></span>Unreal Engine 5</span>
+              <span class="skill-pill primary"><span class="dot"></span>Godot 4</span>
+              <span class="skill-pill primary"><span class="dot"></span>Unreal Blueprint</span>
+              <span class="skill-pill"><span class="dot"></span>Unity</span>
+              <span class="skill-pill"><span class="dot"></span>Level Design</span>
+              <span class="skill-pill"><span class="dot"></span>Game Programming</span>
+            </div>
+          </div>
 
-            .carousel-slide {
-                max-width: 100%;
-                height: 380px;
-                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                            opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
+          <div class="skill-group glass-card">
+            <div class="skill-group-header">
+              <span class="skill-group-icon">&lt;/&gt;</span>
+              <h3 class="skill-group-title">Programming</h3>
+            </div>
+            <div class="skill-group-pills stagger-pop">
+              <span class="skill-pill primary"><span class="dot"></span>C++</span>
+              <span class="skill-pill primary"><span class="dot"></span>Python</span>
+              <span class="skill-pill primary"><span class="dot"></span>JavaScript</span>
+              <span class="skill-pill"><span class="dot"></span>HTML &amp; CSS</span>
+              <span class="skill-pill"><span class="dot"></span>PHP</span>
+              <span class="skill-pill"><span class="dot"></span>Web Development</span>
+            </div>
+          </div>
 
-            .carousel-card {
-                padding: 25px;
-            }
+          <div class="skill-group glass-card">
+            <div class="skill-group-header">
+              <span class="skill-group-icon">ART</span>
+              <h3 class="skill-group-title">Art &amp; Design</h3>
+            </div>
+            <div class="skill-group-pills stagger-pop">
+              <span class="skill-pill primary"><span class="dot"></span>Autodesk Maya</span>
+              <span class="skill-pill primary"><span class="dot"></span>Adobe Illustrator</span>
+              <span class="skill-pill"><span class="dot"></span>Blender</span>
+              <span class="skill-pill"><span class="dot"></span>Substance Painter</span>
+              <span class="skill-pill"><span class="dot"></span>Photoshop</span>
+              <span class="skill-pill"><span class="dot"></span>Figma</span>
+            </div>
+          </div>
 
-            .carousel-card img {
-                height: 220px;
-                max-width: 320px;
-            }
+        </div>
+      </div>
+    </section>
 
-            .carousel-info h3 {
-                font-size: 1.6rem;
-            }
+    <!-- ── About Section ─────────────────────────────────── -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">03</span>
+          <span class="work-label-text">About Me</span>
+        </div>
+      </div>
 
-            .carousel-info p {
-                font-size: 1rem;
-            }
+      <!-- Full-bleed heading + image side-by-side -->
+      <div class="about-editorial">
+        <div class="about-editorial-text reveal-left">
+          <h2 class="about-big-heading"><?php echo $content['about_heading']; ?></h2>
+          <?php foreach ($content['about_paragraphs'] as $i => $para): ?>
+          <p class="about-para" style="transition-delay:<?php echo 0.1 + $i * 0.08; ?>s"><?php echo $para; ?></p>
+          <?php endforeach; ?>
+          <div class="about-actions reveal-up" style="transition-delay:0.35s">
+            <a href="/portfolio/" class="btn btn-primary">View Portfolio</a>
+            <a href="https://github.com/<?php echo $content['github']; ?>" target="_blank" class="btn btn-ghost">GitHub</a>
+          </div>
+        </div>
+        <div class="about-editorial-creds reveal-right">
+          <div class="cred-card glass-card">
+            <div class="cred-row">
+              <span class="cred-label">Degree</span>
+              <span class="cred-value"><?php echo $content['major']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">Minor</span>
+              <span class="cred-value"><?php echo $content['minor']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">University</span>
+              <span class="cred-value"><?php echo $content['university']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">GPA</span>
+              <span class="cred-value" style="font-weight:700"><?php echo $content['gpa']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">Graduation</span>
+              <span class="cred-value"><?php echo $content['grad_date']; ?></span>
+            </div>
+            <div class="cred-row">
+              <span class="cred-label">Location</span>
+              <span class="cred-value"><?php echo $content['location']; ?></span>
+            </div>
+            <div class="cred-row" style="border-bottom:none">
+              <span class="cred-label">Status</span>
+              <span class="cred-value"><span style="color:#3ddb74">●</span> Open to Work</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            .carousel-slide.position-1 {
-                transform: translate(-50%, -50%) translate3d(20px, 10px, -30px) scale(0.94) rotateY(-3deg);
-            }
+    <!-- ── Experience (horizontal index) ─────────────────── -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">04</span>
+          <span class="work-label-text">Experience &amp; Leadership</span>
+        </div>
+        <div class="exp-list stagger-reveal">
+          <?php foreach ($content['experience'] as $i => $exp): ?>
+          <div class="exp-item reveal-up" style="transition-delay:<?php echo $i * 0.07; ?>s">
+            <span class="exp-dates"><?php echo $exp['dates']; ?></span>
+            <div class="exp-main">
+              <h3 class="exp-role"><?php echo $exp['role']; ?></h3>
+              <p class="exp-org" style="<?php echo $exp['org_style']; ?>"><?php echo $exp['org']; ?></p>
+            </div>
+            <ul class="exp-bullets">
+              <?php foreach ($exp['bullets'] as $b): ?>
+              <li><?php echo $b; ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
 
-            .carousel-slide.position-2 {
-                transform: translate(-50%, -50%) translate3d(40px, 20px, -60px) scale(0.88) rotateY(-6deg);
-            }
+    <!-- ── Contact Section ───────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-label-row reveal-up">
+          <span class="work-label-num">05</span>
+          <span class="work-label-text">Get In Touch</span>
+        </div>
 
-            .carousel-slide.position-exit {
-                transform: translate(-50%, -50%) translate3d(-100%, -15px, -90px) scale(0.85) rotateY(10deg);
-            }
+        <div class="contact-grid stagger-reveal">
+          <!-- Contact Form -->
+          <div class="glass-card reveal-left">
+            <h3 style="margin-bottom:1.5rem;font-size:1.3rem;letter-spacing:-0.02em">Send Me a Message</h3>
+            <form id="contactForm" method="post">
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" id="contactName" required class="form-input" placeholder="Jane Smith">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Email</label>
+                <input type="email" name="email" id="contactEmail" required class="form-input" placeholder="you@company.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea name="message" id="contactMessage" rows="5" required class="form-input" placeholder="Tell me about the role or project..."></textarea>
+              </div>
+              <div id="formMessage" style="margin-bottom:1rem;padding:0.75rem;display:none;border-radius:var(--radius-md);font-size:0.9rem"></div>
+              <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%">Send Message →</button>
+            </form>
+          </div>
 
-            .carousel-slide.position-enter {
-                transform: translate(-50%, -50%) translate3d(100%, 30px, -90px) scale(0.82) rotateY(-10deg);
-            }
-        }
+          <!-- Contact Info -->
+          <div class="reveal-right" style="display:flex;flex-direction:column;gap:1.25rem">
+            <div class="glass-card">
+              <h3 style="margin-bottom:1.25rem;font-size:1.3rem;letter-spacing:-0.02em">Contact Info</h3>
+              <div style="display:flex;flex-direction:column;gap:1rem">
+                <div>
+                  <p class="form-label">Email</p>
+                  <a href="mailto:<?php echo $contact['email']; ?>" style="color:var(--text);font-size:1rem"><?php echo $contact['email']; ?></a>
+                </div>
+                <div>
+                  <p class="form-label">Phone</p>
+                  <a href="tel:+16159439722" style="color:var(--text);font-size:1rem"><?php echo $contact['phone']; ?></a>
+                </div>
+                <div>
+                  <p class="form-label">Location</p>
+                  <p style="color:var(--text);font-size:1rem"><?php echo $contact['address']; ?></p>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card">
+              <h3 style="margin-bottom:1.25rem;font-size:1.3rem;letter-spacing:-0.02em">Find Me Online</h3>
+              <div style="display:flex;flex-direction:column;gap:0.75rem">
+                <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
+                  <span>in</span>&nbsp; linkedin.com/in/jakebartoncreative
+                </a>
+                <?php if (!empty($contact['github'])): ?>
+                <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn btn-secondary" style="justify-content:flex-start">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  &nbsp;github.com/<?php echo $contact['github']; ?>
+                </a>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        /* Contact Form Styles */
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-white) !important;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
+    <!-- ── CTA Banner ──────────────────────────────────────── -->
+    <section class="cta-full">
+      <div class="container">
+        <span class="cta-full-eyebrow reveal-up"><?php echo $content['cta_eyebrow']; ?></span>
+        <h2 class="cta-full-heading reveal-up" style="transition-delay:0.1s"><?php echo $content['cta_heading']; ?></h2>
+        <p class="cta-full-sub reveal-up" style="transition-delay:0.22s"><?php echo $content['cta_sub']; ?></p>
+        <div class="cta-full-actions reveal-up" style="transition-delay:0.34s">
+          <a href="mailto:<?php echo $content['email']; ?>" class="btn btn-primary">Email Me →</a>
+          <a href="https://www.linkedin.com/in/<?php echo $content['linkedin']; ?>" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </section>
 
-        input:hover, textarea:hover {
-            border-color: var(--text-muted) !important;
-        }
+  </main>
 
-        /* Contact Links Hover Effects */
-        #contact a {
-            transition: all 0.3s ease;
-        }
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner container-wide">
+      <a href="/" class="footer-logo nav-logo">
+        <img src="assets/images/jb-logo.png" alt="JB" class="nav-logo-img">
+        <span class="nav-logo-text">JB</span>
+      </a>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="/portfolio/">Work</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/jakebartoncreative" target="_blank" class="btn-icon" aria-label="LinkedIn">in</a>
+        <?php if (!empty($contact['github'])): ?>
+        <a href="https://github.com/<?php echo $contact['github']; ?>" target="_blank" class="btn-icon" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        </a>
+        <?php endif; ?>
+      </div>
+      <span class="footer-copy">© <?php echo date('Y'); ?> Jake Barton</span>
+    </div>
+  </footer>
 
-        #contact a:hover {
-            color: var(--text-light) !important;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            border-bottom-color: var(--text-light) !important;
-        }
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       Homepage — inline styles (layout-specific overrides)
+    ═══════════════════════════════════════════════════════ */
 
-        /* Responsive Contact Grid */
-        @media (max-width: 768px) {
-            #contact > div:nth-child(3) {
-                grid-template-columns: 1fr !important;
-            }
-        }
-    </style>
+    /* ── Film grain overlay ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 99998;
+      animation: grain-shift 0.8s steps(1) infinite;
+    }
 
-    <script>
-        // Fallback mobile nav (in case effects.js fails to load)
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.querySelector('.nav-toggle');
-            const menu = document.getElementById('primary-menu');
-            if (!btn || !menu) return;
-            if (!menu.classList.contains('open')) menu.classList.remove('open');
-            btn.addEventListener('click', function(e){
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                menu.classList.toggle('open');
-            });
-            // Handle link clicks through event delegation
-            menu.addEventListener('click', function(e) {
-                const link = e.target.closest('a');
-                if (link && link.href) {
-                    e.preventDefault();
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                    setTimeout(() => {
-                        if (link.hasAttribute('download')) {
-                            const tempLink = document.createElement('a');
-                            tempLink.href = link.href;
-                            tempLink.download = link.getAttribute('download') || '';
-                            document.body.appendChild(tempLink);
-                            tempLink.click();
-                            document.body.removeChild(tempLink);
-                        } else {
-                            window.location.href = link.href;
-                        }
-                    }, 150);
-                }
-            });
+    /* ── Scroll progress bar ────────────────────────────── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--text);
+      width: 0%;
+      z-index: 99999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Nav logo ───────────────────────────────────────── */
+    .nav-logo-img {
+      width: 28px; height: 28px;
+      object-fit: contain;
+      filter: invert(1);
+      display: inline-block;
+    }
+    .nav-logo-text { display: none; }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem var(--spacing-md) 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(4rem, 12vh, 8rem);
+      width: 100%;
+    }
+    .hero-eyebrow-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+    }
+    .hero-location-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .hero-name-block {
+      margin-bottom: clamp(1rem, 2.5vh, 2rem);
+    }
+    .hero-name-block .xl-reveal {
+      display: block;
+      overflow: hidden;
+      line-height: 0.92;
+    }
+    .hero-name-block .xl-reveal span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(3.8rem, 11vw, 10rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
+      color: var(--text);
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease;
+    }
+    .hero-name-block .xl-reveal.is-visible span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .hero-social-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: clamp(1.5rem, 3.5vh, 3rem);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease 0.35s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.35s;
+    }
+    .hero-social-icons.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .hero-social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-faint);
+      background: rgba(255,255,255,0.03);
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .hero-social-link:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-2px);
+    }
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 4rem;
+      width: 100%;
+      align-items: end;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+    .hero-tagline em {
+      font-style: italic;
+      color: var(--text);
+      font-family: var(--font-serif);
+    }
+    .hero-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-faint);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .hero-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 0.3rem 0.85rem 0.3rem 0.6rem;
+    }
+    .hero-status-pulse {
+      width: 7px; height: 7px;
+      background: #3ddb74;
+      border-radius: 50%;
+      animation: pulse-green 2s ease infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(61,219,116,0.5); }
+      50% { box-shadow: 0 0 0 5px rgba(61,219,116,0); }
+    }
+
+    /* ── Stats bar ──────────────────────────────────────── */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .stats-bar-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 1.5rem 2rem;
+      min-width: 130px;
+    }
+    .stats-bar-divider {
+      width: 1px;
+      align-self: stretch;
+      background: var(--border);
+    }
+    .stats-bar-num {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .stats-bar-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ── Bold ticker ────────────────────────────────────── */
+    .bold-ticker {
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 0;
+      background: var(--bg);
+    }
+    .bold-ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      white-space: nowrap;
+      animation: ticker-track 30s linear infinite;
+    }
+    .bold-ticker-track span {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      flex-shrink: 0;
+    }
+    .bold-ticker-track .bull { color: var(--text-faint); opacity: 0.4; }
+    @keyframes ticker-track {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Work section ───────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       SELECTED WORK — sticky accordion scroll
+    ══════════════════════════════════════════════════════ */
+    .work-section { padding: 0; }
+    .container-wide {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    /* Label row above the sticky block */
+    .work-label-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      padding: clamp(3rem,6vw,5rem) var(--spacing-md) 1.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-label-num {
+      font-family: var(--font-display);
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.12em; color: var(--text-faint);
+    }
+    .work-label-text {
+      font-family: var(--font-display);
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-faint); flex: 1;
+    }
+    .work-label-link {
+      font-size: 0.78rem; color: var(--text-faint);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .work-label-link:hover { color: var(--text); }
+
+    /* Scroll tunnel: tall container so sticky panel has room to scroll */
+    .work-scroll-tunnel {
+      position: relative;
+      /* 7 cards × 100vh each = total scroll distance */
+      height: calc(7 * 100vh);
+    }
+    /* Sticky viewport — stays in view while tunnel scrolls past */
+    .work-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Stack of accordion cards */
+    .wa-stack {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    /* Individual card */
+    .wa-card {
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      /* height is driven by JS via --h CSS var */
+      height: var(--h, 72px);
+      transition: height 0.55s cubic-bezier(0.16,1,0.3,1);
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    /* Media layer — fills the card */
+    .wa-media {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
+      opacity: 0;
+    }
+    .wa-card.is-active .wa-media { opacity: 0.82; }
+    .wa-card.is-active .wa-media { transform: scale(1.0); }
+    /* Gradient over media */
+    .wa-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 50%, transparent 100%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .wa-card.is-active .wa-grad { opacity: 1; }
+    /* Collapsed row bar */
+    .wa-bar {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      padding: 0 clamp(1rem,3vw,2.5rem);
+      gap: 1.5rem;
+      opacity: 1; transition: opacity 0.3s;
+      background: rgba(10,10,10,0.95);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .wa-card.is-active .wa-bar { opacity: 0; pointer-events: none; }
+    .wa-bar-num {
+      font-family: var(--font-display); font-size: 0.65rem;
+      font-weight: 800; letter-spacing: 0.1em; color: var(--text-faint);
+      flex-shrink: 0; min-width: 22px;
+    }
+    .wa-bar-thumb {
+      width: 52px; height: 36px; border-radius: 4px;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .wa-bar-thumb img, .wa-bar-thumb video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .wa-bar-title {
+      font-family: var(--font-display); font-size: clamp(0.85rem,1.4vw,1rem);
+      font-weight: 700; letter-spacing: -0.015em; flex: 1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .wa-bar-tags { display: flex; gap: 0.3rem; flex-shrink: 0; }
+    .wa-bar-arrow {
+      font-size: 1rem; color: var(--text-faint);
+      transition: transform 0.25s, color 0.25s; flex-shrink: 0;
+    }
+    .wa-card:hover .wa-bar-arrow { transform: translate(2px,-2px); color: var(--text); }
+    /* Expanded content */
+    .wa-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: clamp(1.5rem,4vw,3rem);
+      display: flex; flex-direction: column; gap: 0.6rem;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.35s 0.1s, transform 0.35s 0.1s;
+      pointer-events: none;
+    }
+    .wa-card.is-active .wa-content {
+      opacity: 1; transform: none; pointer-events: auto;
+    }
+    .wa-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .wa-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem,5vw,4.5rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      color: var(--text); line-height: 1; margin: 0;
+    }
+    .wa-desc {
+      font-size: 0.95rem; color: rgba(255,255,255,0.7);
+      line-height: 1.65; max-width: 60ch; margin: 0;
+    }
+    .wa-cta {
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text); margin-top: 0.5rem;
+      transition: letter-spacing 0.3s;
+    }
+    .wa-card.is-active:hover .wa-cta { letter-spacing: 0.18em; }
+    .wa-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text); border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.3rem 0.75rem; border-radius: 99px;
+      backdrop-filter: blur(8px);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .wa-card.is-active .wa-badge { opacity: 1; }
+
+    /* Footer CTA */
+    .work-footer {
+      padding: 2.5rem var(--spacing-md);
+      max-width: 1300px; margin: 0 auto;
+    }
+
+    /* ── SilkTricky-style scroll reveals ───────────────── */
+    /* Base: everything starts invisible and shifted down  */
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    .reveal-row,
+    .reveal-fade {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-up    { transform: translateY(48px); }
+    .reveal-left  { transform: translateX(-48px); }
+    .reveal-right { transform: translateX(48px); }
+    .reveal-fade  { transform: translateY(20px); }
+
+    /* Work rows: slide up + very slight x-shift */
+    .reveal-row {
+      transform: translateY(40px);
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.65s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.65s ease;
+    }
+    /* Visible state */
+    .reveal-up.is-visible,
+    .reveal-left.is-visible,
+    .reveal-right.is-visible,
+    .reveal-fade.is-visible,
+    .reveal-row.is-visible {
+      opacity: 1;
+      transform: none;
+      border-color: var(--border);
+    }
+    /* Stagger children — each child gets a small delay */
+    .stagger-reveal > * {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .stagger-reveal.is-visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
+    .stagger-reveal.is-visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
+    .stagger-reveal.is-visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
+    .stagger-reveal.is-visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+    .stagger-reveal.is-visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
+
+    /* ── Section label row ──────────────────────────────── */
+    .section-label-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Section big heading ────────────────────────────── */
+    .section-big-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 3rem;
+    }
+
+    /* ── About editorial layout ─────────────────────────── */
+    .about-section { padding: clamp(4rem, 8vw, 8rem) 0; }
+    .about-editorial {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+      align-items: start;
+    }
+    .about-big-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+    .about-para {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .about-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+    .cred-card { display: flex; flex-direction: column; gap: 0; }
+    .cred-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .cred-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      flex-shrink: 0;
+    }
+    .cred-value { font-size: 0.88rem; color: var(--text-muted); text-align: right; }
+
+    /* ── Experience list ────────────────────────────────── */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 1rem 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .exp-dates {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding-top: 0.3em;
+    }
+    .exp-role {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .exp-org { font-size: 0.8rem; color: var(--text-muted); }
+    .exp-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exp-bullets li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--text-faint); }
+
+    /* ── Contact section ────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+
+    /* ── CTA banner ─────────────────────────────────────── */
+    .cta-full {
+      padding: clamp(5rem, 10vw, 10rem) var(--spacing-md);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-full-eyebrow {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1.5rem;
+    }
+    .cta-full-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .cta-full-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 50ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-full-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo { flex-shrink: 0; }
+    .footer-nav { display: flex; gap: 2rem; flex: 1; }
+    .footer-nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--text); }
+    .footer-socials { display: flex; gap: 0.75rem; align-items: center; }
+    .footer-copy { font-size: 0.72rem; color: var(--text-faint); letter-spacing: 0.06em; }
+
+    /* ── Tags ───────────────────────────────────────────── */
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+    }
+    .tag-muted { color: rgba(255,255,255,0.45); border-color: rgba(255,255,255,0.1); }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-bottom { grid-template-columns: 1fr; }
+      .about-editorial { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-bottom: 5rem; }
+      .work-list-item { grid-template-columns: 70px 1fr auto; gap: 0.75rem 1rem; }
+      .work-list-media { width: 70px; height: 50px; }
+      .stats-bar-item { padding: 1rem 1.25rem; }
+    }
+  </style>
+
+  <script>
+    /* ── XL Hero reveal (name lines) ─────────────────── */
+    (function() {
+      var els = document.querySelectorAll('.hero-name-block .xl-reveal');
+      if (!els.length) return;
+      setTimeout(function() {
+        els.forEach(function(el) { el.classList.add('is-visible'); });
+        // Social icons fade in slightly after the name finishes
+        var icons = document.querySelector('.hero-social-icons');
+        if (icons) icons.classList.add('is-visible');
+      }, 80);
+    })();
+
+    /* ── Scroll reveal — IntersectionObserver ─────────── */
+    (function() {
+      // Reveal single elements
+      var singles = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-fade');
+      var singleObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            singleObs.unobserve(entry.target);
+          }
         });
-        // Card Stack Carousel - Enhanced Shifting
-        class Carousel {
-            constructor() {
-                this.slides = Array.from(document.querySelectorAll('.carousel-slide'));
-                this.currentIndex = 0;
-                this.totalSlides = this.slides.length;
-                this.autoplayInterval = null;
-                
-                if (this.totalSlides === 0) return;
-                
-                this.init();
-            }
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      singles.forEach(function(el) { singleObs.observe(el); });
 
-            init() {
-                // Set initial positions
-                this.updatePositions();
-                
-                // Start autoplay
-                this.startAutoplay();
-            }
-
-            updatePositions() {
-                this.slides.forEach((slide, index) => {
-                    // Calculate relative position
-                    let relativePos = (index - this.currentIndex + this.totalSlides) % this.totalSlides;
-                    
-                    // Remove all position classes
-                    slide.className = 'carousel-slide';
-                    
-                    // Assign position class with more states
-                    if (relativePos === 0) {
-                        slide.classList.add('position-0'); // Active center
-                    } else if (relativePos === 1) {
-                        slide.classList.add('position-1'); // First behind
-                    } else if (relativePos === 2) {
-                        slide.classList.add('position-2'); // Second behind
-                    } else if (relativePos === this.totalSlides - 1) {
-                        slide.classList.add('position-exit'); // Exiting to left
-                    } else {
-                        slide.classList.add('position-enter'); // Entering from right
-                    }
-                });
-            }
-
-            next() {
-                this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-                this.updatePositions();
-            }
-
-            startAutoplay() {
-                this.autoplayInterval = setInterval(() => this.next(), 3500);
-            }
-
-            stopAutoplay() {
-                if (this.autoplayInterval) {
-                    clearInterval(this.autoplayInterval);
-                    this.autoplayInterval = null;
-                }
-            }
-        }
-
-                // Initialize
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => new Carousel());
-        } else {
-            new Carousel();
-        }
-
-        // Contact Form Handler
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
-            const formData = new FormData(this);
-            
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-            formMessage.style.display = 'none';
-            
-            try {
-                const response = await fetch('contact-handler.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    // Success message
-                    formMessage.textContent = data.message;
-                    formMessage.style.background = 'rgba(0, 255, 0, 0.1)';
-                    formMessage.style.border = '2px solid #00ff00';
-                    formMessage.style.color = '#00ff00';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset form
-                    document.getElementById('contactForm').reset();
-                } else {
-                    // Error message
-                    formMessage.textContent = data.errors.join(', ');
-                    formMessage.style.background = 'rgba(255, 0, 0, 0.1)';
-                    formMessage.style.border = '2px solid #ff0000';
-                    formMessage.style.color = '#ff0000';
-                    formMessage.style.display = 'block';
-                }
-            } catch (error) {
-                // Network error
-                formMessage.textContent = 'Error sending message. Please try emailing directly.';
-                formMessage.style.background = 'rgba(255, 0, 0, 0.1)';
-                formMessage.style.border = '2px solid #ff0000';
-                formMessage.style.color = '#ff0000';
-                formMessage.style.display = 'block';
-            }
-            
-            // Re-enable button
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'SEND MESSAGE';
+      // Reveal work rows with staggered delay
+      var rows = document.querySelectorAll('.reveal-row');
+      var rowObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            // Find index among siblings for stagger
+            var siblings = entry.target.parentElement.querySelectorAll('.reveal-row');
+            var idx = 0;
+            siblings.forEach(function(s, i) { if (s === entry.target) idx = i; });
+            entry.target.style.transitionDelay = (idx * 0.06) + 's';
+            entry.target.classList.add('is-visible');
+            rowObs.unobserve(entry.target);
+          }
         });
-    </script>
+      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+      rows.forEach(function(el) { rowObs.observe(el); });
+
+      // Stagger-reveal containers
+      var staggerGroups = document.querySelectorAll('.stagger-reveal');
+      var groupObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            groupObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      staggerGroups.forEach(function(el) { groupObs.observe(el); });
+    })();
+
+    /* ── Scroll progress bar ──────────────────────────── */
+    (function() {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', function() {
+        var scrolled = window.scrollY;
+        var total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+      }, { passive: true });
+    })();
+
+    /* ── Work accordion — scroll-driven ─────────────────
+       One card is "active" (expands to fill viewport).
+       Scrolling through the tunnel advances which card is active.
+    ─────────────────────────────────────────────────── */
+    (function() {
+      var tunnel  = document.getElementById('workTunnel');
+      var sticky  = document.getElementById('workSticky');
+      var cards   = Array.from(document.querySelectorAll('.wa-card'));
+      if (!tunnel || !cards.length) return;
+
+      var N           = cards.length;   // 7
+      var COLLAPSED_H = 68;             // px — collapsed bar height
+      var raf         = null;
+
+      /* Set initial state: card 0 active */
+      function setActive(idx) {
+        var stickyH = sticky.getBoundingClientRect().height || window.innerHeight;
+        var expandedH = stickyH - COLLAPSED_H * (N - 1);
+        expandedH = Math.max(expandedH, stickyH * 0.5); // floor at 50vh
+
+        cards.forEach(function(card, i) {
+          var h = (i === idx) ? expandedH : COLLAPSED_H;
+          card.style.setProperty('--h', h + 'px');
+          card.classList.toggle('is-active', i === idx);
+
+          // Lazy-load + play/pause control
+          var vid = card.querySelector('video.wa-media');
+          if (!vid) return;
+          if (i === idx) {
+            if (vid.dataset.src && !vid.getAttribute('src')) {
+              vid.src = vid.dataset.src;
+              vid.load();
+            }
+            vid.play().catch(function(){});
+          } else {
+            if (!vid.paused) vid.pause();
+          }
+        });
+      }
+
+      function onScroll() {
+        var rect    = tunnel.getBoundingClientRect();
+        var total   = tunnel.offsetHeight - window.innerHeight;
+        /* progress: 0 when tunnel top just hits viewport top,
+                     1 when tunnel bottom hits viewport bottom */
+        var progress = Math.max(0, Math.min(1, -rect.top / total));
+        var idx = Math.min(N - 1, Math.floor(progress * N));
+        setActive(idx);
+      }
+
+      /* Run once on load so card 0 starts expanded */
+      setActive(0);
+
+      window.addEventListener('scroll', function() {
+        if (raf) return;
+        raf = requestAnimationFrame(function() {
+          raf = null;
+          onScroll();
+        });
+      }, { passive: true });
+
+      window.addEventListener('resize', function() { setActive(
+        parseInt(cards.findIndex(function(c){ return c.classList.contains('is-active'); }))
+      ); }, { passive: true });
+    })();
+
+    /* ── Ambient cursor glow ──────────────────────────── */
+    (function() {
+      var glow = document.getElementById('cursor-glow');
+      if (!glow || window.matchMedia('(pointer:coarse)').matches) return;
+      var cx = 0, cy = 0, tx = 0, ty = 0;
+      document.addEventListener('mousemove', function(e) {
+        tx = e.clientX; ty = e.clientY;
+        glow.style.opacity = '1';
+      });
+      document.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function loop() {
+        cx = lerp(cx, tx, 0.07);
+        cy = lerp(cy, ty, 0.07);
+        glow.style.left = cx + 'px';
+        glow.style.top  = cy + 'px';
+        requestAnimationFrame(loop);
+      }
+      loop();
+    })();
+
+    /* ── Contact form ─────────────────────────────────── */
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var submitBtn = document.getElementById('submitBtn');
+        var formMessage = document.getElementById('formMessage');
+        var formData = new FormData(this);
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        formMessage.style.display = 'none';
+        try {
+          var response = await fetch('contact-handler.php', { method: 'POST', body: formData });
+          var data = await response.json();
+          if (data.success) {
+            formMessage.textContent = data.message;
+            formMessage.style.cssText = 'display:block;background:rgba(61,219,116,0.1);border:1px solid rgba(61,219,116,0.4);color:#3ddb74;padding:0.75rem;border-radius:8px';
+            this.reset();
+          } else {
+            formMessage.textContent = data.errors.join(', ');
+            formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid rgba(255,0,107,0.4);color:#ff006b;padding:0.75rem;border-radius:8px';
+          }
+        } catch(err) {
+          formMessage.textContent = 'Error sending message. Please email directly.';
+          formMessage.style.cssText = 'display:block;background:rgba(255,0,107,0.08);border:1px solid rgba(255,0,107,0.4);color:#ff006b;padding:0.75rem;border-radius:8px';
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+      });
+    }
+  </script>
+
+  <!-- ── Style Kit JS ───────────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="assets/js/beams-bg.js"></script>
+  <script src="assets/js/cursor-ribbons.js"></script>
+  <script src="assets/js/fuzzy-text.js"></script>
+  <script src="assets/js/staggered-menu.js"></script>
+  <script src="assets/js/effects-stylekit.js"></script>
+
 </body>
 </html>
-```

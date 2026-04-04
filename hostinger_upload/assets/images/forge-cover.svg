@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#12101a"/>
+    </linearGradient>
+    <linearGradient id="fire" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500"/>
+      <stop offset="50%" style="stop-color:#ff8c00"/>
+      <stop offset="100%" style="stop-color:#ffd700"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1b2e"/>
+      <stop offset="100%" style="stop-color:#16132a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="83" x2="800" y2="83"/>
+    <line x1="0" y1="166" x2="800" y2="166"/>
+    <line x1="0" y1="249" x2="800" y2="249"/>
+    <line x1="0" y1="332" x2="800" y2="332"/>
+    <line x1="0" y1="415" x2="800" y2="415"/>
+    <line x1="133" y1="0" x2="133" y2="500"/>
+    <line x1="266" y1="0" x2="266" y2="500"/>
+    <line x1="399" y1="0" x2="399" y2="500"/>
+    <line x1="532" y1="0" x2="532" y2="500"/>
+    <line x1="665" y1="0" x2="665" y2="500"/>
+  </g>
+
+  <!-- Glowing orb top-right -->
+  <ellipse cx="680" cy="80" rx="120" ry="120" fill="#7c3aed" opacity="0.08" filter="url(#softglow)"/>
+  <ellipse cx="680" cy="80" rx="60" ry="60" fill="#a855f7" opacity="0.06"/>
+
+  <!-- Fire glow bottom-left -->
+  <ellipse cx="120" cy="420" rx="100" ry="80" fill="#ff4500" opacity="0.07" filter="url(#softglow)"/>
+
+  <!-- Nav bar mock -->
+  <rect x="40" y="32" width="720" height="40" rx="8" fill="#1a1625" opacity="0.9"/>
+  <circle cx="68" cy="52" r="7" fill="#ff4500" opacity="0.8" filter="url(#glow)"/>
+  <text x="86" y="57" font-family="monospace" font-size="14" font-weight="700" fill="#ffffff" opacity="0.9">FORGE</text>
+  <rect x="560" y="41" width="80" height="22" rx="4" fill="url(#accent)" opacity="0.9"/>
+  <text x="600" y="56" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Sign Up</text>
+  <text x="480" y="57" font-family="sans-serif" font-size="12" fill="#9ca3af">Explore</text>
+  <text x="520" y="57" font-family="sans-serif" font-size="12" fill="#9ca3af">Feed</text>
+  <text x="655" y="57" font-family="sans-serif" font-size="12" fill="#9ca3af">Log in</text>
+
+  <!-- Left sidebar -->
+  <rect x="40" y="88" width="180" height="340" rx="10" fill="#13111e" opacity="0.8"/>
+  <circle cx="90" cy="118" r="20" fill="#2d2540"/>
+  <text x="90" y="124" font-family="monospace" font-size="12" fill="#a855f7" text-anchor="middle" font-weight="700">JB</text>
+  <text x="120" y="113" font-family="sans-serif" font-size="11" font-weight="600" fill="#e5e7eb">jake_barton</text>
+  <text x="120" y="127" font-family="sans-serif" font-size="9" fill="#6b7280">Junior Dev · 847 pts</text>
+  <!-- Sidebar nav items -->
+  <rect x="55" y="152" width="150" height="28" rx="6" fill="#7c3aed" opacity="0.25"/>
+  <text x="75" y="170" font-family="sans-serif" font-size="11" fill="#c4b5fd">🏠  Feed</text>
+  <text x="75" y="200" font-family="sans-serif" font-size="11" fill="#6b7280">⚡  Projects</text>
+  <text x="75" y="225" font-family="sans-serif" font-size="11" fill="#6b7280">🔥  Trending</text>
+  <text x="75" y="250" font-family="sans-serif" font-size="11" fill="#6b7280">🤖  AI Mentor</text>
+  <text x="75" y="275" font-family="sans-serif" font-size="11" fill="#6b7280">👥  Community</text>
+  <!-- Streak badge -->
+  <rect x="55" y="380" width="150" height="36" rx="8" fill="#1e1b2e"/>
+  <text x="80" y="403" font-family="sans-serif" font-size="11" fill="#ff8c00">🔥 12 day streak!</text>
+
+  <!-- Main feed - Post card 1 -->
+  <rect x="240" y="88" width="330" height="150" rx="10" fill="url(#card1)"/>
+  <circle cx="268" cy="112" r="14" fill="#2d2540"/>
+  <text x="268" y="118" font-family="monospace" font-size="9" fill="#a855f7" text-anchor="middle" font-weight="700">MK</text>
+  <text x="290" y="108" font-family="sans-serif" font-size="11" font-weight="600" fill="#e5e7eb">mark_dev</text>
+  <text x="290" y="121" font-family="sans-serif" font-size="9" fill="#6b7280">2 hours ago</text>
+  <rect x="258" y="133" width="290" height="60" rx="6" fill="#0d0b17"/>
+  <text x="270" y="151" font-family="monospace" font-size="9" fill="#a855f7">const</text>
+  <text x="308" y="151" font-family="monospace" font-size="9" fill="#e5e7eb">useForge</text>
+  <text x="360" y="151" font-family="monospace" font-size="9" fill="#6b7280">= () =&gt; {</text>
+  <text x="270" y="165" font-family="monospace" font-size="9" fill="#6b7280">  // Build in public 🔥</text>
+  <text x="270" y="179" font-family="monospace" font-size="9" fill="#6b7280">}</text>
+  <text x="258" y="212" font-family="sans-serif" font-size="10" fill="#6b7280">💜 48   💬 12 comments   🔁 remix</text>
+
+  <!-- Post card 2 -->
+  <rect x="240" y="252" width="330" height="120" rx="10" fill="url(#card1)"/>
+  <circle cx="268" cy="276" r="14" fill="#1e3a2e"/>
+  <text x="268" y="282" font-family="monospace" font-size="9" fill="#34d399" text-anchor="middle" font-weight="700">AK</text>
+  <text x="290" y="272" font-family="sans-serif" font-size="11" font-weight="600" fill="#e5e7eb">alex_codes</text>
+  <text x="290" y="285" font-family="sans-serif" font-size="9" fill="#6b7280">Just shipped 🚀</text>
+  <rect x="258" y="295" width="290" height="32" rx="6" fill="#0d0b17"/>
+  <text x="270" y="315" font-family="sans-serif" font-size="10" fill="#e5e7eb">Built a real-time chat component — took</text>
+  <text x="270" y="328" font-family="sans-serif" font-size="10" fill="#e5e7eb">3 hours but learned WebSockets finally!</text>
+  <text x="258" y="355" font-family="sans-serif" font-size="10" fill="#6b7280">💜 31   💬 8 comments   🤖 AI feedback</text>
+
+  <!-- Right panel — trending -->
+  <rect x="590" y="88" width="170" height="200" rx="10" fill="#13111e" opacity="0.8"/>
+  <text x="610" y="112" font-family="sans-serif" font-size="11" font-weight="700" fill="#e5e7eb">🔥 Trending</text>
+  <text x="610" y="132" font-family="sans-serif" font-size="10" fill="#7c3aed">#react-hooks</text>
+  <text x="610" y="150" font-family="sans-serif" font-size="10" fill="#7c3aed">#typescript</text>
+  <text x="610" y="168" font-family="sans-serif" font-size="10" fill="#7c3aed">#build-in-public</text>
+  <text x="610" y="186" font-family="sans-serif" font-size="10" fill="#7c3aed">#ai-tools</text>
+  <text x="610" y="204" font-family="sans-serif" font-size="10" fill="#7c3aed">#open-source</text>
+
+  <!-- AI Mentor panel -->
+  <rect x="590" y="302" width="170" height="126" rx="10" fill="#13111e" opacity="0.8"/>
+  <text x="610" y="326" font-family="sans-serif" font-size="11" font-weight="700" fill="#e5e7eb">🤖 AI Mentor</text>
+  <rect x="610" y="337" width="130" height="40" rx="6" fill="#1a1625"/>
+  <text x="618" y="353" font-family="sans-serif" font-size="9" fill="#9ca3af">"Your code runs but</text>
+  <text x="618" y="365" font-family="sans-serif" font-size="9" fill="#9ca3af">try memoizing this…"</text>
+  <rect x="610" y="385" width="80" height="20" rx="4" fill="url(#accent)" opacity="0.8"/>
+  <text x="650" y="399" font-family="sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Ask mentor</text>
+
+  <!-- Forge logo watermark -->
+  <text x="400" y="476" font-family="monospace" font-size="11" fill="#ffffff" opacity="0.15" text-anchor="middle" letter-spacing="4">FORGE · DEVELOPER SOCIAL PLATFORM · NEXT.JS 14 · IN DEVELOPMENT</text>
+</svg>
