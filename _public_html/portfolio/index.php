@@ -551,7 +551,7 @@
         </a>
 
         <!-- 10. Forge — qtr -->
-        <a href="web-programming/" class="b-card b-qtr b-accent-web" data-cat="web">
+        <a href="https://forge-jakebarton.vercel.app" target="_blank" class="b-card b-qtr b-accent-web" data-cat="web">
           <img class="b-media" src="../assets/images/forge-cover.svg" alt="Forge" style="object-fit:cover;opacity:0.9">
           <div class="b-overlay" style="background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 100%)"></div>
           <div class="b-content">

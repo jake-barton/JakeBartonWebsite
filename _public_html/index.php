@@ -4,36 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake Barton — Gameplay Programmer & Technical Designer</title>
-    <meta name="description" content="Portfolio of Jake Barton — Gameplay Programmer, Technical Designer, and 3D Artist specializing in Unreal Engine 5, Godot, C++, and web development. Based in Birmingham, AL.">
-    <meta name="keywords" content="game developer, gameplay programmer, technical designer, Unreal Engine 5, Godot, C++, 3D artist, Birmingham, Samford University, Jake Barton">
-    <meta name="author" content="Jake Barton">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://jakebarton.com/">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jakebarton.com/">
-    <meta property="og:title" content="Jake Barton — Gameplay Programmer & Technical Designer">
-    <meta property="og:description" content="Portfolio of Jake Barton — Gameplay Programmer, Technical Designer, and 3D Artist. Unreal Engine 5, Godot, C++, web dev. Birmingham, AL.">
-    <meta property="og:image" content="https://jakebarton.com/assets/images/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jake Barton — Gameplay Programmer & Technical Designer">
-    <meta name="twitter:description" content="Portfolio of Jake Barton — Gameplay Programmer, Technical Designer, and 3D Artist. Unreal Engine 5, Godot, C++, web dev.">
-    <meta name="twitter:image" content="https://jakebarton.com/assets/images/og-image.jpg">
-
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=20260325">
     <link rel="alternate icon" href="assets/images/favicon.svg?v=20260325">
-
-    <!-- Preconnect for Google Fonts (performance) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Preload hero video for faster LCP -->
-    <link rel="preload" as="video" href="assets/images/phase-runner-screen.mp4" fetchpriority="high">
 
     <!-- Style Kit CSS (order matters) -->
     <link rel="stylesheet" href="assets/css/base.css">
@@ -115,7 +87,7 @@ $contact = [
         <div class="hero-bottom-left">
           <p class="hero-tagline">
             Game developer building<br>
-            <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800" aria-live="polite" aria-atomic="true"><?php echo $content['hero_rotating_words'][0]; ?></em><br>
+            <em class="rotating-text" data-words='<?php echo json_encode($content['hero_rotating_words']); ?>' data-interval="2800"><?php echo $content['hero_rotating_words'][0]; ?></em><br>
             from game engines to the browser.
           </p>
           <div class="hero-cta">
@@ -186,8 +158,7 @@ $contact = [
               <!-- full-bleed media -->
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/phase-runner-screen.mp4"
-                     poster="assets/images/phase-runner-poster.jpg"
-                     aria-hidden="true">
+                     poster="assets/images/phaserunnercover.png">
               </video>
               <div class="wa-grad"></div>
               <!-- expanded content -->
@@ -207,7 +178,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">01</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/phase-runner-poster.jpg" alt="" aria-hidden="true">
+                  <video src="assets/images/phase-runner-screen.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Phase Runner</span>
                 <div class="wa-bar-tags">
@@ -222,8 +193,7 @@ $contact = [
             <a href="portfolio/art/" class="wa-card" data-idx="1">
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/environment-scene.mp4"
-                     poster="assets/images/environment-scene-poster.jpg"
-                     aria-hidden="true">
+                     poster="assets/images/venice-art.jpg">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -239,7 +209,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">02</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/environment-scene-poster.jpg" alt="" aria-hidden="true">
+                  <video src="assets/images/environment-scene.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Mediterranean Environment</span>
                 <div class="wa-bar-tags">
@@ -254,8 +224,7 @@ $contact = [
             <a href="portfolio/game-programming/" class="wa-card" data-idx="2">
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/vr-gameplay.mp4"
-                     poster="assets/images/vr-gameplay-poster.jpg"
-                     aria-hidden="true">
+                     poster="assets/images/phaserunnercover.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -271,7 +240,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">03</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/vr-gameplay-poster.jpg" alt="" aria-hidden="true">
+                  <video src="assets/images/vr-gameplay.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">VR Rhythm Game</span>
                 <div class="wa-bar-tags">
@@ -286,8 +255,7 @@ $contact = [
             <a href="portfolio/game-programming/" class="wa-card" data-idx="3">
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/penguins-creed.mp4"
-                     poster="assets/images/penguins-creed-poster.jpg"
-                     aria-hidden="true">
+                     poster="assets/images/phaserunnercover.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -303,7 +271,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">04</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/penguins-creed-poster.jpg" alt="" aria-hidden="true">
+                  <video src="assets/images/penguins-creed.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Penguins Creed</span>
                 <div class="wa-bar-tags">
@@ -318,8 +286,7 @@ $contact = [
             <a href="/MarioKartLatest/" class="wa-card" data-idx="4">
               <video class="wa-media" muted loop playsinline preload="none"
                      data-src="assets/images/mariokart.mp4"
-                     poster="assets/images/mariokart-poster.jpg"
-                     aria-hidden="true">
+                     poster="assets/images/mariokart.png">
               </video>
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -336,7 +303,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">05</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/mariokart-poster.jpg" alt="" aria-hidden="true">
+                  <video src="assets/images/mariokart.mp4" muted loop playsinline autoplay preload="auto" style="object-fit:cover;width:100%;height:100%"></video>
                 </div>
                 <span class="wa-bar-title">Mario Kart Recreation</span>
                 <div class="wa-bar-tags">
@@ -377,7 +344,7 @@ $contact = [
 
             <!-- Card 6 — 33 Miles Band Graphics -->
             <a href="portfolio/professional-works/" class="wa-card" data-idx="6">
-              <img class="wa-media" src="assets/images/33miles-cover.jpg" alt="33Miles Band Graphics">
+              <img class="wa-media" src="assets/images/33miles-cover.png" alt="33Miles Band Graphics">
               <div class="wa-grad"></div>
               <div class="wa-content">
                 <div class="wa-tags">
@@ -391,7 +358,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">07</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/33miles-cover.jpg" alt="33Miles">
+                  <img src="assets/images/33miles-cover.png" alt="33Miles">
                 </div>
                 <span class="wa-bar-title">33 Miles Band Graphics</span>
                 <div class="wa-bar-tags">
@@ -403,7 +370,7 @@ $contact = [
             </a>
 
             <!-- Card 7 — Forge -->
-            <a href="portfolio/web-programming/" class="wa-card" data-idx="7">
+            <a href="https://forge-jakebarton.vercel.app" target="_blank" class="wa-card" data-idx="7">
               <img class="wa-media" src="assets/images/forge-cover.svg" alt="Forge" style="object-fit:cover">
               <div class="wa-grad"></div>
               <div class="wa-content">
@@ -655,15 +622,15 @@ $contact = [
             <h3 style="margin-bottom:1.5rem;font-size:1.3rem;letter-spacing:-0.02em">Send Me a Message</h3>
             <form id="contactForm" method="post">
               <div class="form-group">
-                <label class="form-label" for="contactName">Your Name</label>
+                <label class="form-label">Your Name</label>
                 <input type="text" name="name" id="contactName" required class="form-input" placeholder="Jane Smith">
               </div>
               <div class="form-group">
-                <label class="form-label" for="contactEmail">Your Email</label>
+                <label class="form-label">Your Email</label>
                 <input type="email" name="email" id="contactEmail" required class="form-input" placeholder="you@company.com">
               </div>
               <div class="form-group">
-                <label class="form-label" for="contactMessage">Message</label>
+                <label class="form-label">Message</label>
                 <textarea name="message" id="contactMessage" rows="5" required class="form-input" placeholder="Tell me about the role or project..."></textarea>
               </div>
               <div id="formMessage" style="margin-bottom:1rem;padding:0.75rem;display:none;border-radius:var(--radius-md);font-size:0.9rem"></div>
@@ -1033,8 +1000,8 @@ $contact = [
     /* Scroll tunnel: tall container so sticky panel has room to scroll */
     .work-scroll-tunnel {
       position: relative;
-      /* 10 cards × 100vh each = total scroll distance */
-      height: calc(10 * 100vh);
+      /* 7 cards × 100vh each = total scroll distance */
+      height: calc(7 * 100vh);
     }
     /* Sticky viewport — stays in view while tunnel scrolls past */
     .work-sticky {
@@ -1599,12 +1566,12 @@ $contact = [
   </script>
 
   <!-- ── Style Kit JS ───────────────────────────────────── -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="assets/js/beams-bg.js" defer></script>
-  <script src="assets/js/cursor-ribbons.js" defer></script>
-  <script src="assets/js/fuzzy-text.js" defer></script>
-  <script src="assets/js/staggered-menu.js" defer></script>
-  <script src="assets/js/effects-stylekit.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="assets/js/beams-bg.js"></script>
+  <script src="assets/js/cursor-ribbons.js"></script>
+  <script src="assets/js/fuzzy-text.js"></script>
+  <script src="assets/js/staggered-menu.js"></script>
+  <script src="assets/js/effects-stylekit.js"></script>
 
 </body>
 </html>

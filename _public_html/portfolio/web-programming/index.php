@@ -123,7 +123,9 @@
                             </p>
                             <span class="tag tag-muted" style="display:inline-block;margin-bottom:16px">In Development</span>
                             <br>
-                            <a href="https://github.com/jake-barton" class="btn-secondary" target="_blank">View on GitHub →</a>
+                            <a href="https://forge-jakebarton.vercel.app" class="btn-primary" target="_blank">View Live →</a>
+                            &nbsp;
+                            <a href="https://github.com/jake-barton/Forge" class="btn-secondary" target="_blank">GitHub →</a>
                         </div>
                     </div>
 
@@ -140,7 +142,7 @@
                             </p>
                             <span class="tag tag-muted" style="display:inline-block;margin-bottom:16px">In Development</span>
                             <br>
-                            <a href="https://github.com/jake-barton" class="btn-secondary" target="_blank">View on GitHub →</a>
+                            <a href="https://github.com/jake-barton/ClearDesk" class="btn-secondary" target="_blank">View on GitHub →</a>
                         </div>
                     </div>
 
@@ -157,7 +159,7 @@
                             </p>
                             <span class="tag tag-muted" style="display:inline-block;margin-bottom:16px">In Development</span>
                             <br>
-                            <a href="https://github.com/jake-barton" class="btn-secondary" target="_blank">View on GitHub →</a>
+                            <a href="https://github.com/jake-barton/October" class="btn-secondary" target="_blank">View on GitHub →</a>
                         </div>
                     </div>
 
