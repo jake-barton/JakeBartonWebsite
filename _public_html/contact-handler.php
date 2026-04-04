@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
-// Verify CSRF Token (optional - gracefully handle missing tokens for external submissions)
+// Verify CSRF Token — token is required; empty or missing = reject
 $csrf_token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
-if (!empty($csrf_token) && !verify_csrf_token($csrf_token)) {
+if (empty($csrf_token) || !verify_csrf_token($csrf_token)) {
     echo json_encode([
         'success' => false,
         'errors' => ['Security validation failed. Please refresh and try again.']

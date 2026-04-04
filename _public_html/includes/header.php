@@ -20,6 +20,8 @@ $page_description = isset($custom_description) ? $custom_description : SITE_DESC
     <meta name="description" content="<?php echo htmlspecialchars($page_description); ?>">
     <meta name="keywords" content="game design, 3D art, game developer, unreal engine, unity, godot, graphic design, birmingham, samford university">
     <meta name="author" content="<?php echo FULL_NAME; ?>">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="<?php echo SITE_URL . strtok($_SERVER['REQUEST_URI'], '?'); ?>">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -37,6 +39,10 @@ $page_description = isset($custom_description) ? $custom_description : SITE_DESC
     
     <title><?php echo htmlspecialchars($page_title); ?></title>
     
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Style Kit CSS (order matters) -->
     <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/base.css">
     <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/animations.css">

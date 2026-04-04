@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /portfolio/tshirt-designs/test.php
+Disallow: /portfolio/web-programming/pikapptshirtweb/
+Disallow: /portfolio/web-programming/PiKappaPhiTshirtWeb2.0/
+Disallow: /assets/js/
+Disallow: /includes/
+
+Sitemap: https://jakebarton.com/sitemap.xml
