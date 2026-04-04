@@ -635,7 +635,7 @@ require_once __DIR__ . '/includes/content.php';
       </a>
 
       <a href="<?php echo $content['website']; ?>/portfolio/professional-works/" target="_blank" rel="noopener" class="bc-proj">
-        <img src="assets/images/33miles-cover.png" alt="33 Miles" loading="lazy">
+        <img src="assets/images/33miles-cover.jpg" alt="33 Miles" loading="lazy">
         <div class="bc-proj-info">
           <span class="bc-proj-title">33 Miles</span>
           <span class="bc-proj-tag">Client · Illustrator</span>

@@ -344,7 +344,7 @@ $contact = [
 
             <!-- Card 6 — 33 Miles Band Graphics -->
             <a href="portfolio/professional-works/" class="wa-card" data-idx="6">
-              <img class="wa-media" src="assets/images/33miles-cover.png" alt="33Miles Band Graphics">
+              <img class="wa-media" src="assets/images/33miles-cover.jpg" alt="33Miles Band Graphics">
               <div class="wa-grad"></div>
               <div class="wa-content">
                 <div class="wa-tags">
@@ -358,7 +358,7 @@ $contact = [
               <div class="wa-bar">
                 <span class="wa-bar-num">07</span>
                 <div class="wa-bar-thumb">
-                  <img src="assets/images/33miles-cover.png" alt="33Miles">
+                  <img src="assets/images/33miles-cover.jpg" alt="33Miles">
                 </div>
                 <span class="wa-bar-title">33 Miles Band Graphics</span>
                 <div class="wa-bar-tags">
