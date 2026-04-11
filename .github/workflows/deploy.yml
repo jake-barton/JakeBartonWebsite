@@ -8,12 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: false
 
       - name: Install lftp
         run: sudo apt-get install -y lftp
@@ -39,6 +37,10 @@ jobs:
               --exclude-glob node_modules \
               --exclude-glob .DS_Store \
               --exclude-glob '*.log' \
+              --exclude-glob '*.mp4' \
+              --exclude-glob '*.mov' \
+              --exclude-glob '*.webm' \
+              --exclude-glob 'originals/' \
               ./_public_html/ /domains/jakebartoncreative.com/public_html/;
             bye
           "
