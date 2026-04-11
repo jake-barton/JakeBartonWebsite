@@ -8,8 +8,13 @@
  */
 $TARGET_URL = 'https://www.paullovejoycreative.com';
 $encodedURL = urlencode($TARGET_URL);
-$qrSrc      = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={$encodedURL}&choe=UTF-8&chld=H|1";
-$qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encodedURL}&choe=UTF-8&chld=H|1";
+// Fetch QR PNG from qrserver and embed as base64 data URI — avoids browser blocking
+$qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$encodedURL}&ecc=H&margin=4";
+$qrApiUrlHD = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&data={$encodedURL}&ecc=H&margin=4";
+$ctx = stream_context_create(['http' => ['timeout' => 5]]);
+$qrPng = @file_get_contents($qrApiUrl, false, $ctx);
+$qrSrc = $qrPng ? 'data:image/png;base64,' . base64_encode($qrPng) : $qrApiUrl;
+$qrSrcHD = $qrApiUrlHD; // used for download link only
 ?>
 <!DOCTYPE html>
 <html lang="en">

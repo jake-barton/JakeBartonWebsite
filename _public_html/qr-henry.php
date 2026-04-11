@@ -1,14 +1,19 @@
 <?php
 /**
- * qr-henry.php — QR card for Henry Lammons
- * Target: henrylammons.com
- * Aesthetic: Windows 95 / desktop OS window chrome — matching Henry's actual site exactly.
- * Dark navy desktop, raised-bevel window, title bar with min/max/close buttons.
+ * qr-henry.php — QR card for Henry Lammons → henrylammons.com
+ * Win95 window aesthetic matching his actual site.
+ * QR generated server-side via qrserver.com and embedded as base64.
  */
 $TARGET_URL = 'https://www.henrylammons.com';
 $encodedURL = urlencode($TARGET_URL);
-$qrSrc      = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={$encodedURL}&choe=UTF-8&chld=H|1";
-$qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encodedURL}&choe=UTF-8&chld=H|1";
+$ctx    = stream_context_create(['http' => ['timeout' => 6]]);
+$qrPng  = @file_get_contents(
+    'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' . $encodedURL . '&ecc=H&margin=4',
+    false, $ctx
+);
+$qrSrc   = $qrPng ? 'data:image/png;base64,' . base64_encode($qrPng)
+                  : 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' . $encodedURL . '&ecc=H&margin=4';
+$qrSrcHD = 'https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=' . $encodedURL . '&ecc=H&margin=4';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,19 +29,16 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       --window-bg: #2c3e6b;
       --chrome:    #3a4f7a;
       --titlebar:  #1a3a6b;
-      --titlebar-t:#ffffff;
       --border-hi: #6b88c4;
       --border-sh: #0d1d3a;
       --text:      #e8edf8;
       --muted:     rgba(232,237,248,0.55);
-      --rule:      rgba(107,136,196,0.25);
     }
 
     html, body {
       background: var(--desktop);
       color: var(--text);
       font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
-      font-size: 14px;
       -webkit-font-smoothing: antialiased;
       min-height: 100dvh;
       display: flex;
@@ -46,7 +48,7 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       gap: 1rem;
     }
 
-    /* ── Desktop label ── */
+    /* Desktop label */
     .desktop-label {
       display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
       animation: fade-up 0.4s cubic-bezier(0.16,1,0.3,1) both;
@@ -57,13 +59,13 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       letter-spacing: 0.12em; color: var(--muted);
     }
 
-    /* ── Win95 window ── */
+    /* Win95 window */
     .win-window {
       width: 100%; max-width: 380px;
       background: var(--window-bg);
       border: 2px solid;
       border-color: var(--border-hi) var(--border-sh) var(--border-sh) var(--border-hi);
-      box-shadow: 2px 2px 0 var(--border-sh), -1px -1px 0 var(--border-hi);
+      box-shadow: 2px 2px 0 var(--border-sh);
       animation: fade-up 0.45s 0.05s cubic-bezier(0.16,1,0.3,1) both;
     }
 
@@ -76,16 +78,14 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
     }
     .win-titlebar-left {
       display: flex; align-items: center; gap: 0.35rem;
-      font-size: 0.7rem; font-weight: 700; color: var(--titlebar-t);
-      letter-spacing: 0.02em;
+      font-size: 0.7rem; font-weight: 700; color: #fff; letter-spacing: 0.02em;
     }
     .win-icon {
       background: #4a6fad; color: #fff;
       font-size: 0.55rem; font-weight: 900;
       width: 16px; height: 16px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(255,255,255,0.3);
-      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.3); flex-shrink: 0;
     }
     .win-titlebar-btns { display: flex; gap: 0.2rem; }
     .win-btn {
@@ -95,7 +95,6 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       border-color: var(--border-hi) var(--border-sh) var(--border-sh) var(--border-hi);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.5rem; color: var(--text); cursor: pointer;
-      user-select: none;
     }
 
     /* Menu bar */
@@ -109,7 +108,7 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
     .win-menubar span { cursor: pointer; padding: 0.1rem 0.3rem; }
     .win-menubar span:hover { background: var(--titlebar); color: #fff; }
 
-    /* Content area */
+    /* Content */
     .win-content {
       padding: 1rem;
       display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
@@ -117,32 +116,24 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
 
     /* Profile photo */
     .henry-pfp {
-      width: 80px; height: 80px;
-      object-fit: cover;
+      width: 80px; height: 80px; object-fit: cover; display: block;
       border: 2px solid;
       border-color: var(--border-hi) var(--border-sh) var(--border-sh) var(--border-hi);
-      display: block;
     }
 
     /* Identity */
     .identity { text-align: center; }
-    .identity-name {
-      font-size: 1rem; font-weight: 700;
-      letter-spacing: 0.03em; color: var(--text);
-    }
-    .identity-role {
-      font-size: 0.65rem; color: var(--muted);
-      margin-top: 0.2rem; letter-spacing: 0.04em;
-    }
+    .identity-name  { font-size: 1rem; font-weight: 700; letter-spacing: 0.03em; }
+    .identity-role  { font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; }
 
-    /* Horizontal rule — Win95 sunken style */
+    /* Win95 sunken rule */
     .win-rule {
       width: 100%; height: 2px;
       border-top: 1px solid var(--border-sh);
       border-bottom: 1px solid var(--border-hi);
     }
 
-    /* QR frame */
+    /* QR frame — sunken inset */
     .qr-frame {
       background: #fff; padding: 10px;
       border: 2px solid;
@@ -154,11 +145,9 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       image-rendering: pixelated; image-rendering: crisp-edges;
     }
 
-    /* URL chip */
     .url-chip {
       font-size: 0.62rem; letter-spacing: 0.1em;
       color: var(--muted); text-align: center;
-      text-transform: lowercase;
     }
 
     /* Status bar */
@@ -166,7 +155,7 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       background: var(--window-bg);
       border-top: 1px solid var(--border-sh);
       padding: 0.2rem 0.5rem;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: space-between;
       font-size: 0.6rem; color: var(--muted);
     }
     .status-dot {
@@ -175,7 +164,7 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       vertical-align: middle;
     }
 
-    /* ── Actions ── */
+    /* Actions */
     .actions {
       width: 100%; max-width: 380px;
       display: flex; flex-direction: column; gap: 0.4rem;
@@ -202,7 +191,6 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
       border-color: var(--border-hi) var(--border-sh) var(--border-sh) var(--border-hi);
     }
 
-    /* Footer */
     .footer {
       font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase;
       color: rgba(232,237,248,0.2); text-align: center;
@@ -215,11 +203,10 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
     }
 
     @media print {
-      body { background: #fff !important; color: #000 !important; }
+      body { background: #fff !important; }
       .desktop-label, .actions, .footer { display: none !important; }
       .win-window { border-color: #ccc !important; box-shadow: none !important; background: #fff !important; }
-      .win-titlebar { background: #ddd !important; }
-      .win-titlebar-left, .win-content, .identity-name { color: #000 !important; }
+      .win-titlebar { background: #ddd !important; color: #000 !important; }
       .win-menubar, .win-titlebar-btns, .win-statusbar { display: none !important; }
     }
   </style>
@@ -227,8 +214,8 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
 <body>
 
   <div class="desktop-label">
-    <div class="desktop-icon">🖥️</div>
-    <p>Henry Lammons — Portfolio.exe</p>
+    <div class="desktop-icon">&#128421;</div>
+    <p>Henry Lammons &mdash; Portfolio.exe</p>
   </div>
 
   <div class="win-window">
@@ -236,12 +223,12 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
     <div class="win-titlebar">
       <div class="win-titlebar-left">
         <div class="win-icon">HL</div>
-        Henry Lammons — Portfolio
+        Henry Lammons &mdash; Portfolio
       </div>
       <div class="win-titlebar-btns">
         <div class="win-btn">_</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn">✕</div>
+        <div class="win-btn">&#9633;</div>
+        <div class="win-btn">&times;</div>
       </div>
     </div>
 
@@ -260,14 +247,14 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
 
       <div class="identity">
         <div class="identity-name">Henry Lammons</div>
-        <div class="identity-role">Animation · Video Editing · Game Design</div>
+        <div class="identity-role">Animation &middot; Video Editing &middot; Game Design</div>
       </div>
 
       <div class="win-rule"></div>
 
       <div class="qr-frame">
         <img src="<?= htmlspecialchars($qrSrc) ?>"
-             alt="QR — henrylammons.com" id="qr-img">
+             alt="QR code — henrylammons.com" id="qr-img">
       </div>
 
       <div class="url-chip">henrylammons.com</div>
@@ -306,7 +293,7 @@ $qrSrcHD    = "https://chart.googleapis.com/chart?cht=qr&chs=600x600&chl={$encod
     </button>
   </div>
 
-  <p class="footer">Samford University &nbsp;·&nbsp; Class of 2027</p>
+  <p class="footer">Samford University &nbsp;&middot;&nbsp; Class of 2027</p>
 
 </body>
 </html>
