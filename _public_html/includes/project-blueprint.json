@@ -1,0 +1,52 @@
+{
+    "title": "New project",
+    "subtitle": "",
+    "description": "",
+    "cover": "/assets/brand/jb-logo.png",
+    "tags": [],
+    "filters": [],
+    "published": false,
+    "sort_order": 100,
+    "theme": {
+        "canvas": "#f0e7d3",
+        "ink": "#141414",
+        "accent": "#141414",
+        "rail": "#23883c",
+        "footer_background": "#f0e7d3",
+        "footer_text": "#141414",
+        "footer_word": "#141414"
+    },
+    "components": [
+        {
+            "type": "hero",
+            "image": "/assets/brand/jb-logo.png",
+            "video": "",
+            "eyebrow": "",
+            "title": "New project",
+            "alt": "",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.35",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "New project",
+            "role": "",
+            "disciplines": "",
+            "built_with": "",
+            "client": "",
+            "paragraphs": [],
+            "background": "#f0e7d3",
+            "text_color": "#141414"
+        },
+        {
+            "type": "project_media",
+            "image": "",
+            "alt": "",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
+    ]
+}

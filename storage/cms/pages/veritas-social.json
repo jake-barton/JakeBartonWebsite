@@ -2,18 +2,69 @@
     "slug": "veritas-social",
     "title": "Veritas Social",
     "subtitle": "Music and culture campaign graphics",
-    "description": "Social campaign graphics created within the Veritas music and culture identity.",
+    "description": "Music and event graphics created for Veritas Social.",
     "cover": "/assets/project-covers/neeksblack.png",
-    "tags": ["Social", "Graphics", "Campaign"],
-    "filters": ["design"],
+    "tags": [
+        "Social",
+        "Graphics",
+        "Campaign"
+    ],
+    "filters": [
+        "design"
+    ],
     "published": true,
     "sort_order": 70,
-    "theme": {"canvas":"#eee8dc","ink":"#111111","accent":"#d1ad63","rail":"#23883c","footer_background":"#111111","footer_text":"#ffffff","footer_word":"#d1ad63"},
+    "theme": {
+        "canvas": "#eee8dc",
+        "ink": "#111111",
+        "accent": "#d1ad63",
+        "rail": "#23883c",
+        "footer_background": "#111111",
+        "footer_text": "#ffffff",
+        "footer_word": "#d1ad63"
+    },
     "components": [
-        {"type":"hero","image":"/assets/project-covers/neeksblack.png","video":"","eyebrow":"Music + culture · Social campaign","title":"Culture in the frame.","alt":"Veritas Social campaign cover","image_position":"center","overlay_color":"#000000","overlay_opacity":"0.2","text_color":"#ffffff"},
-        {"type":"intro","heading":"Veritas Social","role":"Graphic Designer","disciplines":"Social Design, Art Direction, Campaign","built_with":"Photoshop, Illustrator","client":"Veritas","paragraphs":["Veritas Social is a collection of music and culture graphics designed for fast-moving digital channels. Each piece needs to capture an artist, event, or collaboration immediately while remaining part of the larger Veritas identity.","The work combines portrait photography, strong type hierarchy, restrained color, and layered texture to give promotional content an editorial edge.","This page serves as an umbrella case study for the broader visual direction, with individual campaign pages exploring specific executions in more detail."],"background":"#eee8dc","text_color":"#111111"},
-        {"type":"artwork","image":"/assets/work/veritas-social/veritas-logo.svg","alt":"Veritas identity mark","background":"#111111","image_width":"42","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"product","title":"Portrait-led promotion with an editorial rhythm.","image":"/assets/work/veritas-social/neeks-and-brandt.png","alt":"Neeks and Brandt Veritas social graphic","caption":"A vertical campaign execution balancing artist imagery and concise event information.","background":"#d1ad63","text_color":"#111111","image_width":"54","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"quote","quote":"“Every composition has to communicate before the scroll continues.”","background":"#111111","text_color":"#ffffff","quote_width":"82","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"}
+        {
+            "type": "hero",
+            "image": "/assets/project-covers/neeksblack.png",
+            "video": "",
+            "eyebrow": "Music + culture · Social campaign",
+            "title": "Veritas Social",
+            "alt": "Veritas Social campaign cover",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.2",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Veritas Social",
+            "role": "Graphic Designer",
+            "disciplines": "Social Design, Art Direction, Campaign",
+            "built_with": "Photoshop, Illustrator",
+            "client": "Veritas",
+            "paragraphs": [
+                "Music and event graphics created for Veritas Social.",
+                "I worked on artist imagery, typography, and layouts for social campaigns."
+            ],
+            "background": "#eee8dc",
+            "text_color": "#111111"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/veritas-social/veritas-logo.svg",
+            "alt": "Veritas identity mark",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/veritas-social/neeks-and-brandt.png",
+            "alt": "Neeks and Brandt Veritas social graphic",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
     ]
 }

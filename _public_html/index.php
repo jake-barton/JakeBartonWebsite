@@ -68,8 +68,9 @@ $menu_items = [
     <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg?v=20260714">
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/components.css?v=20260714-home-loader-restored">
+    <link rel="stylesheet" href="assets/css/components.css?v=20261104-logo-grid">
     <link rel="stylesheet" href="assets/css/work.css?v=20260714-global-page-loader">
+<link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
 </head>
 <body class="jb-home">
     <div class="jb-work-loader" id="pageLoader" aria-label="Loading page" aria-live="polite">
@@ -136,6 +137,7 @@ $menu_items = [
                     </a>
                 <?php endforeach; ?>
             </div>
+<div class="jb-menu-reel-mobile" aria-hidden="true"><?php jb_site_reel('', 'menu'); ?></div>
             <div class="jb-mega-contact">
                 <div>
                     <h2>Email</h2>
@@ -149,25 +151,13 @@ $menu_items = [
                 </div>
             </div>
         </section>
-    </nav>
+    <div class="jb-menu-reel" aria-hidden="true"><?php jb_site_reel('', 'menu'); ?></div>
+</nav>
 
     <main id="home" class="jb-main">
         <section class="jb-hero" aria-label="Jake Barton">
             <div class="jb-hero-media" aria-hidden="true">
-                <?php $hero_start_index = 0; ?>
-                <?php foreach ($content['home_categories'] as $i => $category): ?>
-                    <video
-                        class="jb-hero-video <?php echo $i === $hero_start_index ? 'is-active' : ''; ?>"
-                        src="<?php echo h($category['video']); ?>?v=20260813-video-r1"
-                        poster="<?php echo h($category['poster']); ?>"
-                        muted
-                        autoplay
-                        loop
-                        playsinline
-                        preload="<?php echo $i === $hero_start_index ? 'auto' : 'metadata'; ?>"
-                        data-hero-video="<?php echo h((string) $i); ?>">
-                    </video>
-                <?php endforeach; ?>
+                <?php jb_site_reel('jb-hero-video is-active', 'hero'); ?>
             </div>
             <img src="assets/brand/jb-logo.png" alt="" class="jb-hero-mark">
             <div class="jb-loader" id="jbLoader" aria-label="Loading homepage" aria-live="polite">
@@ -189,9 +179,10 @@ $menu_items = [
 
         <section class="jb-actions jb-reveal" id="work" aria-label="Work categories">
             <div class="jb-action-media" aria-hidden="true">
+                <?php jb_site_reel('jb-action-video is-active', 'action'); ?>
                 <?php foreach ($content['home_categories'] as $i => $category): ?>
                     <video
-                        class="jb-action-video <?php echo $i === 0 ? 'is-active' : ''; ?>"
+                        class="jb-action-video"
                         src="<?php echo h($category['video']); ?>?v=20260813-video-r1"
                         poster="<?php echo h($category['poster']); ?>"
                         muted
@@ -217,7 +208,7 @@ $menu_items = [
         <section class="jb-grid-section jb-reveal" id="clients" aria-label="Companies Jake Barton has worked with">
             <div class="jb-section-heading">
             </div>
-            <h2>Companies and organizations I&rsquo;ve worked with and for.</h2>
+            <h2>Companies and organizations</h2>
             <ul class="jb-client-grid" aria-label="Client and organization logos">
                 <?php foreach ($content['home_clients'] as $client): ?>
                     <li aria-label="<?php echo h($client['name']); ?>">
@@ -232,7 +223,7 @@ $menu_items = [
         </section>
 
         <section class="jb-accolades jb-reveal" aria-label="Toolkit and achievements">
-            <h2>Experience, leadership, and technical practice.</h2>
+            <h2>Experience and skills</h2>
             <ul class="jb-accolade-grid">
                 <?php foreach ($content['home_accolades'] as $item): ?>
                     <li>
@@ -257,11 +248,11 @@ $menu_items = [
     <footer class="jb-footer jb-reveal" id="contact">
         <div class="jb-footer-contact">
             <div>
-                <h2>Get in touch:</h2>
+                <h2>Email</h2>
                 <a class="jb-fold-underline" href="mailto:<?php echo h($contact['email']); ?>"><?php echo h($contact['email']); ?></a>
             </div>
             <div>
-                <h2>Find me:</h2>
+                <h2>Social</h2>
                 <a href="https://instagram.com/<?php echo h($contact['instagram']); ?>" target="_blank" rel="noopener">Instagram</a>
                 <a href="https://www.linkedin.com/in/<?php echo h($contact['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://github.com/<?php echo h($contact['github']); ?>" target="_blank" rel="noopener">GitHub</a>
@@ -273,18 +264,7 @@ $menu_items = [
                 <text x="58" y="258">Jake Barton</text>
             </svg>
             <span class="jb-footer-word-mask" aria-hidden="true">
-                <?php foreach ($content['home_categories'] as $i => $category): ?>
-                    <video
-                        src="<?php echo h($category['video']); ?>?v=20260813-video-r1"
-                        poster="<?php echo h($category['poster']); ?>"
-                        muted
-                        autoplay
-                        loop
-                        playsinline
-                        preload="metadata"
-                        data-footer-video>
-                    </video>
-                <?php endforeach; ?>
+                <?php jb_site_reel('', 'footer'); ?>
             </span>
         </a>
         <div class="jb-footer-bottom">
@@ -300,7 +280,8 @@ $menu_items = [
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
     <script src="assets/js/site-scroll.js?v=20260813-video-r1" defer></script>
-    <script src="assets/js/piranha-home.js?v=20260813-video-r1" defer></script>
-    <script src="assets/js/page-loader.js?v=20260813-video-r1" defer></script>
+    <script src="assets/js/piranha-home.js?v=20261104-reel" defer></script>
+    <script src="assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
+<script src="/assets/js/site-reel.js?v=20261104-loader-fix" defer></script>
 </body>
 </html>

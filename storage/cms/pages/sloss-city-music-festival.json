@@ -1,0 +1,76 @@
+{
+    "slug": "sloss-city-music-festival",
+    "title": "Sloss City Music Festival",
+    "subtitle": "Festival graphics and billboard layouts",
+    "description": "Campaign graphics for Sloss City Music Festival, including artist promotion, event announcements, and billboard layouts.",
+    "cover": "/assets/work/sloss-city-music-festival/smokes-poster.webp",
+    "tags": [
+        "Design"
+    ],
+    "filters": [
+        "design"
+    ],
+    "published": true,
+    "sort_order": 8,
+    "theme": {
+        "canvas": "#f0e7d3",
+        "ink": "#141414",
+        "accent": "#b82655",
+        "rail": "#23883c",
+        "footer_background": "#f0e7d3",
+        "footer_text": "#141414",
+        "footer_word": "#b82655"
+    },
+    "components": [
+        {
+            "type": "hero",
+            "image": "/assets/work/sloss-city-music-festival/smokes-poster.webp",
+            "video": "",
+            "eyebrow": "Visual design",
+            "title": "Sloss City Music Festival",
+            "alt": "Sloss City Music Festival project image",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.35",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Sloss City Music Festival",
+            "role": "Creative Director & Graphic Designer",
+            "disciplines": "Graphic design",
+            "built_with": "Photoshop, Illustrator",
+            "client": "Sloss City Music Festival",
+            "paragraphs": [
+                "Campaign graphics for Sloss City Music Festival, including artist promotion, event announcements, and billboard layouts.",
+                "My work includes creative direction and graphic design for the festival’s promotional materials."
+            ],
+            "background": "#f0e7d3",
+            "text_color": "#141414"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/sloss-city-music-festival/smokes-poster.webp",
+            "alt": "Smokes promotional artwork.",
+            "video": "",
+            "format": "portrait",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/sloss-city-music-festival/west-22nd.webp",
+            "alt": "West 22nd promotional artwork.",
+            "video": "",
+            "format": "portrait",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/sloss-city-music-festival/billboard.webp",
+            "alt": "Sloss City Music Festival billboard layout.",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
+    ]
+}

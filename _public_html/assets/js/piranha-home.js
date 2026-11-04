@@ -221,11 +221,11 @@
       link.addEventListener('mouseenter', function () { activate(index, true); });
       link.addEventListener('focus', function () { activate(index, true); });
       link.addEventListener('touchstart', function () { activate(index, true); }, { passive: true });
-      link.addEventListener('mouseleave', function () { activate(0, false); });
-      link.addEventListener('blur', function () { activate(0, false); });
+      link.addEventListener('mouseleave', function () { activate('reel', false); });
+      link.addEventListener('blur', function () { activate('reel', false); });
     });
 
-    activate(0, false);
+    activate('reel', false);
   }
 
   function initActionScrollFrame() {

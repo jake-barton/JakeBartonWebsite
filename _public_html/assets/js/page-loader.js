@@ -5,6 +5,7 @@
   var loader = document.getElementById('pageLoader');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var timers = [];
+  var navigating = false;
 
   function clearTimers() {
     timers.forEach(function (timer) { window.clearTimeout(timer); });
@@ -19,8 +20,11 @@
 
   function play() {
     clearTimers();
+    navigating = false;
 
     if (!loader || reduceMotion) {
+      if (loader) loader.classList.add('is-finished');
+      try { window.sessionStorage.removeItem('jb-work-transition-covered'); } catch (ignore) {}
       body.classList.add('is-loaded');
       return;
     }
@@ -74,12 +78,14 @@
   }
 
   function navigate(href) {
+    if (navigating) return;
     var url = new URL(href, window.location.href);
     if (!loader || reduceMotion || isHome(url)) {
       window.location.href = url.href;
       return;
     }
 
+    navigating = true;
     clearTimers();
     loader.classList.remove('is-entering', 'is-masking', 'is-exiting', 'is-finished');
     void loader.offsetWidth;
@@ -112,6 +118,10 @@
   }
 
   window.addEventListener('pageshow', function (event) {
-    if (event.persisted) play();
+    if (event.persisted) {
+      navigating = false;
+      if (body.classList.contains('jb-work-page') || body.classList.contains('jb-detail-page')) play();
+      else if (loader) loader.classList.add('is-finished');
+    }
   });
 })();

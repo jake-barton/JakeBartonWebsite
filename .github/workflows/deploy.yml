@@ -16,6 +16,11 @@ jobs:
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
+      - name: Build browser games and published portfolio content
+        run: |
+          python3 scripts/build-games.py
+          python3 scripts/export-portfolio-content.py
+
       - name: Prepare Studio authentication
         env:
           JB_CMS_PASSWORD_HASH: ${{ secrets.JB_CMS_PASSWORD_HASH }}
@@ -28,6 +33,7 @@ jobs:
           FTP_HOST: 157.173.214.227
           FTP_USER: u335085697
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          CMS_REMOTE_DIR: ${{ vars.CMS_REMOTE_DIR || '/domains/jakebartoncreative.com/storage/cms/pages/' }}
         run: |
           lftp -c "
             set ftp:ssl-allow yes;
@@ -53,9 +59,11 @@ jobs:
             mirror --reverse --verbose ./_public_html/assets/project-covers/ ./assets/project-covers/;
             mirror --reverse --verbose ./_public_html/assets/uploads/ ./assets/uploads/;
             mirror --reverse --verbose ./_public_html/assets/work/ ./assets/work/;
+            mirror --reverse --verbose ./_public_html/assets/reel/ ./assets/reel/;
+            mkdir -p ./games/mario-kart;
+            mirror --reverse --verbose ./_public_html/games/mario-kart/ ./games/mario-kart/;
             mkdir -p ../storage/cms/pages;
-            put -O ../storage/cms ./storage/cms/blueprint.json;
             put -O ../storage/cms ./.deploy-private/auth.json;
-            mirror --reverse --verbose ./storage/cms/pages/ ../storage/cms/pages/;
+            mirror --reverse --verbose ./hostinger_content/storage/cms/pages/ $CMS_REMOTE_DIR;
             bye
           "

@@ -2,8 +2,8 @@
     "slug": "phase-runner",
     "title": "Phase Runner",
     "subtitle": "Solo-developed action platformer",
-    "description": "A solo-developed action platformer built in Godot and exported for the web.",
-    "cover": "/assets/project-covers/phaserunnercover.png",
+    "description": "A solo platformer made in Godot in fall 2024. I worked on movement, hazards, scoring, menus, and game-state logic.",
+    "cover": "/assets/work/phase-runner/preview-poster.webp",
     "tags": [
         "Games",
         "Programming"
@@ -29,19 +29,19 @@
     "theme": {
         "canvas": "#e7e6df",
         "ink": "#111111",
-        "accent": "#ef2b25",
+        "accent": "#111111",
         "rail": "#23883c",
         "footer_background": "#e7e6df",
         "footer_text": "#111111",
-        "footer_word": "#ef2b25"
+        "footer_word": "#111111"
     },
     "components": [
         {
             "type": "hero",
-            "image": "/assets/home/media/phase-runner-poster.jpg",
-            "video": "/assets/home/media/phase-runner.mp4",
+            "image": "/assets/work/phase-runner/preview-poster.webp",
+            "video": "/assets/work/phase-runner/preview.mp4",
             "eyebrow": "",
-            "title": "",
+            "title": "Phase Runner",
             "alt": "Phase Runner gameplay",
             "image_position": "center",
             "overlay_color": "#000000",
@@ -68,9 +68,8 @@
             "built_with": "Godot, GDScript, WebAssembly",
             "client": "Independent Project",
             "paragraphs": [
-                "Phase Runner is a compact action platformer developed as a complete solo game project. The work spans movement, hazards, scoring, menus, game-state logic, and the visual feedback needed to make a fast game readable.",
-                "The game was prepared as a browser build, translating the Godot project into a portable web experience while preserving pixel-sharp rendering and responsive input.",
-                "This mockup focuses the case study on the finished play experience, the systems behind it, and the practical work of shipping a playable build."
+                "A solo platformer made in Godot in fall 2024. I worked on movement, hazards, scoring, menus, and game-state logic.",
+                "The game was exported for browser play."
             ],
             "background": "#e7e6df",
             "text_color": "#111111",
@@ -96,58 +95,12 @@
             "paragraphs_margin_bottom": ""
         },
         {
-            "type": "product",
-            "title": "A complete game loop in a small, focused build.",
+            "type": "project_media",
             "image": "/assets/work/phase-runner/game-splash.png",
             "alt": "Phase Runner game splash screen",
-            "caption": "The exported Godot build packages the game for immediate browser play.",
-            "background": "#111111",
-            "text_color": "#ffffff",
-            "title_color": "",
-            "caption_color": "",
-            "title_width": "",
-            "title_margin_left": "",
-            "title_margin_right": "",
-            "title_margin_top": "",
-            "title_margin_bottom": "",
-            "caption_width": "",
-            "caption_margin_left": "",
-            "caption_margin_right": "",
-            "caption_margin_top": "",
-            "caption_margin_bottom": "",
-            "image_width": "72",
-            "image_alignment": "center",
-            "corner_radius": "0",
-            "left_margin": "40",
-            "right_margin": "40",
-            "section_gap": "64",
-            "padding_top": "",
-            "padding_bottom": ""
-        },
-        {
-            "type": "quote",
-            "quote": "Made in Fall of 2024",
-            "link_url": "",
-            "background": "#111111",
-            "text_color": "#ffffff",
-            "quote_color": "#ffffff",
-            "link_label_color": "",
-            "quote_width": "91",
-            "quote_margin_left": "124",
-            "quote_margin_right": "",
-            "quote_margin_top": "",
-            "quote_margin_bottom": "",
-            "link_label_width": "",
-            "link_label_margin_left": "",
-            "link_label_margin_right": "",
-            "link_label_margin_top": "",
-            "link_label_margin_bottom": "",
-            "corner_radius": "0",
-            "left_margin": "40",
-            "right_margin": "40",
-            "section_gap": "64",
-            "padding_top": "",
-            "padding_bottom": "50"
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
         }
     ],
     "updated_at": "2026-08-13T21:10:20+00:00"

@@ -1,20 +1,87 @@
 {
     "slug": "shel-silverstein",
-    "title": "Shel Silverstein",
+    "title": "Shel Silverstein Website",
     "subtitle": "Interactive editorial website",
-    "description": "An interactive editorial website exploring Shel Silverstein's books and visual world.",
+    "description": "An interactive website about Shel Silverstein, with book illustrations, biographical information, and an animated gallery.",
     "cover": "/assets/project-covers/shelcover.png",
-    "tags": ["Web", "Interaction", "Design"],
-    "filters": ["web", "design"],
+    "tags": [
+        "Web",
+        "Interaction",
+        "Design"
+    ],
+    "filters": [
+        "web",
+        "design"
+    ],
     "published": true,
     "sort_order": 40,
-    "theme": {"canvas":"#ffffff","ink":"#111111","accent":"#ef2b25","rail":"#23883c","footer_background":"#ffffff","footer_text":"#111111","footer_word":"#111111"},
+    "theme": {
+        "canvas": "#ffffff",
+        "ink": "#111111",
+        "accent": "#111111",
+        "rail": "#23883c",
+        "footer_background": "#ffffff",
+        "footer_text": "#111111",
+        "footer_word": "#111111"
+    },
     "components": [
-        {"type":"hero","image":"/assets/project-covers/shelcover.png","video":"","eyebrow":"Editorial web · Interactive archive","title":"Drawn into the story.","alt":"Shel Silverstein editorial website cover","image_position":"center","overlay_color":"#000000","overlay_opacity":"0.15","text_color":"#ffffff"},
-        {"type":"intro","heading":"Shel Silverstein Artwork","role":"Designer + Developer","disciplines":"Editorial Design, Interaction, Front-End","built_with":"HTML, CSS, JavaScript, SVG","client":"Academic Project","paragraphs":["This interactive editorial site brings Shel Silverstein’s illustration and writing into a scrolling browser experience. A fixed visual layer, responsive navigation, and animated gallery system frame the work without competing with its hand-drawn character.","The project organizes books and biographical material into an exploratory structure, using the browser as an exhibition space rather than a conventional article page.","Custom SVG assets, layered motion, responsive menus, and typographic restraint create a digital experience that stays close to the directness of the source material."],"background":"#ffffff","text_color":"#111111"},
-        {"type":"artwork","image":"/assets/work/shel-silverstein/shel-portrait.jpg","alt":"Portrait of Shel Silverstein","background":"#ef2b25","image_width":"42","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"product","title":"Books become landmarks inside the scroll.","image":"/assets/work/shel-silverstein/the-giving-tree.svg","alt":"The Giving Tree illustration asset","caption":"Illustrated book assets anchor the interactive gallery.","background":"#f0eadf","text_color":"#111111","image_width":"62","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"artwork","image":"/assets/work/shel-silverstein/the-missing-piece.svg","alt":"The Missing Piece illustration asset","background":"#79add9","image_width":"54","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"product","title":"A quiet interface leaves room for the drawings.","image":"/assets/work/shel-silverstein/light-in-the-attic.svg","alt":"A Light in the Attic illustration asset","caption":"The restrained palette lets each recognizable drawing lead.","background":"#111111","text_color":"#ffffff","image_width":"55","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"}
+        {
+            "type": "hero",
+            "image": "/assets/project-covers/shelcover.png",
+            "video": "",
+            "eyebrow": "Editorial web · Interactive archive",
+            "title": "Shel Silverstein Website",
+            "alt": "Shel Silverstein editorial website cover",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.15",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Shel Silverstein Website",
+            "role": "Designer + Developer",
+            "disciplines": "Editorial Design, Interaction, Front-End",
+            "built_with": "HTML, CSS, JavaScript, SVG",
+            "client": "Academic Project",
+            "paragraphs": [
+                "An interactive website about Shel Silverstein, with book illustrations, biographical information, and an animated gallery.",
+                "I built the page layout, SVG presentation, navigation, and scrolling interactions."
+            ],
+            "background": "#ffffff",
+            "text_color": "#111111"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/shel-silverstein/shel-portrait.jpg",
+            "alt": "Portrait of Shel Silverstein",
+            "video": "",
+            "format": "portrait",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/shel-silverstein/the-giving-tree.svg",
+            "alt": "The Giving Tree illustration asset",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/shel-silverstein/the-missing-piece.svg",
+            "alt": "The Missing Piece illustration asset",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/shel-silverstein/light-in-the-attic.svg",
+            "alt": "A Light in the Attic illustration asset",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
     ]
 }

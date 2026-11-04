@@ -41,10 +41,32 @@ vendor/
 composer.phar
 composer.lock
 
+# Generated deployment mirror
+hostinger_upload/
+hostinger_content/
+
+# Browser game build (generated from projects/ by scripts/build-games.py)
+_public_html/games/mario-kart/
+
+# Reinstallable dependencies and local environments
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+
 # Log files
 *.log
+.env
+.env.*
 
 # Temporary files
 *.tmp
 *.temp
+*.zip
 _public_html/portfolio/web-programming/TechBirminghamSponsorAI/
+# Portfolio Studio credentials and runtime drafts
+storage/cms/auth.json
+storage/cms/pages/*.tmp
+
+# Private deployment artifacts
+.deploy-private/

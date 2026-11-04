@@ -2,18 +2,65 @@
     "slug": "mode-7-engine",
     "title": "Mode 7 Engine",
     "subtitle": "Browser-based racing renderer",
-    "description": "A JavaScript racing engine inspired by the perspective and systems of classic Mode 7 games.",
-    "cover": "/assets/project-covers/mariokart.png",
-    "tags": ["Games", "Programming", "Web"],
-    "filters": ["games", "programming", "web"],
+    "description": "A JavaScript kart-racing engine that runs in the browser. I built the perspective renderer, player controls, AI racers, items, collisions, menus, and race logic.",
+    "cover": "/assets/work/mode-7-engine/preview-poster.webp",
+    "tags": [
+        "Games",
+        "Programming",
+        "Web"
+    ],
+    "filters": [
+        "games",
+        "programming",
+        "web"
+    ],
     "published": true,
     "sort_order": 20,
-    "theme": {"canvas":"#f0e7d3","ink":"#141414","accent":"#ef2b25","rail":"#23883c","footer_background":"#f0e7d3","footer_text":"#141414","footer_word":"#ef2b25"},
+    "theme": {
+        "canvas": "#f0e7d3",
+        "ink": "#141414",
+        "accent": "#174ec2",
+        "rail": "#23883c",
+        "footer_background": "#f0e7d3",
+        "footer_text": "#141414",
+        "footer_word": "#174ec2"
+    },
     "components": [
-        {"type":"hero","image":"/assets/home/media/mode7-poster.jpg","video":"/assets/home/media/mode7.mp4","eyebrow":"Rendering experiment · JavaScript","title":"Build the road.","alt":"Mode 7 racing engine in motion","image_position":"center","overlay_color":"#000000","overlay_opacity":"0.2","text_color":"#ffffff"},
-        {"type":"intro","heading":"Mode 7 Engine","role":"Engine Programmer","disciplines":"Rendering, Gameplay Systems, UI","built_with":"JavaScript, Canvas, ES Modules","client":"Independent Project","paragraphs":["Mode 7 Engine rebuilds the feel of a classic sprite-based kart racer in the browser. The project combines a perspective road renderer with track data, sprite animation, player control, AI racers, items, collision, particles, menus, and race-state management.","Rather than treating the road as a static effect, the renderer became the foundation for a larger playable system. Camera behavior, map sampling, sprite scale, and object placement all respond to the same simulated space.","The project is an ongoing technical study in how a recognizable visual language can be reconstructed with modern browser tools."],"background":"#f0e7d3","text_color":"#141414"},
-        {"type":"artwork","image":"/assets/work/mode-7-engine/track-reference.png","alt":"Mario Circuit track reference and layout","background":"#79add9","image_width":"66","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"product","title":"Interface, track, and race systems share one visual language.","image":"/assets/work/mode-7-engine/title-card.png","alt":"Mode 7 Engine title-card sprite sheet","caption":"A custom title-card asset supports the race presentation layer.","background":"#141414","text_color":"#ffffff","image_width":"82","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"artwork","image":"/assets/work/mode-7-engine/track-tiles.png","alt":"Compact tile sheet used by the racing renderer","background":"#ef2b25","image_width":"28","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"}
+        {
+            "type": "hero",
+            "image": "/assets/work/mode-7-engine/preview-poster.webp",
+            "video": "/assets/home/media/mode7.mp4",
+            "eyebrow": "Rendering experiment · JavaScript",
+            "title": "Mode 7 Engine",
+            "alt": "Mode 7 racing engine in motion",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.2",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Mode 7 Engine",
+            "role": "Engine Programmer",
+            "disciplines": "Rendering, Gameplay Systems, UI",
+            "built_with": "JavaScript, Canvas, ES Modules",
+            "client": "Independent Project",
+            "paragraphs": [
+                "A JavaScript kart-racing engine that runs in the browser. I built the perspective renderer, player controls, AI racers, items, collisions, menus, and race logic.",
+                "The playable demo uses Mario Kart characters and track artwork. The code recreates the game’s rendering and gameplay systems."
+            ],
+            "background": "#f0e7d3",
+            "text_color": "#141414"
+        },
+        {
+            "type": "mario_kart"
+        },
+        {
+            "type": "game_screens",
+            "image": "/assets/work/mode-7-engine/character-select.png",
+            "alt": "Character selection in the browser game, with Mario preview and the eight-racer grid.",
+            "image_2": "/assets/work/mode-7-engine/race-start.png",
+            "alt_2": "Live Mario Circuit gameplay with the perspective road, AI racers, race timer and minimap."
+        }
     ]
 }

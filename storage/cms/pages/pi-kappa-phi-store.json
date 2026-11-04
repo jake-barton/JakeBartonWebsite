@@ -2,19 +2,79 @@
     "slug": "pi-kappa-phi-store",
     "title": "Pi Kappa Phi Store",
     "subtitle": "Custom chapter commerce platform",
-    "description": "A custom PHP apparel storefront and order-management system for Pi Kappa Phi.",
+    "description": "An apparel-ordering website for Pi Kappa Phi. Members can browse products, select sizes and quantities, and submit orders.",
     "cover": "/assets/project-covers/pikappaphi-cover.svg",
-    "tags": ["Web", "Programming", "UX"],
-    "filters": ["web", "programming", "design"],
+    "tags": [
+        "Web",
+        "Programming",
+        "UX"
+    ],
+    "filters": [
+        "web",
+        "programming",
+        "design"
+    ],
     "published": true,
     "sort_order": 30,
-    "theme": {"canvas":"#f4f0df","ink":"#003087","accent":"#d4af37","rail":"#23883c","footer_background":"#003087","footer_text":"#ffffff","footer_word":"#d4af37"},
+    "theme": {
+        "canvas": "#f4f0df",
+        "ink": "#003087",
+        "accent": "#d4af37",
+        "rail": "#23883c",
+        "footer_background": "#003087",
+        "footer_text": "#ffffff",
+        "footer_word": "#d4af37"
+    },
     "components": [
-        {"type":"hero","image":"/assets/project-covers/pikappaphi-cover.svg","video":"","eyebrow":"Commerce platform · Pi Kappa Phi","title":"Chapter gear, organized.","alt":"Pi Kappa Phi apparel graphics","image_position":"center","overlay_color":"#003087","overlay_opacity":"0.18","text_color":"#ffffff"},
-        {"type":"intro","heading":"Pi Kappa Phi Apparel","role":"Designer + Developer","disciplines":"Product Design, Full-Stack Web, Security","built_with":"PHP, JavaScript, JSON, CSS","client":"Pi Kappa Phi","paragraphs":["The chapter store turns apparel ordering into a focused self-service experience. Members can browse products, choose sizes and quantities, submit orders, and review their activity from a responsive interface.","Behind the storefront, an administrative workspace manages products, customers, access, and orders without requiring a database. The system uses structured JSON storage with safe reads, atomic writes, validation, and session-aware workflows.","A later security and UX pass added CSRF protection, server-side order validation, input escaping, stronger sessions, mobile layouts, and consistent product-management patterns across the platform."],"background":"#f4f0df","text_color":"#003087"},
-        {"type":"artwork","image":"/assets/work/pi-kappa-phi-store/banner-logo.svg","alt":"Pi Kappa Phi store banner identity","background":"#003087","image_width":"58","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"product","title":"A branded storefront with a practical order workflow.","image":"/assets/work/pi-kappa-phi-store/storefront-card.png","alt":"Pi Kappa Phi apparel storefront card design","caption":"Royal blue, gold, and chapter artwork carry the identity through the shopping experience.","background":"#d4af37","text_color":"#003087","image_width":"90","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"artwork","image":"/assets/work/pi-kappa-phi-store/star-shield.svg","alt":"Pi Kappa Phi star shield mark","background":"#f4f0df","image_width":"34","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"quote","quote":"“The experience was designed for both sides of the order: the member buying and the chapter organizing.”","background":"#003087","text_color":"#ffffff","quote_width":"88","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"}
+        {
+            "type": "hero",
+            "image": "/assets/project-covers/pikappaphi-cover.svg",
+            "video": "",
+            "eyebrow": "Commerce platform · Pi Kappa Phi",
+            "title": "Pi Kappa Phi Store",
+            "alt": "Pi Kappa Phi apparel graphics",
+            "image_position": "center",
+            "overlay_color": "#003087",
+            "overlay_opacity": "0.18",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Pi Kappa Phi Store",
+            "role": "Designer + Developer",
+            "disciplines": "Product Design, Full-Stack Web, Security",
+            "built_with": "PHP, JavaScript, JSON, CSS",
+            "client": "Pi Kappa Phi",
+            "paragraphs": [
+                "An apparel-ordering website for Pi Kappa Phi. Members can browse products, select sizes and quantities, and submit orders.",
+                "I built the storefront and administration pages in PHP and JavaScript. Products, customers, and orders use JSON storage."
+            ],
+            "background": "#f4f0df",
+            "text_color": "#003087"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/pi-kappa-phi-store/banner-logo.svg",
+            "alt": "Pi Kappa Phi store banner identity",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/pi-kappa-phi-store/storefront-card.png",
+            "alt": "Pi Kappa Phi apparel storefront card design",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/pi-kappa-phi-store/star-shield.svg",
+            "alt": "Pi Kappa Phi star shield mark",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
     ]
 }

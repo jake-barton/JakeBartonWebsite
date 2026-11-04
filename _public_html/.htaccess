@@ -1,6 +1,9 @@
 # Enable URL Rewriting
 RewriteEngine On
 
+# Keep original Mario Kart links working after the project-library move.
+RewriteRule ^MarioKartLatest(?:/(?:index\.(?:html|php))?)?$ /games/mario-kart/ [R=301,L,NC]
+
 # Redirect index.php to /home in browser
 RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
 RewriteRule ^index\.php$ /home [R=301,L]

@@ -3,6 +3,11 @@
 # Automatic sync from _public_html to hostinger_upload
 # Run this after making any changes to keep deployment folder updated
 
+set -e
+cd "$(dirname "$0")"
+python3 scripts/build-games.py
+python3 scripts/export-portfolio-content.py
+
 echo "🔄 Syncing _public_html to hostinger_upload..."
 
 # Create/update deployment directory
@@ -15,6 +20,10 @@ rsync -av --delete \
   --exclude='readme.html' \
   --exclude='README.txt' \
   --exclude='.DS_Store' \
+  --exclude='.env' \
+  --exclude='.env.*' \
+  --exclude='.git/' \
+  --exclude='.gitignore' \
   --exclude='convert_images.sh' \
   --exclude='SETUP_GUIDE.md' \
   _public_html/ "$DEPLOY_DIR/"

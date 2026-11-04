@@ -4,6 +4,8 @@
   var filters = Array.prototype.slice.call(document.querySelectorAll('[data-work-filter]'));
   var sections = Array.prototype.slice.call(document.querySelectorAll('[data-work-section]'));
   var cards = Array.prototype.slice.call(document.querySelectorAll('[data-work-card]'));
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stopPreviews = new Map();
 
   function applyFilter(key) {
     filters.forEach(function (button) {
@@ -16,6 +18,7 @@
       var categories = (card.getAttribute('data-filters') || '').split(/\s+/);
       var visible = key === 'all' || categories.indexOf(key) !== -1 || (key === 'art' && (categories.indexOf('design') !== -1 || categories.indexOf('3d') !== -1));
       card.classList.toggle('is-filtered-out', !visible);
+      if (!visible && stopPreviews.has(card)) stopPreviews.get(card)();
     });
   }
 
@@ -25,6 +28,11 @@
       applyFilter(button.getAttribute('data-work-filter'));
     });
   });
+
+  var requestedFilter = new URLSearchParams(window.location.search).get('filter');
+  if (filters.some(function (button) { return button.getAttribute('data-work-filter') === requestedFilter; })) {
+    applyFilter(requestedFilter);
+  }
 
   sections.forEach(function (button) {
     button.addEventListener('click', function () {
@@ -41,6 +49,41 @@
     if (!url) return;
 
     card.setAttribute('role', 'link');
+    var video = card.querySelector('[data-card-video]');
+    if (video) {
+      var playbackRequest = 0;
+
+      function stopPreview() {
+        playbackRequest += 1;
+        video.pause();
+        if (video.readyState > 0) video.currentTime = 0;
+        card.classList.remove('is-previewing');
+      }
+
+      function startPreview() {
+        if (reduceMotion || document.hidden || card.classList.contains('is-filtered-out')) return;
+        var request = ++playbackRequest;
+        video.muted = true;
+        if (!video.getAttribute('src')) video.src = video.dataset.src;
+        video.play().then(function () {
+          if (request === playbackRequest) card.classList.add('is-previewing');
+        }).catch(function () {});
+      }
+
+      stopPreviews.set(card, stopPreview);
+      card.addEventListener('mouseenter', startPreview);
+      card.addEventListener('mouseleave', function () {
+        if (!card.contains(document.activeElement)) stopPreview();
+      });
+      card.addEventListener('focusin', startPreview);
+      card.addEventListener('focusout', function (event) {
+        if (!card.contains(event.relatedTarget) && !card.matches(':hover')) stopPreview();
+      });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopPreview();
+        else if (card.matches(':hover') || card.contains(document.activeElement)) startPreview();
+      });
+    }
     card.addEventListener('click', function () {
       if (window.jbNavigateWithCurtain) window.jbNavigateWithCurtain(url);
       else window.location.href = url;

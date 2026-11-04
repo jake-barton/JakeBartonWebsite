@@ -1284,7 +1284,8 @@ body.jb-home.menu-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
   color: var(--jb-paper);
   pointer-events: all;
   visibility: visible;
@@ -2186,13 +2187,13 @@ body.jb-home.is-loaded .jb-hero-scroll {
   filter: grayscale(1) brightness(0);
 }
 
-.jb-client-grid li:nth-child(2) img,
-.jb-client-grid li:nth-child(4) img {
+.jb-client-grid li[aria-label="IronSpark"] img,
+.jb-client-grid li[aria-label="Veritas Social"] img {
   max-width: 280px;
 }
 
-.jb-client-grid li:nth-child(3) img,
-.jb-client-grid li:nth-child(5) img {
+.jb-client-grid li[aria-label="Tech Birmingham"] img,
+.jb-client-grid li[aria-label="Pi Kappa Phi"] img {
   max-width: 185px;
   max-height: 165px;
 }
@@ -2289,7 +2290,7 @@ body.jb-home.is-loaded .jb-hero-scroll {
 .jb-accolade-kicker {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(0, 7.5rem) minmax(0, 9rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   column-gap: 1rem;
   color: var(--jb-ink);
@@ -2307,49 +2308,23 @@ body.jb-home.is-loaded .jb-hero-scroll {
 }
 
 .jb-accolade-logo-slot {
-  width: 9rem;
+  width: 100%;
+  min-width: 0;
   height: 42px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.jb-accolade-logo {
+.jb-accolade-logo-slot .jb-accolade-logo {
   display: block;
   width: auto;
   max-width: 100%;
-  height: 34px;
+  height: auto;
+  max-height: 38px;
   object-fit: contain;
   object-position: left center;
   filter: grayscale(1) brightness(0);
-}
-
-.jb-accolade-grid li:nth-child(2) .jb-accolade-logo {
-  width: 38px;
-  height: 38px;
-}
-
-.jb-accolade-grid li:nth-child(3) .jb-accolade-logo {
-  width: auto;
-  height: 38px;
-}
-
-.jb-accolade-grid li:nth-child(4) .jb-accolade-logo {
-  width: auto;
-  max-width: 96px;
-  height: 34px;
-}
-
-.jb-accolade-grid li:nth-child(5) .jb-accolade-logo {
-  width: auto;
-  max-width: 112px;
-  height: 28px;
-}
-
-.jb-accolade-grid li:nth-child(6) .jb-accolade-logo,
-.jb-accolade-grid li:nth-child(7) .jb-accolade-logo {
-  width: auto;
-  height: 38px;
 }
 
 .jb-accolade-mark {
@@ -2417,10 +2392,12 @@ body.jb-home.is-loaded .jb-hero-scroll {
   color: var(--jb-ink);
 }
 
-.jb-footer-contact .jb-fold-underline {
+.jb-fold-underline {
   position: relative;
+  display: inline-block;
   width: fit-content;
-  color: var(--jb-ink);
+  color: inherit;
+  text-decoration: none;
 }
 
 .jb-footer-contact .jb-fold-underline:link,
@@ -2431,20 +2408,20 @@ body.jb-home.is-loaded .jb-hero-scroll {
   color: var(--jb-ink) !important;
 }
 
-.jb-footer-contact .jb-fold-underline::after {
+.jb-fold-underline::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: -0.12em;
   height: 3px;
-  background: var(--jb-ink);
+  background: currentColor;
   clip-path: inset(0 0 0 0);
   transition: clip-path 0.55s var(--jb-snap);
 }
 
-.jb-footer-contact .jb-fold-underline:hover::after,
-.jb-footer-contact .jb-fold-underline:focus-visible::after {
+.jb-fold-underline:hover::after,
+.jb-fold-underline:focus-visible::after {
   clip-path: inset(0 50% 0 50%);
 }
 
@@ -2777,8 +2754,8 @@ body.jb-home.is-loaded .jb-hero-scroll {
     max-height: 90px;
   }
 
-  .jb-client-grid li:nth-child(3) img,
-  .jb-client-grid li:nth-child(5) img {
+  .jb-client-grid li[aria-label="Tech Birmingham"] img,
+  .jb-client-grid li[aria-label="Pi Kappa Phi"] img {
     max-width: 115px;
     max-height: 105px;
   }

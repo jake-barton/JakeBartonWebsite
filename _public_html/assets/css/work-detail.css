@@ -5,6 +5,38 @@
   --detail-cream: #e7e6df;
 }
 
+.jb-game { margin: 0 40px 64px; background: #000; }
+.jb-game-viewport { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.jb-game-viewport iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.lenis.lenis-smooth .jb-game-viewport iframe { pointer-events: auto; }
+.jb-game-screens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0 40px 64px; }
+.jb-game-screens figure { margin: 0; padding: clamp(12px, 2vw, 32px); background: #000; }
+.jb-game-screens img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.jb-project-media { margin: 0 40px 64px; padding: clamp(16px, 3vw, 48px); background: var(--media-background, #101010); }
+.jb-project-media :is(img, video) { display: block; width: 100%; height: auto; margin: 0 auto; }
+.jb-project-media.is-portrait :is(img, video) { width: 100%; max-width: 100%; max-height: 850px; object-fit: contain; }
+.jb-detail-main video { pointer-events: none; user-select: none; -webkit-touch-callout: none; }
+.jb-detail-main video::-webkit-media-controls { display: none !important; }
+.jb-media-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 32px); margin: 0 40px 64px; padding: clamp(16px, 3vw, 48px); background: #101010; }
+.jb-media-pair figure { display: grid; align-content: center; min-width: 0; margin: 0; }
+.jb-media-pair :is(img, video) { display: block; width: 100%; height: auto; }
+.jb-media-pair.is-gameplay-phone { grid-template-columns: minmax(0, 3.47fr) minmax(0, 1fr); }
+.jb-media-pair.is-portraits :is(img, video) { max-height: 680px; object-fit: contain; }
+.jb-project-links { margin: 0 40px 64px; }
+.jb-project-links a { color: inherit; font-size: clamp(1.25rem, 2vw, 1.9rem); line-height: 1.12; }
+.jb-review-notice { position: fixed; z-index: 950; bottom: 16px; left: calc(var(--jb-rail, 64px) + 16px); max-width: calc(100vw - 110px); padding: 12px 18px; border: 1px solid #141414; border-radius: 8px; background: #fff; color: #141414; font-size: .85rem; }
+.jb-review-notice a { margin-left: 12px; color: inherit; }
+@media (max-width: 760px) {
+  .jb-game { margin: 0 15px 50px; }
+  .jb-game-screens { grid-template-columns: 1fr; gap: 15px; margin: 0 15px 50px; }
+  .jb-project-media, .jb-project-links, .jb-media-pair { margin: 0 15px 50px; }
+  .jb-media-pair.is-gameplay-phone { grid-template-columns: 1fr; }
+  .jb-media-pair.is-gameplay-phone figure:last-child { width: min(100%, 280px); justify-self: center; }
+  .jb-media-pair.is-portraits:has(video) { grid-template-columns: 1fr; }
+  .jb-media-pair.is-portraits:has(video) figure { width: min(100%, 320px); justify-self: center; }
+  .jb-review-notice { left: 15px; max-width: calc(100vw - 30px); }
+}
+
 html:has(body.jb-detail-page) { scroll-behavior: auto; }
 
 body.jb-detail-page {
@@ -88,12 +120,12 @@ body.jb-detail-page .jb-rail {
   height: 100svh;
   min-height: 680px;
   overflow: hidden;
-  background: var(--detail-navy);
+  background: #101010;
   color: #fff;
 }
 
 .jb-detail-hero > img,
-.jb-detail-hero > video { width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-position, center); transform: scale(1.01); }
+.jb-detail-hero > video { width: 100%; height: 100%; object-fit: var(--hero-fit, cover); object-position: var(--hero-position, center); transform: scale(1.01); }
 .jb-detail-hero-shade { position: absolute; inset: 0; background: var(--hero-overlay, #132b4f); opacity: var(--hero-overlay-opacity, .42); }
 .jb-detail-hero-copy { position: absolute; left: clamp(2rem, 5vw, 6rem); right: 2rem; bottom: clamp(2.5rem, 6vw, 6rem); }
 .jb-detail-hero-copy p {
@@ -229,9 +261,18 @@ body.jb-detail-page .jb-rail {
 .jb-detail-quote a { display: inline-flex; align-items: center; gap: 1rem; color: var(--quote-text, var(--detail-navy)); font-size: clamp(1.15rem, 1.6vw, 1.6rem); font-weight: 800; text-decoration: none; border-bottom: 2px solid currentColor; }
 
 .jb-detail-page .jb-work-site-footer {
+  --jb-ink: var(--footer-text, #141414);
   margin-top: 0;
   background: var(--footer-background, var(--detail-cream));
   color: var(--footer-text, var(--jb-ink));
+}
+
+.jb-detail-page .jb-work-site-footer .jb-footer-mark {
+  flex-shrink: 0;
+  background: var(--footer-text, #141414);
+  mask: url('/assets/brand/jb-logo.png') center / contain no-repeat;
+  -webkit-mask: url('/assets/brand/jb-logo.png') center / contain no-repeat;
+  filter: none;
 }
 
 .jb-detail-page .jb-work-site-footer .jb-footer-word-svg text { fill: var(--footer-word, var(--jb-red)); }

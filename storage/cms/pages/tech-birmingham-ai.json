@@ -2,7 +2,7 @@
     "slug": "tech-birmingham-ai",
     "title": "Tech Birmingham AI",
     "subtitle": "AI-powered ecosystem research tools",
-    "description": "An AI-powered sponsor research platform designed and built by Jake Barton.",
+    "description": "I built a sponsor-research assistant for Tech Birmingham’s Sloss Tech committee.",
     "cover": "/assets/project-covers/tb-logo.jpg",
     "tags": [
         "AI",
@@ -30,18 +30,18 @@
     "theme": {
         "canvas": "#e7e6df",
         "ink": "#132b4f",
-        "accent": "#23883c",
+        "accent": "#18385d",
         "rail": "#23883c",
         "footer_background": "#e7e6df",
         "footer_text": "#111111",
-        "footer_word": "#23883c"
+        "footer_word": "#18385d"
     },
     "components": [
         {
             "type": "hero",
             "image": "/assets/project-covers/80181D04-2E88-4BFD-8A70-A8841E0A647A.png",
             "eyebrow": "Tech Birmingham · AI Research Platform",
-            "title": "A better starting point.",
+            "title": "Tech Birmingham AI",
             "alt": "Jake Barton speaking with attendees at Sloss Tech",
             "image_position": "center",
             "overlay_color": "#132b4f",
@@ -62,15 +62,15 @@
         },
         {
             "type": "intro",
-            "heading": "Tech Birmingham AI Sponsor Research Platform",
+            "heading": "Tech Birmingham AI",
             "role": "Designer + Developer",
             "disciplines": "AI, Product Design, Web",
             "built_with": "Next.js, TypeScript, Local LLMs",
             "client": "Tech Birmingham",
             "paragraphs": [
-                "The project began with a sponsorship research assignment for Tech Birmingham’s Sloss Tech committee. While searching for potential corporate partners, I saw how much of the team’s time was being spent collecting information instead of building the relationships that make the conference possible.",
-                "I designed and built a custom AI research assistant around that problem. The agent identifies relevant companies, searches for useful context, gathers and summarizes findings, ranks potential sponsors, and organizes the results into spreadsheets the team can use for decision-making.",
-                "The system runs a local language model supported by purpose-built research tools and integrations. This keeps organizational data internal, avoids per-query model costs, and gives the team a stronger starting point without replacing its judgment. As I explained in the Samford feature, “AI agents are not magic, and they are not perfect.” Their value comes from the workflow, tools, data, instructions, and presentation built around them."
+                "I built a sponsor-research assistant for Tech Birmingham’s Sloss Tech committee.",
+                "The tool searches for companies, summarizes research, ranks potential sponsors, and exports results to spreadsheets. It uses a local language model and custom research tools.",
+                "Sponsor information is redacted."
             ],
             "background": "#e7e6df",
             "text_color": "#000000",
@@ -96,71 +96,25 @@
             "paragraphs_margin_bottom": ""
         },
         {
-            "type": "artwork",
+            "type": "project_media",
             "image": "/assets/work/tech-birmingham-ai/tech-birmingham-logo.jpeg",
             "alt": "Tech Birmingham identity artwork",
-            "background": "#79add9",
-            "image_width": "",
-            "image_alignment": "",
-            "corner_radius": "0",
-            "left_margin": "40",
-            "right_margin": "40",
-            "section_gap": "160"
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
         },
         {
-            "type": "product",
-            "title": "One workspace for research, ranking, and export.",
+            "type": "project_media",
             "image": "/assets/work/tech-birmingham-ai/tech-birmingham-ai-redacted.png",
             "alt": "The Grove AI sponsor research workspace created for Tech Birmingham",
-            "caption": "Important sponsor information has been redacted to protect company privacy.",
-            "background": "#132b4f",
-            "text_color": "#ffffff",
-            "title_color": "",
-            "caption_color": "",
-            "title_width": "68",
-            "title_margin_left": "8",
-            "title_margin_right": "",
-            "title_margin_top": "",
-            "title_margin_bottom": "",
-            "caption_width": "",
-            "caption_margin_left": "",
-            "caption_margin_right": "",
-            "caption_margin_top": "",
-            "caption_margin_bottom": "",
-            "image_width": "",
-            "image_alignment": "",
-            "corner_radius": "0",
-            "left_margin": "40",
-            "right_margin": "40",
-            "section_gap": "64",
-            "padding_top": "",
-            "padding_bottom": ""
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
         },
         {
-            "type": "quote",
-            "quote": "“The goal isn’t to replace the team’s judgment. The goal is to give them a better starting point.”",
-            "link_label": "Read the Samford feature",
-            "link_url": "https://www.samford.edu/arts/news/2026/Game-Design-Student-Builds-AI-Tool-for-Sloss-Tech",
-            "background": "#79add9",
-            "text_color": "#132b4f",
-            "quote_color": "",
-            "link_label_color": "",
-            "quote_width": "94",
-            "quote_margin_left": "",
-            "quote_margin_right": "",
-            "quote_margin_top": "",
-            "quote_margin_bottom": "",
-            "link_label_width": "",
-            "link_label_margin_left": "",
-            "link_label_margin_right": "",
-            "link_label_margin_top": "",
-            "link_label_margin_bottom": "",
-            "corner_radius": "0",
-            "left_margin": "40",
-            "right_margin": "",
-            "section_gap": "",
-            "padding_top": "",
-            "padding_bottom": ""
+            "type": "project_links",
+            "label": "Read the Samford feature",
+            "url": "https://www.samford.edu/arts/news/2026/Game-Design-Student-Builds-AI-Tool-for-Sloss-Tech"
         }
     ],
     "updated_at": "2026-07-20T16:39:26+00:00"

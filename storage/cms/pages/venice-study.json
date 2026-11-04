@@ -2,17 +2,60 @@
     "slug": "venice-study",
     "title": "Venice Study",
     "subtitle": "Architectural line illustration",
-    "description": "An architectural line illustration studying the structure, rhythm, and texture of Venice.",
+    "description": "An architectural illustration of Venice, focused on buildings, streets, and line work.",
     "cover": "/assets/project-covers/venice-art.jpg",
-    "tags": ["Illustration", "Architecture", "Drawing"],
-    "filters": ["design"],
+    "tags": [
+        "Illustration",
+        "Architecture",
+        "Drawing"
+    ],
+    "filters": [
+        "design"
+    ],
     "published": true,
     "sort_order": 100,
-    "theme": {"canvas":"#eee8dc","ink":"#202020","accent":"#ef2b25","rail":"#23883c","footer_background":"#eee8dc","footer_text":"#202020","footer_word":"#ef2b25"},
+    "theme": {
+        "canvas": "#eee8dc",
+        "ink": "#202020",
+        "accent": "#202020",
+        "rail": "#23883c",
+        "footer_background": "#eee8dc",
+        "footer_text": "#202020",
+        "footer_word": "#202020"
+    },
     "components": [
-        {"type":"hero","image":"/assets/work/venice-study/venice-illustration.jpg","video":"","eyebrow":"Architectural illustration · Line study","title":"Structure through line.","alt":"Architectural line illustration of Venice","image_position":"center","overlay_color":"#000000","overlay_opacity":"0.14","text_color":"#ffffff"},
-        {"type":"intro","heading":"Venice Study","role":"Illustrator","disciplines":"Architectural Drawing, Composition, Linework","built_with":"Digital Illustration","client":"Independent Study","paragraphs":["Venice Study is an architectural illustration focused on the density, rhythm, and accumulated detail of the city’s built environment.","The drawing uses line weight and selective contrast to separate structural layers while preserving the visual complexity that makes the subject distinctive.","This focused mockup treats the single finished work as an object worth examining at scale, with room to add sketches or process material later."],"background":"#eee8dc","text_color":"#202020"},
-        {"type":"artwork","image":"/assets/work/venice-study/venice-illustration.jpg","alt":"Full Venice architectural illustration","background":"#ffffff","image_width":"72","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"quote","quote":"“Line becomes a way to measure the city’s rhythm.”","background":"#ef2b25","text_color":"#ffffff","quote_width":"72","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"}
+        {
+            "type": "hero",
+            "image": "/assets/work/venice-study/venice-illustration.jpg",
+            "video": "",
+            "eyebrow": "Architectural illustration · Line study",
+            "title": "Venice Study",
+            "alt": "Architectural line illustration of Venice",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.14",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Venice Study",
+            "role": "Illustrator",
+            "disciplines": "Architectural Drawing, Composition, Linework",
+            "built_with": "Digital Illustration",
+            "client": "Independent Study",
+            "paragraphs": [
+                "An architectural illustration of Venice, focused on buildings, streets, and line work."
+            ],
+            "background": "#eee8dc",
+            "text_color": "#202020"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/venice-study/venice-illustration.jpg",
+            "alt": "Full Venice architectural illustration",
+            "video": "",
+            "format": "portrait",
+            "background": "#101010"
+        }
     ]
 }

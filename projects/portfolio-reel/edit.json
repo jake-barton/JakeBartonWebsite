@@ -1,0 +1,170 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "shots": [
+    {
+      "id": "01-ding-hands",
+      "name": "Ding Dong \u2014 hands and character art",
+      "duration": 1.4,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/ding-dong/intro-cutscene.mp4",
+          "start": 31.7,
+          "crop": "1848:1040:36:20"
+        }
+      ]
+    },
+    {
+      "id": "02-ding-phone",
+      "name": "Ding Dong \u2014 phone interface",
+      "duration": 1.4,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/ding-dong/phone-and-multiplayer.mp4",
+          "start": 11,
+          "crop": "1920:1032:0:48"
+        }
+      ]
+    },
+    {
+      "id": "03-everybody-golf",
+      "name": "Everybody Golf \u2014 controller and ball flight",
+      "duration": 2,
+      "layout": "gameplay-phone",
+      "sources": [
+        {
+          "path": "work/everybody-golf/gameplay-aligned.mp4",
+          "start": 33
+        },
+        {
+          "path": "work/everybody-golf/phone-controller-aligned.mp4",
+          "start": 33
+        }
+      ]
+    },
+    {
+      "id": "04-volleyball",
+      "name": "Volleyball \u2014 first-person play",
+      "duration": 1.4,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/volleyball-game/gameplay-video.mp4",
+          "start": 0.4
+        }
+      ]
+    },
+    {
+      "id": "05-minnies",
+      "name": "Minnie's Golf \u2014 three courses",
+      "duration": 1.6,
+      "layout": "triptych",
+      "sources": [
+        {
+          "path": "work/minnies-golf/mobile-gameplay.mp4",
+          "start": 7
+        },
+        {
+          "path": "work/minnies-golf/course-gameplay.mp4",
+          "start": 31
+        },
+        {
+          "path": "work/minnies-golf/mobile-gameplay.mp4",
+          "start": 43
+        }
+      ]
+    },
+    {
+      "id": "06-bds",
+      "name": "Barton Design Solutions \u2014 animated website",
+      "duration": 1.4,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/barton-design-solutions/website-tour.mp4",
+          "start": 13.8
+        }
+      ]
+    },
+    {
+      "id": "08-bayside",
+      "name": "Bayside \u2014 lyric animation and editing",
+      "duration": 1.2,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/bayside-lyric-video/video.mp4",
+          "start": 0.8
+        }
+      ]
+    },
+    {
+      "id": "09-mode7",
+      "name": "Mode 7 \u2014 racing engine",
+      "duration": 1.2,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "home/media/mode7.mp4",
+          "start": 50,
+          "crop": "1280:600:0:0"
+        }
+      ]
+    },
+    {
+      "id": "09b-phase",
+      "name": "Phase Runner \u2014 platforming",
+      "duration": 1,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "home/media/phase-runner.mp4",
+          "start": 28,
+          "crop": "1088:612:96:126"
+        }
+      ]
+    },
+    {
+      "id": "09c-vr",
+      "name": "VR Rhythm Game \u2014 riding the dragon",
+      "duration": 2,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/vr-rhythm-game/dragon-flight.mp4",
+          "start": 9,
+          "crop": "1920:1016:0:32"
+        }
+      ]
+    },
+    {
+      "id": "10-environment",
+      "name": "3D environment \u2014 waterfront",
+      "duration": 1.4,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "home/media/environment.mp4",
+          "start": 6,
+          "crop": "1048:590:116:0"
+        }
+      ]
+    },
+    {
+      "id": "11-ding-loop",
+      "name": "Ding Dong \u2014 return to opening",
+      "duration": 1,
+      "layout": "full",
+      "sources": [
+        {
+          "path": "work/ding-dong/intro-cutscene.mp4",
+          "start": 30.7,
+          "crop": "1848:1040:36:20"
+        }
+      ]
+    }
+  ]
+}

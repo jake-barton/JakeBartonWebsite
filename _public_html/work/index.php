@@ -19,19 +19,31 @@ $menu_items = [
 $work_filters = [
     ['key' => 'all', 'label' => 'All Work'],
     ['key' => 'games', 'label' => 'Games'],
+    ['key' => 'apps', 'label' => 'Apps'],
     ['key' => 'programming', 'label' => 'Programming'],
     ['key' => 'web', 'label' => 'Web + AI'],
     ['key' => 'design', 'label' => 'Visual Design'],
+    ['key' => 'motion', 'label' => 'Motion'],
+    ['key' => 'business', 'label' => 'Business'],
     ['key' => '3d', 'label' => '3D Art'],
 ];
 
 $work_projects = [];
 foreach (jb_cms_pages() as $managed_page) {
     if (empty($managed_page['published'])) continue;
+    $previewVideo = '';
+    foreach (($managed_page['components'] ?? []) as $block) {
+        if (($block['type'] ?? '') === 'hero') {
+            $previewVideo = trim((string) ($block['video'] ?? ''));
+            break;
+        }
+    }
+    if (!filter_var($managed_page['card']['video_preview'] ?? true, FILTER_VALIDATE_BOOLEAN)) $previewVideo = '';
     $work_projects[] = [
         'title' => $managed_page['title'] ?? 'Untitled project',
         'subtitle' => $managed_page['subtitle'] ?? '',
         'image' => $managed_page['cover'] ?? '../assets/project-covers/tb-logo.jpg',
+        'video' => $previewVideo,
         'tags' => $managed_page['tags'] ?? [],
         'filters' => $managed_page['filters'] ?? [],
         'logo_card' => !empty($managed_page['logo_card']),
@@ -51,8 +63,9 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
     <title>Work — <?php echo h($content['name']); ?></title>
     <link rel="icon" type="image/svg+xml" href="../assets/brand/favicon.svg">
     <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/components.css?v=20260714-work-loader">
-    <link rel="stylesheet" href="../assets/css/work.css?v=20260716-card-image-controls">
+    <link rel="stylesheet" href="../assets/css/components.css?v=20261103-links">
+    <link rel="stylesheet" href="../assets/css/work.css?v=20261103-card-video">
+<link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
 </head>
 <body class="jb-home jb-work-page">
     <div class="jb-work-loader" id="pageLoader" aria-label="Loading page" aria-live="polite">
@@ -96,12 +109,14 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
                     </a>
                 <?php endforeach; ?>
             </div>
+<div class="jb-menu-reel-mobile" aria-hidden="true"><?php jb_site_reel('', 'menu'); ?></div>
             <div class="jb-mega-contact">
                 <div><h2>Email</h2><a href="mailto:<?php echo h($content['email']); ?>"><?php echo h($content['email']); ?></a></div>
                 <div><h2>Social</h2><a href="https://instagram.com/<?php echo h($content['instagram']); ?>" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/<?php echo h($content['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/<?php echo h($content['github']); ?>" target="_blank" rel="noopener">GitHub</a></div>
             </div>
         </section>
-    </nav>
+    <div class="jb-menu-reel" aria-hidden="true"><?php jb_site_reel('', 'menu'); ?></div>
+</nav>
 
     <main class="jb-work-index" id="work" aria-label="Selected work">
         <nav class="jb-work-sections" aria-label="Work sections">
@@ -127,6 +142,7 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
                 <?php $card=is_array($project['card']??null)?$project['card']:[]; ?><article class="jb-work-card<?php echo !empty($project['logo_card']) ? ' is-logo-card' : ''; ?>" tabindex="0" data-work-card<?php echo !empty($project['url']) ? ' data-project-url="' . h($project['url']) . '"' : ''; ?> data-filters="<?php echo h(implode(' ', $project['filters'])); ?>" style="--card-index: <?php echo h((string) $i); ?>;--card-radius:<?= h((string)($card['corner_radius']??28)) ?>px;--card-overlay:<?= h((string)($card['overlay_opacity']??.34)) ?>;--card-overlay-color:<?= h($card['overlay_color']??'#000000') ?>;--card-background:<?= h($card['background']??'#111111') ?>;--card-text:<?= h($card['text_color']??'#ffffff') ?>;--card-tag:<?= h($card['tag_background']??'#c6c5bc') ?>;--card-tag-text:<?= h($card['tag_text']??'#ffffff') ?>;--card-position:<?= h($card['image_position']??'center') ?>;--card-fit:<?= h($card['image_fit']??'cover') ?>;--card-scale:<?= h((string)($card['image_scale']??100)) ?>">
                     <div class="jb-work-card-media">
                         <img src="<?php echo h($project['image']); ?>" alt="<?php echo h($project['title']); ?> project cover" loading="<?php echo $i < 4 ? 'eager' : 'lazy'; ?>">
+                        <?php if ($project['video'] !== ''): ?><video data-card-video data-src="<?= h(jb_cms_asset($project['video'])) ?>" muted loop playsinline preload="none" aria-hidden="true"></video><?php endif; ?>
                     </div>
                     <div class="jb-work-card-shade" aria-hidden="true"></div>
                     <ul class="jb-work-card-tags" aria-label="Project categories">
@@ -147,11 +163,11 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
     <footer class="jb-footer jb-work-site-footer" id="contact">
         <div class="jb-footer-contact">
             <div>
-                <h2>Get in touch:</h2>
+                <h2>Email</h2>
                 <a class="jb-fold-underline" href="mailto:<?php echo h($content['email']); ?>"><?php echo h($content['email']); ?></a>
             </div>
             <div>
-                <h2>Find me:</h2>
+                <h2>Social</h2>
                 <a href="https://instagram.com/<?php echo h($content['instagram']); ?>" target="_blank" rel="noopener">Instagram</a>
                 <a href="https://www.linkedin.com/in/<?php echo h($content['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://github.com/<?php echo h($content['github']); ?>" target="_blank" rel="noopener">GitHub</a>
@@ -163,17 +179,7 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
                 <text x="58" y="258">Jake Barton</text>
             </svg>
             <span class="jb-footer-word-mask" aria-hidden="true">
-                <?php foreach ($content['home_categories'] as $category): ?>
-                    <video
-                        src="../<?php echo h($category['video']); ?>"
-                        poster="../<?php echo h($category['poster']); ?>"
-                        muted
-                        loop
-                        playsinline
-                        preload="metadata"
-                        data-footer-video>
-                    </video>
-                <?php endforeach; ?>
+                <?php jb_site_reel('', 'footer'); ?>
             </span>
         </a>
         <div class="jb-footer-bottom">
@@ -189,7 +195,8 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
     <script src="../assets/js/site-scroll.js?v=20260715-sitewide" defer></script>
     <script src="../assets/js/work-loader.js?v=20260714-menu-only" defer></script>
-    <script src="../assets/js/page-loader.js?v=20260716-continuous-transition" defer></script>
-    <script src="../assets/js/work-page.js?v=20260716-subpage-transition" defer></script>
+    <script src="../assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
+    <script src="../assets/js/work-page.js?v=20261103-card-video" defer></script>
+<script src="/assets/js/site-reel.js?v=20261104-loader-fix" defer></script>
 </body>
 </html>

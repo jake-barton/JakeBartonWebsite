@@ -1,0 +1,66 @@
+{
+    "slug": "ginkgo-forward",
+    "title": "Ginkgo Forward",
+    "subtitle": "Generative website",
+    "description": "A PHP website with procedurally generated ginkgo leaves and branches.",
+    "cover": "/assets/work/ginkgo-forward/website.webp",
+    "tags": [
+        "Web"
+    ],
+    "filters": [
+        "web",
+        "design",
+        "programming"
+    ],
+    "published": true,
+    "sort_order": 15,
+    "theme": {
+        "canvas": "#f0e7d3",
+        "ink": "#141414",
+        "accent": "#294651",
+        "rail": "#23883c",
+        "footer_background": "#f0e7d3",
+        "footer_text": "#141414",
+        "footer_word": "#294651"
+    },
+    "components": [
+        {
+            "type": "hero",
+            "image": "/assets/work/ginkgo-forward/website.webp",
+            "video": "",
+            "eyebrow": "Web development",
+            "title": "Ginkgo Forward",
+            "alt": "Ginkgo Forward project image",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.35",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Ginkgo Forward",
+            "role": "Web Developer",
+            "disciplines": "Web development, Graphic design, Programming",
+            "built_with": "PHP, JavaScript, Canvas, SVG",
+            "client": "Website project",
+            "paragraphs": [
+                "A PHP website with procedurally generated ginkgo leaves and branches.",
+                "The artwork uses Canvas and SVG with shared seeded geometry."
+            ],
+            "background": "#f0e7d3",
+            "text_color": "#141414"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/ginkgo-forward/website.webp",
+            "alt": "Ginkgo Forward website with generated leaf artwork.",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
+    ],
+    "approval": {
+        "date": "2026-11-03",
+        "source": "Jake approved this project in chat."
+    }
+}

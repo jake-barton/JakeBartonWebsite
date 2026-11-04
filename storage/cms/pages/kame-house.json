@@ -2,19 +2,82 @@
     "slug": "kame-house",
     "title": "Kame House",
     "subtitle": "Real-time environment study",
-    "description": "A real-time Kame House environment study built and rendered in Unreal Engine.",
+    "description": "A 3D environment study based on Kame House from Dragon Ball.",
     "cover": "/assets/project-covers/kame-house-cutout.png",
-    "tags": ["3D", "Environment", "Unreal"],
-    "filters": ["3d", "design"],
+    "tags": [
+        "3D",
+        "Environment",
+        "Unreal"
+    ],
+    "filters": [
+        "3d",
+        "design"
+    ],
     "published": true,
     "sort_order": 50,
-    "card": {"image_position":"center","image_fit":"contain","image_scale":"95","background":"#4aaed1","overlay_opacity":"0.2","overlay_color":"#000000","corner_radius":"28","text_color":"#ffffff","tag_background":"#c6c5bc","tag_text":"#ffffff"},
-    "theme": {"canvas":"#f7e8c6","ink":"#17344e","accent":"#ef2b25","rail":"#23883c","footer_background":"#4aaed1","footer_text":"#17344e","footer_word":"#ffffff"},
+    "card": {
+        "image_position": "center",
+        "image_fit": "contain",
+        "image_scale": "95",
+        "background": "#4aaed1",
+        "overlay_opacity": "0.2",
+        "overlay_color": "#000000",
+        "corner_radius": "28",
+        "text_color": "#ffffff",
+        "tag_background": "#c6c5bc",
+        "tag_text": "#ffffff"
+    },
+    "theme": {
+        "canvas": "#f7e8c6",
+        "ink": "#17344e",
+        "accent": "#da6d8a",
+        "rail": "#23883c",
+        "footer_background": "#4aaed1",
+        "footer_text": "#17344e",
+        "footer_word": "#17344e"
+    },
     "components": [
-        {"type":"hero","image":"/assets/work/kame-house/final-render-1.png","video":"","eyebrow":"Environment art · Unreal Engine","title":"A familiar island, rebuilt.","alt":"Final Unreal Engine render of Kame House","image_position":"center","overlay_color":"#17344e","overlay_opacity":"0.2","text_color":"#ffffff"},
-        {"type":"intro","heading":"Kame House Environment Study","role":"Environment Artist","disciplines":"Modeling, Materials, Lighting, Composition","built_with":"Unreal Engine, Maya, Substance","client":"3D Coursework","paragraphs":["Kame House is a real-time environment study built around a recognizable silhouette and a deliberately compact scene. The goal was to translate a stylized animated location into a dimensional space while preserving its bright, graphic identity.","The work moves from a value-focused greyscale pass into final materials, atmosphere, water, vegetation, lighting, and cinematic framing.","Comparing the process and final renders shows how composition and light carry the scene as much as the modeled architecture."],"background":"#f7e8c6","text_color":"#17344e"},
-        {"type":"artwork","image":"/assets/work/kame-house/greyscale-render.png","alt":"Greyscale process render of the Kame House scene","background":"#17344e","image_width":"88","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"product","title":"Color, atmosphere, and foliage complete the read.","image":"/assets/work/kame-house/final-render-2.png","alt":"Alternate final render of Kame House","caption":"The final scene balances the house silhouette against water, sky, and island vegetation.","background":"#4aaed1","text_color":"#17344e","image_width":"92","image_alignment":"center","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"},
-        {"type":"quote","quote":"“The environment was built to read first as a silhouette, then as a place.”","background":"#ef2b25","text_color":"#ffffff","quote_width":"82","corner_radius":"0","left_margin":"40","right_margin":"40","section_gap":"64"}
+        {
+            "type": "hero",
+            "image": "/assets/work/kame-house/final-render-1.png",
+            "video": "",
+            "eyebrow": "Environment art · Unreal Engine",
+            "title": "Kame House",
+            "alt": "Final Unreal Engine render of Kame House",
+            "image_position": "center",
+            "overlay_color": "#17344e",
+            "overlay_opacity": "0.2",
+            "text_color": "#ffffff"
+        },
+        {
+            "type": "intro",
+            "heading": "Kame House",
+            "role": "Environment Artist",
+            "disciplines": "Modeling, Materials, Lighting, Composition",
+            "built_with": "Unreal Engine, Maya, Substance",
+            "client": "3D Coursework",
+            "paragraphs": [
+                "A 3D environment study based on Kame House from Dragon Ball.",
+                "The images show the greyscale scene and final renders with materials, lighting, water, and vegetation."
+            ],
+            "background": "#f7e8c6",
+            "text_color": "#17344e"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/kame-house/greyscale-render.png",
+            "alt": "Greyscale process render of the Kame House scene",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        },
+        {
+            "type": "project_media",
+            "image": "/assets/work/kame-house/final-render-2.png",
+            "alt": "Alternate final render of Kame House",
+            "video": "",
+            "format": "landscape",
+            "background": "#101010"
+        }
     ]
 }

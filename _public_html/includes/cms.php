@@ -85,7 +85,7 @@ function jb_cms_delete_page(string $slug): bool
 function jb_cms_components(): array
 {
     $components = [
-        'hero' => ['label' => 'Hero media + title', 'fields' => ['image', 'video', 'eyebrow', 'title', 'alt', 'image_position', 'overlay_color', 'overlay_opacity', 'text_color', 'eyebrow_color', 'title_color', 'eyebrow_width', 'eyebrow_margin_left', 'eyebrow_margin_right', 'eyebrow_margin_top', 'eyebrow_margin_bottom', 'title_width', 'title_margin_left', 'title_margin_right', 'title_margin_top', 'title_margin_bottom']],
+        'hero' => ['label' => 'Hero media + title', 'fields' => ['image', 'video', 'eyebrow', 'title', 'alt', 'image_position', 'media_fit', 'overlay_color', 'overlay_opacity', 'text_color', 'eyebrow_color', 'title_color', 'eyebrow_width', 'eyebrow_margin_left', 'eyebrow_margin_right', 'eyebrow_margin_top', 'eyebrow_margin_bottom', 'title_width', 'title_margin_left', 'title_margin_right', 'title_margin_top', 'title_margin_bottom']],
         'intro' => ['label' => 'Project information + story', 'fields' => ['heading', 'role_label', 'role', 'disciplines_label', 'disciplines', 'built_with_label', 'built_with', 'client_label', 'client', 'paragraphs', 'background', 'text_color', 'heading_color', 'role_label_color', 'role_color', 'disciplines_label_color', 'disciplines_color', 'built_with_label_color', 'built_with_color', 'client_label_color', 'client_color', 'paragraphs_color', 'heading_width', 'heading_margin_left', 'heading_margin_right', 'heading_margin_top', 'heading_margin_bottom', 'paragraphs_width', 'paragraphs_margin_left', 'paragraphs_margin_right', 'paragraphs_margin_top', 'paragraphs_margin_bottom']],
         'artwork' => ['label' => 'Artwork image', 'fields' => ['image', 'alt', 'background', 'image_width', 'image_alignment', 'corner_radius', 'left_margin', 'right_margin', 'section_gap', 'decoration_1', 'decoration_2']],
         'product' => ['label' => 'Product screenshot', 'fields' => ['title', 'image', 'alt', 'caption', 'background', 'text_color', 'title_color', 'caption_color', 'title_width', 'title_margin_left', 'title_margin_right', 'title_margin_top', 'title_margin_bottom', 'caption_width', 'caption_margin_left', 'caption_margin_right', 'caption_margin_top', 'caption_margin_bottom', 'image_width', 'image_alignment', 'corner_radius', 'left_margin', 'right_margin', 'section_gap', 'padding_top', 'padding_bottom']],
@@ -180,6 +180,17 @@ function jb_cms_asset(string $path): string
     if ($path === '') return '/assets/project-covers/tb-logo.jpg';
     if (preg_match('#^(https?://|/)#', $path)) return $path;
     return '/assets/' . ltrim($path, '/');
+}
+
+function jb_cms_image_size_attributes(string $asset): string
+{
+    static $sizes = [];
+    if (isset($sizes[$asset])) return $sizes[$asset];
+    $publicRoot = dirname(__DIR__);
+    $path = realpath($publicRoot . jb_cms_asset($asset));
+    if ($path === false || !str_starts_with($path, $publicRoot . DIRECTORY_SEPARATOR)) return '';
+    $size = @getimagesize($path);
+    return $sizes[$asset] = $size ? ' width="' . $size[0] . '" height="' . $size[1] . '"' : '';
 }
 
 function jb_cms_color(mixed $value, string $fallback): string

@@ -24,6 +24,14 @@ JakeBartonWebsite/
 
 ### For Local Development:
 
+Build the playable Mario Kart runtime before starting the site (and after editing its source):
+
+```bash
+python3 scripts/build-games.py
+```
+
+Visit `/work/mode-7-engine/` for the embedded demo or `/games/mario-kart/` for the standalone game. The runtime is generated from `projects/game-development/mode7-engine/`; edit that source rather than the generated files. The build copies only browser JavaScript, HTML, and PNG assets. Both `sync_to_hostinger.sh` and GitHub deployment run this build automatically.
+
 1. **Start the PHP server:**
    ```bash
    cd /Users/jakebarton/Documents/GitHub/JakeBartonWebsite/_public_html

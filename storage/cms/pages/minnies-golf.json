@@ -1,0 +1,71 @@
+{
+    "slug": "minnies-golf",
+    "title": "Minnie’s Golf",
+    "subtitle": "Mobile golf game",
+    "description": "Minnie’s Golf is a golf-game project for Minnie’s Golf & Bar. I was the project’s only programmer.",
+    "cover": "/assets/work/minnies-golf/splash.webp",
+    "tags": [
+        "Games",
+        "In development"
+    ],
+    "filters": [
+        "games",
+        "programming",
+        "apps"
+    ],
+    "published": true,
+    "sort_order": 3,
+    "theme": {
+        "canvas": "#f0e7d3",
+        "ink": "#141414",
+        "accent": "#68517f",
+        "rail": "#23883c",
+        "footer_background": "#f0e7d3",
+        "footer_text": "#141414",
+        "footer_word": "#68517f"
+    },
+    "components": [
+        {
+            "type": "hero",
+            "image": "/assets/work/minnies-golf/mobile-gameplay-poster.webp",
+            "video": "/assets/work/minnies-golf/mobile-gameplay.mp4",
+            "eyebrow": "Games · In development",
+            "title": "Minnie’s Golf",
+            "alt": "Minnie’s Golf mobile game course selection.",
+            "image_position": "center",
+            "overlay_color": "#000000",
+            "overlay_opacity": "0.35",
+            "text_color": "#ffffff",
+            "media_fit": "contain"
+        },
+        {
+            "type": "intro",
+            "heading": "Minnie’s Golf",
+            "role": "Only Programmer",
+            "disciplines": "Game development, Programming",
+            "built_with": "Unreal Engine, Blueprints",
+            "client": "Minnie’s Golf & Bar",
+            "paragraphs": [
+                "Minnie’s Golf is a golf-game project for Minnie’s Golf & Bar. I was the project’s only programmer.",
+                "The recordings show course selection, aiming, and putting in the mobile game. My role was programming; the project’s artwork and interface were created by the team."
+            ],
+            "background": "#f0e7d3",
+            "text_color": "#141414"
+        },
+        {
+            "type": "media_pair",
+            "image": "/assets/work/minnies-golf/mobile-gameplay-poster.webp",
+            "video": "/assets/work/minnies-golf/mobile-gameplay.mp4",
+            "alt": "Minnie’s Golf course selection and mobile gameplay.",
+            "image_2": "/assets/work/minnies-golf/course-gameplay-poster.webp",
+            "video_2": "/assets/work/minnies-golf/course-gameplay.mp4",
+            "alt_2": "Minnie’s Golf aiming and putting on the first course.",
+            "layout": "portraits",
+            "sync_videos": false
+        }
+    ],
+    "card": {
+        "image_fit": "cover",
+        "video_preview": false
+    }
+}
