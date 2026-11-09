@@ -98,7 +98,7 @@ if (jb_cms_authenticated() && $_SERVER['REQUEST_METHOD'] === 'POST' && !in_array
             if (!is_array($raw) || empty($raw['type'])) continue;
             $block = [];
             foreach ($raw as $key => $value) {
-                if (!preg_match('/^[a-z_]+$/', (string) $key)) continue;
+                if (!preg_match('/^[a-z_][a-z0-9_]*$/', (string) $key)) continue;
                 if (str_ends_with((string) $key, '_label') && trim((string) $value) === '') continue;
                 if ($key === 'paragraphs') $block[$key] = array_values(array_filter(array_map('trim', preg_split('/\R{2,}/', (string) $value) ?: [])));
                 else $block[$key] = trim((string) $value);

@@ -8,6 +8,16 @@
 [data-site-reel]::-webkit-media-controls { display: none !important; }
 .jb-hero-video[data-site-reel] { filter: none; }
 .jb-footer-word-mask [data-site-reel] { object-fit: cover; }
+.jb-reel-player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: clamp(2rem, 4vw, 4rem);
+  background: #101010;
+  object-fit: contain;
+  color-scheme: dark;
+  pointer-events: auto;
+}
 .jb-menu-reel {
   position: fixed;
   top: 0;

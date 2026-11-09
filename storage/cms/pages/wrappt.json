@@ -13,7 +13,7 @@
         "programming",
         "business"
     ],
-    "published": true,
+    "published": false,
     "sort_order": 5,
     "theme": {
         "canvas": "#f0e7d3",
@@ -64,5 +64,6 @@
     "approval": {
         "date": "2026-11-03",
         "source": "Jake approved this project in chat."
-    }
+    },
+    "deploy_unpublished": true
 }

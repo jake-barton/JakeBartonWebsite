@@ -53,6 +53,8 @@ foreach (jb_cms_pages() as $managed_page) {
     ];
 }
 usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ?? 50) <=> ($b['sort_order'] ?? 50));
+$available_filters = array_unique(array_merge([], ...array_column($work_projects, 'filters')));
+$work_filters = array_values(array_filter($work_filters, static fn(array $filter): bool => $filter['key'] === 'all' || in_array($filter['key'], $available_filters, true)));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,6 +199,6 @@ usort($work_projects, static fn(array $a, array $b): int => ($a['sort_order'] ??
     <script src="../assets/js/work-loader.js?v=20260714-menu-only" defer></script>
     <script src="../assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
     <script src="../assets/js/work-page.js?v=20261103-card-video" defer></script>
-<script src="/assets/js/site-reel.js?v=20261104-loader-fix" defer></script>
+<script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
 </body>
 </html>

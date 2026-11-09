@@ -60,9 +60,9 @@ That's it. No FTP client, no Hostinger file manager, no manual uploads.
 
 ## What Gets Deployed
 
-Portfolio pages are stored outside the public web root. `scripts/export-portfolio-content.py` prepares **published pages only** in `hostinger_content/storage/cms/pages/`. Drafts and Studio credentials are excluded. The workflow uploads those page files separately without deleting other server content.
+Portfolio pages are stored outside the public web root. `scripts/export-portfolio-content.py` prepares **published pages only** in `hostinger_content/storage/cms/pages/`. Drafts and Studio credentials are excluded. Previously published pages explicitly marked `deploy_unpublished: true` are included as visibility updates, with `published: false`, so they can be hidden on the live site without deleting server files. The workflow uploads those page files separately without deleting other server content.
 
-The default remote page directory is `/domains/jakebartoncreative.com/storage/cms/pages/`. If the server uses `JB_CMS_DATA_DIR`, set the GitHub Actions repository variable `CMS_REMOTE_DIR` to that directory's `pages/` child. Existing page files with the same slug receive the source-controlled content update. Use Studio to manage server-only pages and to unpublish existing live pages; omitting a page from the export does not delete it remotely.
+The default remote page directory is `/domains/jakebartoncreative.com/storage/cms/pages/`. If the server uses `JB_CMS_DATA_DIR`, set the GitHub Actions repository variable `CMS_REMOTE_DIR` to that directory's `pages/` child. Existing page files with the same slug receive the source-controlled content update. Use Studio to manage server-only pages. To hide a source-controlled live page, set `published: false` and `deploy_unpublished: true`; omitting a page from the export does not change it remotely.
 
 For manual uploads, `./sync_to_hostinger.sh` prepares both folders. Upload `hostinger_upload/` contents to `public_html/` and `hostinger_content/storage/cms/pages/` files to the sibling persistent `storage/cms/pages/` directory. Do not put `hostinger_content/` inside `public_html/`.
 

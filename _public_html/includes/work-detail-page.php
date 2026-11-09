@@ -4,6 +4,15 @@ require_once __DIR__ . '/content.php';
 
 $slug = jb_cms_slug((string) ($jb_detail_slug ?? $_GET['slug'] ?? ''));
 $page = jb_cms_load_page($slug);
+// Keep links to projects that have been combined pointed at their collection.
+if ($page && !isset($_GET['studio-preview']) && !empty($page['redirect_to'])) {
+    $targetSlug = jb_cms_slug((string) $page['redirect_to']);
+    $targetPage = jb_cms_load_page($targetSlug);
+    if ($targetSlug !== $slug && !empty($targetPage['published'])) {
+        header('Location: /work/' . $targetSlug . '/', true, 301);
+        exit;
+    }
+}
 if (!$page || (empty($page['published']) && !jb_cms_authenticated())) {
     http_response_code(404);
     echo '404 Not Found';
@@ -90,7 +99,7 @@ function jb_render_component(array $block, array $definitions, int $index): void
     <meta name="description" content="<?= jb_cms_h($page['description'] ?? '') ?>">
     <title><?= jb_cms_h($page['title'] ?? 'Work') ?> — <?= jb_cms_h($content['name']) ?></title>
     <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
-    <link rel="stylesheet" href="/assets/css/base.css"><link rel="stylesheet" href="/assets/css/components.css?v=20261103-links"><link rel="stylesheet" href="/assets/css/work-detail.css?v=20261103-minnies-media">
+    <link rel="stylesheet" href="/assets/css/base.css"><link rel="stylesheet" href="/assets/css/components.css?v=20261103-links"><link rel="stylesheet" href="/assets/css/work-detail.css?v=20261109-no-video-labels">
 <link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
 </head>
 <body class="jb-home jb-detail-page<?= $studioPreview ? ' is-studio-preview' : '' ?>" data-studio-theme-color="canvas" style="--page-canvas: <?= jb_cms_h(jb_cms_color($theme['canvas'] ?? '', '#e7e6df')) ?>; --page-ink: <?= jb_cms_h(jb_cms_color($theme['ink'] ?? '', '#132b4f')) ?>; --page-accent: <?= jb_cms_h(jb_cms_color($theme['accent'] ?? '', '#23883c')) ?>; --page-rail: <?= jb_cms_h(jb_cms_color($theme['rail'] ?? '', '#23883c')) ?>; --footer-background: <?= jb_cms_h(jb_cms_color($theme['footer_background'] ?? '', '#e7e6df')) ?>; --footer-text: <?= jb_cms_h(jb_cms_color($theme['footer_text'] ?? '', '#111111')) ?>; --footer-word: <?= jb_cms_h(jb_cms_color($theme['footer_word'] ?? '', '#23883c')) ?>;">
@@ -135,5 +144,5 @@ function jb_render_component(array $block, array $definitions, int $index): void
 <script src="/assets/js/project-media.js?v=20261103-project-rules" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script><script src="/assets/js/site-scroll.js?v=20260715-sitewide" defer></script><script src="/assets/js/site-footer.js?v=20260715-detail-footer" defer></script><script src="/assets/js/work-loader.js?v=20260716-detail-menu" defer></script><?php if (!$studioPreview): ?><script src="/assets/js/page-loader.js?v=20261104-loader-fix" defer></script><?php endif; ?>
 <?php if ($studioPreview): ?><script src="/assets/js/studio-preview-bridge.js?v=12"></script><?php endif; ?>
-<script src="/assets/js/site-reel.js?v=20261104-loader-fix" defer></script>
+<script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
 </body></html>

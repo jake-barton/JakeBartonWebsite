@@ -11,7 +11,7 @@
         "design",
         "motion"
     ],
-    "published": true,
+    "published": false,
     "sort_order": 53,
     "theme": {
         "canvas": "#f0e7d3",
@@ -62,5 +62,7 @@
     ],
     "card": {
         "image_fit": "contain"
-    }
+    },
+    "deploy_unpublished": true,
+    "redirect_to": "motion-graphics"
 }

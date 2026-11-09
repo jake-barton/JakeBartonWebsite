@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   var videos = Array.from(document.querySelectorAll('[data-site-reel]'));
+  var players = Array.from(document.querySelectorAll('[data-reel-player]'));
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var visible = new Set();
   var activeVideo = null;
@@ -14,6 +15,7 @@
 
   function allowed(video) {
     if (document.hidden || reduceMotion.matches || !visible.has(video)) return false;
+    if (players.some(function (player) { return !player.paused && !player.ended; })) return false;
     var context = video.dataset.siteReel;
     if (context === 'menu') return document.body.classList.contains('menu-open');
     if (document.body.classList.contains('menu-open')) return false;
@@ -22,6 +24,9 @@
   }
 
   function update() {
+    if (document.hidden || document.body.classList.contains('menu-open')) {
+      players.forEach(function (player) { player.pause(); });
+    }
     var priority = {menu: 4, hero: 3, action: 2, footer: 1};
     var next = videos.filter(allowed).sort(function (a, b) {
       return priority[b.dataset.siteReel] - priority[a.dataset.siteReel];
@@ -60,6 +65,18 @@
     update();
   }, {threshold: 0.01});
   videos.forEach(function (video) { observer.observe(video); });
+  var playerObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var player = entry.target;
+      if (!entry.isIntersecting && document.fullscreenElement !== player && !player.webkitDisplayingFullscreen) player.pause();
+    });
+  }, {threshold: 0});
+  players.forEach(function (player) {
+    player.addEventListener('play', update);
+    player.addEventListener('pause', update);
+    player.addEventListener('ended', update);
+    playerObserver.observe(player);
+  });
   new MutationObserver(update).observe(document.body, {subtree: true, attributes: true, attributeFilter: ['class']});
   document.addEventListener('visibilitychange', update);
   window.addEventListener('pagehide', saveTime);

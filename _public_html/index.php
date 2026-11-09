@@ -70,7 +70,7 @@ $menu_items = [
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/components.css?v=20261104-logo-grid">
     <link rel="stylesheet" href="assets/css/work.css?v=20260714-global-page-loader">
-<link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
+<link rel="stylesheet" href="/assets/css/site-reel.css?v=20261109-player">
 </head>
 <body class="jb-home">
     <div class="jb-work-loader" id="pageLoader" aria-label="Loading page" aria-live="polite">
@@ -169,9 +169,13 @@ $menu_items = [
         </section>
 
         <section class="jb-statement jb-reveal" id="about" aria-label="About Jake Barton">
-            <h2 title="<?php echo h($content['home_statement']); ?>">
+            <h2>
                 <?php echo split_letters($content['home_statement']); ?>
             </h2>
+            <video class="jb-reel-player" data-reel-player controls playsinline preload="metadata" poster="/assets/reel/portfolio-reel-poster.webp?v=20261104-r3" aria-label="Jake Barton demo reel">
+                <source src="/assets/reel/portfolio-reel.mp4?v=20261104-r3" type="video/mp4">
+                <a href="/assets/reel/portfolio-reel.mp4">Watch the demo reel</a>
+            </video>
             <a class="jb-resume-cta" href="/assets/documents/jake-barton-resume.pdf" target="_blank" rel="noopener">
                 <span>Resume</span>
             </a>
@@ -282,6 +286,6 @@ $menu_items = [
     <script src="assets/js/site-scroll.js?v=20260813-video-r1" defer></script>
     <script src="assets/js/piranha-home.js?v=20261104-reel" defer></script>
     <script src="assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
-<script src="/assets/js/site-reel.js?v=20261104-loader-fix" defer></script>
+<script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
 </body>
 </html>

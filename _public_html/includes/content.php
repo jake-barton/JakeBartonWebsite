@@ -15,7 +15,7 @@ $content['github'] = 'jake-barton';
 $content['instagram'] = 'jakebarton13';
 $content['linkedin'] = 'jakebartoncreative';
 $content['hero_subtitle'] = 'Game developer and designer working on games, websites, and apps.';
-$content['home_statement'] = 'I develop games, websites, and apps. I also work on graphic design and 3D art.';
+$content['home_statement'] = 'I’m Jake, a game developer and designer.';
 
 $content['home_categories'] = [
     ['label' => 'Games', 'url' => '/work/?filter=games', 'video' => 'assets/work/ding-dong/intro-preview.mp4', 'poster' => 'assets/work/ding-dong/intro-preview-poster.webp'],
@@ -41,6 +41,6 @@ $content['home_accolades'] = [
     ['category' => 'Leadership', 'logo' => 'assets/organizations/samford-sga.svg', 'logo_alt' => 'Samford SGA', 'title' => 'Executive Board', 'detail' => 'Serving as Chaplain and helping organize campus programs and legislative decisions.'],
     ['category' => 'Leadership', 'logo' => 'assets/organizations/pi-kappa-phi.svg', 'logo_alt' => 'Pi Kappa Phi', 'title' => 'Philanthropy Chair', 'detail' => 'Organizing fundraising and disability-awareness events.'],
     ['category' => 'Current', 'logo' => 'assets/organizations/sloss-city-music-festival.svg', 'logo_alt' => 'Sloss City Music Festival', 'title' => 'Creative Director', 'detail' => 'Creative direction, promotional graphics, and sponsor materials for the festival.'],
-    ['category' => 'Co-Founder', 'logo' => 'assets/organizations/framewrk.svg', 'logo_alt' => 'Framewrk LLC', 'title' => 'Programming Co-Founder', 'detail' => 'Co-founded Wrappt, a marketplace app for creative work, booking, delivery, and payments.'],
+    ['category' => 'Co-Founder', 'logo' => 'assets/organizations/framewrk.svg', 'logo_alt' => 'Framewrk LLC', 'title' => 'Programming Co-Founder', 'detail' => 'Co-founded Framewrk and worked on its app and backend.'],
     ['category' => 'Technical Toolkit', 'mark' => '</>', 'logo_alt' => 'Programming', 'title' => 'C++ / Python / JS', 'detail' => 'Unreal, Godot, React, Git, Maya, Blender, Substance Painter, and Adobe tools.'],
 ];
