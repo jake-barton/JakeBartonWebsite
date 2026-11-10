@@ -183,7 +183,7 @@ $menu_items = [
                     <a href="/assets/reel/portfolio-reel.mp4">Watch the demo reel</a>
                 </video>
             </div>
-            <a class="jb-resume-cta" href="/assets/documents/jake-barton-resume.pdf?v=d136b7da0fcd" target="_blank" rel="noopener">
+            <a class="jb-resume-cta" href="/assets/documents/jake-barton-resume.pdf?v=7ab18f906e04" target="_blank" rel="noopener">
                 <span>Resume</span>
             </a>
         </section>
@@ -282,7 +282,7 @@ $menu_items = [
                 <a href="#work">Portfolio</a>
                 <a href="https://www.linkedin.com/in/<?php echo h($contact['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://github.com/<?php echo h($contact['github']); ?>" target="_blank" rel="noopener">GitHub</a>
-                <a href="/assets/documents/jake-barton-resume.pdf?v=d136b7da0fcd" download>Resume</a>
+                <a href="/assets/documents/jake-barton-resume.pdf?v=7ab18f906e04" download>Resume</a>
             </nav>
         </div>
     </footer>

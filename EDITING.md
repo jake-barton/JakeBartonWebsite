@@ -38,6 +38,8 @@ Video cards can override the full recording with `preview_video` and `preview_im
 
 The homepage and Work page each own their navigation markup; project pages use `includes/project-header.php`. All three include `rail-resume.php`. Keep their social order and shared sidebar styling aligned. The résumé is `/assets/documents/jake-barton-resume.pdf`; its icon sits above LinkedIn on desktop without a visible label or hover background. Mobile retains the icon in the top bar.
 
+Publish a flattened copy of the résumé with no editable form fields (`/Widget` annotations or `/AcroForm`). Keep the editable master outside `_public_html/`. After replacing the public PDF, update the content-version query on every résumé link so visitors receive the new copy.
+
 The homepage uses `home_greeting` and `home_statement` from `content.php`, in one left-aligned `.jb-intro-copy` column. Continuous accessible text accompanies the per-letter hover presentation, which is hidden from assistive technology.
 
 | Behavior | Owner |
