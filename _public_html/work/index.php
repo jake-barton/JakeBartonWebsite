@@ -127,8 +127,8 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
             <?php foreach ($work_projects as $i => $project): ?>
                 <?php $card=is_array($project['card']??null)?$project['card']:[]; ?><article class="jb-work-card<?php echo !empty($project['logo_card']) ? ' is-logo-card' : ''; ?>" tabindex="0" data-work-card<?php echo !empty($project['url']) ? ' data-project-url="' . h($project['url']) . '"' : ''; ?> data-filters="<?php echo h(implode(' ', $project['filters'])); ?>" style="--card-index: <?php echo h((string) $i); ?>;--card-radius:<?= h((string)($card['corner_radius']??28)) ?>px;--card-overlay:<?= h((string)($card['overlay_opacity']??.34)) ?>;--card-overlay-color:<?= h($card['overlay_color']??'#000000') ?>;--card-background:<?= h($card['background']??'#111111') ?>;--card-text:<?= h($card['text_color']??'#ffffff') ?>;--card-tag:<?= h($card['tag_background']??'#c6c5bc') ?>;--card-tag-text:<?= h($card['tag_text']??'#ffffff') ?>;--card-position:<?= h($card['image_position']??'center') ?>;--card-fit:<?= h($card['image_fit']??'cover') ?>;--card-scale:<?= h((string)($card['image_scale']??100)) ?>">
                     <div class="jb-work-card-media">
-                        <img src="<?php echo h($project['image']); ?>" alt="<?php echo h($project['title']); ?> project cover" loading="<?php echo $i < 4 ? 'eager' : 'lazy'; ?>">
-                        <?php if ($project['video'] !== ''): ?><video data-card-video data-src="<?= h(jb_asset($project['video'])) ?>" muted loop playsinline preload="none" aria-hidden="true"></video><?php endif; ?>
+                        <img src="<?php echo h($project['preview_image'] ?? $project['image']); ?>" alt="<?php echo h($project['title']); ?> project cover" loading="<?php echo $i < 4 ? 'eager' : 'lazy'; ?>">
+                        <?php if ($project['video'] !== ''): ?><video data-card-video data-src="<?= h(jb_asset($project['preview_video'] ?? $project['video'])) ?>" muted loop playsinline preload="none" aria-hidden="true"></video><?php endif; ?>
                     </div>
                     <div class="jb-work-card-shade" aria-hidden="true"></div>
                     <ul class="jb-work-card-tags" aria-label="Project categories">
@@ -182,7 +182,7 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
     <script src="../assets/js/site-scroll.js?v=20261109-chapter-links" defer></script>
     <script src="../assets/js/work-loader.js?v=20260714-menu-only" defer></script>
     <script src="../assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
-    <script src="../assets/js/work-page.js?v=20261103-card-video" defer></script>
+    <script src="../assets/js/work-page.js?v=20261110-video-loading" defer></script>
 <script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
     <script src="/assets/js/easter-eggs.js?v=20261110-games-only" defer></script>
 </body>

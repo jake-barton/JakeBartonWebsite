@@ -193,7 +193,7 @@ $menu_items = [
                 <?php foreach ($content['home_categories'] as $i => $category): ?>
                     <video
                         class="jb-action-video"
-                        data-src="<?php echo h($category['video']); ?>?v=20260813-video-r1"
+                        data-src="<?php echo h($category['video']); ?>?v=20261110-video-loading"
                         poster="<?php echo h($category['poster']); ?>"
                         muted
                         loop
@@ -288,8 +288,8 @@ $menu_items = [
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
-    <script src="assets/js/site-scroll.js?v=20260813-video-r1" defer></script>
-    <script src="assets/js/piranha-home.js?v=20261109-preview-fade" defer></script>
+    <script src="assets/js/site-scroll.js?v=20261110-video-loading" defer></script>
+    <script src="assets/js/piranha-home.js?v=20261110-video-loading" defer></script>
     <script src="assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
 <script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
     <script src="/assets/js/easter-eggs.js?v=20261109-kart-sprites" defer></script>

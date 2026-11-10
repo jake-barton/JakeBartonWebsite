@@ -3,6 +3,8 @@
 // Only approved public projects belong in this list.
 return [
     'ding-dong' => [
+        'preview_video' => '/assets/work/ding-dong/hover-preview.mp4',
+        'preview_image' => '/assets/work/ding-dong/hover-preview-poster.webp',
         'title' => 'Ding Dong',
         'subtitle' => 'Co-op horror game',
         'image' => '/assets/work/ding-dong/intro-preview-poster.webp',
@@ -53,6 +55,8 @@ return [
         'sort_order' => 1,
     ],
     'everybody-golf' => [
+        'preview_video' => '/assets/work/everybody-golf/hover-preview.mp4',
+        'preview_image' => '/assets/work/everybody-golf/hover-preview-poster.webp',
         'title' => 'Everybody Golf',
         'subtitle' => 'Mac golf game with an iPhone controller',
         'image' => '/assets/work/everybody-golf/gameplay-poster.webp',
@@ -72,6 +76,8 @@ return [
         'sort_order' => 2,
     ],
     'barton-design-solutions' => [
+        'preview_video' => '/assets/work/barton-design-solutions/hover-preview.mp4',
+        'preview_image' => '/assets/work/barton-design-solutions/hover-preview-poster.webp',
         'title' => 'Barton Design Solutions',
         'subtitle' => 'Design business and portfolio website',
         'image' => '/assets/work/barton-design-solutions/website-tour-poster.webp',
@@ -91,6 +97,8 @@ return [
         'sort_order' => 4,
     ],
     'volleyball-game' => [
+        'preview_video' => '/assets/work/volleyball-game/hover-preview.mp4',
+        'preview_image' => '/assets/work/volleyball-game/hover-preview-poster.webp',
         'title' => 'Volleyball Game',
         'subtitle' => 'Unreal Engine volleyball game',
         'image' => '/assets/work/volleyball-game/gameplay-video-poster.webp',
@@ -125,6 +133,8 @@ return [
         'sort_order' => 8,
     ],
     'phase-runner' => [
+        'preview_video' => '/assets/work/phase-runner/hover-preview.mp4',
+        'preview_image' => '/assets/work/phase-runner/hover-preview-poster.webp',
         'title' => 'Phase Runner',
         'subtitle' => 'Solo-developed action platformer',
         'image' => '/assets/work/phase-runner/movement-poster.webp',
@@ -189,6 +199,8 @@ return [
         'sort_order' => 15,
     ],
     'mode-7-engine' => [
+        'preview_video' => '/assets/work/mode-7-engine/hover-preview.mp4',
+        'preview_image' => '/assets/work/mode-7-engine/hover-preview-poster.webp',
         'title' => 'Mode 7 Engine',
         'subtitle' => 'Browser-based racing renderer',
         'image' => '/assets/work/mode-7-engine/preview-poster.webp',
@@ -209,6 +221,8 @@ return [
         'sort_order' => 20,
     ],
     'vr-rhythm-game' => [
+        'preview_video' => '/assets/work/vr-rhythm-game/hover-preview.mp4',
+        'preview_image' => '/assets/work/vr-rhythm-game/hover-preview-poster.webp',
         'title' => 'VR Rhythm Game',
         'subtitle' => 'Two-person Unreal Engine project',
         'image' => '/assets/work/vr-rhythm-game/dragon-flight-poster.webp',
@@ -295,6 +309,8 @@ return [
         'sort_order' => 50,
     ],
     'motion-graphics' => [
+        'preview_video' => '/assets/work/bayside-lyric-video/hover-preview.mp4',
+        'preview_image' => '/assets/work/bayside-lyric-video/hover-preview-poster.webp',
         'title' => 'Motion Graphics',
         'subtitle' => 'Animation and video editing',
         'image' => '/assets/work/bayside-lyric-video/preview-poster.webp',

@@ -1,6 +1,6 @@
 # Portfolio reel
 
-A silent 17-second loop using moving project footage only. Still-image sections and Still Sleepless are excluded. No added titles, music, or generated imagery. Team credits remain on the project pages.
+A silent 15.4-second loop using moving project footage only. Still-image sections and Still Sleepless are excluded. No added titles, music, or generated imagery. Team credits remain on the project pages.
 
 Bayside uses the colorful opening DJ edit at source seconds 0.8–2. The website shot uses the animated campaign section rather than the gallery containing Still Sleepless. The VR clip shows dragon riding through the rings. The loop closes at the source point where its opening begins.
 
@@ -34,11 +34,14 @@ Cuts run for 1–2 seconds, with the longest shots reserved for the synchronized
 | 1.4–2.8s | Ding Dong — phone interface |
 | 2.8–4.8s | Everybody Golf — controller and ball flight |
 | 4.8–6.2s | Volleyball — first-person play |
-| 6.2–7.8s | Minnie's Golf — three courses |
-| 7.8–9.2s | Barton Design Solutions — animated website |
-| 9.2–10.4s | Bayside — lyric animation and editing |
-| 10.4–11.6s | Mode 7 — racing engine |
-| 11.6–12.6s | Phase Runner — platforming |
-| 12.6–14.6s | VR Rhythm Game — riding the dragon |
-| 14.6–16s | 3D environment — waterfront |
-| 16–17s | Ding Dong — return to opening |
+| 6.2–7.6s | Barton Design Solutions — animated website |
+| 7.6–8.8s | Bayside — lyric animation and editing |
+| 8.8–10s | Mode 7 — racing engine |
+| 10–11s | Phase Runner — platforming |
+| 11–13s | VR Rhythm Game — riding the dragon |
+| 13–14.4s | 3D environment — waterfront |
+| 14.4–15.4s | Ding Dong — return to opening |
+
+Minnie’s Golf is unreleased and excluded from the public edit and timeline.
+
+The visitor-controlled homepage player retains the full 1920 × 1080 export. Decorative hero/menu/footer contexts use `assets/reel/portfolio-reel-preview.mp4`, a lighter copy with the same complete 15.4-second timeline, so shared playback time stays valid. After rebuilding the reel, run `python3 scripts/build-previews.py` from the repository root to refresh this copy and its first-frame poster, then sync the site.

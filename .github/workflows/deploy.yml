@@ -37,9 +37,7 @@ jobs:
             set net:reconnect-interval-base 5;
             open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
             cd /domains/jakebartoncreative.com/public_html/;
-            put -O . ./_public_html/.htaccess ./_public_html/index.php ./_public_html/home.php ./_public_html/router.php ./_public_html/contact-handler.php;
-            mirror --reverse --verbose ./_public_html/includes/ ./includes/;
-            mirror --reverse --verbose ./_public_html/work/ ./work/;
+            put -O . ./_public_html/.htaccess;
             mirror --reverse --verbose ./_public_html/assets/brand/ ./assets/brand/;
             mirror --reverse --verbose ./_public_html/assets/css/ ./assets/css/;
             mirror --reverse --verbose ./_public_html/assets/documents/ ./assets/documents/;
@@ -54,6 +52,9 @@ jobs:
             mirror --reverse --verbose ./_public_html/assets/work/ ./assets/work/;
             mirror --reverse --verbose ./_public_html/assets/reel/ ./assets/reel/;
             mirror --reverse --verbose ./_public_html/games/mario-kart/ ./games/mario-kart/;
+            mirror --reverse --verbose ./_public_html/includes/ ./includes/;
+            mirror --reverse --verbose ./_public_html/work/ ./work/;
+            put -O . ./_public_html/index.php ./_public_html/home.php ./_public_html/router.php ./_public_html/contact-handler.php;
             rm -rf ./work/minnies-golf ./work/wrappt ./work/river ./work/barton-enterprises ./work/campusconnect ./work/psengine ./work/macbook-golf-simulator ./work/october-assistant ./work/artist-campaigns ./work/banking-concurrency-lab ./work/campaign-design;
             rm -rf ./assets/work/minnies-golf;
             rm -f ./assets/organizations/minnies.svg ./assets/source/minnies-score.txt;

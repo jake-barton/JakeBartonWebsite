@@ -221,6 +221,23 @@
     var visible = false;
     var canHover = window.matchMedia('(hover: hover)');
 
+    function preparePreview(video) {
+      video.preload = 'auto';
+      if (!video.getAttribute('src')) video.src = video.dataset.src;
+    }
+
+    function clearPendingFrame() {
+      if (!pendingFrame) return;
+      if (pendingFrame.video.cancelVideoFrameCallback) pendingFrame.video.cancelVideoFrameCallback(pendingFrame.id);
+      pendingFrame = null;
+    }
+
+    // Fetch small preview copies before this section reaches the pointer.
+    new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting || reduceMotion || document.hidden || !canHover.matches || (navigator.connection && navigator.connection.saveData)) return;
+      videos.forEach(preparePreview);
+    }, {rootMargin: '600px 0px'}).observe(section);
+
     function reveal(video) {
       if (video !== activeVideo) return;
       if (displayedVideo !== video) {
@@ -238,16 +255,18 @@
     }
 
     function revealWhenReady(video) {
-      if (video !== activeVideo || pendingFrame === video) return;
+      if (video !== activeVideo || (pendingFrame && pendingFrame.video === video)) return;
       if (reduceMotion) { reveal(video); return; }
       if (video.readyState < 2) return;
-      pendingFrame = video;
+      var frame = {video: video, id: null};
+      pendingFrame = frame;
       function ready() {
-        if (pendingFrame === video) pendingFrame = null;
-        reveal(video);
+        if (pendingFrame !== frame) return;
+        pendingFrame = null;
+        if (video === activeVideo && visible && !document.hidden) reveal(video);
       }
       // Start the fade with a decoded frame, rather than an empty black player.
-      if (video.requestVideoFrameCallback) video.requestVideoFrameCallback(ready);
+      if (video.requestVideoFrameCallback) frame.id = video.requestVideoFrameCallback(ready);
       else requestAnimationFrame(ready);
     }
 
@@ -255,13 +274,18 @@
       var link = hoveredLink || focusedLink;
       var show = !!link && visible && !document.hidden && !body.classList.contains('menu-open');
       var index = show ? link.dataset.videoIndex : null;
-      activeVideo = videos.find(function (video) { return video.dataset.videoIndex === index; }) || null;
+      var next = videos.find(function (video) { return video.dataset.videoIndex === index; }) || null;
+      if (next !== activeVideo) clearPendingFrame();
+      activeVideo = next;
       if (!activeVideo) section.classList.remove('has-preview');
       links.forEach(function (item) { item.classList.toggle('is-active', show && item === link); });
       videos.forEach(function (video) {
         if (video === activeVideo && !reduceMotion) {
-          if (!video.getAttribute('src')) video.src = video.dataset.src;
-          video.play().catch(function () {});
+          preparePreview(video);
+          video.play().then(function () {
+            if (video !== activeVideo || document.hidden || !visible) video.pause();
+            else revealWhenReady(video);
+          }).catch(function () {});
         } else {
           video.pause();
         }

@@ -16,7 +16,7 @@ require __DIR__ . '/../../includes/project-header.php';
 ?>
 
     <section class="jb-detail-hero" aria-labelledby="project-title" style="--hero-position: center; --hero-fit: cover; --hero-overlay: #000000; --hero-overlay-opacity: 0.35; --hero-text: #ffffff">
-        <video src="/assets/work/everybody-golf/gameplay.mp4" poster="/assets/work/everybody-golf/gameplay-poster.webp" muted autoplay loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback tabindex="-1"></video>
+        <video src="/assets/work/everybody-golf/hover-preview.mp4" poster="/assets/work/everybody-golf/hover-preview-poster.webp" muted autoplay loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback tabindex="-1"></video>
         <div class="jb-detail-hero-shade" aria-hidden="true"></div>
         <div class="jb-detail-hero-copy">
             <p style="color:#ffffff">Games · Beta</p>

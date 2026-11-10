@@ -19,11 +19,11 @@ $content['home_greeting'] = 'Hey, I’m Jake!';
 $content['home_statement'] = 'I’m a designer, developer, and creative problem-solver passionate about turning ambitious ideas into meaningful experiences, always looking for new ways to create, innovate, and bring something exciting to life.';
 
 $content['home_categories'] = [
-    ['label' => 'Games', 'url' => '/work/?filter=games', 'video' => 'assets/work/ding-dong/intro-preview.mp4', 'poster' => 'assets/work/ding-dong/intro-preview-poster.webp'],
-    ['label' => 'Programming', 'url' => '/work/?filter=programming', 'video' => 'assets/home/media/mode7.mp4', 'poster' => 'assets/home/media/mode7-poster.jpg'],
-    ['label' => '3D Art', 'url' => '/work/?filter=3d', 'video' => 'assets/home/media/environment-preview.mp4', 'poster' => 'assets/home/media/environment-preview-poster.webp'],
-    ['label' => 'Websites', 'url' => '/work/?filter=web', 'video' => 'assets/work/barton-design-solutions/website-tour.mp4', 'poster' => 'assets/work/barton-design-solutions/website-tour-poster.webp'],
-    ['label' => 'Motion Design', 'url' => '/work/?filter=motion', 'video' => 'assets/work/still-sleepless/video.mp4', 'poster' => 'assets/work/still-sleepless/poster.webp'],
+    ['label' => 'Games', 'url' => '/work/?filter=games', 'video' => 'assets/work/ding-dong/hover-preview.mp4', 'poster' => 'assets/work/ding-dong/hover-preview-poster.webp'],
+    ['label' => 'Programming', 'url' => '/work/?filter=programming', 'video' => 'assets/work/mode-7-engine/hover-preview.mp4', 'poster' => 'assets/work/mode-7-engine/hover-preview-poster.webp'],
+    ['label' => '3D Art', 'url' => '/work/?filter=3d', 'video' => 'assets/home/media/environment-hover.mp4', 'poster' => 'assets/home/media/environment-hover-poster.webp'],
+    ['label' => 'Websites', 'url' => '/work/?filter=web', 'video' => 'assets/work/barton-design-solutions/hover-preview.mp4', 'poster' => 'assets/work/barton-design-solutions/hover-preview-poster.webp'],
+    ['label' => 'Motion Design', 'url' => '/work/?filter=motion', 'video' => 'assets/work/still-sleepless/hover-preview.mp4', 'poster' => 'assets/work/still-sleepless/hover-preview-poster.webp'],
 ];
 
 $content['home_clients'] = [

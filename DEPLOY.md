@@ -20,7 +20,11 @@ The migration also removes the retired editor directory, editor assets, old page
 
 The three former motion-video pages redirect to `/work/motion-graphics/`. Hidden projects have no public page directories and are absent from the Work-card list.
 
-## What stays local
+Before pushing, fetch and compare with `origin/main`. Preserve newer remote changes and stage only the intended files. If the checkout has diverged or contains unrelated changes, publish from a separate worktree based on the remote branch. Do not force-push or reset the working checkout to resolve deployment history.
+
+The deployment source is the committed repository tree, not `hostinger_upload/` or unstaged local files. The workflow uploads `.htaccess`, then media/scripts and the game runtime, then shared includes and pages, so new page references have their assets available. When changing shared CSS/JavaScript, update its versioned URL in each affected page shell. Confirm changed live HTML, styles/scripts, and résumé or media links after Actions succeeds.
+
+## Not uploaded to Hostinger
 
 - `projects/`, including private drafts and original project sources
 - Git history and dependencies
@@ -28,3 +32,5 @@ The three former motion-video pages redirect to `/work/motion-graphics/`. Hidden
 - Temporary files, environment files, and credentials
 
 Publishing does not require a PHP session or a writable content directory.
+
+This list describes website deployment, not repository visibility. Files tracked in a public GitHub repository remain public there even when the FTP workflow does not upload them. The game build copies only the allowed browser runtime from `projects/`.
