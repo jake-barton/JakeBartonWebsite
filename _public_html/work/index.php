@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/content.php';
 require_once __DIR__ . '/../includes/helpers.php';
-require_once __DIR__ . '/../includes/work-easter-eggs.php';
 
 function h($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
@@ -43,8 +42,8 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
     <title>Work — <?php echo h($content['name']); ?></title>
     <link rel="icon" type="image/svg+xml" href="../assets/brand/favicon.svg">
     <link rel="stylesheet" href="../assets/css/base.css?v=20261109-helvetica">
-    <link rel="stylesheet" href="../assets/css/components.css?v=20261110-filter-cameos">
-    <link rel="stylesheet" href="../assets/css/work.css?v=20261110-filter-cameos">
+    <link rel="stylesheet" href="../assets/css/components.css?v=20261110-games-only">
+    <link rel="stylesheet" href="../assets/css/work.css?v=20261110-games-only">
 <link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
     <link rel="stylesheet" href="/assets/css/typography.css?v=20261109-footer-headings">
 </head>
@@ -102,10 +101,10 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
     <main class="jb-work-index" id="work" aria-label="Selected work">
         <nav class="jb-work-sections" aria-label="Work sections">
             <button type="button" data-work-section="games" data-quiet-egg="kart">Games
-                <?php jb_work_egg('games'); ?>
+                <span class="jb-kart-track" aria-hidden="true"><svg class="jb-kart-cameo" viewBox="233 0 30 32" focusable="false"><image href="/games/mario-kart/assets/sprites/characters/yoshi.png" width="455" height="300"/></svg></span>
             </button>
-            <button type="button" data-work-section="art" data-quiet-egg="pen">Art<?php jb_work_egg('art'); ?></button>
-            <button type="button" data-work-section="web" data-quiet-egg="browser">Web<?php jb_work_egg('web'); ?></button>
+            <button type="button" data-work-section="art">Art</button>
+            <button type="button" data-work-section="web">Web</button>
         </nav>
 
         <header class="jb-work-header">
@@ -114,9 +113,11 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
 
         <nav class="jb-work-filters" aria-label="Filter projects">
             <?php foreach ($work_filters as $i => $filter): ?>
-                <button type="button" class="jb-work-filter<?php echo $i === 0 ? ' is-active' : ''; ?>" data-work-filter="<?php echo h($filter['key']); ?>" data-quiet-egg="<?= h(jb_work_egg_type($filter['key'])) ?>" aria-pressed="<?php echo $i === 0 ? 'true' : 'false'; ?>">
+                <button type="button" class="jb-work-filter<?php echo $i === 0 ? ' is-active' : ''; ?>" data-work-filter="<?php echo h($filter['key']); ?>"<?php echo $filter['key'] === 'games' ? ' data-quiet-egg="kart"' : ''; ?> aria-pressed="<?php echo $i === 0 ? 'true' : 'false'; ?>">
                     <?php echo h($filter['label']); ?>
-                    <?php jb_work_egg($filter['key']); ?>
+                    <?php if ($filter['key'] === 'games'): ?>
+                        <span class="jb-kart-track" aria-hidden="true"><svg class="jb-kart-cameo" viewBox="233 0 30 32" focusable="false"><image href="/games/mario-kart/assets/sprites/characters/yoshi.png" width="455" height="300"/></svg></span>
+                    <?php endif; ?>
                 </button>
             <?php endforeach; ?>
         </nav>
@@ -182,6 +183,6 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
     <script src="../assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
     <script src="../assets/js/work-page.js?v=20261103-card-video" defer></script>
 <script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
-    <script src="/assets/js/easter-eggs.js?v=20261110-filter-cameos" defer></script>
+    <script src="/assets/js/easter-eggs.js?v=20261110-games-only" defer></script>
 </body>
 </html>

@@ -60,7 +60,7 @@ jobs:
             rm -f ./assets/organizations/minnies.svg ./assets/source/minnies-score.txt;
             rm -rf ./studio;
             rm -rf ./includes/cms-components;
-            rm -f ./includes/cms.php ./includes/work-detail-page.php ./includes/project-blueprint.json;
+            rm -f ./includes/cms.php ./includes/work-detail-page.php ./includes/project-blueprint.json ./includes/work-easter-eggs.php;
             rm -f ./assets/css/studio.css ./assets/js/studio.js ./assets/js/studio-preview-bridge.js;
             rm -rf ../storage/cms;
             bye

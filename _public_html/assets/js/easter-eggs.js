@@ -9,7 +9,6 @@
     var finish = null;
     var lastPlay = -Infinity;
     var kart = element.dataset.quietEgg === 'kart';
-    var category = element.hasAttribute('data-work-filter') || element.hasAttribute('data-work-section');
     var sprite = kart ? element.querySelector('.jb-kart-cameo') : null;
     var frameRequest = null;
     // Actual lod0 turning frames and celebration pose from yoshi_sprites.js.
@@ -55,20 +54,16 @@
     }
     function play() {
       clearTimeout(pending);
-      if (reduced.matches || document.hidden || element.classList.contains('is-egg-playing') || performance.now() - lastPlay < (category ? 0 : 8000)) return;
+      if (reduced.matches || document.hidden || element.classList.contains('is-egg-playing') || performance.now() - lastPlay < (kart ? 0 : 8000)) return;
       lastPlay = performance.now();
-      if (element.hasAttribute('data-work-filter')) {
-        var strip = element.closest('.jb-work-filters');
-        element.style.setProperty('--egg-row-offset', Math.max(0, element.getBoundingClientRect().top - strip.getBoundingClientRect().top) + 'px');
-      }
       element.style.setProperty('--egg-travel', (element.clientWidth + (kart ? 32 : 24)) + 'px');
       element.classList.add('is-egg-playing');
       if (sprite) animateKart(lastPlay);
-      finish = setTimeout(stop, kart ? 2600 : category ? 2400 : 1800);
+      finish = setTimeout(stop, kart ? 2600 : 1800);
     }
     function wait() {
       clearTimeout(pending);
-      pending = setTimeout(play, category ? 180 : 650);
+      pending = setTimeout(play, kart ? 180 : 650);
     }
     element.addEventListener('mouseenter', function () { if (hover.matches) wait(); });
     element.addEventListener('mouseleave', stop);
@@ -81,6 +76,5 @@
   function stopAll() { stops.forEach(function (stop) { stop(); }); }
   document.addEventListener('visibilitychange', function () { if (document.hidden) stopAll(); });
   window.addEventListener('blur', stopAll);
-  window.addEventListener('resize', stopAll);
   reduced.addEventListener('change', function () { if (reduced.matches) stopAll(); });
 })();

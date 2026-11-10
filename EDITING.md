@@ -12,8 +12,7 @@ The website is ordinary PHP, HTML, CSS, and JavaScript. There is no editor, data
 | A complete project page | `_public_html/work/<project-name>/index.php` |
 | Shared project navigation, head tags, and page shell | `_public_html/includes/project-header.php` |
 | Shared project footer and scripts | `_public_html/includes/project-footer.php` |
-| Quiet toolkit and Work-filter easter eggs | `_public_html/assets/js/easter-eggs.js` (styling in `components.css`) |
-| Work-filter cameo SVGs | `_public_html/includes/work-easter-eggs.php` |
+| Quiet toolkit and Games-filter easter eggs | `_public_html/assets/js/easter-eggs.js` (styling in `components.css`) |
 | Footer JB logo and its face layers | `_public_html/includes/footer-logo.php` (motion in `components.css`) |
 | Main site and homepage styling | `_public_html/assets/css/components.css` |
 | Homepage colors and spacing | `_public_html/assets/css/home.css` |
