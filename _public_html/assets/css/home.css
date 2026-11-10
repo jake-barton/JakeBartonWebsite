@@ -66,11 +66,41 @@ body.jb-home-page {
   object-fit: cover;
 }
 
-.jb-home-page .jb-statement h2 {
-  max-width: 24ch;
-  font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+.jb-home-page .jb-intro-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 70rem;
+  gap: clamp(1rem, 1.6vw, 1.75rem);
+}
+
+/* Read sentences as continuous text while retaining the letter hover effect. */
+.jb-intro-readable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.jb-home-page .jb-intro-copy h2 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(2.25rem, 3.3vw, 3.5rem);
   line-height: 1.12;
   letter-spacing: -0.055em;
+}
+
+.jb-home-page .jb-intro-copy p {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--jb-ink);
+  font-family: var(--jb-heading-font);
+  font-size: clamp(1.375rem, 1.85vw, 2rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.035em;
 }
 
 .jb-home-page .jb-statement .jb-letter {

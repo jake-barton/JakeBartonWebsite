@@ -42,7 +42,7 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
     <title>Work — <?php echo h($content['name']); ?></title>
     <link rel="icon" type="image/svg+xml" href="../assets/brand/favicon.svg">
     <link rel="stylesheet" href="../assets/css/base.css?v=20261109-helvetica">
-    <link rel="stylesheet" href="../assets/css/components.css?v=20261110-games-only">
+    <link rel="stylesheet" href="../assets/css/components.css?v=20261110-sidebar-icon">
     <link rel="stylesheet" href="../assets/css/work.css?v=20261110-games-only">
 <link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
     <link rel="stylesheet" href="/assets/css/typography.css?v=20261109-footer-headings">
@@ -68,6 +68,7 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
             <span class="jb-menu-text">Open/Close</span>
         </button>
         <a href="/" class="jb-rail-wordmark" aria-label="Jake Barton home">Jake Barton</a>
+        <?php require __DIR__ . '/../includes/rail-resume.php'; ?>
 
         <ul class="jb-rail-socials" aria-label="Social links">
             <li><a href="https://www.linkedin.com/in/<?php echo h($content['linkedin']); ?>" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.36 8.2h4.28V23H.36V8.2Zm7.08 0h4.1v2.02h.06c.57-1.08 1.97-2.22 4.05-2.22 4.34 0 5.14 2.86 5.14 6.57V23h-4.28v-7.48c0-1.78-.03-4.08-2.49-4.08-2.49 0-2.87 1.94-2.87 3.95V23H7.44V8.2Z"/></svg></a></li>

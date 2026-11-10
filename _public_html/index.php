@@ -68,10 +68,10 @@ $menu_items = [
     <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg?v=20260714">
     <link rel="stylesheet" href="assets/css/base.css?v=20261109-helvetica">
     <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/components.css?v=20261109-kart-sprites">
+    <link rel="stylesheet" href="assets/css/components.css?v=20261110-sidebar-icon">
     <link rel="stylesheet" href="assets/css/work.css?v=20260714-global-page-loader">
 <link rel="stylesheet" href="/assets/css/site-reel.css?v=20261109-player">
-    <link rel="stylesheet" href="assets/css/home.css?v=20261109-reel-frame">
+    <link rel="stylesheet" href="assets/css/home.css?v=20261110-intro-aligned">
     <link rel="stylesheet" href="/assets/css/typography.css?v=20261109-footer-headings">
 </head>
 <body class="jb-home jb-home-page">
@@ -96,6 +96,7 @@ $menu_items = [
         </button>
 
         <a href="#home" class="jb-rail-wordmark" aria-label="Jake Barton home">Jake Barton</a>
+        <?php require __DIR__ . '/includes/rail-resume.php'; ?>
 
         <ul class="jb-rail-socials" aria-label="Social links">
             <li>
@@ -171,9 +172,10 @@ $menu_items = [
         </section>
 
         <section class="jb-statement jb-reveal" id="about" aria-label="About Jake Barton">
-            <h2>
-                <?php echo split_letters($content['home_statement']); ?>
-            </h2>
+            <div class="jb-intro-copy">
+                <h2><span class="jb-intro-readable"><?php echo h($content['home_greeting']); ?></span><span aria-hidden="true"><?php echo split_letters($content['home_greeting']); ?></span></h2>
+                <p><span class="jb-intro-readable"><?php echo h($content['home_statement']); ?></span><span aria-hidden="true"><?php echo split_letters($content['home_statement']); ?></span></p>
+            </div>
             <h3 class="jb-reel-title" id="demo-reel-title">Demo Reel</h3>
             <div class="jb-reel-frame">
                 <video class="jb-reel-player" data-reel-player controls playsinline preload="metadata" poster="/assets/reel/portfolio-reel-poster.webp?v=20261109-public-reel" aria-labelledby="demo-reel-title">

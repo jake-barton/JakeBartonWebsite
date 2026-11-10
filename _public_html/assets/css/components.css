@@ -1555,6 +1555,26 @@ body.jb-home.is-loaded .jb-rail {
   white-space: nowrap;
 }
 
+.jb-rail-resume {
+  position: absolute;
+  /* Same 12px gap as the social stack, immediately above LinkedIn. */
+  bottom: calc(24px + 3 * (38px + 12px));
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  color: var(--jb-ink);
+  transform: translateX(-50%);
+}
+
+.jb-rail-resume svg { width: 38px; height: 38px; }
+.jb-rail-resume:hover { background: transparent; }
+.jb-rail-resume:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
 .jb-rail-socials {
   position: absolute;
   left: 50%;
@@ -2655,9 +2675,9 @@ body.jb-home.is-loaded .jb-hero-scroll {
 
   .jb-rail-wordmark {
     position: absolute;
-    right: 16px;
+    right: auto;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     writing-mode: horizontal-tb;
     font-size: 1rem;
   }
@@ -2665,6 +2685,18 @@ body.jb-home.is-loaded .jb-hero-scroll {
   .jb-rail-socials {
     display: none;
   }
+
+  .jb-rail-resume {
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: 10px;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+  .jb-rail-resume svg { width: 32px; height: 32px; }
 
   .jb-mega-menu {
     top: 58px;

@@ -15,7 +15,8 @@ $content['github'] = 'jake-barton';
 $content['instagram'] = 'jakebarton13';
 $content['linkedin'] = 'jakebartoncreative';
 $content['hero_subtitle'] = 'Gameplay programmer working on player movement, physics, and multiplayer systems.';
-$content['home_statement'] = 'I’m Jake, a gameplay programmer.';
+$content['home_greeting'] = 'Hey, I’m Jake!';
+$content['home_statement'] = 'I’m a designer, developer, and creative problem-solver passionate about turning ambitious ideas into meaningful experiences, always looking for new ways to create, innovate, and bring something exciting to life.';
 
 $content['home_categories'] = [
     ['label' => 'Games', 'url' => '/work/?filter=games', 'video' => 'assets/work/ding-dong/intro-preview.mp4', 'poster' => 'assets/work/ding-dong/intro-preview-poster.webp'],
@@ -35,7 +36,7 @@ $content['home_clients'] = [
 ];
 
 $content['home_accolades'] = [
-    ['category' => 'Current', 'logo' => 'assets/organizations/ironspark.svg', 'logo_alt' => 'IronSpark Studios', 'title' => 'Lead Programmer', 'detail' => 'Gameplay programming and technical development for studio projects.'],
+    ['category' => 'Current', 'logo' => 'assets/organizations/ironspark.svg', 'logo_alt' => 'IronSpark Studios', 'title' => 'Programmer', 'detail' => 'Gameplay programming and technical development for studio projects.'],
     ['category' => 'AI Development', 'logo' => 'assets/organizations/tech-birmingham.svg', 'logo_alt' => 'Tech Birmingham', 'title' => 'AI Tools', 'detail' => 'Built sponsor-research tools for Tech Birmingham and Sloss Tech.'],
     ['category' => 'Game Development', 'logo' => 'assets/organizations/samford-university.svg', 'logo_alt' => 'Samford University', 'title' => 'Lead Programmer', 'detail' => 'Led programming for student game projects.'],
     ['category' => 'Leadership', 'logo' => 'assets/organizations/samford-sga.svg', 'logo_alt' => 'Samford SGA', 'title' => 'Executive Board', 'detail' => 'Serving as Chaplain and helping organize campus programs and legislative decisions.'],
