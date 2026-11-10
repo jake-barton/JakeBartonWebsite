@@ -56,4 +56,3 @@ The [current inventory](PORTFOLIO_INVENTORY.md) records the new additions, revie
 - `projects/` — preserved project source and original portfolio material.
 
 See [portfolio-process/README.md](portfolio-process/README.md) for source-backed chapters and [portfolio-reel/README.md](portfolio-reel/README.md) for the public reel. Minnie’s Golf is unreleased: its page, media, organization mark, source download, and reel appearances remain private. Wrappt’s page is hidden; its approved homepage organization and experience credit remain visible.
-
