@@ -1,0 +1,7 @@
+void UPhoneGameInstance::Init()
+{
+    Super::Init(); // calls UAdvancedFriendsGameInstance::Init() which calls UGameInstance::Init()
+
+    FCoreUObjectDelegates::PreLoadMap.AddUObject(this, &UPhoneGameInstance::HandlePreLoadMap);
+    FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &UPhoneGameInstance::HandlePostLoadMap);
+}

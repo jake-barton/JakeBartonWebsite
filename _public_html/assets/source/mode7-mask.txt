@@ -1,0 +1,17 @@
+    getPixelType(x, y) {
+        const maskData = this.maskData;
+        const index = (Math.floor(y) * maskData.width + Math.floor(x)) * 4;
+
+        const r = maskData.data[index];
+        const g = maskData.data[index + 1];
+        const b = maskData.data[index + 2];
+
+        if (r > 200 && g < 50 && b < 50) return 'finishLine';
+        if (r < 50 && g > 200 && b < 50) return 'checkpoint';
+        if (r < 50 && g < 50 && b > 200) return 'wall';
+        if (r > 200 && g > 200 && b < 50) return 'itemBox';
+        if (r > 200 && g > 200 && b > 200) return 'road';
+        if (r < 50 && g < 50 && b < 50) return 'offTrack';
+
+        return 'track';
+    }

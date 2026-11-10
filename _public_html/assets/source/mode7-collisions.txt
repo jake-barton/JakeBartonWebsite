@@ -1,0 +1,54 @@
+    handleCollisions(deltaTime, keys) {
+        const collisionPoint = this.getCollisionPoint();
+        const pixelType = this.getPixelType(collisionPoint.x, collisionPoint.y);
+        
+        if (this.wallCollisionCooldown > 0) {
+            this.wallCollisionCooldown -= deltaTime;
+        }
+        if (pixelType === 'wall') {
+            if (this.wallCollisionCooldown <= 0) {
+                const minBounceForce = 0.8;
+                const bounceSpeed = Math.max(minBounceForce, Math.abs(this.player.speed) * 0.5);
+                this.player.speed = -bounceSpeed;
+                
+                this.player.targetSpeed = 0;
+                this.player.triggerBounce(2);
+                
+                this.wallCollisionCooldown = 0.3;
+                this.offTrackBounceTimer = -0.5; // Negative timer = cooldown period after wall hit
+            }
+            this.isCollidingWithWall = true;
+            this.isOffTrack = false;
+
+        } else if (pixelType === 'offTrack') {
+            const dt60 = deltaTime * 60;
+    
+            this.player.speed *= Math.pow(Settings.movement.offTrackDrag, dt60);
+            this.isOffTrack = true;
+    
+            // Only bounce if player is pressing forward (ArrowUp) and not already jumping
+            const isPressingGo = keys && keys['ArrowUp'];
+            const isAlreadyJumping = this.player.isJumping || this.player.jumpHeight > 0;
+            
+            if (isPressingGo && this.offTrackBounceTimer >= 0 && !isAlreadyJumping) {
+                // Only accumulate timer if it's not in cooldown (negative) and not jumping
+                this.offTrackBounceTimer += deltaTime;
+                
+                if (this.offTrackBounceTimer > 0.15) {
+                    this.player.triggerBounce(0.5);
+                    this.offTrackBounceTimer = 0;
+                }
+            } else if (isPressingGo && this.offTrackBounceTimer < 0) {
+                // In cooldown - count up towards 0
+                this.offTrackBounceTimer += deltaTime;
+            } else {
+                // Reset timer when not pressing go (but not during cooldown)
+                if (this.offTrackBounceTimer >= 0) {
+                    this.offTrackBounceTimer = 0;
+                }
+            }
+        } else {
+            this.isOffTrack = false;
+            this.isCollidingWithWall = false;
+        }
+    }

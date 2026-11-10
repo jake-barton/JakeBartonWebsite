@@ -1,0 +1,69 @@
+void UPhoneGameInstance::BeginTravelLoadingScreen()
+{
+    if (IsRunningDedicatedServer())
+    {
+        return;
+    }
+
+    FLoadingScreenAttributes LoadingScreen;
+    LoadingScreen.bAutoCompleteWhenLoadingCompletes = true;
+    LoadingScreen.bWaitForManualStop = false;
+    LoadingScreen.bMoviesAreSkippable = false;
+    LoadingScreen.MinimumLoadingScreenDisplayTime = MinimumLoadingTime;
+
+    TSharedRef<SVerticalBox> ContentBox = SNew(SVerticalBox)
+
+        + SVerticalBox::Slot()
+        .AutoHeight()
+        .HAlign(HAlign_Center)
+        .Padding(0.f, 0.f, 0.f, 20.f)
+        [
+            SNew(STextBlock)
+            .Text(LoadingScreenTitle)
+            .Font(FCoreStyle::GetDefaultFontStyle("Bold", TitleFontSize))
+            .ColorAndOpacity(TitleColor)
+        ];
+
+    if (bShowSubtitle)
+    {
+        ContentBox->AddSlot()
+        .AutoHeight()
+        .HAlign(HAlign_Center)
+        .Padding(0.f, 0.f, 0.f, 32.f)
+        [
+            SNew(STextBlock)
+            .Text(LoadingScreenSubtitle)
+            .Font(FCoreStyle::GetDefaultFontStyle("Regular", SubtitleFontSize))
+            .ColorAndOpacity(SubtitleColor)
+        ];
+    }
+
+    if (bShowThrobber)
+    {
+        ContentBox->AddSlot()
+        .AutoHeight()
+        .HAlign(HAlign_Center)
+        [
+            SNew(SThrobber)
+        ];
+    }
+
+    LoadingScreen.WidgetLoadingScreen =
+        SNew(SOverlay)
+
+        + SOverlay::Slot()
+        [
+            SNew(SBorder)
+            .BorderBackgroundColor(BackgroundColor)
+            .Padding(0)
+        ]
+
+        + SOverlay::Slot()
+        .HAlign(HAlign_Center)
+        .VAlign(VAlign_Center)
+        [
+            ContentBox
+        ];
+
+    GetMoviePlayer()->SetupLoadingScreen(LoadingScreen);
+}

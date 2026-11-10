@@ -1,0 +1,371 @@
+{
+  "asset": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter",
+  "name": "RequestResponsiveJump",
+  "nodes": [
+    {
+      "guid": "39A52624BF477E72E69B79B536A466F6",
+      "class": "/Script/BlueprintGraph.K2Node_FunctionEntry",
+      "title": "RequestResponsiveJump",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "BAD02C0C2F4248A646B5A78EEDD5A694:execute"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "A6ECBB647B415F9B5342A4B9F5BA9023",
+      "class": "/Script/UnrealEd.EdGraphNode_Comment",
+      "title": "Press queues one short jump request; no repeated hold submissions",
+      "x": -60,
+      "y": -100,
+      "width": 1740,
+      "height": 900,
+      "comment_bubble": true,
+      "comment": "Press queues one short jump request; no repeated hold submissions",
+      "identity": {},
+      "pins": []
+    },
+    {
+      "guid": "BAD02C0C2F4248A646B5A78EEDD5A694",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "title": "Set JumpHeld",
+      "x": 320,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "39A52624BF477E72E69B79B536A466F6:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "FEC8EACB594AFB6A9E5F62879D96D912:execute"
+          ]
+        },
+        {
+          "name": "JumpHeld",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "7AC07C249C4FCF053706DFA652C73816",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Get Time Seconds",
+      "x": 320,
+      "y": 250,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.GameplayStatics",
+          "default": "",
+          "default_object": "/Script/Engine.Default__GameplayStatics",
+          "links": []
+        },
+        {
+          "name": "WorldContextObject",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Object",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "E9E427FF6444A9AB0144C48B9D862DD1:A"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "20AC1C7D7742CDB783C44D9B65677D3D",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get JumpBufferWindow",
+      "x": 320,
+      "y": 500,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "JumpBufferWindow",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "E9E427FF6444A9AB0144C48B9D862DD1:B"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "E9E427FF6444A9AB0144C48B9D862DD1",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "float + float",
+      "x": 640,
+      "y": 250,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.KismetMathLibrary",
+          "default": "",
+          "default_object": "/Script/Engine.Default__KismetMathLibrary",
+          "links": []
+        },
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "7AC07C249C4FCF053706DFA652C73816:ReturnValue"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "1.000000",
+          "default_object": "",
+          "links": [
+            "20AC1C7D7742CDB783C44D9B65677D3D:JumpBufferWindow"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "FEC8EACB594AFB6A9E5F62879D96D912:JumpBufferExpiry"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "FEC8EACB594AFB6A9E5F62879D96D912",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "title": "Set JumpBufferExpiry",
+      "x": 960,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "BAD02C0C2F4248A646B5A78EEDD5A694:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "D440C172084347766B7688B8CA3E8417:execute"
+          ]
+        },
+        {
+          "name": "JumpBufferExpiry",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "E9E427FF6444A9AB0144C48B9D862DD1:ReturnValue"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "D440C172084347766B7688B8CA3E8417",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Try Buffered Jump\nTarget is BP First Person Character",
+      "x": 1280,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "FEC8EACB594AFB6A9E5F62879D96D912:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

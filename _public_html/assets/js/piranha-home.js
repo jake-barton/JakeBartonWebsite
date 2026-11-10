@@ -195,37 +195,123 @@
   }
 
   function initActionVideos() {
+    var section = document.querySelector('.jb-actions');
     var links = Array.from(document.querySelectorAll('.jb-action-links a[data-video-index]'));
     var videos = Array.from(document.querySelectorAll('.jb-action-video[data-video-index]'));
-    if (!links.length || !videos.length) return;
+    if (!section || !links.length || !videos.length) return;
 
-    function activate(index, markLink) {
-      links.forEach(function (link) {
-        link.classList.toggle('is-active', !!markLink && link.dataset.videoIndex === String(index));
-      });
+    if (!reduceMotion) {
+      section.classList.add('has-type-motion');
+      var typeObserver = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        section.classList.add('is-type-visible');
+        typeObserver.disconnect();
+      }, {threshold: 0.15, rootMargin: '0px 0px -10% 0px'});
+      typeObserver.observe(section.querySelector('.jb-action-links'));
+      section.addEventListener('focusin', function () { section.classList.add('is-type-visible'); });
+    }
 
+    var hoveredLink = null;
+    var focusedLink = null;
+    var activeVideo = null;
+    var displayedVideo = null;
+    var pendingFrame = null;
+    var fadeTimer = null;
+    var leaveTimer = null;
+    var visible = false;
+    var canHover = window.matchMedia('(hover: hover)');
+
+    function reveal(video) {
+      if (video !== activeVideo) return;
+      if (displayedVideo !== video) {
+        clearTimeout(fadeTimer);
+        videos.forEach(function (item) {
+          item.classList.toggle('is-previous', item === displayedVideo);
+          item.classList.toggle('is-active', item === video);
+        });
+        displayedVideo = video;
+        fadeTimer = setTimeout(function () {
+          videos.forEach(function (item) { item.classList.remove('is-previous'); });
+        }, 900);
+      }
+      section.classList.add('has-preview');
+    }
+
+    function revealWhenReady(video) {
+      if (video !== activeVideo || pendingFrame === video) return;
+      if (reduceMotion) { reveal(video); return; }
+      if (video.readyState < 2) return;
+      pendingFrame = video;
+      function ready() {
+        if (pendingFrame === video) pendingFrame = null;
+        reveal(video);
+      }
+      // Start the fade with a decoded frame, rather than an empty black player.
+      if (video.requestVideoFrameCallback) video.requestVideoFrameCallback(ready);
+      else requestAnimationFrame(ready);
+    }
+
+    function update() {
+      var link = hoveredLink || focusedLink;
+      var show = !!link && visible && !document.hidden && !body.classList.contains('menu-open');
+      var index = show ? link.dataset.videoIndex : null;
+      activeVideo = videos.find(function (video) { return video.dataset.videoIndex === index; }) || null;
+      if (!activeVideo) section.classList.remove('has-preview');
+      links.forEach(function (item) { item.classList.toggle('is-active', show && item === link); });
       videos.forEach(function (video) {
-        var isActive = video.dataset.videoIndex === String(index);
-        video.classList.toggle('is-active', isActive);
-
-        if (isActive) {
+        if (video === activeVideo && !reduceMotion) {
+          if (!video.getAttribute('src')) video.src = video.dataset.src;
           video.play().catch(function () {});
-        } else if (!video.paused) {
+        } else {
           video.pause();
         }
       });
+      if (activeVideo) revealWhenReady(activeVideo);
+    }
+
+    function leave() {
+      // Bridge the tiny spaces between category lines without flashing the surface.
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(update, 120);
     }
 
     links.forEach(function (link) {
-      var index = link.dataset.videoIndex;
-      link.addEventListener('mouseenter', function () { activate(index, true); });
-      link.addEventListener('focus', function () { activate(index, true); });
-      link.addEventListener('touchstart', function () { activate(index, true); }, { passive: true });
-      link.addEventListener('mouseleave', function () { activate('reel', false); });
-      link.addEventListener('blur', function () { activate('reel', false); });
+      link.addEventListener('mouseenter', function () {
+        if (!canHover.matches) return;
+        clearTimeout(leaveTimer);
+        hoveredLink = link;
+        update();
+      });
+      link.addEventListener('mouseleave', function () {
+        if (hoveredLink === link) hoveredLink = null;
+        leave();
+      });
+      link.addEventListener('focus', function () {
+        clearTimeout(leaveTimer);
+        if (link.matches(':focus-visible')) focusedLink = link;
+        update();
+      });
+      link.addEventListener('blur', function () {
+        if (focusedLink === link) focusedLink = null;
+        leave();
+      });
     });
-
-    activate('reel', false);
+    videos.forEach(function (video) {
+      video.addEventListener('loadeddata', function () { revealWhenReady(video); });
+      // A delayed play promise must not restart a clip after the pointer leaves.
+      video.addEventListener('play', function () {
+        if (video !== activeVideo || reduceMotion) video.pause();
+      });
+    });
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (!visible) hoveredLink = null;
+      update();
+    }, {threshold: 0}).observe(section);
+    new MutationObserver(update).observe(body, {attributes: true, attributeFilter: ['class']});
+    document.addEventListener('visibilitychange', update);
+    window.addEventListener('blur', function () { hoveredLink = null; update(); });
+    update();
   }
 
   function initActionScrollFrame() {

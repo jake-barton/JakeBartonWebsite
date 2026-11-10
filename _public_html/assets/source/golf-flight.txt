@@ -1,0 +1,65 @@
+FGolfBallAerodynamicResult UGolfBallPhysicsLibrary::CalculateAerodynamics(
+    const FVector VelocityCmPerSecond,
+    const FVector AngularVelocityRadiansPerSecond,
+    const FGolfBallEnvironment Environment,
+    const float BallMassKg,
+    const float BallDiameterMeters,
+    const float SpinRetentionPerSecond)
+{
+    FGolfBallAerodynamicResult Result;
+    if (BallMassKg <= 0.0f || BallDiameterMeters <= 0.0f)
+    {
+        return Result;
+    }
+
+    const FVector RelativeVelocityMetersPerSecond =
+        (VelocityCmPerSecond - Environment.WindVelocityCmPerSecond) * 0.01f;
+    const float Speed = RelativeVelocityMetersPerSecond.Size();
+    Result.RelativeAirSpeedMetersPerSecond = Speed;
+    if (Speed < 0.1f)
+    {
+        return Result;
+    }
+
+    const float Diameter = FMath::Max(0.001f, BallDiameterMeters);
+    const float Radius = Diameter * 0.5f;
+    const float Viscosity = FMath::Max(1.0e-7f, Environment.KinematicViscositySquareMetersPerSecond);
+    Result.ReynoldsNumber = Speed * Diameter / Viscosity;
+    Result.SpinFactor = AngularVelocityRadiansPerSecond.Size() * Radius / Speed;
+
+    // Production golf balls exhibit a drag crisis around Re=80k-100k. This
+    // continuous fit follows the measured 0.5 low-Re and 0.2-0.25 high-Re
+    // ranges without introducing a discontinuity into Chaos.
+    const float DragCrisis = 1.0f / (1.0f + FMath::Exp((Result.ReynoldsNumber - 85000.0f) / 9000.0f));
+    Result.DragCoefficient = FMath::Clamp(
+        0.22f + 0.28f * DragCrisis + 0.08f * Result.SpinFactor,
+        0.18f, 0.55f);
+
+    // Quadratic fit to the measured non-linear lift/spin-factor relationship.
+    // At 65 m/s and 42 rps it produces Cl≈0.156, inside published premium-ball data.
+    // Only spin transverse to airflow produces Magnus lift. Using total spin
+    // with a normalized cross product produces excessive lift near rifle spin.
+    const float LiftSpinFactor = FVector::CrossProduct(
+        RelativeVelocityMetersPerSecond.GetSafeNormal(), AngularVelocityRadiansPerSecond).Size() * Radius / Speed;
+    Result.LiftCoefficient = FMath::Clamp(
+        -0.01f + 2.10f * LiftSpinFactor - 2.00f * LiftSpinFactor * LiftSpinFactor,
+        0.0f, 0.32f);
+
+    const float Density = FMath::Max(0.0f, Environment.AirDensityKgPerCubicMeter);
+    const float Area = PI * Radius * Radius;
+    const float DynamicPressureArea = 0.5f * Density * Area * Speed * Speed;
+    const FVector DragNewtons = -RelativeVelocityMetersPerSecond.GetSafeNormal()
+        * DynamicPressureArea * Result.DragCoefficient;
+    const FVector LiftDirection = FVector::CrossProduct(
+        AngularVelocityRadiansPerSecond, RelativeVelocityMetersPerSecond).GetSafeNormal();
+    const FVector LiftNewtons = LiftDirection * DynamicPressureArea * Result.LiftCoefficient;
+    Result.Force = (DragNewtons + LiftNewtons) * 100.0f;
+
+    // Exponential spin retention converted to the torque required by a solid sphere.
+    const float Retention = FMath::Clamp(SpinRetentionPerSecond, 0.01f, 1.0f);
+    const float DecayRate = -FMath::Loge(Retention);
+    const float InertiaKgSquareMeters = 0.4f * BallMassKg * Radius * Radius;
+    const FVector TorqueNewtonMeters = -AngularVelocityRadiansPerSecond * InertiaKgSquareMeters * DecayRate;
+    Result.SpinDecayTorque = TorqueNewtonMeters * 10000.0f;
+    return Result;
+}

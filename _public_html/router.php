@@ -8,14 +8,10 @@ if (preg_match('#^/MarioKartLatest(?:/(?:index\.(?:html|php))?)?$#i', (string) $
     exit;
 }
 
-// CMS-managed work pages use one renderer while retaining clean URLs.
-if (preg_match('#^/work/([a-z0-9-]+)/?$#', (string) $uri, $matches)) {
-    $existing = __DIR__ . $uri;
-    if (!is_dir($existing)) {
-        $_GET['slug'] = $matches[1];
-        require __DIR__ . '/work/detail.php';
-        exit;
-    }
+// Retired editing routes stay unavailable even if an old server copy remains.
+if (preg_match('#^/(?:studio|review)(?:/|$)#i', (string) $uri)) {
+    http_response_code(404);
+    exit('404 Not Found');
 }
 
 // Remove query string from URI

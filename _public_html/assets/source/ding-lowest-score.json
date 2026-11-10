@@ -1,0 +1,979 @@
+{
+  "asset": "BP_RoadGraphManager",
+  "name": "GetLowestFScoreNode",
+  "nodes": [
+    {
+      "guid": "40F2D884FC44404FA76C3819D9074EEE",
+      "class_name": "K2Node_FunctionEntry",
+      "title": "GetLowestFScoreNode",
+      "x": -272,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_FunctionEntry_0",
+      "pins": [
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0269C3E4CBAF450CAB590D02EC231A09:execute"
+          ]
+        },
+        {
+          "name": "OpenSet",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "88D2A8B96A2E42B190A9E922CC82DAFE:Array",
+            "2EFF12C14E4A44E38161C2E28E73450E:Array"
+          ]
+        },
+        {
+          "name": "FScore",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "58E5AF106371475599CAB4F70303573F:TargetMap",
+            "DEC0198E74084A6E887E1C2EE4BAD4F5:TargetMap"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_FunctionEntry"
+    },
+    {
+      "guid": "F905AB6F4EE045C9B77D763F58FBAED7",
+      "class_name": "K2Node_FunctionResult",
+      "title": "GetLowestFScoreNode",
+      "x": 656,
+      "y": 224,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_FunctionResult_0",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88D2A8B96A2E42B190A9E922CC82DAFE:Completed"
+          ]
+        },
+        {
+          "name": "Best Node",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "A86BD9AFB5FC40B091D451495FE35039:ChosenNode"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_FunctionResult"
+    },
+    {
+      "guid": "88D2A8B96A2E42B190A9E922CC82DAFE",
+      "class_name": "K2Node_MacroInstance",
+      "title": "K2Node_MacroInstance_0",
+      "x": 432,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_MacroInstance_0",
+      "pins": [
+        {
+          "name": "Exec",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88CDE5564BB249C69758CBD113EDBED3:then"
+          ]
+        },
+        {
+          "name": "Array",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "40F2D884FC44404FA76C3819D9074EEE:OpenSet"
+          ]
+        },
+        {
+          "name": "LoopBody",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "D6FEF0759ED34BB295289F87EF24D430:execute"
+          ]
+        },
+        {
+          "name": "Array Element",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "58E5AF106371475599CAB4F70303573F:Key",
+            "A2D80E4DF72644E28A4A7FDC4B20922E:InputPin"
+          ]
+        },
+        {
+          "name": "Array Index",
+          "direction": 1,
+          "type": "int",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Completed",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "F905AB6F4EE045C9B77D763F58FBAED7:execute"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_MacroInstance"
+    },
+    {
+      "guid": "58E5AF106371475599CAB4F70303573F",
+      "class_name": "K2Node_CallFunction",
+      "title": "Map_Find",
+      "x": 656,
+      "y": 80,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallFunction_0",
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "BlueprintMapLibrary",
+          "default_object": "Default__BlueprintMapLibrary",
+          "links": []
+        },
+        {
+          "name": "TargetMap",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "40F2D884FC44404FA76C3819D9074EEE:FScore"
+          ]
+        },
+        {
+          "name": "Key",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "88D2A8B96A2E42B190A9E922CC82DAFE:Array Element"
+          ]
+        },
+        {
+          "name": "Value",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0B74B822B7F341EEAB415A664041D352:A",
+            "74D4D87E19274F27A1C345CD8A366A29:LowestScore"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "default": "false",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "D6FEF0759ED34BB295289F87EF24D430:Condition"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction"
+    },
+    {
+      "guid": "0B74B822B7F341EEAB415A664041D352",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Less_DoubleDouble",
+      "x": 896,
+      "y": 112,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_0",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "58E5AF106371475599CAB4F70303573F:Value"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "A79840CD8CFD44409DE02D77C8529891:LowestScore"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C5F19A8920E149C0A058766833D5AD0C:Condition"
+          ]
+        },
+        {
+          "name": "ErrorTolerance",
+          "direction": 0,
+          "type": "None",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "A79840CD8CFD44409DE02D77C8529891",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get LowestScore",
+      "x": 704,
+      "y": 176,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_0",
+      "pins": [
+        {
+          "name": "LowestScore",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0B74B822B7F341EEAB415A664041D352:B"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "C5F19A8920E149C0A058766833D5AD0C",
+      "class_name": "K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 1120,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_IfThenElse_0",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "D6FEF0759ED34BB295289F87EF24D430:then"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "default": "true",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0B74B822B7F341EEAB415A664041D352:ReturnValue"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "74D4D87E19274F27A1C345CD8A366A29:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse"
+    },
+    {
+      "guid": "74D4D87E19274F27A1C345CD8A366A29",
+      "class_name": "K2Node_VariableSet",
+      "title": "Set LowestScore",
+      "x": 1312,
+      "y": 16,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableSet_0",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C5F19A8920E149C0A058766833D5AD0C:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "FFAC1793B80144D59F53B3F8F5ABC5D3:execute"
+          ]
+        },
+        {
+          "name": "LowestScore",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "58E5AF106371475599CAB4F70303573F:Value"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet"
+    },
+    {
+      "guid": "42BBC2E6D64C4DA3AEB9AFE15FC615FF",
+      "class_name": "K2Node_Knot",
+      "title": "Reroute",
+      "x": 1472,
+      "y": -32,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_Knot_0",
+      "pins": [
+        {
+          "name": "InputPin",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "A2D80E4DF72644E28A4A7FDC4B20922E:OutputPin"
+          ]
+        },
+        {
+          "name": "OutputPin",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "FFAC1793B80144D59F53B3F8F5ABC5D3:ChosenNode"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_Knot"
+    },
+    {
+      "guid": "A2D80E4DF72644E28A4A7FDC4B20922E",
+      "class_name": "K2Node_Knot",
+      "title": "Reroute",
+      "x": 656,
+      "y": -32,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_Knot_1",
+      "pins": [
+        {
+          "name": "InputPin",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "88D2A8B96A2E42B190A9E922CC82DAFE:Array Element"
+          ]
+        },
+        {
+          "name": "OutputPin",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "42BBC2E6D64C4DA3AEB9AFE15FC615FF:InputPin"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_Knot"
+    },
+    {
+      "guid": "FFAC1793B80144D59F53B3F8F5ABC5D3",
+      "class_name": "K2Node_VariableSet",
+      "title": "Set ChosenNode",
+      "x": 1504,
+      "y": 16,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableSet_2",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "74D4D87E19274F27A1C345CD8A366A29:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "ChosenNode",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "42BBC2E6D64C4DA3AEB9AFE15FC615FF:OutputPin"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet"
+    },
+    {
+      "guid": "A86BD9AFB5FC40B091D451495FE35039",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get ChosenNode",
+      "x": 496,
+      "y": 288,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_1",
+      "pins": [
+        {
+          "name": "ChosenNode",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "F905AB6F4EE045C9B77D763F58FBAED7:Best Node"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "D6FEF0759ED34BB295289F87EF24D430",
+      "class_name": "K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 864,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_IfThenElse_1",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88D2A8B96A2E42B190A9E922CC82DAFE:LoopBody"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "default": "true",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "58E5AF106371475599CAB4F70303573F:ReturnValue"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C5F19A8920E149C0A058766833D5AD0C:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse"
+    },
+    {
+      "guid": "0269C3E4CBAF450CAB590D02EC231A09",
+      "class_name": "K2Node_VariableSet",
+      "title": "Set ChosenNode",
+      "x": -32,
+      "y": 16,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableSet_1",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "40F2D884FC44404FA76C3819D9074EEE:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88CDE5564BB249C69758CBD113EDBED3:execute"
+          ]
+        },
+        {
+          "name": "ChosenNode",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "2EFF12C14E4A44E38161C2E28E73450E:Output"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "DEC0198E74084A6E887E1C2EE4BAD4F5:Key"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet"
+    },
+    {
+      "guid": "2EFF12C14E4A44E38161C2E28E73450E",
+      "class_name": "K2Node_GetArrayItem",
+      "title": "K2Node_GetArrayItem_0",
+      "x": -48,
+      "y": 112,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_GetArrayItem_0",
+      "pins": [
+        {
+          "name": "Array",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "40F2D884FC44404FA76C3819D9074EEE:OpenSet"
+          ]
+        },
+        {
+          "name": "Dimension 1",
+          "direction": 0,
+          "type": "int",
+          "subtype": "None",
+          "default": "0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Output",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "0269C3E4CBAF450CAB590D02EC231A09:ChosenNode"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_GetArrayItem"
+    },
+    {
+      "guid": "DEC0198E74084A6E887E1C2EE4BAD4F5",
+      "class_name": "K2Node_CallFunction",
+      "title": "Map_Find",
+      "x": -48,
+      "y": 224,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallFunction_1",
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "BlueprintMapLibrary",
+          "default_object": "Default__BlueprintMapLibrary",
+          "links": []
+        },
+        {
+          "name": "TargetMap",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "40F2D884FC44404FA76C3819D9074EEE:FScore"
+          ]
+        },
+        {
+          "name": "Key",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_RoadNode_C",
+          "default_object": "",
+          "links": [
+            "0269C3E4CBAF450CAB590D02EC231A09:Output_Get"
+          ]
+        },
+        {
+          "name": "Value",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88CDE5564BB249C69758CBD113EDBED3:LowestScore"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "default": "false",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction"
+    },
+    {
+      "guid": "88CDE5564BB249C69758CBD113EDBED3",
+      "class_name": "K2Node_VariableSet",
+      "title": "Set LowestScore",
+      "x": 192,
+      "y": 16,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableSet_3",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0269C3E4CBAF450CAB590D02EC231A09:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88D2A8B96A2E42B190A9E922CC82DAFE:Exec"
+          ]
+        },
+        {
+          "name": "LowestScore",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "DEC0198E74084A6E887E1C2EE4BAD4F5:Value"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet"
+    }
+  ],
+  "excerpt": false
+}

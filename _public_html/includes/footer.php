@@ -7,7 +7,7 @@
 
     <!-- Site-wide smooth scrolling -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
-    <script src="<?php echo $base_path; ?>assets/js/site-scroll.js?v=20260715-sitewide" defer></script>
+    <script src="<?php echo $base_path; ?>assets/js/site-scroll.js?v=20261109-chapter-links" defer></script>
 
     <!-- Style Kit JS -->
     

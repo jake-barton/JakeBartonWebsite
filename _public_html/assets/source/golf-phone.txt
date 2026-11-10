@@ -1,0 +1,16 @@
+FGolfPhoneSwingDiagnosticFrame UGolfPhoneBlueprintLibrary::AnalyzeSwingSample(const FPhoneMotionSample& Sample,
+    const FQuat& CalibrationOrientation, FVector SwingAxis)
+{
+    FGolfPhoneSwingDiagnosticFrame Frame;
+    Frame.Sequence = Sample.Sequence;
+    Frame.PhoneTimestampSeconds = Sample.PhoneTimestampSeconds;
+    const FQuat ConvertedOrientation = ConvertIOSOrientationToUnreal(Sample.Orientation);
+    Frame.RelativeOrientation = CalculateRelativeOrientation(CalibrationOrientation, ConvertedOrientation);
+    Frame.ConvertedRotationRate = ConvertIOSVectorToUnreal(Sample.RotationRate);
+    Frame.ConvertedAcceleration = ConvertIOSVectorToUnreal(Sample.UserAcceleration);
+    SwingAxis = SwingAxis.GetSafeNormal();
+    Frame.SignedSwingRate = FVector::DotProduct(Frame.ConvertedRotationRate, SwingAxis);
+    Frame.AccelerationMagnitude = Frame.ConvertedAcceleration.Size();
+    Frame.bSwingHeld = (Sample.ButtonMask & 1) != 0;
+    return Frame;
+}

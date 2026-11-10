@@ -1,7 +1,0 @@
-<!-- This is a placeholder SVG file for testing the gallery -->
-<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-  <rect width="500" height="500" fill="#667eea"/>
-  <text x="50%" y="45%" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="white" font-weight="bold">T-SHIRT DESIGN</text>
-  <text x="50%" y="55%" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="white">Placeholder Image</text>
-  <text x="50%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#e0e0e0">Replace with your design</text>
-</svg>

@@ -1,9 +1,0 @@
-# IronSpark sub-folder .htaccess
-# Standalone redirect rules removed — site is embedded at /portfolio/professional-works/IronSpark/
-RewriteEngine On
-
-# Remove .php extension from URLs (e.g. /about -> about.php)
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [L]

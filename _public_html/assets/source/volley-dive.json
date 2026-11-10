@@ -1,0 +1,389 @@
+{
+  "asset": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter",
+  "name": "RequestDive",
+  "nodes": [
+    {
+      "guid": "7B51DAF77447F9A79A55C5A2FD060C21",
+      "class": "/Script/BlueprintGraph.K2Node_FunctionEntry",
+      "title": "RequestDive",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "0B4844466348A324461B9AA8BB42382F:execute"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "6679CA29E941FA17820E9CAFB53C94AD",
+      "class": "/Script/UnrealEd.EdGraphNode_Comment",
+      "title": "Airborne Shift dive — consume the same mobility charge as dash",
+      "x": -60,
+      "y": -100,
+      "width": 3500,
+      "height": 2000,
+      "comment_bubble": true,
+      "comment": "Airborne Shift dive — consume the same mobility charge as dash",
+      "identity": {},
+      "pins": []
+    },
+    {
+      "guid": "107B974AD8422FF756117ABA067DCD2E",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get DashReady",
+      "x": 0,
+      "y": 250,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "DashReady",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "C8DB0AAB124057BB3F39D0B90DEA5677:A"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "6D0636B4DD4E31DDA4170C9EB4398EA9",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get CharacterMovement",
+      "x": 0,
+      "y": 650,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "CharacterMovement",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.CharacterMovementComponent",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "6214E34ED8477A7CDC27F1A4EC303E7D:self"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.Character",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "6214E34ED8477A7CDC27F1A4EC303E7D",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Is Falling\nTarget is Nav Movement Component",
+      "x": 320,
+      "y": 650,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.NavMovementComponent",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "6D0636B4DD4E31DDA4170C9EB4398EA9:CharacterMovement"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "C8DB0AAB124057BB3F39D0B90DEA5677:B"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "C8DB0AAB124057BB3F39D0B90DEA5677",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "AND Boolean",
+      "x": 640,
+      "y": 250,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.KismetMathLibrary",
+          "default": "",
+          "default_object": "/Script/Engine.Default__KismetMathLibrary",
+          "links": []
+        },
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "107B974AD8422FF756117ABA067DCD2E:DashReady"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "6214E34ED8477A7CDC27F1A4EC303E7D:ReturnValue"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "0B4844466348A324461B9AA8BB42382F:Condition"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "0B4844466348A324461B9AA8BB42382F",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 960,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "7B51DAF77447F9A79A55C5A2FD060C21:then"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": [
+            "C8DB0AAB124057BB3F39D0B90DEA5677:ReturnValue"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "4EF45FACE24269E51864F9A684D2E90A:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "4EF45FACE24269E51864F9A684D2E90A",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "title": "Set DiveActive",
+      "x": 1280,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "0B4844466348A324461B9AA8BB42382F:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "7785571CA3456A7E1DB841A89498BC76:execute"
+          ]
+        },
+        {
+          "name": "DiveActive",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "True",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "7785571CA3456A7E1DB841A89498BC76",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Request Dash\nTarget is BP First Person Character",
+      "x": 1600,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "4EF45FACE24269E51864F9A684D2E90A:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

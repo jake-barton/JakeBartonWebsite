@@ -16,26 +16,18 @@ jobs:
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
-      - name: Build browser games and published portfolio content
+      - name: Build browser games
         run: |
           python3 scripts/build-games.py
-          python3 scripts/export-portfolio-content.py
-
-      - name: Prepare Studio authentication
-        env:
-          JB_CMS_PASSWORD_HASH: ${{ secrets.JB_CMS_PASSWORD_HASH }}
-        run: |
-          mkdir -p .deploy-private
-          php -r 'file_put_contents(".deploy-private/auth.json", json_encode(["password_hash" => getenv("JB_CMS_PASSWORD_HASH")], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL);'
 
       - name: Deploy via FTP to Hostinger
         env:
           FTP_HOST: 157.173.214.227
           FTP_USER: u335085697
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
-          CMS_REMOTE_DIR: ${{ vars.CMS_REMOTE_DIR || '/domains/jakebartoncreative.com/storage/cms/pages/' }}
         run: |
           lftp -c "
+            set cmd:fail-exit yes;
             set ftp:ssl-allow yes;
             set ftp:ssl-force no;
             set ssl:verify-certificate no;
@@ -47,7 +39,6 @@ jobs:
             cd /domains/jakebartoncreative.com/public_html/;
             put -O . ./_public_html/.htaccess ./_public_html/index.php ./_public_html/home.php ./_public_html/router.php ./_public_html/contact-handler.php;
             mirror --reverse --verbose ./_public_html/includes/ ./includes/;
-            mirror --reverse --verbose ./_public_html/studio/ ./studio/;
             mirror --reverse --verbose ./_public_html/work/ ./work/;
             mirror --reverse --verbose ./_public_html/assets/brand/ ./assets/brand/;
             mirror --reverse --verbose ./_public_html/assets/css/ ./assets/css/;
@@ -55,6 +46,8 @@ jobs:
             mirror --reverse --verbose ./_public_html/assets/fonts/ ./assets/fonts/;
             mirror --reverse --verbose ./_public_html/assets/home/ ./assets/home/;
             mirror --reverse --verbose ./_public_html/assets/js/ ./assets/js/;
+            mirror --reverse --verbose ./_public_html/assets/lib/ ./assets/lib/;
+            mirror --reverse --verbose ./_public_html/assets/source/ ./assets/source/;
             mirror --reverse --verbose ./_public_html/assets/organizations/ ./assets/organizations/;
             mirror --reverse --verbose ./_public_html/assets/project-covers/ ./assets/project-covers/;
             mirror --reverse --verbose ./_public_html/assets/uploads/ ./assets/uploads/;
@@ -62,8 +55,13 @@ jobs:
             mirror --reverse --verbose ./_public_html/assets/reel/ ./assets/reel/;
             mkdir -p ./games/mario-kart;
             mirror --reverse --verbose ./_public_html/games/mario-kart/ ./games/mario-kart/;
-            mkdir -p ../storage/cms/pages;
-            put -O ../storage/cms ./.deploy-private/auth.json;
-            mirror --reverse --verbose ./hostinger_content/storage/cms/pages/ $CMS_REMOTE_DIR;
+            rm -rf ./work/minnies-golf ./work/wrappt ./work/river ./work/barton-enterprises ./work/campusconnect ./work/psengine ./work/macbook-golf-simulator ./work/october-assistant ./work/artist-campaigns ./work/banking-concurrency-lab ./work/campaign-design;
+            rm -rf ./assets/work/minnies-golf;
+            rm -f ./assets/organizations/minnies.svg ./assets/source/minnies-score.txt;
+            rm -rf ./studio;
+            rm -rf ./includes/cms-components;
+            rm -f ./includes/cms.php ./includes/work-detail-page.php ./includes/project-blueprint.json;
+            rm -f ./assets/css/studio.css ./assets/js/studio.js ./assets/js/studio-preview-bridge.js;
+            rm -rf ../storage/cms;
             bye
           "

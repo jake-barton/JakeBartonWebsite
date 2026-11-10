@@ -1,0 +1,52 @@
+    drawGround(camera, horizon) {
+        const groundHeight = this.height - horizon;
+        
+        
+        if (!this.groundImageData || this.lastGroundHeight !== groundHeight) {
+            this.groundImageData = this.ctx.createImageData(this.width, groundHeight);
+            this.lastGroundHeight = groundHeight;
+        }
+        
+        const screenData = this.groundImageData;
+        
+        // Pre-calculate trig values ONCE per frame instead of per pixel
+        const cosAngle = Math.cos(camera.getAngle());
+        const sinAngle = Math.sin(camera.getAngle());
+        const cameraX = camera.getX();
+        const cameraY = camera.getY();
+        const cameraHeight = camera.getHeight();
+        const halfWidth = this.width / 2;
+
+        for (let y = horizon; y < this.height; y++) {
+            
+            const distance = (cameraHeight * this.height) / (y - horizon + 1);
+            const scale = distance / this.height;
+            
+            // Pre-calculate values that don't change per row
+            const distanceTimesSin = distance * sinAngle;
+            const distanceTimesCos = distance * cosAngle;
+
+            for (let x = 0; x < this.width; x++) {
+                const screenOffsetX = (halfWidth - x) * scale;
+                
+                // Use pre-calculated trig values - MATCH ORIGINAL FORMULA EXACTLY
+                const rotatedX = screenOffsetX * cosAngle + distanceTimesSin;
+                const rotatedY = -screenOffsetX * sinAngle + distanceTimesCos;
+
+                const trackX = Math.floor(cameraX + rotatedX);
+                const trackY = Math.floor(cameraY + rotatedY);
+
+                const color = this.getTrackPixel(trackX, trackY);
+                
+                const screenY = y - horizon;
+                const screenIndex = (screenY * this.width + x) * 4;
+
+                screenData.data[screenIndex] = color.r;
+                screenData.data[screenIndex + 1] = color.g;
+                screenData.data[screenIndex + 2] = color.b;
+                screenData.data[screenIndex + 3] = 255;
+    
+            }
+        }
+        this.ctx.putImageData(screenData, 0, horizon);
+    }

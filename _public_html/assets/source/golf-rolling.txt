@@ -1,0 +1,27 @@
+FVector UGolfBallPhysicsLibrary::CalculateRollingResistanceForce(
+    const FVector VelocityCmPerSecond,
+    const float DeltaSeconds,
+    const float RollingResistanceCoefficient,
+    const float SpeedSquaredResistanceScale,
+    const float BallMassKg)
+{
+    if (VelocityCmPerSecond.ContainsNaN() || !FMath::IsFinite(DeltaSeconds)
+        || !FMath::IsFinite(BallMassKg) || !FMath::IsFinite(RollingResistanceCoefficient)
+        || !FMath::IsFinite(SpeedSquaredResistanceScale)
+        || DeltaSeconds <= SMALL_NUMBER || BallMassKg <= 0.0f)
+    {
+        return FVector::ZeroVector;
+    }
+    const FVector HorizontalVelocity(VelocityCmPerSecond.X, VelocityCmPerSecond.Y, 0.0f);
+    const float HorizontalSpeed = HorizontalVelocity.Size();
+    if (HorizontalSpeed < 1.0f)
+    {
+        return FVector::ZeroVector;
+    }
+    const float SpeedMetersPerSecond = HorizontalSpeed * 0.01f;
+    const float EffectiveCoefficient = FMath::Max(0.0f, RollingResistanceCoefficient)
+        + FMath::Max(0.0f, SpeedSquaredResistanceScale) * SpeedMetersPerSecond * SpeedMetersPerSecond;
+    const float RollingForce = EffectiveCoefficient * BallMassKg * 980.665f;
+    const float StopThisFrameForce = BallMassKg * HorizontalSpeed / DeltaSeconds;
+    return -HorizontalVelocity.GetSafeNormal() * FMath::Min(RollingForce, StopThisFrameForce);
+}

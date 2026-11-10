@@ -1,0 +1,32 @@
+FGolfImpactSpinResult UGolfBallPhysicsLibrary::CalculateDPlaneSpin(
+    const FVector LaunchDirection, const float FaceYawDegrees, const float ClubPathYawDegrees,
+    const float DynamicLoftDegrees, const float AttackAngleDegrees)
+{
+    FGolfImpactSpinResult Result;
+    if (LaunchDirection.ContainsNaN() || !FMath::IsFinite(FaceYawDegrees)
+        || !FMath::IsFinite(ClubPathYawDegrees) || !FMath::IsFinite(DynamicLoftDegrees)
+        || !FMath::IsFinite(AttackAngleDegrees)) { return Result; }
+    const FVector Launch = LaunchDirection.GetSafeNormal();
+    if (Launch.IsNearlyZero()) { return Result; }
+    const float FaceYaw = FMath::UnwindDegrees(FaceYawDegrees);
+    const float PathYaw = FMath::UnwindDegrees(ClubPathYawDegrees);
+    const FVector FaceNormal = FRotator(FMath::Clamp(DynamicLoftDegrees, -89.0f, 89.0f), FaceYaw, 0).Vector();
+    const FVector ClubTravel = FRotator(FMath::Clamp(AttackAngleDegrees, -89.0f, 89.0f), PathYaw, 0).Vector();
+    Result.FaceToPathDegrees = FMath::FindDeltaAngleDegrees(PathYaw, FaceYaw);
+    Result.SpinLoftDegrees = FMath::RadiansToDegrees(FMath::Acos(FMath::Clamp(
+        FVector::DotProduct(FaceNormal, ClubTravel), -1.0, 1.0)));
+    // Chaos contact velocity is V + omega x r. For +X travel, -Y is
+    // backspin; +Y is forward rolling. Use the SAME angular convention in
+    // the air and at impact, rather than turning backspin into overspin.
+    const FVector DPlaneAxis = FVector::CrossProduct(ClubTravel, FaceNormal);
+    Result.SpinAxis = FVector::VectorPlaneProject(DPlaneAxis, Launch).GetSafeNormal();
+    const FVector Backspin = FVector::CrossProduct(Launch, FVector::UpVector).GetSafeNormal();
+    if (!Backspin.IsNearlyZero() && !Result.SpinAxis.IsNearlyZero())
+    {
+        const FVector RightCurveAxis = -FVector::CrossProduct(Launch, Backspin);
+        Result.SpinAxisTiltDegrees = FMath::RadiansToDegrees(FMath::Atan2(
+            FVector::DotProduct(Result.SpinAxis, RightCurveAxis),
+            FVector::DotProduct(Result.SpinAxis, Backspin)));
+    }
+    return Result;
+}

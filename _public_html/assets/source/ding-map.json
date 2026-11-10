@@ -1,0 +1,1130 @@
+{
+  "asset": "BP_RoadGraphManager",
+  "name": "WorldToMapPixel",
+  "nodes": [
+    {
+      "guid": "7238FDBD0DDF4F4D9CEC056B1F56E66A",
+      "class_name": "K2Node_FunctionEntry",
+      "title": "WorldToMapPixel",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_FunctionEntry_0",
+      "pins": [
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "3EC047AE36E2439FB3F9B433B2AC9104:execute"
+          ]
+        },
+        {
+          "name": "WorldLocation",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "Vector",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldLocation_X",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "CE29BC7D861F4964847E86AB30E8330F:A"
+          ]
+        },
+        {
+          "name": "WorldLocation_Y",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "8CEF3106C8D54BFDA981C02B9B402941:InputPin"
+          ]
+        },
+        {
+          "name": "WorldLocation_Z",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WidgetWidth",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C9EFBF26F89E482ABD18F0ECAA4A50FF:InputPin"
+          ]
+        },
+        {
+          "name": "WidgetHeight",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "9A0DC04A31624E48ADE123A3B40577BC:B"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_FunctionEntry"
+    },
+    {
+      "guid": "207DB3D2F8C444F880EBFA8FEAE7BDD6",
+      "class_name": "K2Node_FunctionResult",
+      "title": "WorldToMapPixel",
+      "x": 1472,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_FunctionResult_0",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7346D284EA654E0C9D245D8462CDBA94:then"
+          ]
+        },
+        {
+          "name": "MapPixel",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "Vector2D",
+          "default_object": "",
+          "links": [
+            "24B0F8CC4C244B48B49758B34CAD2558:ReturnValue"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_FunctionResult"
+    },
+    {
+      "guid": "BB9328F88CCE40C390EB1EFC1A5C6953",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get WorldMin",
+      "x": 288,
+      "y": 96,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_3",
+      "pins": [
+        {
+          "name": "WorldMin",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "Vector2D",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldMin_X",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "CE29BC7D861F4964847E86AB30E8330F:B",
+            "27C6A9803F6D4B9189E60ADC7DE58BDF:B"
+          ]
+        },
+        {
+          "name": "WorldMin_Y",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "BP_RoadGraphManager_C",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "CE29BC7D861F4964847E86AB30E8330F",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Subtract_DoubleDouble",
+      "x": 448,
+      "y": 64,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_0",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7238FDBD0DDF4F4D9CEC056B1F56E66A:WorldLocation_X"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "BB9328F88CCE40C390EB1EFC1A5C6953:WorldMin_X"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "A7FC1538CA364F24868C5B838667E936:A"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "04DDEA6234BC40DCAA1B1B527F736CB1",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get WorldMax",
+      "x": 288,
+      "y": 208,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_4",
+      "pins": [
+        {
+          "name": "WorldMax",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "Vector2D",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldMax_X",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "27C6A9803F6D4B9189E60ADC7DE58BDF:A"
+          ]
+        },
+        {
+          "name": "WorldMax_Y",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "BP_RoadGraphManager_C",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "27C6A9803F6D4B9189E60ADC7DE58BDF",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Subtract_DoubleDouble",
+      "x": 448,
+      "y": 176,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_1",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "04DDEA6234BC40DCAA1B1B527F736CB1:WorldMax_X"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "BB9328F88CCE40C390EB1EFC1A5C6953:WorldMin_X"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "A7FC1538CA364F24868C5B838667E936:B"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "A7FC1538CA364F24868C5B838667E936",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Divide_DoubleDouble",
+      "x": 624,
+      "y": 112,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_2",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "CE29BC7D861F4964847E86AB30E8330F:ReturnValue"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "27C6A9803F6D4B9189E60ADC7DE58BDF:ReturnValue"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "3EC047AE36E2439FB3F9B433B2AC9104:NormalizedX"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "3EC047AE36E2439FB3F9B433B2AC9104",
+      "class_name": "K2Node_VariableSet",
+      "title": "Set NormalizedX",
+      "x": 672,
+      "y": 16,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableSet_1",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7238FDBD0DDF4F4D9CEC056B1F56E66A:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7346D284EA654E0C9D245D8462CDBA94:execute"
+          ]
+        },
+        {
+          "name": "NormalizedX",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "A7FC1538CA364F24868C5B838667E936:ReturnValue"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "91BA53714A34469D877FC2A1A4BD5815:A"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet"
+    },
+    {
+      "guid": "3E3BECF5883E4A84B5E7DE2AC346EF4A",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get WorldMin",
+      "x": 288,
+      "y": 416,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_1",
+      "pins": [
+        {
+          "name": "WorldMin",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "Vector2D",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldMin_X",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldMin_Y",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "99083185A3B2427C95ED0DDA6B69BB90:B",
+            "0C37F925E3314338AEE6135ECEA21AA2:B"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "BP_RoadGraphManager_C",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "08AD3BE6424D4512826B669F1D136F8C",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get WorldMax",
+      "x": 288,
+      "y": 528,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_2",
+      "pins": [
+        {
+          "name": "WorldMax",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "Vector2D",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldMax_X",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "WorldMax_Y",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0C37F925E3314338AEE6135ECEA21AA2:A"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "BP_RoadGraphManager_C",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "99083185A3B2427C95ED0DDA6B69BB90",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Subtract_DoubleDouble",
+      "x": 480,
+      "y": 368,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_4",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "8CEF3106C8D54BFDA981C02B9B402941:OutputPin"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "3E3BECF5883E4A84B5E7DE2AC346EF4A:WorldMin_Y"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88DB78C3A81041BFB37ED7EC18F67767:A"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "8CEF3106C8D54BFDA981C02B9B402941",
+      "class_name": "K2Node_Knot",
+      "title": "Reroute",
+      "x": 288,
+      "y": 368,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_Knot_1",
+      "pins": [
+        {
+          "name": "InputPin",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7238FDBD0DDF4F4D9CEC056B1F56E66A:WorldLocation_Y"
+          ]
+        },
+        {
+          "name": "OutputPin",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "99083185A3B2427C95ED0DDA6B69BB90:A"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_Knot"
+    },
+    {
+      "guid": "0C37F925E3314338AEE6135ECEA21AA2",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Subtract_DoubleDouble",
+      "x": 480,
+      "y": 496,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_3",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "08AD3BE6424D4512826B669F1D136F8C:WorldMax_Y"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "3E3BECF5883E4A84B5E7DE2AC346EF4A:WorldMin_Y"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88DB78C3A81041BFB37ED7EC18F67767:B"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "88DB78C3A81041BFB37ED7EC18F67767",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Divide_DoubleDouble",
+      "x": 656,
+      "y": 432,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_5",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "99083185A3B2427C95ED0DDA6B69BB90:ReturnValue"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "0C37F925E3314338AEE6135ECEA21AA2:ReturnValue"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7346D284EA654E0C9D245D8462CDBA94:NormalizedY"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "7346D284EA654E0C9D245D8462CDBA94",
+      "class_name": "K2Node_VariableSet",
+      "title": "Set NormalizedY",
+      "x": 880,
+      "y": 16,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableSet_2",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "3EC047AE36E2439FB3F9B433B2AC9104:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "207DB3D2F8C444F880EBFA8FEAE7BDD6:execute"
+          ]
+        },
+        {
+          "name": "NormalizedY",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "88DB78C3A81041BFB37ED7EC18F67767:ReturnValue"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "9A0DC04A31624E48ADE123A3B40577BC:A"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet"
+    },
+    {
+      "guid": "91BA53714A34469D877FC2A1A4BD5815",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Multiply_DoubleDouble",
+      "x": 976,
+      "y": 240,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_6",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "3EC047AE36E2439FB3F9B433B2AC9104:Output_Get"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "CEA25AEC20AE4DCCB33C5F3B5BD4C74C:OutputPin"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "24B0F8CC4C244B48B49758B34CAD2558:X"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "C9EFBF26F89E482ABD18F0ECAA4A50FF",
+      "class_name": "K2Node_Knot",
+      "title": "Reroute",
+      "x": 192,
+      "y": 272,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_Knot_2",
+      "pins": [
+        {
+          "name": "InputPin",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7238FDBD0DDF4F4D9CEC056B1F56E66A:WidgetWidth"
+          ]
+        },
+        {
+          "name": "OutputPin",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "CEA25AEC20AE4DCCB33C5F3B5BD4C74C:InputPin"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_Knot"
+    },
+    {
+      "guid": "CEA25AEC20AE4DCCB33C5F3B5BD4C74C",
+      "class_name": "K2Node_Knot",
+      "title": "Reroute",
+      "x": 896,
+      "y": 272,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_Knot_3",
+      "pins": [
+        {
+          "name": "InputPin",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C9EFBF26F89E482ABD18F0ECAA4A50FF:OutputPin"
+          ]
+        },
+        {
+          "name": "OutputPin",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "91BA53714A34469D877FC2A1A4BD5815:B"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_Knot"
+    },
+    {
+      "guid": "9A0DC04A31624E48ADE123A3B40577BC",
+      "class_name": "K2Node_PromotableOperator",
+      "title": "Multiply_DoubleDouble",
+      "x": 1152,
+      "y": 112,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_PromotableOperator_9",
+      "pins": [
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7346D284EA654E0C9D245D8462CDBA94:Output_Get"
+          ]
+        },
+        {
+          "name": "B",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "7238FDBD0DDF4F4D9CEC056B1F56E66A:WidgetHeight"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "24B0F8CC4C244B48B49758B34CAD2558:Y"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_PromotableOperator"
+    },
+    {
+      "guid": "24B0F8CC4C244B48B49758B34CAD2558",
+      "class_name": "K2Node_CallFunction",
+      "title": "MakeVector2D",
+      "x": 1328,
+      "y": 176,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallFunction_8",
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "KismetMathLibrary",
+          "default_object": "Default__KismetMathLibrary",
+          "links": []
+        },
+        {
+          "name": "X",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "91BA53714A34469D877FC2A1A4BD5815:ReturnValue"
+          ]
+        },
+        {
+          "name": "Y",
+          "direction": 0,
+          "type": "real",
+          "subtype": "double",
+          "default": "0.0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "9A0DC04A31624E48ADE123A3B40577BC:ReturnValue"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "Vector2D",
+          "default_object": "",
+          "links": [
+            "207DB3D2F8C444F880EBFA8FEAE7BDD6:MapPixel"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction"
+    }
+  ],
+  "excerpt": false
+}

@@ -403,7 +403,8 @@ body.jb-work-page.is-loaded .jb-work-index {
   }
 
   .jb-work-sections {
-    top: 0.75rem;
+    top: calc(58px + 0.75rem);
+    padding-bottom: 44px;
     left: 1rem;
     right: 1rem;
     justify-content: flex-start;

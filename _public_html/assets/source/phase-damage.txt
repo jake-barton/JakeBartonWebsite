@@ -1,0 +1,14 @@
+func hurt_player(_body, damage: int):
+	if not is_dashing:
+		if player_sfx:
+			player_sfx.stream = hurt_sound
+			player_sfx.play()
+		health -= damage
+		shake_camera(6, 0.25)
+		$AnimationPlayer.play("player_hit")
+		
+		current_speed = base_run_speed
+		
+		await get_tree().create_timer(0.3).timeout
+		$AnimationPlayer.play("player_sprite_reset")
+		

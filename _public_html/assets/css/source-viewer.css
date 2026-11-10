@@ -1,0 +1,97 @@
+/* Source views are real, read-only project code and exported Blueprint data. */
+.jb-source-workbench { min-width: 0; overflow: hidden; border-radius: clamp(1.1rem, 1.8vw, 2rem); background: #1e1e1e; color: #d4d4d4; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.jb-source-tabs { display: flex; gap: 0; overflow-x: auto; padding: 0 1rem; background: #181818; scrollbar-width: thin; }
+.jb-source-tabs button { flex: 0 0 auto; padding: 1rem 1.25rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #aaa; font: inherit; font-size: 0.95rem; cursor: pointer; }
+.jb-source-tabs button[aria-selected="true"] { color: #fff; border-bottom-color: #53a265; background: #1e1e1e; }
+.jb-source-tabs button:focus-visible, .jb-source-actions :focus-visible, .jb-graph-controls button:focus-visible { outline: 2px solid #8fd29e; outline-offset: -4px; }
+.jb-source-panel[hidden] { display: none; }
+.jb-source-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 1.25rem; border-bottom: 1px solid #343434; font-size: 0.85rem; line-height: 1.4; }
+.jb-source-filename { min-width: 0; overflow-wrap: anywhere; }
+.jb-source-actions { display: flex; gap: 1rem; flex-shrink: 0; }
+.jb-source-actions button, .jb-source-actions a { border: 0; padding: 0; background: transparent; color: #ccc; font: inherit; cursor: pointer; text-decoration: none; }
+.jb-source-actions button:hover, .jb-source-actions a:hover { color: #fff; }
+.jb-source-stage { position: relative; height: 480px; min-width: 0; }
+.jb-source-fallback { height: 100%; max-width: 100%; overflow: auto; margin: 0; padding: 1rem 1.25rem 1rem 0; color: #d4d4d4; background: #1e1e1e; font: 13px/22px Menlo, Consolas, monospace; tab-size: 4; }
+.jb-source-fallback code { display: block; min-width: max-content; font: inherit; color: inherit; background: transparent; padding: 0; }
+.jb-source-fallback code > span { display: block; white-space: pre; }
+.jb-source-fallback code > span::before { content: attr(data-line); display: inline-block; width: 3.25rem; padding-right: 1rem; text-align: right; color: #858585; user-select: none; }
+.jb-source-editor { position: absolute; inset: 0; }
+.jb-source-status { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 1.25rem; border-top: 1px solid #343434; color: #aaa; font-size: 0.75rem; }
+.jb-source-workbench .jb-source-context { padding: 1.4rem 1.5rem; background: #242424; color: #ddd; }
+.jb-home .jb-source-context p { margin: 0; max-width: 85ch; color: inherit; font-size: 1rem; line-height: 1.5; }
+.jb-source-context > a { display: inline-block; margin-top: 1rem; color: #fff; font-size: 1.05rem; }
+.jb-blueprint-fallback { height: 100%; overflow: auto; padding: 1.5rem; }
+.jb-blueprint-viewport { display: block; width: 100%; height: 100%; background-color: #202020; background-image: linear-gradient(#292929 1px, transparent 1px), linear-gradient(90deg, #292929 1px, transparent 1px); background-size: 20px 20px; touch-action: pan-y; cursor: grab; }
+.jb-blueprint-viewport:active { cursor: grabbing; }
+.jb-blueprint-viewport:focus-visible { outline: 2px solid #8fd29e; outline-offset: -3px; }
+.jb-graph-controls { position: absolute; z-index: 1; right: 1rem; bottom: 1rem; display: flex; gap: 0.3rem; }
+.jb-graph-controls button { min-width: 2.5rem; min-height: 2.5rem; padding: 0.3rem 0.75rem; border: 1px solid #666; border-radius: 4px; background: #242424; color: #fff; font: inherit; cursor: pointer; }
+.jb-graph-node rect { stroke: #555; stroke-width: 1; }
+.jb-graph-node text { fill: #eee; font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.jb-graph-node .jb-graph-node-title { font-weight: 600; }
+.jb-graph-wire { fill: none; stroke-width: 2.5; }
+@media(max-width: 760px) {
+  .jb-source-toolbar { align-items: flex-start; flex-direction: column; gap: 0.6rem; padding: 0.85rem 1rem; }
+  .jb-source-tabs { padding: 0 0.3rem; }
+  .jb-source-tabs button { padding: 0.9rem 0.85rem; font-size: 0.85rem; }
+  .jb-source-stage { height: 360px; }
+  .jb-source-workbench .jb-source-context { padding: 1.2rem; }
+  .jb-source-status { padding: 0.5rem 1rem; flex-wrap: wrap; }
+}
+
+/* Clip overflow without creating a nested scroll container that blocks sticky navigation. */
+.jb-detail-main:has(.jb-case-nav) { overflow: clip; }
+
+/* Each chapter keeps its explanation beside the relevant work. */
+.jb-case-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  overflow-x: auto;
+  padding: 1.2rem 13rem 1.2rem clamp(1.5rem, 3.2vw, 4rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--page-ink) 18%, transparent);
+  background: color-mix(in srgb, var(--page-canvas) 94%, transparent);
+  backdrop-filter: blur(12px);
+  scrollbar-width: thin;
+}
+.jb-case-nav a { flex: 0 0 auto; padding-bottom: 0.2rem; border-bottom: 1px solid transparent; color: var(--page-ink); font-size: 1rem; font-weight: 400; text-decoration: none; }
+.jb-case-nav a[aria-current], .jb-case-nav a:hover { border-color: currentColor; }
+.jb-case-nav a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.jb-case-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.55fr);
+  align-items: start;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding: clamp(4rem, 7vw, 7rem) clamp(1.5rem, 3.2vw, 4rem);
+  scroll-margin-top: 5rem;
+  color: var(--page-ink);
+}
+.jb-case-chapter + .jb-case-chapter { border-top: 1px solid color-mix(in srgb, var(--page-ink) 12%, transparent); }
+.jb-home .jb-case-copy h2 { max-width: 15ch; margin: 0 0 1.5rem; color: inherit; font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.05; }
+.jb-home .jb-case-copy p { margin: 0 0 1.2em; color: inherit; font-size: clamp(1.05rem, 1.25vw, 1.25rem); font-weight: 400; line-height: 1.5; }
+.jb-case-visual { min-width: 0; }
+.jb-case-visual .jb-project-media { margin: 0; padding: 0; border-radius: clamp(1.1rem, 1.8vw, 2rem); overflow: hidden; }
+.jb-case-visual .jb-project-media video, .jb-case-visual .jb-project-media img { display: block; width: 100%; height: auto; object-fit: contain; }
+.jb-case-visual .jb-media-pair { margin: 0; padding: 0; gap: 1rem; border-radius: clamp(1.1rem, 1.8vw, 2rem); overflow: hidden; }
+.jb-source-stage { height: var(--source-height, 480px); }
+.jb-source-tabs[hidden], .jb-source-actions [hidden] { display: none !important; }
+.jb-source-dialog { position: fixed; inset: 0; margin: auto; width: calc(100vw - 40px); max-width: 1800px; height: calc(100svh - 40px); max-height: none; padding: 0; border: 1px solid #555; border-radius: 16px; background: #1e1e1e; color: #ddd; }
+.jb-source-dialog::backdrop { background: rgba(0,0,0,0.75); }
+.jb-source-dialog > .jb-source-workbench { height: 100%; display: flex; flex-direction: column; border-radius: 0; }
+.jb-source-dialog .jb-source-tabs, .jb-source-dialog .jb-source-toolbar, .jb-source-dialog .jb-source-status, .jb-source-dialog .jb-source-context { flex-shrink: 0; }
+.jb-source-dialog .jb-source-panel:not([hidden]) { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.jb-source-dialog .jb-source-stage { flex: 1; height: auto; min-height: 0; }
+@media(max-width: 1000px) {
+  .jb-case-chapter { grid-template-columns: 1fr; gap: 1.5rem; }
+  .jb-home .jb-case-copy h2 { max-width: none; }
+  .jb-case-copy { max-width: 70ch; }
+}
+@media(max-width: 760px) {
+  .jb-case-nav { top: 58px; padding: 0.9rem 1.5rem; gap: 1.2rem; }
+  .jb-case-chapter { padding: 3rem 1.5rem; scroll-margin-top: 8rem; }
+  .jb-source-dialog { position: fixed; inset: 0; margin: auto; width: calc(100vw - 16px); height: calc(100svh - 16px); }
+  .jb-source-stage { height: min(var(--source-height, 360px), 420px); }
+}
+.jb-case-play { display: block; padding: 0; }

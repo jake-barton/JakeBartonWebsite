@@ -1,0 +1,356 @@
+/* Homepage surfaces and spacing. Work and individual project pages are unchanged. */
+body.jb-home-page {
+  --home-gray: #e7e6df;
+  --home-paper: #f8f7f3;
+  --home-line: rgba(20, 20, 20, 0.16);
+  --home-gutter: clamp(1.5rem, 3.2vw, 4rem);
+  --home-section-space: clamp(4rem, 7vw, 7rem);
+  --home-card-gap: clamp(0.85rem, 1.25vw, 1.35rem);
+  --home-card-radius: clamp(1.1rem, 1.8vw, 2rem);
+  --home-display-link-size: clamp(2rem, 3.3vw, 3.5rem);
+  background: var(--home-gray);
+}
+
+.jb-home-page .jb-main { background: var(--home-gray); }
+
+/* Keep the intro loader; let the content below it sit still. */
+.jb-home-page .jb-reveal {
+  clip-path: none;
+  transform: none;
+  transition: none;
+}
+
+.jb-home-page .jb-statement,
+.jb-home-page .jb-grid-section,
+.jb-home-page .jb-accolades,
+.jb-home-page .jb-footer {
+  padding-left: calc(var(--jb-rail) + var(--home-gutter));
+  padding-right: var(--home-gutter);
+}
+
+.jb-home-page .jb-statement {
+  padding-top: var(--home-section-space);
+  padding-bottom: var(--home-section-space);
+  background: var(--home-gray);
+}
+
+.jb-home-page .jb-statement .jb-reel-title {
+  color: var(--jb-ink);
+  margin: clamp(3rem, 5vw, 5rem) 0 1.5rem;
+  font-family: var(--jb-heading-font);
+  font-size: var(--home-display-link-size);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.096em;
+  line-height: 0.9;
+}
+
+.jb-home-page .jb-reel-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--home-card-radius);
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(0 round var(--home-card-radius));
+  background: #101010;
+}
+
+.jb-home-page .jb-reel-frame .jb-reel-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.jb-home-page .jb-statement h2 {
+  max-width: 24ch;
+  font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+}
+
+.jb-home-page .jb-statement .jb-letter {
+  color: inherit;
+  transform: none;
+  transition: color 3s ease;
+  transition-delay: calc(min(var(--i), 70) * 12ms);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .jb-home-page .jb-statement .jb-letter:hover {
+    color: var(--jb-red);
+    transition: none;
+  }
+}
+
+.jb-home-page .jb-resume-cta {
+  margin-top: clamp(2rem, 4vw, 4rem);
+  font-size: var(--home-display-link-size);
+}
+
+/* Large type on a neutral surface; video appears only during interaction. */
+.jb-home-page .jb-actions {
+  height: auto;
+  min-height: 0;
+  padding: var(--home-section-space) var(--home-gutter) var(--home-section-space) calc(var(--jb-rail) + var(--home-gutter));
+  background: var(--home-paper);
+}
+
+.jb-home-page .jb-actions::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: var(--jb-rail);
+  z-index: 0;
+  background: var(--home-gray);
+  transform: scale(var(--jb-action-scale));
+  transform-origin: center;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.jb-home-page .jb-action-media {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: var(--jb-rail);
+  border-radius: 0;
+  transform: scale(var(--jb-action-scale));
+  will-change: transform, opacity;
+  transition: opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.jb-home-page .jb-action-video {
+  transition: opacity 0.85s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.jb-home-page .jb-action-video.is-previous { opacity: 1; z-index: 3; }
+
+.jb-home-page .jb-action-links {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  transform: scale(var(--jb-action-scale)) translateY(var(--jb-action-y));
+  will-change: transform;
+}
+
+.jb-home-page .jb-action-links li,
+.jb-home-page .jb-action-links li:last-child {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 0.06em;
+  border: 0;
+}
+
+.jb-home-page .jb-action-links a,
+.jb-home-page .jb-action-links a:hover,
+.jb-home-page .jb-action-links a.is-active {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0;
+  color: var(--jb-ink);
+  font-size: clamp(3.25rem, 7.2vw, 8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  transition: color 0.65s ease;
+}
+
+.jb-home-page .jb-action-links a::after { content: none; }
+.jb-home-page .has-preview .jb-action-links a { color: #fff; }
+.jb-home-page .jb-action-links a:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+
+.jb-home-page .jb-category-window {
+  display: inline-grid;
+  padding-right: 0.12em;
+}
+.jb-home-page .jb-category-label,
+.jb-home-page .jb-category-active {
+  grid-area: 1 / 1;
+  display: block;
+  transition: opacity 0.2s ease, transform 0.3s var(--jb-snap);
+}
+.jb-home-page .jb-category-active {
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.065em;
+  opacity: 0;
+  transform: translateX(-0.04em);
+}
+.jb-home-page .jb-action-links a:hover .jb-category-label,
+.jb-home-page .jb-action-links a:focus-visible .jb-category-label {
+  opacity: 0;
+  transform: translateX(0.04em);
+}
+.jb-home-page .jb-action-links a:hover .jb-category-active,
+.jb-home-page .jb-action-links a:focus-visible .jb-category-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.jb-home-page .has-type-motion .jb-action-links li {
+  transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--category-order) * 65ms);
+}
+.jb-home-page .has-type-motion:not(.is-type-visible) .jb-action-links li {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Separate the organization marks from the denser experience information. */
+.jb-home-page .jb-grid-section,
+.jb-home-page .jb-accolades {
+  padding-top: var(--home-section-space);
+  padding-bottom: var(--home-section-space);
+}
+
+.jb-home-page .jb-grid-section { background: var(--home-paper); }
+.jb-home-page .jb-accolades { background: var(--home-gray); }
+
+.jb-home-page .jb-grid-section h2,
+.jb-home-page .jb-accolades h2 {
+  margin-bottom: 2.5rem;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.jb-home-page .jb-client-grid {
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--home-line);
+  border-left: 1px solid var(--home-line);
+}
+.jb-home-page .jb-client-grid li {
+  container-type: inline-size;
+  min-height: clamp(160px, 16vw, 240px);
+  padding: clamp(1.75rem, 3vw, 3rem);
+  border: 0;
+  border-right: 1px solid var(--home-line);
+  border-bottom: 1px solid var(--home-line);
+  border-radius: 0;
+  background: transparent;
+}
+/* Scale the whole set together, matching visible ink rather than box height. */
+.jb-home-page .jb-client-grid li img {
+  width: min(var(--company-logo-width), calc(var(--company-logo-share) * 1cqw));
+  height: auto;
+  max-width: none;
+  max-height: none;
+}
+.jb-home-page .jb-client-grid img[src$="/ironspark.svg"] { --company-logo-width: 192.54px; --company-logo-share: 62.7087; }
+.jb-home-page .jb-client-grid img[src$="/tech-birmingham.svg"] { --company-logo-width: 93.09px; --company-logo-share: 30.3181; }
+.jb-home-page .jb-client-grid img[src$="/veritas.svg"] { --company-logo-width: 118.87px; --company-logo-share: 38.7150; }
+.jb-home-page .jb-client-grid img[src$="/pi-kappa-phi.svg"] { --company-logo-width: 307.04px; --company-logo-share: 100.0000; }
+.jb-home-page .jb-client-grid img[src$="/sloss-city-music-festival.svg"] { --company-logo-width: 125.77px; --company-logo-share: 40.9611; }
+.jb-home-page .jb-client-grid img[src$="/wrappt.svg"] { --company-logo-width: 226.68px; --company-logo-share: 73.8269; }
+
+.jb-home-page .jb-accolade-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--home-card-gap);
+  border: 0;
+}
+
+.jb-home-page .jb-accolade-grid li {
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  gap: 1.25rem;
+  border: 0;
+  border-radius: var(--home-card-radius);
+  background: var(--home-paper);
+}
+
+/* Match the visible logo weight, rather than stretching unlike aspect ratios. */
+.jb-home-page .jb-accolade-kicker {
+  --experience-logo-scale: 1;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) 168px;
+}
+.jb-home-page .jb-accolade-logo-slot {
+  width: 168px;
+  height: 80px;
+  justify-content: center;
+}
+.jb-home-page .jb-accolade-logo-slot .jb-accolade-logo {
+  width: calc(var(--experience-logo-width, 96px) * var(--experience-logo-scale));
+  max-width: 100%;
+  height: auto;
+  max-height: 76px;
+  object-position: center;
+}
+.jb-home-page .jb-accolade-logo[src$="/ironspark.svg"] { --experience-logo-width: 99px; }
+.jb-home-page .jb-accolade-logo[src$="/tech-birmingham.svg"] { --experience-logo-width: 48px; }
+.jb-home-page .jb-accolade-logo[src$="/samford-university.svg"] { --experience-logo-width: 88px; }
+.jb-home-page .jb-accolade-logo[src$="/samford-sga.svg"] { --experience-logo-width: 59px; }
+.jb-home-page .jb-accolade-logo[src$="/pi-kappa-phi.svg"] { --experience-logo-width: 158px; }
+.jb-home-page .jb-accolade-logo[src$="/sloss-city-music-festival.svg"] { --experience-logo-width: 65px; }
+.jb-home-page .jb-accolade-logo[src$="/wrappt-mark.svg"] { --experience-logo-width: 68.2px; }
+.jb-home-page .jb-accolade-mark { min-width: 0; height: auto; font-size: 2.5rem; line-height: 1; }
+
+.jb-home-page .jb-accolade-grid strong { font-size: clamp(1.65rem, 2.4vw, 2.3rem); line-height: 1.1; }
+.jb-home-page .jb-accolade-grid p { max-width: 46ch; font-size: 1.05rem; line-height: 1.45; }
+
+.jb-home-page .jb-footer {
+  min-height: 0;
+  padding-top: clamp(4rem, 7vw, 7rem);
+  background: var(--home-paper);
+}
+.jb-home-page .jb-footer-word { margin-left: auto; margin-right: 0; margin-top: clamp(4rem, 8vw, 8rem); }
+.jb-home-page .jb-footer-word-svg text { fill: var(--jb-red); }
+
+@media (max-width: 760px) {
+  .jb-home-page .jb-statement,
+  .jb-home-page .jb-grid-section,
+  .jb-home-page .jb-accolades,
+  .jb-home-page .jb-footer { padding-left: var(--home-gutter); padding-right: var(--home-gutter); }
+  .jb-home-page .jb-actions { padding: 3.5rem var(--home-gutter); }
+  .jb-home-page .jb-action-media,
+  .jb-home-page .jb-actions::before { top: 0; right: 0; bottom: 0; left: 0; border-radius: 0; }
+  .jb-home-page .jb-action-links a,
+  .jb-home-page .jb-action-links a:hover,
+  .jb-home-page .jb-action-links a.is-active { font-size: clamp(2.25rem, 9vw, 4rem); padding: 0; }
+  .jb-home-page .jb-accolade-grid { grid-template-columns: 1fr; }
+  .jb-home-page .jb-client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jb-home-page .jb-accolade-grid li { min-height: 0; }
+  .jb-home-page .jb-accolade-kicker {
+    --experience-logo-scale: 0.8;
+    grid-template-columns: minmax(0, 1fr) 128px;
+    column-gap: 12px;
+  }
+  .jb-home-page .jb-accolade-logo-slot { width: 128px; height: 64px; }
+  .jb-home-page .jb-accolade-mark { font-size: 2rem; }
+
+  .jb-home-page .jb-client-grid li { min-height: 140px; padding: 1.4rem; }
+}
+
+.jb-home-page .jb-footer-word-mask {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1720 320'%3E%3Ctext x='1708' y='258' text-anchor='end' fill='white' font-family='Helvetica Neue, Arial, sans-serif' font-size='306' font-weight='800' font-style='italic' letter-spacing='-29'%3EJake Barton%3C/text%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1720 320'%3E%3Ctext x='1708' y='258' text-anchor='end' fill='white' font-family='Helvetica Neue, Arial, sans-serif' font-size='306' font-weight='800' font-style='italic' letter-spacing='-29'%3EJake Barton%3C/text%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+  .jb-home-page .jb-actions::before,
+  .jb-home-page .jb-action-media,
+  .jb-home-page .jb-action-links { transform: none; will-change: auto; }
+  .jb-home-page .jb-action-media,
+  .jb-home-page .jb-action-video,
+  .jb-home-page .jb-action-links a,
+  .jb-home-page .jb-statement .jb-letter,
+  .jb-home-page .jb-category-label,
+  .jb-home-page .jb-category-active,
+  .jb-home-page .has-type-motion .jb-action-links li { transition: none; }
+  .jb-home-page .jb-action-links a:hover .jb-category-label,
+  .jb-home-page .jb-action-links a:focus-visible .jb-category-label,
+  .jb-home-page .jb-action-links a:hover .jb-category-active,
+  .jb-home-page .jb-action-links a:focus-visible .jb-category-active,
+  .jb-home-page .jb-category-active { transform: none; }
+}

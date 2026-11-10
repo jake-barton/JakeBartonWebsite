@@ -11,9 +11,16 @@ RewriteRule ^index\.php$ /home [R=301,L]
 # Internally route /home to index.php
 RewriteRule ^home$ index.php [L]
 
-# Route CMS-managed project URLs through the shared detail renderer.
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^work/([a-z0-9-]+)/?$ work/detail.php?slug=$1 [QSA,L]
+# The visual editor is retired. These rules also block stale server copies.
+RewriteRule ^(?:studio|review)(?:/|$) - [R=404,L,NC]
+RewriteRule ^includes/(?:cms\.php$|cms-components(?:/|$)|work-detail-page\.php$|project-blueprint\.json$) - [R=404,L,NC]
+RewriteRule ^assets/(?:css/studio\.css|js/studio(?:-preview-bridge)?\.js)$ - [R=404,L,NC]
+
+# Withdrawn projects stay private even if a stale server copy exists.
+RewriteRule ^work/(?:minnies-golf|wrappt|river|barton-enterprises|campusconnect|psengine|macbook-golf-simulator|october-assistant|artist-campaigns|banking-concurrency-lab|campaign-design)(?:/|$) - [R=404,L,NC]
+RewriteRule ^assets/(?:work/minnies-golf(?:/|$)|organizations/minnies\.svg$|source/minnies-score\.txt$) - [R=404,L,NC]
+
+# Project pages are ordinary work/<project-name>/index.php files.
 
 # Remove .php extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-d

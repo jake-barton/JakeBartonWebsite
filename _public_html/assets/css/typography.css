@@ -1,0 +1,51 @@
+/* Use the introductory sentence's Helvetica Neue for subheadings and labels. */
+:root {
+  --jb-heading-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --jb-label-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body.jb-home h2,
+body.jb-home h3,
+body.jb-home h4,
+body.jb-home h5,
+body.jb-home h6,
+body.jb-home .jb-accolade-grid strong {
+  font-family: var(--jb-heading-font);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  -webkit-text-stroke: 0;
+}
+
+body.jb-home .jb-statement h2 { letter-spacing: -0.055em; }
+
+body.jb-home .jb-accolade-kicker,
+body.jb-home .jb-accolade-category,
+body.jb-home .jb-section-index,
+body.jb-home .eyebrow,
+body.jb-home .jb-detail-hero-copy > p,
+body.jb-home .jb-detail-meta dt,
+body.jb-home .jb-work-card-tags li,
+body.jb-home .jb-work-filter,
+body.jb-home .jb-work-sections button,
+body.jb-home .jb-mega-contact h2,
+body.jb-home .jb-footer-contact h2 {
+  font-family: var(--jb-label-font);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+/* Contact headings and links remain separated by a clear gap. */
+body.jb-home .jb-footer-contact h2,
+body.jb-home .jb-mega-contact h2 {
+  margin: 0 0 20px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+body.jb-home .jb-footer-contact h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  letter-spacing: -0.035em;
+}

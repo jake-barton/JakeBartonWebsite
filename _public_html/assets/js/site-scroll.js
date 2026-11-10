@@ -46,7 +46,8 @@
     event.preventDefault();
 
     if (window.jbSmoothScroller) {
-      window.jbSmoothScroller.scrollTo(target, { duration: 1.05 });
+      var margin = parseFloat(window.getComputedStyle(target).scrollMarginTop) || 0;
+      window.jbSmoothScroller.scrollTo(window.scrollY + target.getBoundingClientRect().top - margin, { duration: 1.05 });
     } else {
       target.scrollIntoView({
         behavior: reduceMotion ? 'auto' : 'smooth',

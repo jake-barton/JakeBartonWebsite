@@ -1,0 +1,4 @@
+					# INFINITE RUN (only if not dashing)
+					var k := 0.02
+					current_speed = lerp(current_speed, max_run_speed, 1.0 - exp(-k * delta))
+					velocity.x = current_speed

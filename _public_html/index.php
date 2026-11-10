@@ -66,13 +66,15 @@ $menu_items = [
     <meta property="og:image" content="assets/brand/og-image.jpg">
     <title><?php echo h($content['title']); ?></title>
     <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg?v=20260714">
-    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/base.css?v=20261109-helvetica">
     <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/components.css?v=20261104-logo-grid">
+    <link rel="stylesheet" href="assets/css/components.css?v=20261109-kart-sprites">
     <link rel="stylesheet" href="assets/css/work.css?v=20260714-global-page-loader">
 <link rel="stylesheet" href="/assets/css/site-reel.css?v=20261109-player">
+    <link rel="stylesheet" href="assets/css/home.css?v=20261109-reel-frame">
+    <link rel="stylesheet" href="/assets/css/typography.css?v=20261109-footer-headings">
 </head>
-<body class="jb-home">
+<body class="jb-home jb-home-page">
     <div class="jb-work-loader" id="pageLoader" aria-label="Loading page" aria-live="polite">
         <div class="jb-work-loader-curtains" aria-hidden="true">
             <span></span>
@@ -145,9 +147,9 @@ $menu_items = [
                 </div>
                 <div>
                     <h2>Social</h2>
-                    <a href="https://instagram.com/<?php echo h($contact['instagram']); ?>" target="_blank" rel="noopener">Instagram</a>
                     <a href="https://www.linkedin.com/in/<?php echo h($contact['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
                     <a href="https://github.com/<?php echo h($contact['github']); ?>" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://instagram.com/<?php echo h($contact['instagram']); ?>" target="_blank" rel="noopener">Instagram</a>
                 </div>
             </div>
         </section>
@@ -172,10 +174,13 @@ $menu_items = [
             <h2>
                 <?php echo split_letters($content['home_statement']); ?>
             </h2>
-            <video class="jb-reel-player" data-reel-player controls playsinline preload="metadata" poster="/assets/reel/portfolio-reel-poster.webp?v=20261104-r3" aria-label="Jake Barton demo reel">
-                <source src="/assets/reel/portfolio-reel.mp4?v=20261104-r3" type="video/mp4">
-                <a href="/assets/reel/portfolio-reel.mp4">Watch the demo reel</a>
-            </video>
+            <h3 class="jb-reel-title" id="demo-reel-title">Demo Reel</h3>
+            <div class="jb-reel-frame">
+                <video class="jb-reel-player" data-reel-player controls playsinline preload="metadata" poster="/assets/reel/portfolio-reel-poster.webp?v=20261109-public-reel" aria-labelledby="demo-reel-title">
+                    <source src="/assets/reel/portfolio-reel.mp4?v=20261109-public-reel" type="video/mp4">
+                    <a href="/assets/reel/portfolio-reel.mp4">Watch the demo reel</a>
+                </video>
+            </div>
             <a class="jb-resume-cta" href="/assets/documents/jake-barton-resume.pdf" target="_blank" rel="noopener">
                 <span>Resume</span>
             </a>
@@ -183,26 +188,27 @@ $menu_items = [
 
         <section class="jb-actions jb-reveal" id="work" aria-label="Work categories">
             <div class="jb-action-media" aria-hidden="true">
-                <?php jb_site_reel('jb-action-video is-active', 'action'); ?>
                 <?php foreach ($content['home_categories'] as $i => $category): ?>
                     <video
                         class="jb-action-video"
-                        src="<?php echo h($category['video']); ?>?v=20260813-video-r1"
+                        data-src="<?php echo h($category['video']); ?>?v=20260813-video-r1"
                         poster="<?php echo h($category['poster']); ?>"
                         muted
-                        autoplay
                         loop
                         playsinline
-                        preload="<?php echo $i === 0 ? 'auto' : 'metadata'; ?>"
+                        preload="none"
+                        disablepictureinpicture
+                        disableremoteplayback
+                        tabindex="-1"
                         data-video-index="<?php echo h((string) $i); ?>">
                     </video>
                 <?php endforeach; ?>
             </div>
             <ul class="jb-action-links">
                 <?php foreach ($content['home_categories'] as $i => $category): ?>
-                    <li>
-                        <a href="<?php echo h($category['url']); ?>" data-video-index="<?php echo h((string) $i); ?>">
-                            <span><?php echo h($category['label']); ?></span>
+                    <li style="--category-order: <?php echo (int) $i; ?>;">
+                        <a href="<?php echo h($category['url']); ?>" aria-label="<?php echo h($category['label']); ?>" data-video-index="<?php echo h((string) $i); ?>">
+                            <span class="jb-category-window" aria-hidden="true"><span class="jb-category-label"><?php echo h($category['label']); ?></span><span class="jb-category-active"><?php echo h($category['label']); ?></span></span>
                         </a>
                     </li>
                 <?php endforeach; ?>
@@ -210,17 +216,11 @@ $menu_items = [
         </section>
 
         <section class="jb-grid-section jb-reveal" id="clients" aria-label="Companies Jake Barton has worked with">
-            <div class="jb-section-heading">
-            </div>
             <h2>Companies and organizations</h2>
             <ul class="jb-client-grid" aria-label="Client and organization logos">
                 <?php foreach ($content['home_clients'] as $client): ?>
                     <li aria-label="<?php echo h($client['name']); ?>">
-                        <?php if (!empty($client['image'])): ?>
-                            <img src="<?php echo h($client['image']); ?>" alt="<?php echo h($client['name']); ?>">
-                        <?php else: ?>
-                            <span class="jb-framewrk-wordmark" aria-hidden="true"><?php echo h($client['wordmark']); ?></span>
-                        <?php endif; ?>
+                        <img src="<?php echo h($client['image']); ?>" alt="<?php echo h($client['name']); ?>">
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -237,7 +237,10 @@ $menu_items = [
                                 <?php if (!empty($item['logo'])): ?>
                                     <img class="jb-accolade-logo" src="<?php echo h($item['logo']); ?>" alt="<?php echo h($item['logo_alt']); ?>">
                                 <?php else: ?>
-                                    <span class="jb-accolade-mark" role="img" aria-label="<?php echo h($item['logo_alt']); ?>"><?php echo h($item['mark']); ?></span>
+                                    <button type="button" class="jb-accolade-mark jb-code-egg" data-quiet-egg="code" aria-label="Play JB code animation">
+                                        <span class="jb-code-default" aria-hidden="true"><?php echo h($item['mark']); ?></span>
+                                        <span class="jb-code-reveal" aria-hidden="true">&lt;JB/&gt;</span>
+                                    </button>
                                 <?php endif; ?>
                             </span>
                         </span>
@@ -257,15 +260,15 @@ $menu_items = [
             </div>
             <div>
                 <h2>Social</h2>
-                <a href="https://instagram.com/<?php echo h($contact['instagram']); ?>" target="_blank" rel="noopener">Instagram</a>
                 <a href="https://www.linkedin.com/in/<?php echo h($contact['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://github.com/<?php echo h($contact['github']); ?>" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://instagram.com/<?php echo h($contact['instagram']); ?>" target="_blank" rel="noopener">Instagram</a>
             </div>
-            <img src="assets/brand/jb-logo.png" alt="" class="jb-footer-mark">
+            <?php include __DIR__ . '/includes/footer-logo.php'; ?>
         </div>
         <a href="#home" class="jb-footer-word" aria-label="Back to top">
             <svg class="jb-footer-word-svg" viewBox="0 0 1720 320" aria-hidden="true" focusable="false">
-                <text x="58" y="258">Jake Barton</text>
+                <text x="1708" y="258" text-anchor="end">Jake Barton</text>
             </svg>
             <span class="jb-footer-word-mask" aria-hidden="true">
                 <?php jb_site_reel('', 'footer'); ?>
@@ -275,8 +278,8 @@ $menu_items = [
             <span>&copy; <?php echo date('Y'); ?> Jake Barton. Website inspired by piranhabar.ie</span>
             <nav aria-label="Footer links">
                 <a href="#work">Portfolio</a>
-                <a href="https://github.com/<?php echo h($contact['github']); ?>" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://www.linkedin.com/in/<?php echo h($contact['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/<?php echo h($contact['github']); ?>" target="_blank" rel="noopener">GitHub</a>
                 <a href="/assets/documents/jake-barton-resume.pdf" download>Resume</a>
             </nav>
         </div>
@@ -284,8 +287,9 @@ $menu_items = [
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
     <script src="assets/js/site-scroll.js?v=20260813-video-r1" defer></script>
-    <script src="assets/js/piranha-home.js?v=20261104-reel" defer></script>
+    <script src="assets/js/piranha-home.js?v=20261109-preview-fade" defer></script>
     <script src="assets/js/page-loader.js?v=20261104-loader-fix" defer></script>
 <script src="/assets/js/site-reel.js?v=20261109-player" defer></script>
+    <script src="/assets/js/easter-eggs.js?v=20261109-kart-sprites" defer></script>
 </body>
 </html>

@@ -1,0 +1,550 @@
+{
+  "asset": "GS_Texting",
+  "name": "EventGraph",
+  "nodes": [
+    {
+      "guid": "C2D9E6F10ADD41A3A3E05FE0D67C39E9",
+      "class_name": "K2Node_Event",
+      "title": "SendMessage",
+      "x": -352,
+      "y": 704,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_Event_2",
+      "pins": [
+        {
+          "name": "OutputDelegate",
+          "direction": 1,
+          "type": "delegate",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "D9BB6F294B5E4276BF8FA23148BDABC0:execute"
+          ]
+        },
+        {
+          "name": "Sender",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_FirstPersonCharacter_C",
+          "default_object": "",
+          "links": [
+            "4E0622208E55449882204366C6DB8349:Sender_8_1FB3C9ED4272424610137FBDEA293CA1"
+          ]
+        },
+        {
+          "name": "Message",
+          "direction": 1,
+          "type": "text",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "4E0622208E55449882204366C6DB8349:Message_5_056D6F3845BBE5194B09C8A6B7D71E7E"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_Event"
+    },
+    {
+      "guid": "A6F47300CB444B309D3A711B331039B1",
+      "class_name": "K2Node_VariableGet",
+      "title": "Get MessageLog",
+      "x": 16,
+      "y": 960,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_VariableGet_0",
+      "pins": [
+        {
+          "name": "MessageLog",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "E2D7C85B67B0436AAD8CA2C1BF201CE6:TargetArray"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "GS_Texting_C",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet"
+    },
+    {
+      "guid": "4E0622208E55449882204366C6DB8349",
+      "class_name": "K2Node_MakeStruct",
+      "title": "Make MessageStruct",
+      "x": -112,
+      "y": 800,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_MakeStruct_0",
+      "pins": [
+        {
+          "name": "MessageStruct",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "D9BB6F294B5E4276BF8FA23148BDABC0:NewItem"
+          ]
+        },
+        {
+          "name": "Sender_8_1FB3C9ED4272424610137FBDEA293CA1",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "BP_FirstPersonCharacter_C",
+          "default_object": "",
+          "links": [
+            "C2D9E6F10ADD41A3A3E05FE0D67C39E9:Sender"
+          ]
+        },
+        {
+          "name": "Message_5_056D6F3845BBE5194B09C8A6B7D71E7E",
+          "direction": 0,
+          "type": "text",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C2D9E6F10ADD41A3A3E05FE0D67C39E9:Message"
+          ]
+        },
+        {
+          "name": "TIme_7_EF839EA2404D21CEEC4099B0CAB48B8D",
+          "direction": 0,
+          "type": "text",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_MakeStruct"
+    },
+    {
+      "guid": "E2D7C85B67B0436AAD8CA2C1BF201CE6",
+      "class_name": "K2Node_CallArrayFunction",
+      "title": "Array_Add",
+      "x": 16,
+      "y": 1007,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallArrayFunction_0",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "340612D1352645309AB6017B8F31A233:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "BF5B04A8E83A469EBF195EA1C95AF0AD:execute"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": true,
+          "object": "KismetArrayLibrary",
+          "default_object": "Default__KismetArrayLibrary",
+          "links": []
+        },
+        {
+          "name": "TargetArray",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "A6F47300CB444B309D3A711B331039B1:MessageLog"
+          ]
+        },
+        {
+          "name": "NewItem",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "340612D1352645309AB6017B8F31A233:NewItem"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "int",
+          "subtype": "None",
+          "default": "0",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallArrayFunction"
+    },
+    {
+      "guid": "048236A64BE94BE4BDFD95A49A1BBD91",
+      "class_name": "K2Node_CallDelegate",
+      "title": "NewMessageReceived",
+      "x": -32,
+      "y": 1136,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallDelegate_0",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "00C75E95CC7447A6A43E3F51A4678A49:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "GS_Texting_C",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Message",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "00C75E95CC7447A6A43E3F51A4678A49:Message"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallDelegate"
+    },
+    {
+      "guid": "340612D1352645309AB6017B8F31A233",
+      "class_name": "K2Node_CustomEvent",
+      "title": "RPCS_IncomingMessage",
+      "x": -352,
+      "y": 958,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CustomEvent_0",
+      "pins": [
+        {
+          "name": "OutputDelegate",
+          "direction": 1,
+          "type": "delegate",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "E2D7C85B67B0436AAD8CA2C1BF201CE6:execute"
+          ]
+        },
+        {
+          "name": "NewItem",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "BF5B04A8E83A469EBF195EA1C95AF0AD:Message",
+            "E2D7C85B67B0436AAD8CA2C1BF201CE6:NewItem"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CustomEvent"
+    },
+    {
+      "guid": "D9BB6F294B5E4276BF8FA23148BDABC0",
+      "class_name": "K2Node_CallFunction",
+      "title": "RPCS_IncomingMessage",
+      "x": 192,
+      "y": 688,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallFunction_1",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "C2D9E6F10ADD41A3A3E05FE0D67C39E9:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "NewItem",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "4E0622208E55449882204366C6DB8349:MessageStruct"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction"
+    },
+    {
+      "guid": "00C75E95CC7447A6A43E3F51A4678A49",
+      "class_name": "K2Node_CustomEvent",
+      "title": "RPC_BroadcastMessages",
+      "x": -352,
+      "y": 1136,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CustomEvent_1",
+      "pins": [
+        {
+          "name": "OutputDelegate",
+          "direction": 1,
+          "type": "delegate",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "048236A64BE94BE4BDFD95A49A1BBD91:execute"
+          ]
+        },
+        {
+          "name": "Message",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "048236A64BE94BE4BDFD95A49A1BBD91:Message"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CustomEvent"
+    },
+    {
+      "guid": "BF5B04A8E83A469EBF195EA1C95AF0AD",
+      "class_name": "K2Node_CallFunction",
+      "title": "RPC_BroadcastMessages",
+      "x": 192,
+      "y": 957,
+      "width": 0,
+      "height": 0,
+      "comment": "",
+      "object_name": "K2Node_CallFunction_5",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": [
+            "E2D7C85B67B0436AAD8CA2C1BF201CE6:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "default": "",
+          "hidden": false,
+          "object": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Message",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "default": "",
+          "hidden": false,
+          "object": "MessageStruct",
+          "default_object": "",
+          "links": [
+            "340612D1352645309AB6017B8F31A233:NewItem"
+          ]
+        }
+      ],
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction"
+    }
+  ],
+  "excerpt": true
+}

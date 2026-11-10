@@ -1,0 +1,273 @@
+{
+  "asset": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter",
+  "name": "RequestMobilityAction",
+  "nodes": [
+    {
+      "guid": "156A87367646CDF7DA10B8AD3AFDF50D",
+      "class": "/Script/BlueprintGraph.K2Node_FunctionEntry",
+      "title": "RequestMobilityAction",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "2B74400E6241255453822AB541068458:execute"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "3FDBE1C2A449A323FFD728B4554294F9",
+      "class": "/Script/UnrealEd.EdGraphNode_Comment",
+      "title": "Shift chooses a ground dash/dig or an airborne dive",
+      "x": -60,
+      "y": -100,
+      "width": 3500,
+      "height": 2000,
+      "comment_bubble": true,
+      "comment": "Shift chooses a ground dash/dig or an airborne dive",
+      "identity": {},
+      "pins": []
+    },
+    {
+      "guid": "11D4123DF04AC0403022129223364B97",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get CharacterMovement",
+      "x": 0,
+      "y": 250,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "CharacterMovement",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.CharacterMovementComponent",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "6E47B8509C45DE8B071ED3AEFFC5CEB2:self"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.Character",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "6E47B8509C45DE8B071ED3AEFFC5CEB2",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Is Falling\nTarget is Nav Movement Component",
+      "x": 320,
+      "y": 250,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.NavMovementComponent",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "11D4123DF04AC0403022129223364B97:CharacterMovement"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "2B74400E6241255453822AB541068458:Condition"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "2B74400E6241255453822AB541068458",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 640,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "156A87367646CDF7DA10B8AD3AFDF50D:then"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": [
+            "6E47B8509C45DE8B071ED3AEFFC5CEB2:ReturnValue"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "64C6187200437B1F1A36DEA5136B3A18:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "6AF0B885D64E4A22CF0E87BC6566B58B:execute"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "64C6187200437B1F1A36DEA5136B3A18",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Request Dive\nTarget is BP First Person Character",
+      "x": 960,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "2B74400E6241255453822AB541068458:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "6AF0B885D64E4A22CF0E87BC6566B58B",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Request Dash\nTarget is BP First Person Character",
+      "x": 960,
+      "y": 650,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "2B74400E6241255453822AB541068458:else"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

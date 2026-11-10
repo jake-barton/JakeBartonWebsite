@@ -1,0 +1,1052 @@
+{
+  "asset": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter",
+  "name": "UpdateBallViewRotation",
+  "nodes": [
+    {
+      "guid": "CA8551CD7C45AD0350239D9380B3EC52",
+      "class": "/Script/BlueprintGraph.K2Node_FunctionEntry",
+      "title": "UpdateBallViewRotation",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "19EC6B7C57483AA00E9A3F8F6F1CF1E9:execute"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "F56D765E46446818642088BC2ECA1D68",
+      "class": "/Script/BlueprintGraph.K2Node_FunctionResult",
+      "title": "Return Node",
+      "x": 500,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "527591F96A4C7F5CC100D2A63B5AF36E",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Get Controller\nTarget is Pawn",
+      "x": 320,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.Pawn",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.Controller",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "19EC6B7C57483AA00E9A3F8F6F1CF1E9:Object"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "19EC6B7C57483AA00E9A3F8F6F1CF1E9",
+      "class": "/Script/BlueprintGraph.K2Node_DynamicCast",
+      "title": "Cast To BP_VBPlayerController",
+      "x": 320,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "CA8551CD7C45AD0350239D9380B3EC52:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "CDA57E947645319946B49491AC00D073:execute"
+          ]
+        },
+        {
+          "name": "CastFailed",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Object",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Object",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "527591F96A4C7F5CC100D2A63B5AF36E:ReturnValue"
+          ]
+        },
+        {
+          "name": "AsBP VBPlayer Controller",
+          "direction": 1,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/Volleyball/Blueprints/BP_VBPlayerController.BP_VBPlayerController_C",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "E47D6A160A4D60D2A18B648B8E8688A2:self"
+          ]
+        },
+        {
+          "name": "bSuccess",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "E47D6A160A4D60D2A18B648B8E8688A2",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Is Local Controller\nTarget is Controller",
+      "x": 440,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.Controller",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "19EC6B7C57483AA00E9A3F8F6F1CF1E9:AsBP VBPlayer Controller"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "CDA57E947645319946B49491AC00D073:Condition"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "CDA57E947645319946B49491AC00D073",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 680,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "19EC6B7C57483AA00E9A3F8F6F1CF1E9:then"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": [
+            "E47D6A160A4D60D2A18B648B8E8688A2:ReturnValue"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "8AAAF99A514EA26FF2DD18B19A836033:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "747A3EE27041DED7961C8A9F37759614",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get NetworkSimpleJump",
+      "x": 800,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "NetworkSimpleJump",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "8AAAF99A514EA26FF2DD18B19A836033:Condition"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "8AAAF99A514EA26FF2DD18B19A836033",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 1040,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "CDA57E947645319946B49491AC00D073:then"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": [
+            "747A3EE27041DED7961C8A9F37759614:NetworkSimpleJump"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "639D2E84F74A9CB3867BE48F1FD93CB4:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "C26FBCACBF4D0D37D8E46A8C6BEF665C",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get BallViewReady",
+      "x": 1160,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "BallViewReady",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "946D192FA24700FE440EEDACDDBD7936:A"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "946D192FA24700FE440EEDACDDBD7936",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "NOT Boolean",
+      "x": 1420,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.KismetMathLibrary",
+          "default": "",
+          "default_object": "/Script/Engine.Default__KismetMathLibrary",
+          "links": []
+        },
+        {
+          "name": "A",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "C26FBCACBF4D0D37D8E46A8C6BEF665C:BallViewReady"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": [
+            "639D2E84F74A9CB3867BE48F1FD93CB4:Condition"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "639D2E84F74A9CB3867BE48F1FD93CB4",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "title": "Branch",
+      "x": 1400,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "8AAAF99A514EA26FF2DD18B19A836033:then"
+          ]
+        },
+        {
+          "name": "Condition",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": [
+            "946D192FA24700FE440EEDACDDBD7936:ReturnValue"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "8BC0FFC9A445FDDF94D4798ACAE20DC1:execute"
+          ]
+        },
+        {
+          "name": "else",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "89F6487B484573821BCAAF97C72C5C8C:execute"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "598A29B9164A97840918CCBC89607AA3",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Get Control Rotation\nTarget is Pawn",
+      "x": 1520,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.Pawn",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "8BC0FFC9A445FDDF94D4798ACAE20DC1",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "title": "Set BallViewRotation",
+      "x": 1760,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "639D2E84F74A9CB3867BE48F1FD93CB4:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "ADDBCBF2FF40E93D17512FA265F759AD:execute"
+          ]
+        },
+        {
+          "name": "BallViewRotation",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "ADDBCBF2FF40E93D17512FA265F759AD",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "title": "Set BallViewReady",
+      "x": 2120,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "8BC0FFC9A445FDDF94D4798ACAE20DC1:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "89F6487B484573821BCAAF97C72C5C8C:execute"
+          ]
+        },
+        {
+          "name": "BallViewReady",
+          "direction": 0,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "true",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "bool",
+          "subtype": "None",
+          "object": "",
+          "default": "false",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "89F6487B484573821BCAAF97C72C5C8C",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Choose Ball View Target\nTarget is BP First Person Character",
+      "x": 2480,
+      "y": 1200,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "639D2E84F74A9CB3867BE48F1FD93CB4:else",
+            "ADDBCBF2FF40E93D17512FA265F759AD:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "8824B659404AC4049B22799812B179C8:execute"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "self",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "82F1D4650A45F8C77AF7D389A9AB2B07",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get BallViewRotation",
+      "x": 2600,
+      "y": 1420,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "BallViewRotation",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": [
+            "A8A84E9AF2493626BD2A7D8FFF61917B:Current"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "9C3344ED7A4E764444000FA6C45191A5",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get DesiredBallView",
+      "x": 2860,
+      "y": 1420,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "DesiredBallView",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": [
+            "A8A84E9AF2493626BD2A7D8FFF61917B:Target"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "8C101A1FF240A17388E9B3815C6057AE",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "Get World Delta Seconds",
+      "x": 3120,
+      "y": 1420,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.GameplayStatics",
+          "default": "",
+          "default_object": "/Script/Engine.Default__GameplayStatics",
+          "links": []
+        },
+        {
+          "name": "WorldContextObject",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Object",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "A8A84E9AF2493626BD2A7D8FFF61917B:DeltaTime"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "1C11E3F99047A7DB99CBEC941F0E2223",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "title": "Get VolleyViewResponse",
+      "x": 2600,
+      "y": 1580,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "VolleyViewResponse",
+          "direction": 1,
+          "type": "real",
+          "subtype": "double",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "A8A84E9AF2493626BD2A7D8FFF61917B:InterpSpeed"
+          ]
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "A8A84E9AF2493626BD2A7D8FFF61917B",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "title": "RInterp To",
+      "x": 2860,
+      "y": 1580,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Script/Engine.KismetMathLibrary",
+          "default": "",
+          "default_object": "/Script/Engine.Default__KismetMathLibrary",
+          "links": []
+        },
+        {
+          "name": "Current",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": [
+            "82F1D4650A45F8C77AF7D389A9AB2B07:BallViewRotation"
+          ]
+        },
+        {
+          "name": "Target",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": [
+            "9C3344ED7A4E764444000FA6C45191A5:DesiredBallView"
+          ]
+        },
+        {
+          "name": "DeltaTime",
+          "direction": 0,
+          "type": "real",
+          "subtype": "float",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "8C101A1FF240A17388E9B3815C6057AE:ReturnValue"
+          ]
+        },
+        {
+          "name": "InterpSpeed",
+          "direction": 0,
+          "type": "real",
+          "subtype": "float",
+          "object": "",
+          "default": "0.0",
+          "default_object": "",
+          "links": [
+            "1C11E3F99047A7DB99CBEC941F0E2223:VolleyViewResponse"
+          ]
+        },
+        {
+          "name": "ReturnValue",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": [
+            "8824B659404AC4049B22799812B179C8:BallViewRotation"
+          ]
+        }
+      ]
+    },
+    {
+      "guid": "8824B659404AC4049B22799812B179C8",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "title": "Set BallViewRotation",
+      "x": 2840,
+      "y": 1200,
+      "width": 0,
+      "height": 0,
+      "comment_bubble": false,
+      "comment": "",
+      "identity": {},
+      "pins": [
+        {
+          "name": "execute",
+          "direction": 0,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": [
+            "89F6487B484573821BCAAF97C72C5C8C:then"
+          ]
+        },
+        {
+          "name": "then",
+          "direction": 1,
+          "type": "exec",
+          "subtype": "None",
+          "object": "",
+          "default": "",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "BallViewRotation",
+          "direction": 0,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": [
+            "A8A84E9AF2493626BD2A7D8FFF61917B:ReturnValue"
+          ]
+        },
+        {
+          "name": "Output_Get",
+          "direction": 1,
+          "type": "struct",
+          "subtype": "None",
+          "object": "/Script/CoreUObject.Rotator",
+          "default": "0, 0, 0",
+          "default_object": "",
+          "links": []
+        },
+        {
+          "name": "self",
+          "direction": 0,
+          "type": "object",
+          "subtype": "None",
+          "object": "/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCharacter_C",
+          "default": "",
+          "default_object": "",
+          "links": []
+        }
+      ]
+    },
+    {
+      "guid": "99F447102F4BD7B69779AA8998D2A60C",
+      "class": "/Script/UnrealEd.EdGraphNode_Comment",
+      "title": "Owned first-person view smoothly follows the ball without rotating gameplay aim",
+      "x": 240,
+      "y": -100,
+      "width": 3550,
+      "height": 1960,
+      "comment_bubble": true,
+      "comment": "Owned first-person view smoothly follows the ball without rotating gameplay aim",
+      "identity": {},
+      "pins": []
+    }
+  ]
+}

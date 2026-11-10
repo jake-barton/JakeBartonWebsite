@@ -43,7 +43,6 @@ composer.lock
 
 # Generated deployment mirror
 hostinger_upload/
-hostinger_content/
 
 # Browser game build (generated from projects/ by scripts/build-games.py)
 _public_html/games/mario-kart/
@@ -64,9 +63,3 @@ __pycache__/
 *.temp
 *.zip
 _public_html/portfolio/web-programming/TechBirminghamSponsorAI/
-# Portfolio Studio credentials and runtime drafts
-storage/cms/auth.json
-storage/cms/pages/*.tmp
-
-# Private deployment artifacts
-.deploy-private/
