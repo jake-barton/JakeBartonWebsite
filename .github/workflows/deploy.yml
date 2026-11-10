@@ -53,7 +53,6 @@ jobs:
             mirror --reverse --verbose ./_public_html/assets/uploads/ ./assets/uploads/;
             mirror --reverse --verbose ./_public_html/assets/work/ ./assets/work/;
             mirror --reverse --verbose ./_public_html/assets/reel/ ./assets/reel/;
-            mkdir -p ./games/mario-kart;
             mirror --reverse --verbose ./_public_html/games/mario-kart/ ./games/mario-kart/;
             rm -rf ./work/minnies-golf ./work/wrappt ./work/river ./work/barton-enterprises ./work/campusconnect ./work/psengine ./work/macbook-golf-simulator ./work/october-assistant ./work/artist-campaigns ./work/banking-concurrency-lab ./work/campaign-design;
             rm -rf ./assets/work/minnies-golf;
