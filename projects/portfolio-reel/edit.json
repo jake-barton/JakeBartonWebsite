@@ -58,26 +58,6 @@
       ]
     },
     {
-      "id": "05-minnies",
-      "name": "Minnie's Golf \u2014 three courses",
-      "duration": 1.6,
-      "layout": "triptych",
-      "sources": [
-        {
-          "path": "work/minnies-golf/mobile-gameplay.mp4",
-          "start": 7
-        },
-        {
-          "path": "work/minnies-golf/course-gameplay.mp4",
-          "start": 31
-        },
-        {
-          "path": "work/minnies-golf/mobile-gameplay.mp4",
-          "start": 43
-        }
-      ]
-    },
-    {
       "id": "06-bds",
       "name": "Barton Design Solutions \u2014 animated website",
       "duration": 1.4,

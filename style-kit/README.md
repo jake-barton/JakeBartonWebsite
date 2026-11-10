@@ -1,6 +1,8 @@
-# 🎨 Jake Barton Website - Style Kit
+# Historical style-kit demo
 
-Drop these files into any webpage to get the same look, feel, and effects as the new portfolio.
+This directory preserves an older cyan/pink, glass-card demonstration and its effects. It is not loaded by the current portfolio. The examples below describe this demo only; do not use them to establish the current site’s style.
+
+For portfolio changes, follow [PORTFOLIO_STYLE_GUIDE.md](../PORTFOLIO_STYLE_GUIDE.md), [EDITING.md](../EDITING.md), and `_public_html/assets/css/`. The live site uses warm neutral canvases, green navigation/accents, Helvetica Neue, project-specific media/footer colors, and restrained local interactions through `.jb-*` components and shared PHP includes.
 
 ## 📁 File Structure
 
@@ -25,9 +27,6 @@ Add this to any `.html` / `.php` page:
 
 ```html
 <head>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  
   <!-- Styles (order matters) -->
   <link rel="stylesheet" href="style-kit/styles/base.css">
   <link rel="stylesheet" href="style-kit/styles/animations.css">
@@ -96,3 +95,7 @@ Automatically activates on page load. The cyan trail follows the mouse.
   <div>Item 3 - animates third</div>
 </div>
 ```
+
+## Typography
+
+Use Helvetica Neue, Helvetica, Arial, sans-serif. Subheadings and small labels use the regular weight (400), matching the homepage introduction. The current portfolio’s shared rules live in `_public_html/assets/css/typography.css`.

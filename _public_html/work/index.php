@@ -174,7 +174,7 @@ $work_filters = array_values(array_filter($work_filters, static fn(array $filter
                 <a href="#work">Portfolio</a>
                 <a href="https://www.linkedin.com/in/<?php echo h($content['linkedin']); ?>" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://github.com/<?php echo h($content['github']); ?>" target="_blank" rel="noopener">GitHub</a>
-                <a href="../assets/documents/jake-barton-resume.pdf" download>Resume</a>
+                <a href="../assets/documents/jake-barton-resume.pdf?v=d136b7da0fcd" download>Resume</a>
             </nav>
         </div>
     </footer>

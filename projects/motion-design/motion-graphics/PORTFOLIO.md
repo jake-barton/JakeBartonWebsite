@@ -8,4 +8,4 @@
 
 The collection uses the existing approved video assets. Bayside appears first in a landscape frame. Still Sleepless and Tennis sit side by side on desktop and stack on mobile, preserving their portrait formats. The individual videos loop independently. No small titles, labels, or captions appear above or below the videos. Names and context stay in the project introduction.
 
-The three former project pages are hidden from the Work grid and redirect to this page. Their original content is retained for editing. Explicit visibility updates are exported so deployment also removes the old cards.
+The three former project URLs redirect to this page and have no separate Work cards. Edit the collection in `_public_html/work/motion-graphics/index.php` and its card in `_public_html/includes/projects.php`. Original media/source notes are retained; there is no visibility-export step.

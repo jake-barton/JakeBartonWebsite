@@ -16,9 +16,6 @@ const PortfolioReel = () => {
     <Series.Sequence name="Volleyball — first-person play" durationInFrames={42} premountFor={fps}>
       <Video src={staticFile('shots/04-volleyball.mp4')} muted objectFit="cover" premountFor={fps} style={{width: '100%', height: '100%'}} />
     </Series.Sequence>
-    <Series.Sequence name="Minnie's Golf — three courses" durationInFrames={48} premountFor={fps}>
-      <Video src={staticFile('shots/05-minnies.mp4')} muted objectFit="cover" premountFor={fps} style={{width: '100%', height: '100%'}} />
-    </Series.Sequence>
     <Series.Sequence name="Barton Design Solutions — animated website" durationInFrames={42} premountFor={fps}>
       <Video src={staticFile('shots/06-bds.mp4')} muted objectFit="cover" premountFor={fps} style={{width: '100%', height: '100%'}} />
     </Series.Sequence>
@@ -43,4 +40,4 @@ const PortfolioReel = () => {
   </Series></AbsoluteFill>;
 };
 
-export const MyComposition = () => <Composition id="PortfolioReel" component={PortfolioReel} durationInFrames={510} fps={30} width={1920} height={1080} />;
+export const MyComposition = () => <Composition id="PortfolioReel" component={PortfolioReel} durationInFrames={462} fps={30} width={1920} height={1080} />;

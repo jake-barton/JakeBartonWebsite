@@ -9,7 +9,7 @@
  *           data-color="#00D9FF"
  *           data-size="72"
  *           data-weight="400"
- *           data-family="Bebas Neue, sans-serif"
+ *           data-family="Helvetica Neue, Helvetica, Arial, sans-serif"
  *           data-intensity="0.18"
  *           data-hover-intensity="0.5"
  *           data-fuzz-range="30"
@@ -31,7 +31,7 @@ window.FuzzyText = (function () {
     text: 'HELLO',
     fontSize: 72,
     fontWeight: '400',
-    fontFamily: 'Bebas Neue, Oswald, sans-serif',
+    fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
     color: '#ffffff',
     gradient: null,           // array of hex strings for a gradient, e.g. ['#00D9FF','#FF006B']
     baseIntensity: 0.18,

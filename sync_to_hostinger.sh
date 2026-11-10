@@ -6,7 +6,6 @@
 set -e
 cd "$(dirname "$0")"
 python3 scripts/build-games.py
-python3 scripts/export-portfolio-content.py
 
 echo "🔄 Syncing _public_html to hostinger_upload..."
 
@@ -82,10 +81,15 @@ cat > "$DEPLOY_DIR/test.php" << 'EOF'
         <?php
         $files_to_check = [
             'index.php' => 'Main homepage',
-            'assets/css/styles.css' => 'Stylesheet (black background)',
-            'assets/js/gallery.js' => 'Gallery JavaScript',
-            'portfolio/index.php' => 'Portfolio page',
-            'portfolio/tshirt-designs/index.php' => 'T-shirt gallery'
+            'work/index.php' => 'Work index',
+            'includes/projects.php' => 'Public project registry',
+            'includes/project-header.php' => 'Shared project header',
+            'includes/rail-resume.php' => 'Shared resume icon',
+            'assets/css/home.css' => 'Homepage stylesheet',
+            'assets/css/typography.css' => 'Shared typography',
+            'assets/js/project-media.js' => 'Project media playback',
+            'assets/documents/jake-barton-resume.pdf' => 'Resume PDF',
+            'games/mario-kart/index.html' => 'Built browser game'
         ];
         
         foreach ($files_to_check as $file => $description) {
@@ -100,8 +104,7 @@ cat > "$DEPLOY_DIR/test.php" << 'EOF'
 
     <div class="test-box">
         <h2>Test 3: CSS Loading</h2>
-        <p>Is this page background black? <span class="success">If YES, CSS basics work!</span></p>
-        <p>Check the main site to verify full CSS loads.</p>
+        <p>This diagnostic uses inline styles. Open the homepage and Work index to verify the shared stylesheets and responsive layout.</p>
     </div>
 
     <div class="test-box">
@@ -109,8 +112,8 @@ cat > "$DEPLOY_DIR/test.php" << 'EOF'
         <p>Try these links:</p>
         <ul>
             <li><a href="index.php" style="color: #00ff00;">Main Homepage</a></li>
-            <li><a href="portfolio/" style="color: #00ff00;">Portfolio</a></li>
-            <li><a href="portfolio/tshirt-designs/" style="color: #00ff00;">T-Shirt Designs</a></li>
+            <li><a href="work/" style="color: #00ff00;">Work</a></li>
+            <li><a href="work/barton-design-solutions/" style="color: #00ff00;">Barton Design Solutions</a></li>
         </ul>
         <p>If these links work, your file structure is correct! ✅</p>
     </div>
@@ -146,7 +149,7 @@ cat > "$DEPLOY_DIR/test.php" << 'EOF'
             <ul>
                 <li>index.php to the ROOT of public_html</li>
                 <li>assets/ folder to the ROOT of public_html</li>
-                <li>portfolio/ folder to the ROOT of public_html</li>
+                <li>work/ and includes/ folders to the ROOT of public_html</li>
             </ul>
             <p>Do NOT create an extra folder inside public_html!</p>
         <?php endif; ?>
@@ -166,5 +169,5 @@ echo ""
 echo "Files synced:"
 echo "  ✓ index.php"
 echo "  ✓ assets/"
-echo "  ✓ portfolio/"
+echo "  ✓ work/ and includes/"
 echo "  ✓ test.php"

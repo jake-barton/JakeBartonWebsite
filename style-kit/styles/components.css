@@ -382,7 +382,7 @@
 
 .hero-eyebrow {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--cyan);
@@ -565,7 +565,7 @@
   font-size: 0.75rem;
   color: var(--cyan);
   letter-spacing: 0.1em;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
@@ -573,7 +573,7 @@
 .timeline-title {
   font-family: var(--font-body);
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text);
   margin-bottom: 0.25rem;
 }
@@ -592,7 +592,7 @@
 .form-label {
   display: block;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);

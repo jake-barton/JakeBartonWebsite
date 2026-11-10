@@ -1,64 +1,33 @@
-# Jake Barton Website
+# Jake Barton portfolio
 
-Personal portfolio website showcasing game design, 3D art, and leadership experience.
+The live site is [jakebartoncreative.com](https://jakebartoncreative.com). The portfolio is ordinary PHP, HTML, CSS, and JavaScript under `_public_html/`. There is no CMS, database, visual editor, or content-export step for the portfolio.
 
-## 🎨 Design
-- Black & white minimalist aesthetic
-- Bold Bebas Neue typography
-- Animated parallax backgrounds
-- Smooth transitions and hover effects
+## Start here
 
-## 🚀 Quick Start
+- [AGENTS.md](AGENTS.md): repository instructions.
+- [PORTFOLIO_STYLE_GUIDE.md](PORTFOLIO_STYLE_GUIDE.md): current visual, writing, media, attribution, and privacy rules. Barton Design Solutions and Everybody Golf are the reference pages.
+- [EDITING.md](EDITING.md): page, component, and interaction ownership.
+- [WORKFLOW.md](WORKFLOW.md): local editing and verification.
+- [DEPLOY.md](DEPLOY.md): GitHub Actions and Hostinger publishing.
+- [Project inventory](projects/PORTFOLIO_INVENTORY.md): current public projects and private drafts.
+- [Source provenance](projects/portfolio-process/README.md): exact excerpts, exported Blueprints, and the Monaco build.
+- [Portfolio reel](projects/portfolio-reel/README.md): edit decisions, export, and editable timeline.
 
-### Local Development
-```bash
-cd _public_html
-php -S localhost:8000
-```
-Visit: http://localhost:8000
+## Structure
 
-### Deploy to Hostinger
-```bash
-./sync_to_hostinger.sh
-```
-Then drag & drop `hostinger_upload/` contents to Hostinger's `public_html`
+`_public_html/index.php` is the homepage. `_public_html/work/index.php` lists 18 projects from `includes/projects.php`; each has an ordinary PHP page and shared project header/footer. Three former motion-video URLs redirect to Motion Graphics. Eleven drafts, including unreleased Minnie’s Golf and temporarily hidden Wrappt, have no public page routes.
 
-## 📁 Structure
-```
-_public_html/              # Development files (edit here)
-├── index.php             # Homepage
-├── assets/               # CSS & JavaScript
-└── portfolio/            # Portfolio pages
-    └── tshirt-designs/   # T-shirt gallery
+`projects/` preserves source, editorial notes, media work, and private drafts outside the web root. `hostinger_upload/` is a generated local deployment mirror. `style-kit/` preserves an older demonstration; its cyan palette and effects are not the current design system.
 
-hostinger_upload/         # Deployment-ready (auto-synced)
-└── (same structure)
+## Preview
+
+Run from this repository’s root:
+
+```sh
+python3 scripts/build-games.py
+PHP_CLI_SERVER_WORKERS=4 php -S 127.0.0.1:8000 -t _public_html _public_html/router.php
 ```
 
-## 🛠️ Features
-- PHP-based dynamic content
-- Responsive design
-- Image gallery with modal viewer
-- Animated transitions
-- Contact form
-- Social media integration
+Open http://localhost:8000/. In a second terminal, run `python3 scripts/check-portfolio.py`. After site changes, run `./sync_to_hostinger.sh`. This prepares local files; pushing to GitHub `main` triggers live deployment. Read [DEPLOY.md](DEPLOY.md) before publishing.
 
-## 📚 Documentation
-- `WORKFLOW.md` - Development & deployment workflow
-- `DEPLOYMENT_SUMMARY.md` - Quick deployment guide
-- `HOSTINGER_UPLOAD_GUIDE.md` - Detailed upload instructions
-
-## 🔧 Tech Stack
-- PHP 8.4
-- Vanilla JavaScript (ES6)
-- CSS3 with animations
-- No frameworks (lightweight & fast)
-
-## 👤 Author
-Jake Barton - Game Designer & 3D Artist
-- Email: jbarton4@samford.edu
-- Instagram: @jakebarton13
-
----
-
-**Last Updated:** November 4, 2025
+Reviewed November 10, 2026. Application-specific READMEs under `projects/` document those source projects, not the portfolio runtime. Current publication decisions are in the inventory and style guide.

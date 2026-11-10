@@ -217,7 +217,7 @@
     var screen = document.createElement('div');
     screen.className = 'loading-screen';
     screen.innerHTML = [
-      '<span style="font-family:\'Bebas Neue\',sans-serif;font-size:2.5rem;color:#00D9FF;letter-spacing:0.15em;text-shadow:0 0 30px rgba(0,217,255,0.5)">JAKE BARTON</span>',
+      '<span style="font-family:\'Helvetica Neue\',sans-serif;font-size:2.5rem;color:#00D9FF;letter-spacing:0.15em;text-shadow:0 0 30px rgba(0,217,255,0.5)">JAKE BARTON</span>',
       '<div class="loading-bar-track"><div class="loading-bar-fill"></div></div>'
     ].join('');
     document.body.insertBefore(screen, document.body.firstChild);
