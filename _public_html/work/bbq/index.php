@@ -37,12 +37,12 @@ require __DIR__ . '/../../includes/project-header.php';
         <div class="jb-bbq-actions">
             <button type="button" data-bbq-fullscreen>Fullscreen</button>
 
-            <a class="jb-fold-underline" href="/games/bbq/" target="_blank" rel="noopener">Open game in new tab</a>
+            <a class="jb-fold-underline" href="/games/bbq/?v=6cb567b189e63db5" target="_blank" rel="noopener">Open game in new tab</a>
         </div>
     </div>
     <p class="jb-bbq-input-note">Keyboard and mouse. Contains horror, blood, and sudden sounds.</p>
     <div class="jb-game-viewport jb-bbq-stage" data-bbq-stage data-lenis-prevent>
-        <iframe src="/games/bbq/" title="Play BBQ — first-person horror game" allow="fullscreen; autoplay" allowfullscreen></iframe>
+        <iframe src="/games/bbq/?v=6cb567b189e63db5" title="Play BBQ — first-person horror game" allow="fullscreen; autoplay" allowfullscreen></iframe>
     </div>
     <p class="jb-bbq-status" role="status" aria-live="polite" data-bbq-status></p>
     <details class="jb-bbq-controls"><summary>Controls</summary>

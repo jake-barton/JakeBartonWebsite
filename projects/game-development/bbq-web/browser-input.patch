@@ -1,14 +1,14 @@
 --- a/scripts/game.gd
 +++ b/scripts/game.gd
-@@ -20,6 +20,7 @@
- var cinematic: Node
+@@ -21,6 +21,7 @@
  var soundscape: Node
+ var dread: Node
  var reading := false
 +var web_pointer_lock_changed: JavaScriptObject
  
  func _ready()->void:
  	get_tree().auto_accept_quit=false
-@@ -33,6 +34,10 @@
+@@ -34,6 +35,10 @@
  	player.reset_at(START,0.0)
  	player.rotation.y=0.12
  	hud.show_title()
@@ -19,7 +19,7 @@
  	soundscape=preload("res://scripts/soundscape.gd").new();add_child(soundscape);soundscape.setup(self)
  	cinematic=preload("res://scripts/cinematic.gd").new()
  	add_child(cinematic);cinematic.setup(self);cinematic.completed.connect(_sequence_finished)
-@@ -80,7 +85,23 @@
+@@ -82,7 +87,23 @@
  	hud.show_prompt(line,progress)
  	hud.update_status(player.stamina,player.crouched,dishes,player.lamp_on)
  
@@ -40,10 +40,10 @@
 +			# Retrying from a real click also recovers from a rejected browser request.
 +			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 +			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
- 	if event.is_action_pressed("ui_cancel"):
- 		if reading:_close_note();return
- 		if paused:_resume()
-@@ -105,7 +126,8 @@
+ 	if event is InputEventKey and event.pressed and not event.echo and event.keycode==KEY_F11:
+ 		var fullscreen=DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN
+ 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN)
+@@ -111,7 +132,8 @@
  		if not cinematic.running and (event.is_action_pressed("restart") or event.is_action_pressed("ui_accept")):_restart()
  		return
  	if phase==Phase.REVEAL:return
@@ -53,3 +53,13 @@
  	if event.is_action_pressed("flashlight"):
  		player.set_lamp(not player.lamp_on);cafe.get_node("Switch").play()
  	elif event.is_action_pressed("throw_dish"):
+--- a/project.godot
++++ b/project.godot
+@@ -12,7 +12,6 @@
+ 
+ config/name="BBQ"
+ config/version="1.0.0"
+-config/icon="res://assets/bbq_icon.png"
+ config/description="A nightmare after Fried Green Tomatoes."
+ run/main_scene="res://scenes/main.tscn"
+ config/features=PackedStringArray("4.5", "GL Compatibility")

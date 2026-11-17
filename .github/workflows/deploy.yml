@@ -52,7 +52,8 @@ jobs:
             mirror --reverse --verbose ./_public_html/assets/work/ ./assets/work/;
             mirror --reverse --verbose ./_public_html/assets/reel/ ./assets/reel/;
             mirror --reverse --verbose ./_public_html/games/mario-kart/ ./games/mario-kart/;
-            mirror --reverse --verbose ./_public_html/games/bbq/ ./games/bbq/;
+            mirror --reverse --verbose --exclude-glob index.html ./_public_html/games/bbq/ ./games/bbq/;
+            put -O ./games/bbq/ ./_public_html/games/bbq/index.html;
             mirror --reverse --verbose ./_public_html/includes/ ./includes/;
             mirror --reverse --verbose ./_public_html/work/ ./work/;
             put -O . ./_public_html/index.php ./_public_html/home.php ./_public_html/router.php ./_public_html/contact-handler.php;
