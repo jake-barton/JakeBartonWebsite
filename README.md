@@ -15,7 +15,7 @@ The live site is [jakebartoncreative.com](https://jakebartoncreative.com). The p
 
 ## Structure
 
-`_public_html/index.php` is the homepage. `_public_html/work/index.php` lists 18 projects from `includes/projects.php`; each has an ordinary PHP page and shared project header/footer. Three former motion-video URLs redirect to Motion Graphics. Eleven drafts, including unreleased Minnie’s Golf and temporarily hidden Wrappt, have no public page routes.
+`_public_html/index.php` is the homepage. `_public_html/work/index.php` lists 19 projects from `includes/projects.php`; each has an ordinary PHP page and shared project header/footer. Three former motion-video URLs redirect to Motion Graphics. Eleven drafts, including unreleased Minnie’s Golf and temporarily hidden Wrappt, have no public page routes.
 
 `projects/` preserves source, editorial notes, media work, and private drafts outside the web root. `hostinger_upload/` is a generated local deployment mirror. `style-kit/` preserves an older demonstration; its cyan palette and effects are not the current design system.
 

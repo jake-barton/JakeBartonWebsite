@@ -88,3 +88,9 @@ Ding Dong, Everybody Golf, Volleyball Game, Mode 7, and Phase Runner use short, 
 See `projects/portfolio-process/README.md` for source selection, Blueprint provenance, and the local Monaco build. Stories must come from Jake’s actual answers and code. Keep code out of the homepage; its former process gallery was removed.
 
 Minnie’s Golf is private because it is unreleased. Its page, media, and former source excerpt are archived in `projects/portfolio-drafts/`. It is also removed from both the delivered reel and the editable reel timeline. Hiding a project must include direct media and code-download URLs when the content is unreleased.
+
+## BBQ web export
+
+BBQ lives at `/work/bbq/`, with the prebuilt Godot 4.5.1 Compatibility runtime in `_public_html/games/bbq/`. It opens directly in the page, with no added project icon or launch/loading overlay. The Work card uses the actual title-screen screenshot. The page uses `pageStyles` for its scoped CSS and `skipPageLoader` to omit its entry curtain.
+
+The editable source is kept locally at `projects/game-development/bbq/`, copied from `Downloads/BBQ_Godot`. The repository keeps the web export recipe in `projects/game-development/bbq-web/`; see its README before rebuilding. Use all resources when exporting: selecting only the main scene omits runtime-preloaded scripts, shaders, and fonts and produces a black screen. The normal `build-games.py` step preserves this prebuilt runtime.

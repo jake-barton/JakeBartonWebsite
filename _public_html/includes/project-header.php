@@ -24,9 +24,14 @@ $menuItems = [
 <link rel="stylesheet" href="/assets/css/site-reel.css?v=20261104-loader-fix">
     <link rel="stylesheet" href="/assets/css/typography.css?v=20261109-footer-headings">
     <link rel="stylesheet" href="/assets/css/source-viewer.css?v=20261109-case-flow">
+<?php foreach ($pageStyles ?? [] as $stylesheet): ?>
+    <link rel="stylesheet" href="<?= jb_escape($stylesheet) ?>">
+<?php endforeach; ?>
 </head>
 <body class="jb-home jb-detail-page" style="--page-canvas: <?= jb_escape(jb_color($theme['canvas'] ?? '', '#e7e6df')) ?>; --page-ink: <?= jb_escape(jb_color($theme['ink'] ?? '', '#132b4f')) ?>; --page-accent: <?= jb_escape(jb_color($theme['accent'] ?? '', '#23883c')) ?>; --page-rail: <?= jb_escape(jb_color($theme['rail'] ?? '', '#23883c')) ?>; --footer-background: <?= jb_escape(jb_color($theme['footer_background'] ?? '', '#e7e6df')) ?>; --footer-text: <?= jb_escape(jb_color($theme['footer_text'] ?? '', '#111111')) ?>; --footer-word: <?= jb_escape(jb_color($theme['footer_word'] ?? '', '#23883c')) ?>;">
+<?php if (empty($skipPageLoader)): ?>
 <div class="jb-work-loader" id="pageLoader" aria-label="Loading project" aria-live="polite"><div class="jb-work-loader-curtains" aria-hidden="true"><span></span><span></span><span></span><span class="jb-work-loader-primary"><span class="jb-work-loader-name"><b class="jb-work-name-dark">Jake Barton</b><b class="jb-work-name-white">Jake Barton</b></span></span></div></div>
+<?php endif; ?>
 <nav class="jb-rail" id="jbRail" aria-label="Primary navigation">
     <button class="jb-menu-button" id="jbMenuButton" type="button" aria-expanded="false" aria-controls="jbMegaMenu"><img src="/assets/brand/jb-logo.png" alt="Open menu"><span class="jb-menu-text">Open/Close</span></button>
     <a href="/" class="jb-rail-wordmark" aria-label="Jake Barton home">Jake Barton</a>

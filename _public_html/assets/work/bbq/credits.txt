@@ -1,0 +1,52 @@
+# Asset credits
+
+Third-party assets retain their respective licenses. Attribution does not imply endorsement. This student adaptation is not an official *Fried Green Tomatoes* game.
+
+| Asset and author | Source / license | Use and modifications |
+| --- | --- | --- |
+| Thin Zombie (Awake Zombie asset), Rosswet Mobile / dogchicken | [OpenGameArt](https://opengameart.org/content/thin-zombie-awake-zombie-asset), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | Frank's nightmare body and hunter. Blender model, skin, rig and animations converted to GLB. Death animation reversed for rising; a manually timed segment of attack3 staged for the close capture; running legs combined with retimed walk upper-body tracks to reduce arm clipping. Scale, floor offsets, roughness and filtering adjusted. |
+| FPS Arms Rigged Only, para; underlying mesh/textures by the MakeHuman team | [OpenGameArt](https://opengameart.org/content/fps-arms-rigged-only), CC0 | Right arm separated, resized and converted from Blender to GLB with its original skin texture. Fingers were reposed around the cutlery for the meal cutscene (`right_cutlery.glb`). Gameplay has no hand model. The older grip asset remains in the editable project. |
+| Low Quality Flashlight, neincenets | [OpenGameArt](https://opengameart.org/content/low-quality-flashlight), CC0 | Imported OBJ and materials; resized and placed on the supper table. Gameplay uses Godot lights without a held-object model. |
+| 7 Eating Crunches, Tito / StarNinjas | [OpenGameArt](https://opengameart.org/content/7-eating-crunches), CC0 | `crunch.5.ogg` renamed `eating.ogg`, timed to the single bite and mixed at lower volume. |
+| Horror Texture Pack, Screaming Brain Studios | [OpenGameArt](https://opengameart.org/content/horror-texture-pack), CC0 | 128px walls, floors, metal, flesh and stains; layered, tiled, tinted and lit in Godot. |
+| Meat Hook 5, plaggy / Marcel Plagmann | [OpenGameArt](https://opengameart.org/content/meat-hook-5), CC0 | Imported OBJ hook; scale and rusty material changed. |
+| String and piano horror stings, congusbongus | [OpenGameArt](https://opengameart.org/content/string-and-piano-horror-stings), CC0 | `abyss.ogg` supplies `reveal_sting.wav`; `piano_sting.mp3` supplies `capture_sting.wav`. Converted to PCM WAV. The current `reveal_snap.wav` trims the strong string section to 1.2 seconds; `capture_snap.wav` trims the piano onset and mixes a rubberduck wood impact into a 1.35-second hit. Short fades and limiting prevent clicks/clipping. The original converted stings remain included. |
+| Footsteps, GboxMikeFozzy | [OpenGameArt](https://opengameart.org/content/footsteps-0), CC0 | Six recorded subway footsteps, renamed `step0.ogg`–`step5.ogg`; playback levels and slight pitch variation adjusted. |
+| Rain and thunders, kindland | [OpenGameArt](https://opengameart.org/content/rain-and-thunders), CC0 | `rain.ogg`, looped quietly. Source combines the author's rain recording with thunder effects. |
+| 100 CC0 SFX #2, rubberduck | [OpenGameArt](https://opengameart.org/content/100-cc0-sfx-2), CC0 | Machinery, drips, latch, door, switch, glass, bell, air and impact samples; volume, spatial attenuation and looping changed. |
+| Post Apocalyptic Wastelands, Juhani Junkala / SubspaceAudio | [OpenGameArt](https://opengameart.org/node/79273), CC0 | Loop-ready horror atmosphere, renamed `wastelands.ogg`. Metadata remuxed without re-encoding; crossfaded and mixed in Godot. |
+| Abandoned passages (horror ambience loop), congusbongus | [OpenGameArt](https://opengameart.org/content/abandoned-passages-horror-ambience-loop), CC0 | `freezer_0.ogg` renamed `freezer.ogg`; metadata remuxed without re-encoding. Pursuit layer, quieter during searching. |
+| Horror Sound Effects Library, Little Robot Sound Factory | [OpenGameArt](https://opengameart.org/content/horror-sound-effects-library), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), [author](https://www.littlerobotsoundfactory.com/) | `Zombie_03`, `Zombie_01`, `Monster_02`, `Monster_06`, `Bonecrack_01`, `Breath_Scared_00`, `Gate_Open_00` renamed to `pursuit`, `murmur`, `capture_voice`, `bone_crack`, `breath`, `gate_open`. Original WAV samples retained for most cues; `capture_voice.wav` combines a trimmed Monster_02 with the short opening of Monster_06, fades the tail and limits the mix. Volumes, spatial attenuation, timing and layering changed in Godot. |
+| Bebas Neue, Ryoichi Tsunekawa / Dharma Type | [Google Fonts source](https://github.com/google/fonts/tree/main/ofl/bebasneue), SIL OFL 1.1 | Unmodified font used for the BBQ title. A Godot shader applies the already-credited surface texture to the lettering. Full notice: `assets/licenses/BebasNeue-OFL.txt`. |
+| VT323, Peter Hull | [Google Fonts](https://github.com/google/fonts/tree/main/ofl/vt323), SIL OFL 1.1 | UI font. Full notice in `assets/licenses/VT323-OFL.txt`. |
+
+## Retained Kenney assets
+
+Kenney's assets are CC0; original notices are in `assets/licenses/`.
+
+| Pack | Source | Contents retained |
+| --- | --- | --- |
+| Furniture Kit | https://kenney.nl/assets/furniture-kit | Seating, counter, appliances and fixtures |
+| Food Kit | https://kenney.nl/assets/food-kit | Food, dishes, mugs, utensils, condiments |
+| Mini Market / Mini Shop | https://kenney.nl/assets/mini-market | Register, shelving, displays |
+| Pirate / Prototype / Graveyard kits | https://kenney.nl/assets/pirate-kit ; https://kenney.nl/assets/prototype-kit ; https://kenney.nl/assets/graveyard-kit | Barrel, crate, pipe and fence |
+| Pattern / Splat packs | https://kenney.nl/assets/pattern-pack ; https://kenney.nl/assets/splat-pack | Legacy textures retained in the editable project |
+| Animated Characters Survivors | https://kenney.nl/assets/animated-characters-survivors | Legacy character; not the current hunter |
+| Impact / Interface / Sci-fi Sounds | https://kenney.nl/assets/impact-sounds ; https://kenney.nl/assets/interface-sounds ; https://kenney.nl/assets/sci-fi-sounds | Legacy samples; current scenes use the replacement sounds above |
+
+Kenney props are scaled, placed and given layered wear materials while retaining their source textures. Architecture and collision use Godot geometry; signage is text. Post-processing and gameplay are code, not downloaded artwork. No generated images or AI-generated audio were added in this revision.
+
+CC0: https://creativecommons.org/publicdomain/zero/1.0/
+
+## Film and design references
+
+- *Fried Green Tomatoes* (1991), directed by Jon Avnet; screenplay by Fannie Flagg and Carol Sobieski. [AFI synopsis and credits](https://catalog.afi.com/Film/58891-FRIED-GREEN-TOMATOES). The game turns the barbecue revelation into an imagined nightmare.
+- Creative Assembly, [Building Fear in Alien: Isolation](https://gdcvault.com/play/1021852/Building-Fear-in-Alien) and [bringing the creature to life](https://blog.playstation.com/archive/2014/10/07/creative-assembly-brought-iconic-monster-life-alien-isolation): references for one persistent threat, sensory cues and hiding/searching. No assets or code copied.
+- Puppet Combo, [Murder House](https://store.steampowered.com/app/1064460/Murder_House/): reference for low-resolution slasher presentation and stalking. No assets copied.
+
+- Wright Bagwell, [Dead Space 2 creative-director interview](https://www.gamedeveloper.com/audio/the-new-theory-of-horror-i-dead-space-2-i-s-creative-director-speaks): timing, removing distractions around scare moments, and silence/sound contrast. Applied as ambient ducking, a delayed movement cue, and a brief capture without explanatory text.
+- Thomas Grip, [Top Three Questions about SOMA](https://frictionalgames.com/2015-09-top-three-questions-about-soma/): varied tension and horror tied to the subject. Applied by separating discovery, hunting, search and withdrawal; Frank is the story's returning violence.
+
+Title composition references: [Silent Hill 2 menu](https://www.silenthillmemories.net/sh2/playing_the_game_en.htm), [Resident Evil 7 title screen](https://wall.alphacoders.com/big.php?i=797011), and [Murder House official Nintendo screenshots](https://ec.nintendo.com/AU/en/titles/70010000045498). Used to study visual hierarchy and sparse menu copy; no reference imagery is included in the game.
+
+Godot Engine: MIT license - https://godotengine.org/license/

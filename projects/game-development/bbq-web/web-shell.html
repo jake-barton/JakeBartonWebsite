@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$GODOT_PROJECT_NAME</title>
+<link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+<style>
+html,body{margin:0;width:100%;height:100%;background:#11110e;overflow:hidden}body{display:grid;place-items:center}#canvas{display:block;border:0;outline:none;width:min(100vw,calc(100vh * 16 / 9));height:min(100vh,calc(100vw * 9 / 16))}#loading{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;color:#e4d6ac;font:18px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif}#notice{max-width:38rem;margin:24px;text-align:center;white-space:pre-line}#loading[hidden]{display:none}
+</style>
+$GODOT_HEAD_INCLUDE
+</head>
+<body>
+<canvas width="1280" height="720" id="canvas" tabindex="0" aria-label="BBQ game">Your browser needs canvas support to play BBQ.</canvas>
+<div id="loading" role="status"><span id="notice"></span></div>
+<script src="$GODOT_URL"></script>
+<script>
+const config=$GODOT_CONFIG;
+const threads=$GODOT_THREADS_ENABLED;
+const loading=document.getElementById('loading');
+
+const notice=document.getElementById('notice');
+function notify(type){if(window.parent!==window)window.parent.postMessage({type},location.origin);}
+function fail(error){console.error(error);notice.textContent=error instanceof Error?error.message:String(error);notify('bbq-error');}
+try{
+ const missing=Engine.getMissingFeatures({threads});
+ if(missing.length)throw new Error('This browser cannot run BBQ:\n'+missing.join('\n'));
+ const engine=new Engine(config);
+ engine.startGame().then(()=>{loading.hidden=true;notify('bbq-ready');},fail);
+}catch(error){fail(error);}
+</script>
+</body>
+</html>

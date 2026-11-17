@@ -1,0 +1,24 @@
+BBQ audio additions
+
+Horror Sound Effects Library by Little Robot Sound Factory
+www.littlerobotsoundfactory.com
+https://opengameart.org/content/horror-sound-effects-library
+Creative Commons Attribution 3.0 Unported
+https://creativecommons.org/licenses/by/3.0/
+Selected original WAVs were renamed and mixed/spatialized in Godot.
+Zombie_03.wav -> pursuit.wav
+Zombie_01.wav -> murmur.wav
+Monster_02.wav + Monster_06.wav -> capture_voice.wav (trimmed, layered, faded and limited)
+Bonecrack_01.wav -> bone_crack.wav
+Breath_Scared_00.wav -> breath.wav
+Gate_Open_00.wav -> gate_open.wav
+
+Post Apocalyptic Wastelands by Juhani Junkala / SubspaceAudio
+https://opengameart.org/node/79273
+CC0 https://creativecommons.org/publicdomain/zero/1.0/
+Renamed wastelands.ogg; metadata remuxed without re-encoding.
+
+Abandoned passages (horror ambience loop) by congusbongus
+https://opengameart.org/content/abandoned-passages-horror-ambience-loop
+CC0 https://creativecommons.org/publicdomain/zero/1.0/
+Renamed freezer.ogg; metadata remuxed without re-encoding.

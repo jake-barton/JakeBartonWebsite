@@ -2,12 +2,13 @@
 
 Reviewed November 10, 2026 against the PHP registry, project pages, process notes, source catalogue, and live site. Original source/media review began November 3; those historical review notes are retained in the project folders. Original working files remain in their documented locations.
 
-The portfolio has 18 public project pages, one homepage, and one Work index. The authoritative card list is `_public_html/includes/projects.php`; pages are ordinary PHP under `_public_html/work/`. Role and team details below follow the current page and Jake’s confirmed accounts.
+The portfolio has 19 public project pages, one homepage, and one Work index. The authoritative card list is `_public_html/includes/projects.php`; pages are ordinary PHP under `_public_html/work/`. Role and team details below follow the current page and Jake’s confirmed accounts.
 
 ## Published work
 
 | Project / route | Role | Current presentation and evidence |
 | --- | --- | --- |
+| [BBQ](https://jakebartoncreative.com/work/bbq/) | Game Design & Development | Approved November 17, 2026. Godot first-person stealth horror coursework inspired by Fried Green Tomatoes. Actual game screenshots and an embedded single-threaded web export. Third-party models, textures, audio, and fonts retain their credits and license notices. No added project icon. |
 | [Ding Dong](https://jakebartoncreative.com/work/ding-dong/) | Lead Programmer & Artist | Studio495 co-op game. Jake built the programming systems and hands/NPC artwork; retain team credit for the environment, music, and intro. Sequential chapters pair gameplay with verified phone replication, A*, and map-conversion Blueprints. The full intro accompanies the artwork chapter. |
 | [Everybody Golf](https://jakebartoncreative.com/work/everybody-golf/) | Sole Creator | Mac beta and iPhone motion controller. Jake confirmed sole creation. Paired recordings have aligned starts/durations and share the playback clock. Chapters show actual C++ flight, spin, rolling resistance, and phone-input calculations. |
 | [Volleyball Game](https://jakebartoncreative.com/work/volleyball-game/) | Gameplay Programmer | Unreal gameplay, movement, and camera work. The October 7 progress deck and saved project support the credit. October 28 gameplay footage accompanies Jake’s account; exported current camera/jump/dash/dive graphs are kept distinct from claims about historical changes. |

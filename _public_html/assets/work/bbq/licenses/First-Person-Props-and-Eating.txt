@@ -1,0 +1,20 @@
+All assets listed below were released under CC0:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+FPS Arms Rigged Only — para
+Original mesh and textures: MakeHuman team
+https://opengameart.org/content/fps-arms-rigged-only
+Modifications: right-arm grip pose baked, left arm removed, normalized scale,
+converted to GLB, original skin texture retained.
+
+Low Quality Flashlight — neincenets
+https://opengameart.org/content/low-quality-flashlight
+Modifications: scale, placement and Godot lighting. Unsupported MTL ambient-color entries removed (Godot ignored these values).
+
+7 Eating Crunches — Tito / StarNinjas
+https://opengameart.org/content/7-eating-crunches
+crunch.5.ogg renamed eating.ogg; playback volume and timing changed.
+
+Meal, fork, knife and dishes — Kenney Food Kit
+https://kenney.nl/assets/food-kit
+Original notice: Kenney-Food-Kit.txt in this directory.

@@ -1,0 +1,10 @@
+Kenney assets, licensed under CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Pirate Kit, Furniture Kit, Graveyard Kit, and Prototype Kit props
+https://github.com/Hidencod/tge-assets
+
+Sci-fi Sounds audio by Kenney
+https://kenney.nl/assets/sci-fi-sounds
+Distributed as AAC by Atomcut Library
+https://github.com/novincode/atomcut-library/tree/main/packs/kenney-sci-fi-sounds

@@ -2,6 +2,18 @@
 // Work-grid cards only. Edit each full page in work/<project-name>/index.php.
 // Only approved public projects belong in this list.
 return [
+    'bbq' => [
+        'title' => 'BBQ',
+        'subtitle' => 'First-person stealth horror game',
+        'image' => '/assets/work/bbq/title.webp',
+        'video' => '',
+        'tags' => ['Games', 'Godot', 'Programming'],
+        'filters' => ['games', 'programming'],
+        'logo_card' => false,
+        'card' => ['background' => '#171610', 'image_fit' => 'cover'],
+        'url' => '/work/bbq/',
+        'sort_order' => 0,
+    ],
     'ding-dong' => [
         'preview_video' => '/assets/work/ding-dong/hover-preview.mp4',
         'preview_image' => '/assets/work/ding-dong/hover-preview-poster.webp',

@@ -1,0 +1,26 @@
+.jb-bbq-play { margin:0 40px 64px; scroll-margin-top:120px; color:var(--page-ink); }
+.jb-bbq-play :is(h2,p,summary,dt,dd) { color:inherit; }
+.jb-bbq-toolbar { display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.jb-bbq-toolbar h2 { margin:0; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-size:clamp(28px,3vw,44px); font-weight:400; }
+.jb-bbq-actions { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.jb-bbq-actions button { background:transparent; border:1px solid currentColor; border-radius:8px; padding:10px 14px; color:inherit; font:inherit; cursor:pointer; }
+.jb-bbq-actions [hidden] { display:none; }
+.jb-bbq-input-note { margin:20px 0; font-size:16px; line-height:1.5; }
+.jb-bbq-stage { overflow:hidden; border-radius:20px; }
+.jb-bbq-stage:fullscreen { width:100vw; height:100dvh; aspect-ratio:auto; border-radius:0; }
+.jb-bbq-play :is(button,a,summary):focus-visible { outline:3px solid #23883c; outline-offset:5px; }
+.jb-bbq-status { min-height:1.5em; margin:12px 0; font-size:16px; }
+.jb-bbq-controls { border-top:1px solid #18160f55; padding-top:16px; }
+.jb-bbq-controls summary { width:fit-content; cursor:pointer; font-size:20px; }
+.jb-bbq-controls dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 32px; margin:20px 0 0; }
+.jb-bbq-controls dl div { display:grid; grid-template-columns:140px minmax(0,1fr); gap:12px; }
+.jb-bbq-controls dt { font-weight:500; }
+.jb-bbq-controls dd { margin:0; line-height:1.4; }
+@media(max-width:767px) {
+ .jb-bbq-play { margin:0 18px 40px; }
+ .jb-bbq-toolbar { gap:16px; }
+ .jb-bbq-actions { gap:12px; font-size:14px; }
+ .jb-bbq-stage { border-radius:12px; }
+ .jb-bbq-controls dl { grid-template-columns:1fr; }
+ .jb-bbq-controls dl div { grid-template-columns:125px minmax(0,1fr); }
+}

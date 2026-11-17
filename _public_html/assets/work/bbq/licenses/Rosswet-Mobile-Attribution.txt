@@ -1,0 +1,8 @@
+Thin Zombie [Awake Zombie Asset]
+Author and requested attribution: Rosswet Mobile
+Submitted by dogchicken
+Source: https://opengameart.org/content/thin-zombie-awake-zombie-asset
+License: Creative Commons Attribution 3.0 Unported
+https://creativecommons.org/licenses/by/3.0/
+Changes: converted Blender source to GLB, selected animation clips, adjusted scale, material roughness and texture sampling.
+No endorsement by the original author is implied.
